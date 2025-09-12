@@ -1,3 +1,4 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,15 +6,55 @@
   text-align: center;
 }
 
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Optimize animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+/* Optimize images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Reduce layout shifts */
+.card {
+  padding: 2em;
+  min-height: 200px;
+}
+
+/* Optimize hover states */
+.transition-all {
+  transition-duration: 0.2s;
+}
+
+/* Logo optimizations */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter 200ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -33,10 +74,25 @@
   }
 }
 
-.card {
-  padding: 2em;
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    animation: none;
+    transition: none;
+  }
+  
+  .logo {
+    animation: none;
+  }
 }
 
 .read-the-docs {
   color: #888;
+}
+
+/* Performance hint for GPU acceleration */
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }

@@ -1,0 +1,27 @@
+{
+  "name": "Phresh Phactory - Strategic Business Transformation",
+  "short_name": "Phresh Phactory",
+  "description": "Transform your business with fractional C-level leadership, global talent teams, and legacy system modernization.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["business", "productivity", "consulting"],
+  "icons": [
+    {
+      "src": "/lovable-uploads/20fc1ce4-3996-4c3e-9599-1b8f9985b678.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/lovable-uploads/20fc1ce4-3996-4c3e-9599-1b8f9985b678.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

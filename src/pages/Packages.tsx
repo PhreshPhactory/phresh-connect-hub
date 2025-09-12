@@ -1,215 +1,239 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import SectionTitle from '@/components/SectionTitle';
+import PricingCard from '@/components/PricingCard';
+import CallToAction from '@/components/CallToAction';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import SEOHead from '@/components/SEOHead';
-import { Check, ArrowRight, Star } from 'lucide-react';
 
 const Packages = () => {
-  const packages = [
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'quarterly'>('monthly');
+
+  // Toggle between monthly and quarterly billing
+  const handleBillingToggle = () => {
+    setBillingCycle(billingCycle === 'monthly' ? 'quarterly' : 'monthly');
+  };
+
+  // Pricing plans
+  const pricingPlans = [
     {
-      name: 'Starter',
-      price: '$5,000',
-      period: '/month',
-      description: 'Perfect for growing businesses ready to scale operations and leadership.',
+      title: 'Starter Audit',
+      price: billingCycle === 'monthly' ? '$3,000' : '$3,000',
+      period: 'one-time',
+      description: 'A comprehensive assessment of your current operations with actionable recommendations.',
       features: [
-        '20 hours fractional leadership',
-        'Strategic planning session',
-        'Monthly performance review',
-        'Basic systems assessment',
-        'Email support'
-      ],
-      popular: false,
-      color: 'border-border'
+        { text: 'Full operations audit' },
+        { text: 'Gap analysis report' },
+        { text: '90-day roadmap' },
+        { text: '2 implementation sessions' },
+        { text: 'Priority access to other services' }
+      ]
     },
     {
-      name: 'Growth',
-      price: '$12,000',
-      period: '/month',
-      description: 'Comprehensive transformation for businesses serious about exponential growth.',
+      title: 'Fractional Exec',
+      price: billingCycle === 'monthly' ? '$8,000' : '$21,600',
+      period: billingCycle === 'monthly' ? '/month' : '/quarter',
+      description: 'Ongoing operational leadership and hands-on implementation support.',
       features: [
-        '40 hours fractional leadership',
-        'Global talent placement (1-2 roles)',
-        'Legacy system assessment',
-        'Custom process optimization',
-        'Weekly strategy sessions',
-        'Priority phone & email support',
-        'Quarterly business reviews'
+        { text: 'Dedicated operations leader' },
+        { text: 'Weekly strategic sessions' },
+        { text: 'Systems implementation' },
+        { text: 'Team management support' },
+        { text: 'Unlimited email/chat access' }
       ],
-      popular: true,
-      color: 'border-tertiary'
+      isPopular: true
     },
     {
-      name: 'Enterprise',
-      price: 'Custom',
-      period: '',
-      description: 'Full-scale transformation for large organizations with complex needs.',
+      title: 'Board Advisor',
+      price: billingCycle === 'monthly' ? '$1,500' : '$4,050',
+      period: billingCycle === 'monthly' ? '/month' : '/quarter',
+      description: 'Strategic guidance and accountability for established businesses.',
       features: [
-        'Unlimited fractional leadership hours',
-        'Complete global talent team',
-        'Full legacy transformation',
-        'Custom systems design',
-        'Dedicated account manager',
-        '24/7 support',
-        'Monthly executive briefings',
-        'Custom integrations & training'
+        { text: 'Monthly advisory sessions' },
+        { text: 'Quarterly strategy reviews' },
+        { text: 'On-call support (5hrs/mo)' },
+        { text: 'Network introductions' },
+        { text: 'Growth planning' }
+      ]
+    },
+    {
+      title: 'Ops Metrics Kit',
+      price: '$497',
+      period: 'one-time',
+      description: 'A plug-and-play dashboard to give you visibility into your operations—before you hire, scale, or make your next big move.',
+      features: [
+        { text: 'Plug-and-play dashboard (Google Sheets or Notion)' },
+        { text: 'Weekly productivity + deliverables tracker' },
+        { text: 'Project status snapshot (color-coded)' },
+        { text: 'Hiring and contractor gap overview' },
+        { text: 'Tool + software usage visibility' },
+        { text: 'SOP development tracker' },
+        { text: 'Optional: +$150 for 1:1 walkthrough and fix-it plan' }
       ],
-      popular: false,
-      color: 'border-primary'
+      buttonText: 'Book Now'
     }
   ];
 
-  const addOns = [
+  const faqItems = [
     {
-      title: 'Additional Leadership Hours',
-      price: '$200/hour',
-      description: 'Extra fractional leadership time for specific projects.'
+      question: "What's included in the Starter Audit?",
+      answer: "The Starter Audit includes a comprehensive assessment of your current operations, identifying gaps and inefficiencies. You'll receive a detailed report with actionable recommendations and a 90-day roadmap for implementation. We also include two implementation sessions to help you get started."
     },
     {
-      title: 'Emergency Support',
-      price: '$500/incident',
-      description: '24/7 emergency support for critical business issues.'
+      question: "Can I upgrade from one package to another?",
+      answer: "Absolutely! Many clients start with a Starter Audit and then move to the Fractional Exec package for implementation support. We make the transition seamless and will apply any relevant credits from your current package."
     },
     {
-      title: 'Training & Workshops',
-      price: '$2,000/session',
-      description: 'Custom training sessions for your team on transformation best practices.'
+      question: "Is there a minimum commitment period?",
+      answer: "The Starter Audit is a one-time engagement. For Fractional Exec, we require a 3-month minimum commitment to ensure we have enough time to implement meaningful changes. The Board Advisor role requires a 6-month commitment."
     },
     {
-      title: 'Additional Talent Placement',
-      price: '$3,000/placement',
-      description: 'Extra global talent placements beyond package limits.'
+      question: "What if I need additional services beyond my package?",
+      answer: "We offer add-on services for all packages. These include additional implementation hours, specialized consultant sessions, team training workshops, and more. We'll provide transparent pricing for any add-ons before proceeding."
+    },
+    {
+      question: "Do you offer refunds if I'm not satisfied?",
+      answer: "We stand behind our work. If you're not satisfied with our services within the first 30 days, we'll work with you to address any concerns or offer a partial refund based on the work completed."
     }
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-background">
       <SEOHead
-        title="Pricing & Packages | Phresh Phactory Business Transformation"
-        description="Explore our flexible pricing packages for business transformation services. From startups to enterprise, find the right plan for your growth."
-        keywords="business transformation pricing, fractional leadership packages, global talent pricing, legacy transformation cost"
+        title="Packages | Business Transformation & Scalable Growth Plans"
+        description="Explore Phresh Phactory's tailored packages for transformation, leadership, and talent, built to match your growth stage with simple, transparent pricing."
+        keywords="Business Transformation Packages, Executive Leadership, Talent Solutions, Scalable Growth Plans"
+        canonicalUrl="https://phreshphactory.co/packages"
       />
-
-      <div className="section-padding">
+      {/* Hero Section */}
+      <section className="bg-background py-16 md:py-20">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">
-              Transformation Packages
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Choose the perfect package for your business transformation journey. All packages include our core services with flexible scaling options.
+          <div className="max-w-3xl mx-auto text-center animate-fade-in">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Simple, Transparent Pricing</h1>
+            <p className="text-xl mb-8 text-muted-foreground">
+              Flexible packages designed to fit your business needs and growth stage.
             </p>
           </div>
-
-          {/* Pricing Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {packages.map((pkg, index) => (
-              <Card key={index} className={`relative ${pkg.color} ${pkg.popular ? 'border-2 scale-105' : ''} transition-transform hover:scale-105`}>
-                {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-tertiary text-tertiary-foreground flex items-center gap-1">
-                      <Star className="h-3 w-3" />
-                      Most Popular
-                    </Badge>
-                  </div>
-                )}
-                <CardContent className="p-8">
-                  <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold mb-2">{pkg.name}</h3>
-                    <div className="mb-4">
-                      <span className="text-4xl font-bold">{pkg.price}</span>
-                      <span className="text-muted-foreground">{pkg.period}</span>
-                    </div>
-                    <p className="text-muted-foreground">{pkg.description}</p>
-                  </div>
-
-                  <ul className="space-y-3 mb-8">
-                    {pkg.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
-                        <Check className="h-5 w-5 text-tertiary mt-0.5 flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button 
-                    asChild 
-                    className={`w-full ${pkg.popular ? 'btn-tertiary' : 'btn-primary'}`}
-                  >
-                    <Link to="/contact">
-                      Get Started
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Add-ons Section */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold font-heading text-center mb-8">Add-On Services</h2>
-            <p className="text-xl text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-              Enhance your package with additional services tailored to your specific needs.
-            </p>
+        </div>
+      </section>
+      
+      {/* Pricing Section */}
+      <section className="py-4 sm:py-16 bg-muted">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <PricingCard
+              title="Fractional Ops Leader"
+              price="$8,000"
+              period="/month"
+              description="Ongoing operational leadership and hands-on implementation support."
+              features={[
+                { text: 'Dedicated operations leader' },
+                { text: 'Weekly strategic sessions' },
+                { text: 'Systems implementation' },
+                { text: 'Team management support' },
+                { text: 'Unlimited email/chat access' }
+              ]}
+              isPopular={true}
+              buttonText="Get Started"
+              buttonLink="/contact"
+            />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {addOns.map((addon, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-lg font-semibold">{addon.title}</h3>
-                      <span className="text-lg font-bold text-tertiary">{addon.price}</span>
-                    </div>
-                    <p className="text-muted-foreground">{addon.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <PricingCard
+              title="Advisory Board Program"
+              price="$12,000"
+              period="/quarter"
+              description="Strategic guidance and accountability for established businesses."
+              features={[
+                { text: 'Monthly advisory sessions' },
+                { text: 'Quarterly strategy reviews' },
+                { text: 'On-call support (15hrs/quarter)' },
+                { text: 'Network introductions' },
+                { text: 'Growth planning' },
+                { text: 'Board-level insights' }
+              ]}
+              buttonText="Learn More"
+              buttonLink="/contact"
+            />
+            
+            <PricingCard
+              title="Ops Metrics Kit"
+              price="$497"
+              period="one-time"
+              description="A plug-and-play dashboard to give you visibility into your operations—before you hire, scale, or make your next big move."
+              features={[
+                { text: 'Plug-and-play dashboard (Google Sheets or Notion)' },
+                { text: 'Weekly productivity + deliverables tracker' },
+                { text: 'Project status snapshot (color-coded)' },
+                { text: 'Hiring and contractor gap overview' },
+                { text: 'Tool + software usage visibility' },
+                { text: 'SOP development tracker' },
+                { text: 'Optional: +$150 for 1:1 walkthrough and fix-it plan' }
+              ]}
+              buttonText="Book Now"
+              buttonLink="/contact"
+            />
           </div>
-
-          {/* FAQ Section */}
-          <div className="bg-muted/50 rounded-2xl p-8 md:p-12">
-            <h2 className="text-3xl font-bold font-heading text-center mb-8">Frequently Asked Questions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Can I change packages later?</h3>
-                <p className="text-muted-foreground">Yes, you can upgrade or downgrade your package at any time with 30 days notice.</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">What's included in fractional leadership?</h3>
-                <p className="text-muted-foreground">Strategic planning, team leadership, process optimization, and direct executive guidance tailored to your business.</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">How quickly can we get started?</h3>
-                <p className="text-muted-foreground">Most packages can be initiated within 1-2 weeks of contract signing, depending on complexity.</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Do you offer custom packages?</h3>
-                <p className="text-muted-foreground">Absolutely! We create custom solutions for unique business needs. Contact us to discuss your requirements.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="text-center mt-16">
-            <h2 className="text-3xl font-bold font-heading mb-4">
-              Ready to Start Your Transformation?
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Let's discuss which package is right for your business. Schedule a free consultation to get personalized recommendations.
+          
+          <div className="mt-16 text-center">
+            <h3 className="text-2xl font-medium mb-6 text-foreground">Need a Custom Solution?</h3>
+            <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+              We understand that every business has unique needs. Contact us to discuss a tailored package for your specific requirements.
             </p>
-            <Button asChild className="btn-primary">
-              <Link to="/contact">
-                Schedule Free Consultation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
+            <Button asChild size="lg">
+              <Link to="/contact">Contact for Custom Package</Link>
             </Button>
           </div>
         </div>
-      </div>
-    </>
+      </section>
+      
+      {/* FAQ Section */}
+      <section className="py-16 bg-background">
+        <div className="container-custom">
+          <SectionTitle
+            title="Frequently Asked Questions"
+            subtitle="Find answers to common questions about our pricing and packages."
+            center
+          />
+          
+          <div className="max-w-4xl mx-auto mt-12">
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqItems.map((item, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className="bg-card border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
+                >
+                  <AccordionTrigger className="px-4 sm:px-8 py-6 text-left hover:no-underline [&[data-state=open]>svg]:rotate-180">
+                    <span className="text-base sm:text-lg font-semibold text-foreground pr-4 leading-relaxed">
+                      {item.question}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 sm:px-8 pb-8 pt-0">
+                    <div className="pt-2 border-t border-border/50">
+                      <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                        {item.answer}
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+      
+      
+      {/* CTA */}
+      <CallToAction
+        title="Ready to Get Started?"
+        subtitle="Book a discovery call to discuss which package is right for your business."
+        primaryButtonText="Book a Discovery Call"
+        primaryButtonLink="http://calendly.com/PhreshPhactory"
+        dark={true}
+      />
+    </div>
   );
 };
 
