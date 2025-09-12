@@ -10,6 +10,7 @@ import React, { Suspense, lazy } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SecurityHeaders } from "@/components/SecurityHeaders";
 import CacheHeaders from '@/components/CacheHeaders';
+import { useScrollAnimations } from '@/hooks/useScrollAnimations';
 
 // Import critical pages normally for faster loading
 import Home from "@/pages/Home";
@@ -56,6 +57,8 @@ const queryClient = new QueryClient({
 });
 
 const App: React.FC = () => {
+  useScrollAnimations();
+  
   return (
     <HelmetProvider>
       <SecurityHeaders />

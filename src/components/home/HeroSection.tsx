@@ -28,7 +28,7 @@ const HeroSection = () => {
               <Star className="text-strategic-gold w-6 h-6 mr-3 glow-tertiary" />
               We turn your vision into action and lead the people who keep your business moving.
             </p>
-            <div className="hidden flex-col sm:flex-row gap-6 stagger-children relative z-30">
+            <div className="flex flex-col sm:flex-row gap-6 stagger-children relative z-30">
               <Button asChild size="lg" className="bg-tertiary hover:bg-tertiary/90 text-primary px-12 py-4 text-xl font-bold shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-tertiary/30">
                 <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">Book a Discovery Call</a>
               </Button>

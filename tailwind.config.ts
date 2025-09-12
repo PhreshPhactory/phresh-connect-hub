@@ -38,13 +38,13 @@ export default {
 				'6xl': ['3.75rem', { lineHeight: '1' }], // 60px
 			},
 			colors: {
-				// Phresh Phactory Brand Colors
-				'ink-black': '#000000',
-				'bright-white': '#FFFFFF',
-				'phresh-smoke': '#BDBDBD',
-				'jet-gray': '#555454',
-				'strategic-gold': '#D4AF37',
-				'global-teal': '#006A6A',
+				// Phresh Phactory Brand Colors (using HSL variables)
+				'ink-black': 'hsl(var(--primary))',
+				'bright-white': 'hsl(var(--primary-foreground))',
+				'phresh-smoke': 'hsl(var(--secondary))',
+				'jet-gray': 'hsl(var(--muted-foreground))',
+				'strategic-gold': 'hsl(var(--tertiary))',
+				'global-teal': 'hsl(var(--teal))',
 				
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -54,58 +54,58 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					50: '#F7F7F7',
-					100: '#E8E8E8',
-					200: '#D0D0D0',
-					300: '#B8B8B8',
-					400: '#A0A0A0',
-					500: '#000000', // Ink Black
-					600: '#000000',
-					700: '#000000',
+					50: 'hsl(0 0% 97%)',
+					100: 'hsl(0 0% 91%)',
+					200: 'hsl(0 0% 82%)',
+					300: 'hsl(0 0% 72%)',
+					400: 'hsl(0 0% 63%)',
+					500: 'hsl(var(--primary))', // Ink Black
+					600: 'hsl(var(--primary))',
+					700: 'hsl(var(--primary))',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))',
-					100: '#F5F5F5',
-					200: '#EBEBEB',
-					300: '#E0E0E0',
-					400: '#D6D6D6',
-					500: '#BDBDBD', // Phresh Smoke
-					600: '#555454', // Jet Gray
-					700: '#333333',
+					100: 'hsl(0 0% 96%)',
+					200: 'hsl(0 0% 92%)',
+					300: 'hsl(0 0% 88%)',
+					400: 'hsl(0 0% 84%)',
+					500: 'hsl(var(--secondary))', // Phresh Smoke
+					600: 'hsl(var(--muted-foreground))', // Jet Gray
+					700: 'hsl(0 0% 20%)',
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',
-					100: '#F5F5F5',
-					200: '#EBEBEB',
-					300: '#E0E0E0',
-					400: '#D6D6D6',
-					500: '#BDBDBD', // Phresh Smoke
+					100: 'hsl(0 0% 96%)',
+					200: 'hsl(0 0% 92%)',
+					300: 'hsl(0 0% 88%)',
+					400: 'hsl(0 0% 84%)',
+					500: 'hsl(var(--accent))', // Phresh Smoke
 				},
 				tertiary: {
 					DEFAULT: 'hsl(var(--tertiary))',
 					foreground: 'hsl(var(--tertiary-foreground))',
-					50: '#FDF9E7',
-					100: '#FAF1C2',
-					200: '#F5E899',
-					300: '#EFDE70',
-					400: '#E8D54D',
-					500: '#D4AF37', // Strategic Gold
-					600: '#B8941F',
-					700: '#9C7A0A',
+					50: 'hsl(49 69% 95%)',
+					100: 'hsl(49 69% 85%)',
+					200: 'hsl(49 69% 75%)',
+					300: 'hsl(49 69% 65%)',
+					400: 'hsl(49 69% 58%)',
+					500: 'hsl(var(--tertiary))', // Strategic Gold
+					600: 'hsl(49 69% 45%)',
+					700: 'hsl(49 69% 35%)',
 				},
 				teal: {
 					DEFAULT: 'hsl(var(--teal))',
 					foreground: 'hsl(var(--teal-foreground))',
-					50: '#E6F7F7',
-					100: '#B3EBEB',
-					200: '#80DEDE',
-					300: '#4DD1D1',
-					400: '#26BABA',
-					500: '#006A6A', // Global Teal
-					600: '#005555',
-					700: '#004040',
+					50: 'hsl(180 100% 95%)',
+					100: 'hsl(180 100% 85%)',
+					200: 'hsl(180 100% 75%)',
+					300: 'hsl(180 100% 65%)',
+					400: 'hsl(180 100% 35%)',
+					500: 'hsl(var(--teal))', // Global Teal
+					600: 'hsl(180 100% 17%)',
+					700: 'hsl(180 100% 13%)',
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',

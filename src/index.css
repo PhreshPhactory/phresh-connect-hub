@@ -213,20 +213,40 @@
     padding-bottom: 80px;
   }
 
-  /* Brand color backgrounds */
-  .bg-brand-black { background-color: #000000; }
-  .bg-brand-smoke { background-color: #BDBDBD; }
-  .bg-brand-gray { background-color: #555454; }
-  .bg-brand-gold { background-color: #D4AF37; }
-  .bg-brand-teal { background-color: #006A6A; }
+  /* Brand color utilities using design system */
+  .bg-brand-black { background-color: hsl(var(--primary)); }
+  .bg-brand-smoke { background-color: hsl(var(--secondary)); }
+  .bg-brand-gray { background-color: hsl(var(--muted-foreground)); }
+  .bg-brand-gold { background-color: hsl(var(--tertiary)); }
+  .bg-brand-teal { background-color: hsl(var(--teal)); }
 
-  /* Premium gradient backgrounds */
+  /* Text colors using design system */
+  .text-strategic-gold { color: hsl(var(--tertiary)); }
+  .text-global-teal { color: hsl(var(--teal)); }
+  .text-jet-gray { color: hsl(var(--muted-foreground)); }
+  .text-phresh-smoke { color: hsl(var(--secondary)); }
+  .text-ink-black { color: hsl(var(--primary)); }
+  .text-bright-white { color: hsl(var(--primary-foreground)); }
+
+  /* Background colors using design system */
+  .bg-strategic-gold { background-color: hsl(var(--tertiary)); }
+  .bg-global-teal { background-color: hsl(var(--teal)); }
+  .bg-jet-gray { background-color: hsl(var(--muted-foreground)); }
+  .bg-phresh-smoke { background-color: hsl(var(--secondary)); }
+  .bg-ink-black { background-color: hsl(var(--primary)); }
+  .bg-bright-white { background-color: hsl(var(--primary-foreground)); }
+
+  /* Premium gradient backgrounds using design system */
   .bg-gradient-hero {
-    background: linear-gradient(135deg, #000000 0%, #006A6A 100%);
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--teal)) 100%);
   }
   
   .bg-gradient-premium {
-    background: linear-gradient(135deg, #D4AF37 0%, #006A6A 100%);
+    background: linear-gradient(135deg, hsl(var(--tertiary)) 0%, hsl(var(--teal)) 100%);
+  }
+
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, hsl(var(--tertiary)) 0%, hsl(var(--tertiary) / 0.8) 100%);
   }
 
   /* Section title with accent bar */
