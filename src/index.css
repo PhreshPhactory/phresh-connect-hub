@@ -1,42 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Phresh Phactory Brand Colors */
+    --background: 0 0% 100%; /* Bright White */
+    --foreground: 0 0% 0%; /* Ink Black */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
+    --card: 0 0% 100%; /* Bright White */
+    --card-foreground: 0 0% 0%; /* Ink Black */
+    --popover: 0 0% 100%; /* Bright White */
+    --popover-foreground: 0 0% 0%; /* Ink Black */
+    --primary: 0 0% 0%; /* Ink Black */
+    --primary-foreground: 0 0% 100%; /* Bright White */
+    --secondary: 0 0% 74%; /* Phresh Smoke */
+    --secondary-foreground: 0 0% 0%; /* Ink Black */
+    --muted: 0 0% 89%; /* #e2e2e2 */
+    --muted-foreground: 4 1% 33%; /* Jet Gray */
+    --accent: 0 0% 74%; /* Phresh Smoke */
+    --accent-foreground: 0 0% 0%; /* Ink Black */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 74%; /* Phresh Smoke */
+    --input: 0 0% 74%; /* Phresh Smoke */
+    --ring: 0 0% 0%; /* Ink Black */
     --radius: 0.5rem;
+    --tertiary: 49 69% 52%; /* Strategic Gold */
+    --tertiary-foreground: 0 0% 0%; /* Ink Black */
+    --teal: 180 100% 21%; /* Global Teal */
+    --teal-foreground: 0 0% 100%; /* Bright White */
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +51,29 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    --background: 0 0% 0%; /* Ink Black */
+    --foreground: 0 0% 100%; /* Bright White */
+    --card: 0 0% 0%; /* Ink Black */
+    --card-foreground: 0 0% 100%; /* Bright White */
+    --popover: 0 0% 0%; /* Ink Black */
+    --popover-foreground: 0 0% 100%; /* Bright White */
+    --primary: 0 0% 100%; /* Bright White */
+    --primary-foreground: 0 0% 0%; /* Ink Black */
+    --secondary: 4 1% 33%; /* Jet Gray */
+    --secondary-foreground: 0 0% 100%; /* Bright White */
+    --muted: 4 1% 33%; /* Jet Gray */
+    --muted-foreground: 0 0% 74%; /* Phresh Smoke */
+    --accent: 4 1% 33%; /* Jet Gray */
+    --accent-foreground: 0 0% 100%; /* Bright White */
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 4 1% 33%; /* Jet Gray */
+    --input: 4 1% 33%; /* Jet Gray */
+    --ring: 0 0% 100%; /* Bright White */
+    --tertiary: 49 69% 52%; /* Strategic Gold */
+    --tertiary-foreground: 0 0% 0%; /* Ink Black */
+    --teal: 180 100% 21%; /* Global Teal */
+    --teal-foreground: 0 0% 100%; /* Bright White */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -99,7 +90,52 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-display: swap;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 600;
+  }
+
+  .font-heading {
+    font-family: 'Montserrat', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .container-custom {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-lg font-semibold transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 py-3 rounded-lg font-semibold transition-all duration-300;
+  }
+
+  .btn-tertiary {
+    @apply bg-tertiary text-tertiary-foreground hover:bg-tertiary/90 px-8 py-3 rounded-lg font-semibold transition-all duration-300;
+  }
+
+  .btn-teal {
+    @apply bg-teal text-teal-foreground hover:bg-teal/90 px-8 py-3 rounded-lg font-semibold transition-all duration-300;
   }
 }
