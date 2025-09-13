@@ -122,7 +122,7 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-medium mb-2" id="global-talent">Global Talent Excellence</h3>
               <p className="text-muted-foreground mb-3 text-sm">
-                We hire people from the global disapora including African, America and across The Caribbean — not just to give opportunities, but because the results speak for themselves. Nearly two decades of proven excellence.
+                We hire people from the global disapora including Africa, America and across The Caribbean — not just to give opportunities, but because the results speak for themselves. Nearly two decades of proven excellence.
               </p>
               <div className="bg-accent-50 p-3 rounded-lg mb-3 border-l-4 border-tertiary-500">
                 <p className="text-xs font-medium text-tertiary-700">Why This Works:</p>
