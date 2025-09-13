@@ -12,7 +12,7 @@ const KieraProfile = () => {
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-8">
               <img 
-                src="/lovable-uploads/5ed3b302-59d8-4819-ad61-811bf7dd4381.png" 
+                src="/src/assets/kiera-profile-hero.png" 
                 alt="Kiera H. Profile"
                 className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-primary/20"
               />

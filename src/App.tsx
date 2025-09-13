@@ -80,7 +80,7 @@ const App: React.FC = () => {
               <Route path="/remote-teams" element={<RemoteTeams />} />
               <Route path="/packages" element={<Packages />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/kiera-profile" element={<KieraProfile />} />
+              <Route path="/KieraH" element={<KieraProfile />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
