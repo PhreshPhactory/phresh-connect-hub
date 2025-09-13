@@ -122,19 +122,18 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-medium mb-2" id="global-talent">Global Talent Excellence</h3>
               <p className="text-muted-foreground mb-3 text-sm">
-                We hire people from Africa and the Caribbean exclusively — not just to give opportunities, but because the results speak for themselves. Nearly two decades of proven excellence.
+                We hire people from the global disapora including African, America and across The Caribbean — not just to give opportunities, but because the results speak for themselves. Nearly two decades of proven excellence.
               </p>
               <div className="bg-accent-50 p-3 rounded-lg mb-3 border-l-4 border-tertiary-500">
                 <p className="text-xs font-medium text-tertiary-700">Why This Works:</p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  When you hire people who are genuinely grateful for the opportunity and bring exceptional skills to the table, 
-                  you get loyalty, dedication, and performance that's impossible to find elsewhere. We've proven this for nearly 20 years.
+                  When you hire people who bring their global perspective and work together, they create exceptional teams. You get high levels of dedication and performance that are impossible to find elsewhere.
                 </p>
               </div>
               <ul className="space-y-1 mb-3 text-sm">
                 <li className="flex">
                   <Check className="text-tertiary-500 mr-2 mt-1 flex-shrink-0 h-4 w-4" />
-                  <span>Elite talent from Africa and the Caribbean</span>
+                  <span>Elite diaspora talent</span>
                 </li>
                 <li className="flex">
                   <Check className="text-tertiary-500 mr-2 mt-1 flex-shrink-0 h-4 w-4" />
@@ -160,8 +159,7 @@ const Services = () => {
               <div className="bg-white border border-tertiary-200 p-2 rounded-lg mb-3">
                 <p className="text-xs font-medium text-tertiary-700 mb-1">The Difference:</p>
                 <p className="text-xs text-muted-foreground">
-                  Unlike typical remote hiring, we provide full team integration, cultural training, and ongoing management. 
-                  You get enterprise-level talent with the dedication of people who truly appreciate the opportunity.
+                  Unlike typical remote hiring, we provide full team integration, and ongoing management. You get enterprise-level talent and results without needing to manage the day-to-day tasks.
                 </p>
               </div>
               <div className="flex gap-2">
