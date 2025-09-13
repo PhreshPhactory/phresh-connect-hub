@@ -11,7 +11,7 @@ const YouTubeSection = () => {
     {
       id: 'DFaDI9UIJHA',
       title: 'Global Talent Excellence',
-      description: 'Discover why hiring from Africa and the Caribbean delivers unmatched results for businesses.'
+      description: 'Discover why hiring from the diaspora delivers opportunities for professionals and unmatched results for businesses.'
     },
     {
       id: '0I4B4SvY654',
