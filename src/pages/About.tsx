@@ -63,16 +63,6 @@ const About = () => {
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
             <h1 className="text-[32px] leading-[40px] sm:text-4xl md:text-6xl sm:leading-tight md:leading-tight font-bold mb-8 text-foreground">Building Systems That Power Visionaries Across the Diaspora</h1>
             
-            {/* Founder Image */}
-            <div className="mb-8">
-              <img 
-                src={kieraFounderImage} 
-                alt="Kiera H., Founder of Phresh Phactory"
-                className="w-48 h-48 rounded-full mx-auto mb-4 object-cover border-4 border-primary/20 shadow-lg"
-              />
-              <p className="text-lg font-medium text-muted-foreground">Kiera H., Founder</p>
-            </div>
-            
             <p className="text-xl md:text-2xl mb-10 text-muted-foreground max-w-3xl mx-auto">
               Phresh Phactory, Inc. is a boutique operations consultancy helping visionary founders, creatives, and early-stage companies transform ideas into repeatable infrastructure. Founded by Kiera H., a fractional executive and systems strategist with over 20 years of experience, we specialize in building the teams, systems, and strategic frameworks that turn momentum into sustainable growth.
             </p>
@@ -215,6 +205,32 @@ const About = () => {
         </div>
       </section>
       
+      {/* About Kiera Section */}
+      <section className="bg-background py-10 sm:py-15">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto">
+            <SectionTitle
+              title="About Kiera H."
+              center
+            />
+            
+            <div className="flex flex-col lg:flex-row items-center gap-8 mt-12">
+              <div className="lg:w-1/3">
+                <img 
+                  src={kieraFounderImage} 
+                  alt="Kiera H., Founder of Phresh Phactory"
+                  className="w-64 h-80 rounded-lg mx-auto object-cover border-4 border-primary/20 shadow-lg"
+                />
+              </div>
+              <div className="lg:w-2/3">
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Kiera H. is a results-driven strategist, fractional executive, and founder of Phresh Phactory, Inc., a global operations consultancy helping vision-led businesses streamline systems, scale sustainably, and build high-performing remote teams. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, Kiera is best known for helping CEOs, founders, and fast-growing startups turn scattered efforts into structured, profitable operations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       
       {/* CTA */}
       <CallToAction
