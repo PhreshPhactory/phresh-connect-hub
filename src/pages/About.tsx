@@ -223,9 +223,49 @@ const About = () => {
                 />
               </div>
               <div className="lg:w-2/3">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Kiera H. is a results-driven strategist, fractional executive, and founder of Phresh Phactory, Inc., a global operations consultancy helping vision-led businesses streamline systems, scale sustainably, and build high-performing remote teams. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, Kiera is best known for helping CEOs, founders, and fast-growing startups turn scattered efforts into structured, profitable operations.
-                </p>
+                <div className="text-lg text-muted-foreground leading-relaxed space-y-4">
+                  <p>
+                    Kiera H. is a results-driven business strategist, fractional executive, and founder of Phresh Phactory, Inc., a global operations and systems consultancy that helps vision-led startups, Black-owned businesses, and remote-first companies streamline operations, scale sustainably, and build high-performing virtual teams. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, Kiera is widely recognized for helping CEOs and founders turn scattered efforts into structured, profitable operations.
+                  </p>
+                  
+                  <p>
+                    A leading voice in the world of remote workforce development and diaspora business strategy, Kiera takes on Fractional Executive roles that create immediate and measurable impact. Her current roles include:
+                  </p>
+                  
+                  <ul className="list-disc list-inside ml-4 space-y-2">
+                    <li>Supplier Relationship Manager at EatOkra, where she supports Black-owned food and drink brands through partnerships, visibility strategies, and technology integration.</li>
+                    <li>Affiliate Manager at Afrofiliate, where she leads performance-based marketing strategies for culturally relevant, small and mid-sized brands.</li>
+                  </ul>
+                  
+                  <p>
+                    Through Phresh Phactory, Inc., she and her team lead client engagements that drive digital transformation, automated systems implementation, and global talent development, with a focus on helping consumer product companies, food entrepreneurs, and tech-enabled platforms scale without burnout.
+                  </p>
+                  
+                  <p>
+                    Kiera is also a strategic collaborator to award-winning platforms like EatOkra and Afrofiliate, and has supported initiatives with CS Connect through partnership development and operational insight. Her operational expertise, cultural intelligence, and sharp strategic insight contribute directly to revenue growth, team alignment, and long-term scalability.
+                  </p>
+                  
+                  <p>
+                    She is also a published thought leader. Kiera writes two weekly newsletters:
+                  </p>
+                  
+                  <ul className="list-disc list-inside ml-4 space-y-2">
+                    <li>"EatOkra for Business" – offering practical advice and grant resources for Black-owned food and beverage brands listed on the EatOkra app.</li>
+                    <li>"Phresh Phactory: Growth Notes" – a LinkedIn newsletter offering bold, no-fluff guidance to startup CEOs and founders focused on sustainable growth and operational excellence.</li>
+                  </ul>
+                  
+                  <p>
+                    Looking for a strategist who can help you grow your business, train your team, and turn operations into income?
+                  </p>
+                  
+                  <div className="mt-6">
+                    <Button asChild size="lg">
+                      <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">
+                        Start Here
+                      </a>
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
