@@ -258,10 +258,10 @@ const About = () => {
                     Looking for a strategist who can help you grow your business, train your team, and turn operations into income?
                   </p>
                   
-                  <div className="mt-6">
+                  <div className="mt-6 text-center">
                     <Button asChild size="lg">
                       <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">
-                        Start Here
+                        Book a Call with Kiera H.
                       </a>
                     </Button>
                   </div>
