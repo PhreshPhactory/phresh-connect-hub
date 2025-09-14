@@ -234,7 +234,7 @@ const About = () => {
                   
                   <ul className="list-disc list-inside ml-4 space-y-2">
                     <li>Supplier Relationship Manager at EatOkra, where she supports Black-owned food and drink brands through partnerships, visibility strategies, and technology integration.</li>
-                    <li>Affiliate Manager at Afrofiliate, where she leads performance-based marketing strategies for culturally relevant, small and mid-sized brands.</li>
+                    <li>Strategic Advisor to Afrofiliate, where she is developing a performance-based marketing framework to help brands equip affiliates with the tools they need to effectively promote culturally relevant products.</li>
                   </ul>
                   
                   <p>
