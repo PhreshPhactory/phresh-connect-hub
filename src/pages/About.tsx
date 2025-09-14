@@ -225,7 +225,7 @@ const About = () => {
               <div className="max-w-4xl">
                 <div className="text-lg text-muted-foreground leading-relaxed space-y-4">
                   <p>
-                    Kiera H. is a results-driven business strategist, fractional executive, and founder of Phresh Phactory, Inc., a global operations and systems consultancy that helps vision-led startups, Black-owned businesses, and remote-first companies streamline operations, scale sustainably, and build high-performing virtual teams. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, Kiera is widely recognized for helping CEOs and founders turn scattered efforts into structured, profitable operations.
+                    Kiera H. is a results-driven business strategist, Fractional Executive, and Founder of Phresh Phactory, Inc., a global operations and systems consultancy that helps vision-led startups, Black-owned businesses, and remote-first companies streamline operations, scale sustainably, and build high-performing virtual teams. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, Kiera is widely recognized for helping CEOs and Founders turn scattered efforts into structured, profitable operations.
                   </p>
                   
                   <p>
