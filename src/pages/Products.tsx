@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Star, BookOpen, ShoppingCart } from "lucide-react";
+import YouTubeSection from "@/components/home/YouTubeSection";
 
 const Products = () => {
   return (
@@ -142,6 +143,9 @@ const Products = () => {
           </div>
         </div>
       </section>
+
+      {/* YouTube Section */}
+      <YouTubeSection />
     </div>
   );
 };
