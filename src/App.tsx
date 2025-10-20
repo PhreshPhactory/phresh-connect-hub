@@ -33,6 +33,8 @@ import SystemsDesign from "@/pages/services/SystemsDesign";
 import RemoteTeams from "@/pages/RemoteTeams";
 import KieraProfile from "@/pages/KieraProfile";
 import Products from "@/pages/Products";
+import ProductSpotlights from "@/pages/ProductSpotlights";
+import ProductSpotlight from "@/pages/ProductSpotlight";
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -80,6 +82,8 @@ const App: React.FC = () => {
               <Route path="/remote-teams" element={<RemoteTeams />} />
               <Route path="/packages" element={<Packages />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/product-spotlights" element={<ProductSpotlights />} />
+              <Route path="/product-spotlights/:slug" element={<ProductSpotlight />} />
               <Route path="/KieraH" element={<KieraProfile />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />

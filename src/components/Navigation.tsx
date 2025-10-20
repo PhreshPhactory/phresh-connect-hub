@@ -81,6 +81,14 @@ const Navigation = () => {
               Packages
             </Link>
             <Link
+              to="/product-spotlights"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/product-spotlights') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              Product Spotlights
+            </Link>
+            <Link
               to="/blog"
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 isActive('/blog') ? 'text-primary' : 'text-muted-foreground'
@@ -148,6 +156,13 @@ const Navigation = () => {
                 onClick={() => setIsOpen(false)}
               >
                 Packages
+              </Link>
+              <Link
+                to="/product-spotlights"
+                className="block text-sm font-medium text-muted-foreground hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                Product Spotlights
               </Link>
               <Link
                 to="/blog"
