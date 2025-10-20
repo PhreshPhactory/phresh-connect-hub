@@ -46,8 +46,8 @@ const ProductSpotlights = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Product Spotlights - Affiliate Marketing Reviews"
-        description="Discover the latest products and brands I feature. Watch my YouTube videos and read detailed spotlights about each product."
+        title="Buy Black - Support Black-Owned Brands"
+        description="Discover and support Black-owned brands and products I feature. Watch my YouTube videos and read detailed content about each brand."
       />
 
       {/* Hero Section */}
@@ -55,10 +55,10 @@ const ProductSpotlights = () => {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
-              Product Spotlights
+              Buy Black
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Explore the brands and products I feature. Each spotlight includes a YouTube video walkthrough and detailed written content.
+              Explore Black-owned brands and products I feature. Each spotlight includes a YouTube video walkthrough and detailed written content.
             </p>
           </div>
         </div>
@@ -69,11 +69,11 @@ const ProductSpotlights = () => {
         <div className="container-custom">
           {loading ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">Loading product spotlights...</p>
+              <p className="text-muted-foreground">Loading brands...</p>
             </div>
           ) : spotlights.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-muted-foreground">No product spotlights available yet. Check back soon!</p>
+              <p className="text-muted-foreground">No brands available yet. Check back soon!</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">

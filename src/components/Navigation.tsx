@@ -86,7 +86,7 @@ const Navigation = () => {
                 isActive('/product-spotlights') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              Product Spotlights
+              Buy Black
             </Link>
             <Link
               to="/blog"
@@ -162,7 +162,7 @@ const Navigation = () => {
                 className="block text-sm font-medium text-muted-foreground hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
-                Product Spotlights
+                Buy Black
               </Link>
               <Link
                 to="/blog"

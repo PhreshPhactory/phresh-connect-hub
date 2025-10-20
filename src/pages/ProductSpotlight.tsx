@@ -61,7 +61,7 @@ const ProductSpotlight = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <p className="text-muted-foreground">Loading product spotlight...</p>
+        <p className="text-muted-foreground">Loading brand spotlight...</p>
       </div>
     );
   }
@@ -70,11 +70,11 @@ const ProductSpotlight = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4 text-foreground">Product spotlight not found</h1>
+          <h1 className="text-2xl font-bold mb-4 text-foreground">Brand not found</h1>
           <Link to="/product-spotlights">
             <Button>
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Spotlights
+              Back to Buy Black
             </Button>
           </Link>
         </div>
@@ -87,7 +87,7 @@ const ProductSpotlight = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title={`${spotlight.title} - Product Spotlight`}
+        title={`${spotlight.title} - Buy Black`}
         description={spotlight.excerpt}
         ogImage={spotlight.feature_image}
       />
@@ -97,7 +97,7 @@ const ProductSpotlight = () => {
           {/* Back Button */}
           <Link to="/product-spotlights" className="inline-flex items-center text-primary hover:underline mb-8">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Product Spotlights
+            Back to Buy Black
           </Link>
 
           {/* Header */}
