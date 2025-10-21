@@ -39,6 +39,14 @@ const Navigation = () => {
               Home
             </Link>
             <Link
+              to="/product-spotlights"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/product-spotlights') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              Buy Black
+            </Link>
+            <Link
               to="/about"
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 isActive('/about') ? 'text-primary' : 'text-muted-foreground'
@@ -79,14 +87,6 @@ const Navigation = () => {
               }`}
             >
               Packages
-            </Link>
-            <Link
-              to="/product-spotlights"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive('/product-spotlights') ? 'text-primary' : 'text-muted-foreground'
-              }`}
-            >
-              Buy Black
             </Link>
             <Link
               to="/blog"
@@ -131,6 +131,13 @@ const Navigation = () => {
                 Home
               </Link>
               <Link
+                to="/product-spotlights"
+                className="block text-sm font-medium text-muted-foreground hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                Buy Black
+              </Link>
+              <Link
                 to="/about"
                 className="block text-sm font-medium text-muted-foreground hover:text-primary"
                 onClick={() => setIsOpen(false)}
@@ -156,13 +163,6 @@ const Navigation = () => {
                 onClick={() => setIsOpen(false)}
               >
                 Packages
-              </Link>
-              <Link
-                to="/product-spotlights"
-                className="block text-sm font-medium text-muted-foreground hover:text-primary"
-                onClick={() => setIsOpen(false)}
-              >
-                Buy Black
               </Link>
               <Link
                 to="/blog"
