@@ -20,6 +20,7 @@ interface BlogPost {
   category: string;
   slug: string;
   feature_image: string | null;
+  video_url: string | null;
   published: boolean;
   created_at: string;
 }
@@ -37,6 +38,7 @@ const Admin = () => {
     content: '',
     excerpt: '',
     category: '',
+    video_url: '',
     published: false,
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -49,6 +51,7 @@ const Admin = () => {
     'Leadership',
     'Innovation',
     'Strategy',
+    'Product Spotlight',
   ];
 
   useEffect(() => {
@@ -275,6 +278,7 @@ const Admin = () => {
       content: '',
       excerpt: '',
       category: '',
+      video_url: '',
       published: false,
     });
     setImageFile(null);
@@ -288,6 +292,7 @@ const Admin = () => {
       content: post.content,
       excerpt: post.excerpt,
       category: post.category,
+      video_url: post.video_url || '',
       published: post.published,
     });
   };
@@ -494,6 +499,19 @@ const Admin = () => {
                     accept="image/*"
                     onChange={(e) =>
                       setImageFile(e.target.files?.[0] || null)
+                    }
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="video_url">YouTube Video URL (optional)</Label>
+                  <Input
+                    id="video_url"
+                    type="url"
+                    placeholder="https://www.youtube.com/watch?v=..."
+                    value={formData.video_url}
+                    onChange={(e) =>
+                      setFormData({ ...formData, video_url: e.target.value })
                     }
                   />
                 </div>
