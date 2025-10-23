@@ -80,7 +80,7 @@ const ProductSpotlights = () => {
               {spotlights.map((spotlight) => (
                 <Link 
                   key={spotlight.id} 
-                  to={`/buy-black/${spotlight.slug}`}
+                  to={`/BuyBlack/${spotlight.slug}`}
                   className="group"
                 >
                   <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 bg-card border border-border">

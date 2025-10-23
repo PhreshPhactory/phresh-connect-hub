@@ -82,8 +82,8 @@ const App: React.FC = () => {
               <Route path="/remote-teams" element={<RemoteTeams />} />
               <Route path="/packages" element={<Packages />} />
               <Route path="/products" element={<Products />} />
-              <Route path="/buy-black" element={<ProductSpotlights />} />
-              <Route path="/buy-black/:slug" element={<ProductSpotlight />} />
+              <Route path="/BuyBlack" element={<ProductSpotlights />} />
+              <Route path="/BuyBlack/:slug" element={<ProductSpotlight />} />
               <Route path="/KieraH" element={<KieraProfile />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog" element={<Blog />} />

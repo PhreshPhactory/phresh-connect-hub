@@ -67,7 +67,7 @@ const Header: React.FC = memo(() => {
   
   const navItems = [
     { label: 'Home', path: '/' },
-    { label: 'Buy Black', path: '/buy-black' },
+    { label: 'Buy Black', path: '/BuyBlack' },
     { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
     { label: 'Packages', path: '/packages' },
