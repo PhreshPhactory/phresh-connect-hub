@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import * as React from 'react';
 
 export const useScrollAnimations = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
