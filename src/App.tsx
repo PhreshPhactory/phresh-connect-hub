@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { SecurityHeaders } from "@/components/SecurityHeaders";
 import CacheHeaders from '@/components/CacheHeaders';
 import { useScrollAnimations } from '@/hooks/useScrollAnimations';
+import GeoBlocker from '@/components/GeoBlocker';
 
 // Import critical pages normally for faster loading
 import Home from "@/pages/Home";
@@ -65,39 +66,41 @@ const App: React.FC = () => {
     <HelmetProvider>
       <SecurityHeaders />
       <CacheHeaders cacheType="html" />
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/services/fractional-leadership" element={<FractionalLeadership />} />
-              <Route path="/services/global-talent" element={<GlobalTalent />} />
-              <Route path="/services/legacy-transformation" element={<LegacyTransformation />} />
-              <Route path="/services/systems-design" element={<SystemsDesign />} />
-              <Route path="/remote-teams" element={<RemoteTeams />} />
-              <Route path="/packages" element={<Packages />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/BuyBlack" element={<ProductSpotlights />} />
-              <Route path="/BuyBlack/:slug" element={<ProductSpotlight />} />
-              <Route path="/KieraH" element={<KieraProfile />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/privacy" element={<Privacy />} />
-              
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-          </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+      <GeoBlocker>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/services/fractional-leadership" element={<FractionalLeadership />} />
+                <Route path="/services/global-talent" element={<GlobalTalent />} />
+                <Route path="/services/legacy-transformation" element={<LegacyTransformation />} />
+                <Route path="/services/systems-design" element={<SystemsDesign />} />
+                <Route path="/remote-teams" element={<RemoteTeams />} />
+                <Route path="/packages" element={<Packages />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/BuyBlack" element={<ProductSpotlights />} />
+                <Route path="/BuyBlack/:slug" element={<ProductSpotlight />} />
+                <Route path="/KieraH" element={<KieraProfile />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="/auth" element={<Auth />} />
+                <Route path="/privacy" element={<Privacy />} />
+                
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Routes>
+            </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+      </GeoBlocker>
     </HelmetProvider>
   );
 };
