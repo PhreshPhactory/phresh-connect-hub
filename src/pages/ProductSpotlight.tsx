@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Youtube, ExternalLink } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import RelatedBrands from '@/components/RelatedBrands';
 
 interface Spotlight {
   id: string;
@@ -169,8 +170,27 @@ const ProductSpotlight = () => {
               prose-ol:text-muted-foreground"
             dangerouslySetInnerHTML={{ __html: spotlight.content }}
           />
+
+          {/* CTA to explore more */}
+          <div className="mt-12 p-8 bg-muted rounded-lg text-center">
+            <h3 className="text-2xl font-bold mb-4 text-foreground">
+              Support More Black-Owned Brands
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              Discover other incredible businesses featured in our Buy Black series
+            </p>
+            <Button asChild size="lg">
+              <Link to="/BuyBlack">
+                View All Brands
+                <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </article>
+
+      {/* Related brands for internal linking */}
+      <RelatedBrands currentSlug={slug || ''} />
     </div>
   );
 };

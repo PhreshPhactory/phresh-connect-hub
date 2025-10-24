@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NewsletterForm from '@/components/NewsletterForm';
 import CallToAction from '@/components/CallToAction';
+import ExitIntentPopup from '@/components/ExitIntentPopup';
+import FeaturedBrands from '@/components/FeaturedBrands';
 
 import HeroSection from '@/components/home/HeroSection';
 import WhatWeDoSection from '@/components/home/WhatWeDoSection';
@@ -22,9 +24,30 @@ const Home = () => {
       />
        <main>
         <HeroSection />
+        
+        {/* Early CTA for engagement */}
+        <CallToAction
+          title="Ready for strategic business transformation?"
+          subtitle="Book a free discovery call to discuss your growth challenges."
+          primaryButtonText="Book a Discovery Call"
+          primaryButtonLink="http://calendly.com/PhreshPhactory"
+          secondaryButtonText="Explore Services"
+          secondaryButtonLink="/services"
+          dark={false}
+          className="py-16"
+        />
+        
+        {/* Video content moved higher for engagement */}
+        <YouTubeSection />
+        
         <WhatWeDoSection />
+        
+        {/* Social proof early in the journey */}
         <TestimonialsSection />
         <ResultsSection />
+        
+        {/* Buy Black featured brands */}
+        <FeaturedBrands />
 
       <NewsletterForm 
         title="Join leaders getting strategic insights"
@@ -40,18 +63,18 @@ const Home = () => {
       />
       
       <CallToAction
-        title="Ready for strategic business transformation?"
-        subtitle="Let's build the systems and teams your business needs to scale."
-        primaryButtonText="Book a Discovery Call"
+        title="Let's build the systems and teams you need to scale"
+        subtitle="Connect with our team to explore fractional leadership, global talent, and transformation services."
+        primaryButtonText="Schedule a Call"
         primaryButtonLink="http://calendly.com/PhreshPhactory"
-        secondaryButtonText="Explore Services"
+        secondaryButtonText="View All Services"
         secondaryButtonLink="/services"
         dark={true}
         className="py-24"
       />
       
-      <YouTubeSection />
-      
+      {/* Exit intent popup */}
+      <ExitIntentPopup />
       </main>
     </>
   );

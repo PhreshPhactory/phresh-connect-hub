@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Youtube, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Youtube, ArrowRight, Heart } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 
 interface ProductSpotlight {
@@ -54,12 +55,29 @@ const ProductSpotlights = () => {
       <section className="py-20 bg-background">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-4">
+              <Heart className="w-4 h-4 mr-2" />
+              Supporting Black Excellence
+            </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
               Buy Black
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Explore Black-owned brands and products I feature. Each spotlight includes a YouTube video walkthrough and detailed written content.
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
+              Explore Black-owned brands and products featured this holiday season. Each spotlight includes a YouTube video walkthrough and detailed written content.
             </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button asChild size="lg">
+                <a href="http://bit.ly/3WdRD6F" target="_blank" rel="noopener noreferrer">
+                  Join Afrofiliate Network
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/contact">
+                  Feature Your Brand
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -122,6 +140,24 @@ const ProductSpotlights = () => {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-background">
+        <div className="container-custom max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4 text-foreground">
+            Want to Earn Commissions Sharing These Brands?
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            Join the Afrofiliate Network and earn by promoting Black-owned businesses you love
+          </p>
+          <Button asChild size="lg">
+            <a href="http://bit.ly/3WdRD6F" target="_blank" rel="noopener noreferrer">
+              Join Afrofiliate Network
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
         </div>
       </section>
     </div>
