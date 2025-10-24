@@ -14,6 +14,7 @@ interface ProductSpotlight {
   slug: string;
   feature_image: string;
   video_url: string;
+  shopping_link: string;
   category: string;
   created_at: string;
 }
@@ -130,6 +131,21 @@ const ProductSpotlights = () => {
                       <p className="text-muted-foreground mb-4 line-clamp-3">
                         {spotlight.excerpt}
                       </p>
+                      {spotlight.shopping_link && (
+                        <Button 
+                          asChild 
+                          className="w-full mb-3"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <a 
+                            href={spotlight.shopping_link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                          >
+                            Shop Now
+                          </a>
+                        </Button>
+                      )}
                       <div className="flex items-center text-primary font-medium">
                         <span>View Spotlight</span>
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

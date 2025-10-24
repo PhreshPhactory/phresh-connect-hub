@@ -356,6 +356,7 @@ const Contact = () => {
                             <SelectItem value="phreelance">Phreelance™ Team Management</SelectItem>
                             <SelectItem value="hiring">Hiring & Onboarding Support</SelectItem>
                             <SelectItem value="advisory">Advisory Board Role</SelectItem>
+                            <SelectItem value="feature-brand">Feature My Brand</SelectItem>
                             <SelectItem value="not-sure">Not Sure Yet</SelectItem>
                           </SelectContent>
                         </Select>

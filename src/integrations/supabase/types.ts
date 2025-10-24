@@ -23,6 +23,7 @@ export type Database = {
           feature_image: string | null
           id: string
           published: boolean
+          shopping_link: string | null
           slug: string
           title: string
           updated_at: string
@@ -36,6 +37,7 @@ export type Database = {
           feature_image?: string | null
           id?: string
           published?: boolean
+          shopping_link?: string | null
           slug: string
           title: string
           updated_at?: string
@@ -49,6 +51,7 @@ export type Database = {
           feature_image?: string | null
           id?: string
           published?: boolean
+          shopping_link?: string | null
           slug?: string
           title?: string
           updated_at?: string
@@ -82,10 +85,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      generate_slug: {
-        Args: { title: string }
-        Returns: string
-      }
+      generate_slug: { Args: { title: string }; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -93,18 +93,9 @@ export type Database = {
         }
         Returns: boolean
       }
-      is_content_manager: {
-        Args: { _user_id: string }
-        Returns: boolean
-      }
-      make_user_admin: {
-        Args: { _user_email: string }
-        Returns: undefined
-      }
-      make_user_editor: {
-        Args: { _user_email: string }
-        Returns: undefined
-      }
+      is_content_manager: { Args: { _user_id: string }; Returns: boolean }
+      make_user_admin: { Args: { _user_email: string }; Returns: undefined }
+      make_user_editor: { Args: { _user_email: string }; Returns: undefined }
     }
     Enums: {
       app_role: "admin" | "editor" | "user"
