@@ -58,20 +58,20 @@ const About = () => {
         canonicalUrl="https://phreshphactory.co/about"
       />
       {/* Hero Section */}
-      <section className="bg-background py-20 md:py-24">
+      <section className="bg-background py-16 md:py-20">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-[32px] leading-[40px] sm:text-4xl md:text-6xl sm:leading-tight md:leading-tight font-bold mb-8 text-foreground">Building Systems That Power Visionaries Across the Diaspora</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">Building Systems That Power Visionaries Across the Diaspora</h1>
             
-            <p className="text-xl md:text-2xl mb-10 text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl mb-8 text-muted-foreground max-w-3xl mx-auto">
               Phresh Phactory, Inc. is a boutique operations consultancy helping visionary founders, creatives, and early-stage companies transform ideas into repeatable infrastructure. Founded by Kiera H., a fractional executive and systems strategist with over 20 years of experience, we specialize in building the teams, systems, and strategic frameworks that turn momentum into sustainable growth.
             </p>
-            <div className="bg-card border border-border p-2 sm:p-8 rounded-lg mb-10 max-w-2xl mx-auto">
-              <p className="text-xl font-medium text-teal">
+            <div className="bg-card border border-border p-6 rounded-lg mb-8 max-w-2xl mx-auto">
+              <p className="text-lg font-medium text-teal">
                 We don't just consult—we co-create.
               </p>
             </div>
-            <Button asChild size="lg" className="text-lg px-8 py-6">
+            <Button asChild size="lg">
               <Link to="/contact">Start Building Together</Link>
             </Button>
           </div>
@@ -79,7 +79,7 @@ const About = () => {
       </section>
       
       {/* Mission Section */}
-       <section className="py-10 sm:py-15 bg-muted">
+       <section className="py-12 md:py-16 bg-muted">
         <div className="container-custom">
           <SectionTitle
             title="Our Mission"
@@ -93,8 +93,8 @@ const About = () => {
                 <div className="mx-auto mb-4 text-teal-foreground bg-teal w-16 h-16 rounded-full flex items-center justify-center">
                   {item.icon}
                 </div>
-                <h3 className="text-[24px] leading-[32px] sm:text-xl sm:leading-normal font-medium mb-3 text-foreground">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
+                <h3 className="text-xl font-medium mb-3 text-foreground">{item.title}</h3>
+                <p className="text-base text-muted-foreground">{item.description}</p>
               </div>
             ))}
           </div>
@@ -102,7 +102,7 @@ const About = () => {
       </section>
       
       {/* Diaspora Focus Section */}
-      <section className="bg-background py-10 sm:py-15">
+      <section className="bg-background py-12 md:py-16">
         <div className="container-custom">
           <SectionTitle
             title="Diaspora-Focused, Globally Grounded"
@@ -110,11 +110,11 @@ const About = () => {
           />
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-card border border-border p-8 rounded-lg mb-8 shadow-sm">
-              <p className="text-lg text-muted-foreground mb-6">
+            <div className="bg-card border border-border p-6 md:p-8 rounded-lg shadow-sm">
+              <p className="text-base md:text-lg text-muted-foreground mb-4">
                 Phresh Phactory operates remotely through a presence in the U.S. and Caribbean with clients across the globe. We are proudly diaspora-focused, supporting founders and teams with culturally aligned, results-driven strategy.
               </p>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base md:text-lg text-muted-foreground">
                 Our clients span industries and continents, but they all share a common goal: to build something meaningful and lasting. Whether you're launching a new venture, preparing to scale, or restructuring for peace of mind, we bring clarity, systems, and smart support to help you lead with vision and execute with excellence.
               </p>
             </div>
@@ -123,7 +123,7 @@ const About = () => {
       </section>
       
       {/* Caribbean Kiera Section */}
-      <section className="py-10 sm:py-15 bg-muted">
+      <section className="py-12 md:py-16 bg-muted">
         <div className="container-custom">
           <SectionTitle
             title="Caribbean Kiera: The Personal Side of the Mission"
@@ -131,11 +131,11 @@ const About = () => {
           />
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-card border border-border p-6 sm:p-8 rounded-lg shadow-sm text-center sm:text-left">
-              <p className="text-lg text-muted-foreground mb-6">
+            <div className="bg-card border border-border p-6 md:p-8 rounded-lg shadow-sm text-center">
+              <p className="text-base md:text-lg text-muted-foreground mb-4">
                 In addition to leading Phresh Phactory, Kiera also shares her personal journey through her YouTube channel, Caribbean Kiera. The channel documents expat life, remote work, digital entrepreneurship, and what it means to build legacy while living in alignment with purpose and place.
               </p>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-base md:text-lg text-muted-foreground mb-6">
                 It's a real-time look at how systems meet soul—and how powerful things happen when you stop waiting for permission and start building your own blueprint.
               </p>
               <div className="text-center">
@@ -152,7 +152,7 @@ const About = () => {
       </section>
 
       {/* Caribbean Vision Section */}
-      <section className="bg-background py-10 sm:py-15">
+      <section className="bg-background py-12 md:py-16">
         <div className="container-custom">
           <SectionTitle
             title="Why the Caribbean? Why Now?"
@@ -160,11 +160,11 @@ const About = () => {
           />
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-card border border-border p-6 sm:p-8 rounded-lg mb-8 text-lg sm:text-base">
-              <p className="text-lg text-muted-foreground mb-6">
-                After years of working behind the scenes to support founders culturally impactful founders—Kiera made the decision to evaluate opportunities in the Dominican Republic and the greater Caribbean. It was both a strategic and personal shift.
+            <div className="bg-card border border-border p-6 md:p-8 rounded-lg">
+              <p className="text-base md:text-lg text-muted-foreground mb-4">
+                After years of working behind the scenes to support culturally impactful founders—Kiera made the decision to evaluate opportunities in the Dominican Republic and the greater Caribbean. It was both a strategic and personal shift.
               </p>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base md:text-lg text-muted-foreground">
                 What began as a lifestyle shift quickly became a larger mission. Remote work is still rare in many parts of the Caribbean, and tech infrastructure is in its early stages. Phresh Phactory is uniquely positioned to help support this evolution—bringing proven systems, digital fluency, and scalable strategies to regions ready for transformation.
               </p>
             </div>
@@ -173,7 +173,7 @@ const About = () => {
       </section>
 
       {/* Collaboration Section */}
-      <section className="py-10 sm:py-15 bg-muted">
+      <section className="py-12 md:py-16 bg-muted">
         <div className="container-custom">
           <SectionTitle
             title="Let's Collaborate"
@@ -181,16 +181,16 @@ const About = () => {
             center
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
             {collaborationAreas.map((item, index) => (
               <div key={index} className="bg-card border border-border p-6 rounded-lg animate-on-scroll hover:shadow-md transition-shadow">
                 <div className="flex items-start">
-                  <div className="mr-4 text-teal-foreground bg-teal p-3 rounded-full">
+                  <div className="mr-4 text-teal-foreground bg-teal p-3 rounded-full flex-shrink-0">
                     {item.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-medium mb-2 text-foreground">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
+                    <h3 className="text-lg font-medium mb-2 text-foreground">{item.title}</h3>
+                    <p className="text-base text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
               </div>
@@ -205,67 +205,33 @@ const About = () => {
         </div>
       </section>
       
-      {/* About Kiera Section */}
-      <section className="bg-background py-10 sm:py-15">
+      {/* About Kiera Section - Brief */}
+      <section className="bg-background py-12 md:py-16">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <SectionTitle
-              title="About Kiera H."
+              title="Meet the Founder"
               center
             />
             
-            <div className="flex flex-col items-center gap-8 mt-12 text-center">
+            <div className="flex flex-col items-center gap-6 mt-8 text-center">
               <div>
                 <img 
                   src={kieraFounderImage} 
                   alt="Kiera H., Founder of Phresh Phactory"
-                  className="w-64 h-80 rounded-lg mx-auto object-cover border-4 border-primary/20 shadow-lg"
+                  className="w-48 h-60 rounded-lg mx-auto object-cover border-4 border-primary/20 shadow-lg"
                 />
               </div>
-              <div className="max-w-4xl">
-                <div className="text-lg text-muted-foreground leading-relaxed space-y-4">
-                  <p>
-                    Kiera H. is a results-driven business strategist, Fractional Executive, and Founder of Phresh Phactory, Inc., a global operations and systems consultancy that helps vision-led startups, Black-owned businesses, and remote-first companies streamline operations, scale sustainably, and build high-performing virtual teams. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, Kiera is widely recognized for helping CEOs and Founders turn scattered efforts into structured, profitable operations.
-                  </p>
-                  
-                  <p>
-                    A leading voice in the world of remote workforce development and diaspora business strategy, Kiera takes on Fractional Executive roles that create immediate and measurable impact. Her current roles include:
-                  </p>
-                  
-                  <ul className="list-disc list-inside ml-4 space-y-2">
-                    <li>Supplier Relationship Manager at EatOkra, where she supports Black-owned food and drink brands through partnerships, visibility strategies, and technology integration.</li>
-                    <li>Strategic Advisor to Afrofiliate, where she is developing a performance-based marketing framework to help brands equip affiliates with the tools they need to effectively promote culturally relevant products.</li>
-                  </ul>
-                  
-                  <p>
-                    Through Phresh Phactory, Inc., she and her team lead client engagements that drive digital transformation, automated systems implementation, and global talent development, with a focus on helping consumer product companies, food entrepreneurs, and tech-enabled platforms scale without burnout.
-                  </p>
-                  
-                  <p>
-                    Kiera is also a strategic collaborator to award-winning platforms like EatOkra and Afrofiliate, and has supported initiatives with CS Connect through partnership development and operational insight. Her operational expertise, cultural intelligence, and sharp strategic insight contribute directly to revenue growth, team alignment, and long-term scalability.
-                  </p>
-                  
-                  <p>
-                    She is also a published thought leader. Kiera writes two weekly newsletters:
-                  </p>
-                  
-                  <ul className="list-disc list-inside ml-4 space-y-2">
-                    <li>"EatOkra for Business" – offering practical advice and grant resources for Black-owned food and beverage brands listed on the EatOkra app.</li>
-                    <li>"Phresh Phactory: Growth Notes" – a LinkedIn newsletter offering bold, no-fluff guidance to startup CEOs and founders focused on sustainable growth and operational excellence.</li>
-                  </ul>
-                  
-                  <p>
-                    Looking for a strategist who can help you grow your business, train your team, and turn operations into income?
-                  </p>
-                  
-                  <div className="mt-6 text-center">
-                    <Button asChild size="lg">
-                      <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">
-                        Book a Call with Kiera H.
-                      </a>
-                    </Button>
-                  </div>
-                </div>
+              <div className="max-w-3xl">
+                <h3 className="text-2xl font-bold mb-4 text-foreground">Kiera H.</h3>
+                <p className="text-base md:text-lg text-muted-foreground mb-6">
+                  Kiera H. is a results-driven business strategist, Fractional Executive, and Founder of Phresh Phactory, Inc. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, she helps vision-led startups and Black-owned businesses streamline operations, scale sustainably, and build high-performing virtual teams.
+                </p>
+                <Button asChild size="lg" variant="outline">
+                  <Link to="/KieraH">
+                    Learn More About Kiera
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -279,7 +245,6 @@ const About = () => {
         primaryButtonText="Book a Strategy Call"
         primaryButtonLink="http://calendly.com/PhreshPhactory"
         dark={true}
-        className="py-15"
       />
     </>
   );
