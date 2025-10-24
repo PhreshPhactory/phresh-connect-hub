@@ -21,6 +21,7 @@ interface BlogPost {
   slug: string;
   feature_image: string | null;
   video_url: string | null;
+  shopping_link: string | null;
   published: boolean;
   created_at: string;
 }
@@ -39,6 +40,7 @@ const Admin = () => {
     excerpt: '',
     category: '',
     video_url: '',
+    shopping_link: '',
     published: false,
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -279,6 +281,7 @@ const Admin = () => {
       excerpt: '',
       category: '',
       video_url: '',
+      shopping_link: '',
       published: false,
     });
     setImageFile(null);
@@ -293,6 +296,7 @@ const Admin = () => {
       excerpt: post.excerpt,
       category: post.category,
       video_url: post.video_url || '',
+      shopping_link: post.shopping_link || '',
       published: post.published,
     });
   };
@@ -512,6 +516,19 @@ const Admin = () => {
                     value={formData.video_url}
                     onChange={(e) =>
                       setFormData({ ...formData, video_url: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="shopping_link">Shopping Link (optional)</Label>
+                  <Input
+                    id="shopping_link"
+                    type="url"
+                    placeholder="https://example.com/shop/product"
+                    value={formData.shopping_link}
+                    onChange={(e) =>
+                      setFormData({ ...formData, shopping_link: e.target.value })
                     }
                   />
                 </div>
