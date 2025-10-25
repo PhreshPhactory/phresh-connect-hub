@@ -12,6 +12,7 @@ interface Product {
   brand_name: string;
   item_name: string;
   link: string;
+  image_url?: string;
 }
 
 interface Spotlight {
@@ -197,6 +198,15 @@ const ProductSpotlight = () => {
                       rel="noopener noreferrer"
                       className="group p-4 bg-background/50 rounded-lg border border-border hover:border-primary/50 transition-all hover:shadow-md"
                     >
+                      {product.image_url && (
+                        <div className="mb-3 rounded-md overflow-hidden aspect-square">
+                          <img 
+                            src={product.image_url} 
+                            alt={product.item_name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
                       <div className="text-sm font-semibold text-primary mb-1 group-hover:underline">
                         {product.brand_name}
                       </div>

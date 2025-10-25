@@ -16,6 +16,7 @@ interface Product {
   brand_name: string;
   item_name: string;
   link: string;
+  image_url?: string;
 }
 
 interface BlogPost {
@@ -315,7 +316,7 @@ const Admin = () => {
     if (formData.products.length < 6) {
       setFormData({
         ...formData,
-        products: [...formData.products, { brand_name: '', item_name: '', link: '' }]
+        products: [...formData.products, { brand_name: '', item_name: '', link: '', image_url: '' }]
       });
     }
   };
@@ -618,6 +619,16 @@ const Admin = () => {
                             value={product.link}
                             onChange={(e) => updateProduct(index, 'link', e.target.value)}
                             placeholder="https://example.com/product"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`image-${index}`}>Image URL (optional)</Label>
+                          <Input
+                            id={`image-${index}`}
+                            type="url"
+                            value={product.image_url || ''}
+                            onChange={(e) => updateProduct(index, 'image_url', e.target.value)}
+                            placeholder="https://example.com/product-image.jpg"
                           />
                         </div>
                       </div>
