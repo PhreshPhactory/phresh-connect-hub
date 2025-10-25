@@ -102,8 +102,8 @@ const BrandPartnership = () => {
       }
       
       toast({
-        title: 'Application submitted successfully!',
-        description: 'We\'ll review your service request and get back to you within 2-3 business days with pricing and next steps.',
+        title: 'Application received!',
+        description: 'Thank you for your interest in partnering with us. We\'ll review your application and reach out within 2-3 business days.',
       });
       
       form.reset();
@@ -124,8 +124,8 @@ const BrandPartnership = () => {
   return (
     <>
       <SEOHead
-        title="Apply for Brand Feature Services | Phresh Phactory Buy Black Directory"
-        description="Apply for paid brand feature services including video reviews, written content, and business consulting. Join Afrofiliate's affiliate program to get started."
+        title="Brand Feature Services | Phresh Phactory Buy Black Directory"
+        description="Partner with Phresh Phactory for professional brand feature services including video reviews, written content, and business consulting."
         keywords="Feature Black-owned brand, Black business directory, brand services, Black entrepreneurship, video reviews, content creation, Afrofiliate"
         canonicalUrl="https://phreshphactory.co/brands"
       />
@@ -135,11 +135,12 @@ const BrandPartnership = () => {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Apply for Brand Feature Services
+              Brand Feature Services
             </h1>
             <p className="text-xl mb-8 text-muted-foreground">
-              Join Afrofiliate&apos;s affiliate program, then apply for our paid brand feature services 
-              including video reviews, written content, and business growth consulting.
+              Partner with Phresh Phactory for professional brand feature services including video reviews, 
+              written content, and business growth consulting. We work with brands through Afrofiliate&apos;s 
+              affiliate program or through direct partnership arrangements.
             </p>
             <Button asChild size="lg" className="mb-4">
               <a 
@@ -147,7 +148,7 @@ const BrandPartnership = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                Join Afrofiliate First
+                Join Afrofiliate (Optional)
               </a>
             </Button>
           </div>
@@ -157,9 +158,9 @@ const BrandPartnership = () => {
       {/* Services Section */}
       <section className="py-12 bg-muted">
         <div className="container-custom max-w-5xl">
-          <h2 className="text-3xl font-bold text-center mb-4 text-foreground">What Services Are You Interested In?</h2>
+          <h2 className="text-3xl font-bold text-center mb-4 text-foreground">Our Partnership Services</h2>
           <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-            All services are paid offerings. Select which services you&apos;d like to learn more about in the application form below.
+            Select the services that align with your brand&apos;s growth goals in the application form below.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
@@ -199,24 +200,25 @@ const BrandPartnership = () => {
       <section className="py-15 bg-background">
         <div className="container-custom max-w-3xl">
           <div className="animate-on-scroll">
-            <h2 className="text-3xl font-bold mb-6 text-center text-foreground">Service Application</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center text-foreground">Partnership Application</h2>
             <div className="bg-muted/50 border border-border rounded-lg p-6 mb-8">
-              <h3 className="text-lg font-semibold mb-3 text-foreground">Important:</h3>
+              <h3 className="text-lg font-semibold mb-3 text-foreground">How It Works:</h3>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
                 <li>
-                  <strong>Afrofiliate Required:</strong> You must join Afrofiliate as a retailer first at{' '}
+                  <strong>Partnership Options:</strong> We work with brands through{' '}
                   <a 
                     href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-primary hover:underline"
                   >
-                    this link
+                    Afrofiliate&apos;s platform
                   </a>
+                  {' '}or through direct arrangements
                 </li>
-                <li><strong>Paid Services:</strong> All brand feature services require payment</li>
-                <li><strong>Not Automatic:</strong> Being on Afrofiliate does not guarantee feature placement - we review and select brands based on fit and payment</li>
-                <li><strong>We Handle Links:</strong> Once approved and paid, we&apos;ll obtain your affiliate links from Afrofiliate</li>
+                <li><strong>Professional Services:</strong> Our feature services are premium offerings tailored to your brand&apos;s needs</li>
+                <li><strong>Selective Process:</strong> We carefully curate partnerships to ensure the best fit and value for both our audience and your brand</li>
+                <li><strong>Next Steps:</strong> After reviewing your application, we&apos;ll reach out within 2-3 business days with pricing and partnership details</li>
               </ul>
             </div>
             
@@ -287,7 +289,7 @@ const BrandPartnership = () => {
                   name="hasJoinedAfrofiliate"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Have you joined Afrofiliate as a retailer?</FormLabel>
+                      <FormLabel>Are you currently on Afrofiliate&apos;s platform?</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -295,9 +297,9 @@ const BrandPartnership = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="yes">Yes, I&apos;ve joined</SelectItem>
-                          <SelectItem value="in-progress">In progress</SelectItem>
-                          <SelectItem value="not-yet">Not yet - I&apos;ll join now</SelectItem>
+                          <SelectItem value="yes">Yes, I&apos;m already listed</SelectItem>
+                          <SelectItem value="in-progress">Application in progress</SelectItem>
+                          <SelectItem value="not-yet">No, interested in direct partnership</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
