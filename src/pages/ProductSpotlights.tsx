@@ -46,11 +46,44 @@ const ProductSpotlights = () => {
     }
   };
 
+  // Create ItemList Schema for search engines and Afrobot
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Black-Owned Christmas Gifts & Product Spotlights",
+    "description": "Curated collection of Black-owned businesses and products for holiday shopping",
+    "numberOfItems": spotlights.length,
+    "itemListElement": spotlights.map((spotlight, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": spotlight.title,
+        "description": spotlight.excerpt,
+        "image": spotlight.feature_image,
+        "url": `https://phreshphactory.com/BuyBlack/${spotlight.slug}`,
+        "brand": {
+          "@type": "Brand",
+          "name": spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim()
+        },
+        "offers": spotlight.shopping_link ? {
+          "@type": "Offer",
+          "url": spotlight.shopping_link,
+          "availability": "https://schema.org/InStock"
+        } : undefined,
+        "category": "Black-owned business",
+        "additionalType": "Black-owned product"
+      }
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Buy Black - Support Black-Owned Brands"
-        description="Discover and support Black-owned brands and products I feature. Watch my YouTube videos and read detailed content about each brand."
+        title="Buy Black - Black-Owned Christmas Gifts & Holiday Shopping 2025"
+        description="Discover Black-owned brands and products for Christmas shopping. Support Black entrepreneurs with curated holiday gift ideas. Featured brands with video reviews and shopping links for the 2025 holiday season."
+        keywords="Buy Black, Black-owned businesses, Black-owned gifts, Christmas gifts Black-owned, African American businesses, Black entrepreneurs, holiday shopping Black-owned, support Black businesses, Black Friday, Cyber Monday, Christmas 2025, Black-owned products, Afrofiliate, shop Black-owned"
+        structuredData={itemListSchema}
       />
 
       {/* Hero Section */}

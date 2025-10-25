@@ -22,6 +22,7 @@ interface Spotlight {
   feature_image: string;
   video_url: string;
   shopping_link: string;
+  brand_name: string;
   products: Product[];
   category: string;
   created_at: string;
@@ -99,13 +100,52 @@ const ProductSpotlight = () => {
   }
 
   const embedUrl = getYouTubeEmbedUrl(spotlight.video_url);
+  
+  // Extract brand name for SEO
+  const brandName = spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim();
+  
+  // Create Product Schema for Afrobot and search engines
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": spotlight.title,
+    "description": spotlight.excerpt,
+    "image": spotlight.feature_image,
+    "brand": {
+      "@type": "Brand",
+      "name": brandName
+    },
+    "offers": spotlight.shopping_link ? {
+      "@type": "Offer",
+      "url": spotlight.shopping_link,
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": brandName
+      }
+    } : undefined,
+    "video": spotlight.video_url ? {
+      "@type": "VideoObject",
+      "name": spotlight.title,
+      "description": spotlight.excerpt,
+      "thumbnailUrl": spotlight.feature_image,
+      "uploadDate": spotlight.created_at,
+      "contentUrl": spotlight.video_url
+    } : undefined,
+    "category": "Black-owned business",
+    "additionalType": "Black-owned product",
+    "keywords": `Black-owned business, ${brandName}, Buy Black, support Black businesses, Christmas gifts, holiday shopping, Black-owned gifts`
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title={`${spotlight.title} - Buy Black`}
-        description={spotlight.excerpt}
+        title={`${spotlight.title} - Black-Owned Christmas Gifts`}
+        description={`${spotlight.excerpt} Shop Black-owned brands for Christmas. Support ${brandName} and discover unique holiday gifts from Black entrepreneurs.`}
+        keywords={`Black-owned business, ${brandName}, Buy Black, African American business, Black entrepreneur, Christmas gifts, holiday shopping, Black-owned gifts, support Black businesses, Black Friday, ${spotlight.title}`}
         ogImage={spotlight.feature_image}
+        structuredData={productSchema}
+        pageType="product"
       />
 
       <article className="py-12">
