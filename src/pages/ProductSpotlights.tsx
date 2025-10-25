@@ -97,6 +97,9 @@ const ProductSpotlights = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
               Buy Black
             </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+              Explore Black-owned brands and products featured this holiday season. Each spotlight includes a YouTube video walkthrough and detailed written content.
+            </p>
             
             <Button asChild size="lg">
               <Link to="/contact">
@@ -188,13 +191,6 @@ const ProductSpotlights = () => {
       {/* About and CTA Section */}
       <section className="py-16 bg-background">
         <div className="container-custom max-w-4xl mx-auto">
-          {/* Description */}
-          <div className="text-center mb-12">
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Explore Black-owned brands and products featured this holiday season. Each spotlight includes a YouTube video walkthrough and detailed written content.
-            </p>
-          </div>
-
           {/* About This Directory */}
           <div className="bg-muted/50 rounded-lg p-8 mb-12 text-left">
             <h2 className="text-2xl font-semibold mb-4 text-foreground">About This Directory</h2>
