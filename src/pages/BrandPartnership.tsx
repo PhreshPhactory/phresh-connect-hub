@@ -16,10 +16,10 @@ const formSchema = z.object({
   email: emailSchema,
   brandName: z.string().min(1, { message: 'Brand name is required.' }).max(100),
   website: urlSchema,
-  category: z.string().min(1, { message: 'Please select a category.' }),
-  stage: z.string().min(1, { message: 'Please select your brand stage.' }),
-  socialMedia: z.string().max(500).optional(),
-  helpNeeded: z.string().min(10, { message: 'Please describe what help you need (minimum 10 characters).' }).max(1000),
+  hasJoinedAfrofiliate: z.string().min(1, { message: 'Please confirm if you have joined Afrofiliate.' }),
+  interestedInUGC: z.string().min(1, { message: 'Please indicate your interest in UGC.' }),
+  interestedInSocialMedia: z.string().min(1, { message: 'Please indicate your interest in social media management.' }),
+  otherServices: z.string().max(1000).optional(),
   message: messageSchema,
   honeypot: z.string().optional()
 });
@@ -39,10 +39,10 @@ const BrandPartnership = () => {
       email: '',
       brandName: '',
       website: '',
-      category: '',
-      stage: '',
-      socialMedia: '',
-      helpNeeded: '',
+      hasJoinedAfrofiliate: '',
+      interestedInUGC: '',
+      interestedInSocialMedia: '',
+      otherServices: '',
       message: '',
       honeypot: '',
     },
@@ -66,7 +66,7 @@ const BrandPartnership = () => {
       ...data,
       name: sanitizeInput(data.name),
       brandName: sanitizeInput(data.brandName),
-      helpNeeded: sanitizeInput(data.helpNeeded),
+      otherServices: data.otherServices ? sanitizeInput(data.otherServices) : '',
       message: data.message ? sanitizeInput(data.message) : ''
     };
 
@@ -119,9 +119,9 @@ const BrandPartnership = () => {
     <>
       <SEOHead
         title="Feature Your Black-Owned Brand | Phresh Phactory Buy Black Directory"
-        description="Get your Black-owned brand featured in Phresh Phactory's Buy Black directory. Receive video reviews, written content, and consulting support to grow your business."
-        keywords="Feature Black-owned brand, Black business directory, brand partnerships, Black entrepreneurship, business growth support"
-        canonicalUrl="https://phreshphactory.co/brand-partnership"
+        description="Get your Black-owned brand featured in Phresh Phactory's Buy Black directory. Join Afrofiliate's affiliate program and receive video reviews, content creation, and strategic support."
+        keywords="Feature Black-owned brand, Black business directory, brand partnerships, Black entrepreneurship, business growth support, Afrofiliate"
+        canonicalUrl="https://phreshphactory.co/brands"
       />
       
       {/* Hero Section */}
@@ -129,12 +129,21 @@ const BrandPartnership = () => {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Feature Your Brand & Get Strategic Support
+              Get Your Brand Featured
             </h1>
             <p className="text-xl mb-8 text-muted-foreground">
-              Join our Buy Black directory and receive comprehensive brand support including video reviews, 
-              content creation, and business consulting to help you grow.
+              Join Afrofiliate's affiliate program first, then apply to be featured in our Buy Black directory 
+              with video reviews, content creation, and strategic support.
             </p>
+            <Button asChild size="lg" className="mb-4">
+              <a 
+                href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Join Afrofiliate Now
+              </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -181,10 +190,25 @@ const BrandPartnership = () => {
       <section className="py-15 bg-background">
         <div className="container-custom max-w-3xl">
           <div className="animate-on-scroll">
-            <h2 className="text-3xl font-bold mb-6 text-center text-foreground">Apply to Feature Your Brand</h2>
-            <p className="text-center text-muted-foreground mb-8">
-              Fill out the form below and we'll review your brand within 2-3 business days.
-            </p>
+            <h2 className="text-3xl font-bold mb-6 text-center text-foreground">Brand Feature Application</h2>
+            <div className="bg-muted/50 border border-border rounded-lg p-6 mb-8">
+              <h3 className="text-lg font-semibold mb-3 text-foreground">Before You Apply:</h3>
+              <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
+                <li>
+                  <strong>Join Afrofiliate:</strong> Sign up as a retailer at{' '}
+                  <a 
+                    href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    this link
+                  </a>
+                </li>
+                <li><strong>Complete Application:</strong> Fill out the form below with your brand details</li>
+                <li><strong>We Handle Links:</strong> Once approved, we'll get your specialized affiliate links from Afrofiliate</li>
+              </ol>
+            </div>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -248,28 +272,46 @@ const BrandPartnership = () => {
                   />
                 </div>
                 
+                <FormField
+                  control={form.control}
+                  name="hasJoinedAfrofiliate"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Have you joined Afrofiliate as a retailer?</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select..." />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="yes">Yes, I've joined</SelectItem>
+                          <SelectItem value="in-progress">In progress</SelectItem>
+                          <SelectItem value="not-yet">Not yet - I'll join now</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
-                    name="category"
+                    name="interestedInUGC"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Brand Category</FormLabel>
+                        <FormLabel>Interested in UGC (User Generated Content) creation?</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select category" />
+                              <SelectValue placeholder="Select..." />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="beauty">Beauty & Cosmetics</SelectItem>
-                            <SelectItem value="fashion">Fashion & Apparel</SelectItem>
-                            <SelectItem value="home">Home Goods & Decor</SelectItem>
-                            <SelectItem value="food">Food & Beverages</SelectItem>
-                            <SelectItem value="wellness">Wellness & Health</SelectItem>
-                            <SelectItem value="accessories">Accessories & Jewelry</SelectItem>
-                            <SelectItem value="gifts">Gifts & Specialty Items</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
+                            <SelectItem value="yes">Yes</SelectItem>
+                            <SelectItem value="no">No</SelectItem>
+                            <SelectItem value="maybe">Maybe / Learn More</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -279,21 +321,20 @@ const BrandPartnership = () => {
                   
                   <FormField
                     control={form.control}
-                    name="stage"
+                    name="interestedInSocialMedia"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Brand Stage</FormLabel>
+                        <FormLabel>Interested in social media management?</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select stage" />
+                              <SelectValue placeholder="Select..." />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="pre-launch">Pre-Launch</SelectItem>
-                            <SelectItem value="new">New (0-1 year)</SelectItem>
-                            <SelectItem value="growing">Growing (1-3 years)</SelectItem>
-                            <SelectItem value="established">Established (3+ years)</SelectItem>
+                            <SelectItem value="yes">Yes</SelectItem>
+                            <SelectItem value="no">No</SelectItem>
+                            <SelectItem value="maybe">Maybe / Learn More</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -304,28 +345,14 @@ const BrandPartnership = () => {
                 
                 <FormField
                   control={form.control}
-                  name="socialMedia"
+                  name="otherServices"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Social Media Links (Optional)</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Instagram, TikTok, etc." {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
-                <FormField
-                  control={form.control}
-                  name="helpNeeded"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>What help do you need to grow your brand?</FormLabel>
+                      <FormLabel>Other services you're interested in (Optional)</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="E.g., Marketing strategy, operations support, team building, systems design, etc." 
-                          className="min-h-32"
+                          placeholder="E.g., Email marketing, influencer partnerships, brand strategy, operations consulting, etc." 
+                          className="min-h-24"
                           {...field} 
                         />
                       </FormControl>

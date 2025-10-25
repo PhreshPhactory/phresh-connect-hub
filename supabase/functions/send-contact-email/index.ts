@@ -38,10 +38,10 @@ interface BrandPartnershipData {
   email: string;
   brandName: string;
   website: string;
-  category: string;
-  stage: string;
-  socialMedia?: string;
-  helpNeeded: string;
+  hasJoinedAfrofiliate: string;
+  interestedInUGC: string;
+  interestedInSocialMedia: string;
+  otherServices?: string;
   message?: string;
   formType: 'brand-partnership';
 }
@@ -154,11 +154,11 @@ const handler = async (req: Request): Promise<Response> => {
       emailResponse = await resend.emails.send({
         from: "Phresh Phactory Brand Partnership <no-reply@phreshphactory.com>",
         to: ["info@phreshphactory.co"],
-        subject: `New Brand Partnership Application - ${brandData.brandName}`,
+        subject: `Brand Feature Application - ${brandData.brandName}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">
-              New Brand Partnership Application
+              New Brand Feature Application
             </h2>
             
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -171,14 +171,14 @@ const handler = async (req: Request): Promise<Response> => {
               <h3 style="color: #555; margin-top: 0;">Brand Information</h3>
               <p><strong>Brand Name:</strong> ${brandData.brandName}</p>
               <p><strong>Website:</strong> <a href="${brandData.website}">${brandData.website}</a></p>
-              <p><strong>Category:</strong> ${brandData.category}</p>
-              <p><strong>Stage:</strong> ${brandData.stage}</p>
-              ${brandData.socialMedia ? `<p><strong>Social Media:</strong> ${brandData.socialMedia}</p>` : ''}
             </div>
 
             <div style="background: #fff5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #555; margin-top: 0;">Help Needed</h3>
-              <p>${brandData.helpNeeded}</p>
+              <h3 style="color: #555; margin-top: 0;">Afrofiliate & Services</h3>
+              <p><strong>Joined Afrofiliate:</strong> ${brandData.hasJoinedAfrofiliate}</p>
+              <p><strong>Interested in UGC:</strong> ${brandData.interestedInUGC}</p>
+              <p><strong>Interested in Social Media Management:</strong> ${brandData.interestedInSocialMedia}</p>
+              ${brandData.otherServices ? `<p><strong>Other Services:</strong> ${brandData.otherServices}</p>` : ''}
             </div>
 
             ${brandData.message ? `
@@ -189,7 +189,7 @@ const handler = async (req: Request): Promise<Response> => {
             ` : ''}
 
             <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 12px;">
-              <p>This email was sent from the Phresh Phactory Brand Partnership form.</p>
+              <p>This email was sent from the Phresh Phactory Brand Feature Application form.</p>
               <p>Submitted on: ${new Date().toLocaleString()}</p>
             </div>
           </div>
