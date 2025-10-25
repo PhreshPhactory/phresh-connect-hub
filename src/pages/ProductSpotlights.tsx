@@ -15,6 +15,7 @@ interface ProductSpotlight {
   feature_image: string;
   video_url: string;
   shopping_link: string;
+  brand_name: string;
   category: string;
   created_at: string;
 }
@@ -147,7 +148,7 @@ const ProductSpotlights = () => {
                             rel="noopener noreferrer"
                             className="flex items-center justify-center"
                           >
-                            Shop {spotlight.title.split(/[-:]/)[0].trim()} Now
+                            Shop {spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim()} Now
                             <ArrowRight className="w-4 h-4 ml-2" />
                           </a>
                         </Button>

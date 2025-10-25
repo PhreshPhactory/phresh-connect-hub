@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       blog_posts: {
         Row: {
+          brand_name: string | null
           category: string
           content: string
           created_at: string
@@ -31,6 +32,7 @@ export type Database = {
           video_url: string | null
         }
         Insert: {
+          brand_name?: string | null
           category: string
           content: string
           created_at?: string
@@ -46,6 +48,7 @@ export type Database = {
           video_url?: string | null
         }
         Update: {
+          brand_name?: string | null
           category?: string
           content?: string
           created_at?: string

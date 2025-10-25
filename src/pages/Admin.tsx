@@ -27,6 +27,7 @@ interface BlogPost {
   feature_image: string | null;
   video_url: string | null;
   shopping_link: string | null;
+  brand_name: string | null;
   products: Product[];
   published: boolean;
   created_at: string;
@@ -47,6 +48,7 @@ const Admin = () => {
     category: '',
     video_url: '',
     shopping_link: '',
+    brand_name: '',
     products: [] as Product[],
     published: false,
   });
@@ -289,6 +291,7 @@ const Admin = () => {
       category: '',
       video_url: '',
       shopping_link: '',
+      brand_name: '',
       products: [],
       published: false,
     });
@@ -305,6 +308,7 @@ const Admin = () => {
       category: post.category,
       video_url: post.video_url || '',
       shopping_link: post.shopping_link || '',
+      brand_name: post.brand_name || '',
       products: post.products || [],
       published: post.published,
     });
@@ -562,6 +566,22 @@ const Admin = () => {
                       setFormData({ ...formData, shopping_link: e.target.value })
                     }
                   />
+                </div>
+
+                <div>
+                  <Label htmlFor="brand_name">Brand Name (for Shop button)</Label>
+                  <Input
+                    id="brand_name"
+                    type="text"
+                    placeholder="e.g., BigUp Street Greets"
+                    value={formData.brand_name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, brand_name: e.target.value })
+                    }
+                  />
+                  <p className="text-sm text-muted-foreground mt-1">
+                    This will appear as "Shop [Brand Name] Now" on the Buy Black page
+                  </p>
                 </div>
 
                 <div>
