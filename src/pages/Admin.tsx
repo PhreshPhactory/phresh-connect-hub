@@ -12,6 +12,12 @@ import { supabase } from '@/integrations/supabase/client';
 import { User, Session } from '@supabase/supabase-js';
 import { Link } from 'react-router-dom';
 
+interface Product {
+  brand_name: string;
+  item_name: string;
+  link: string;
+}
+
 interface BlogPost {
   id: string;
   title: string;
@@ -22,6 +28,7 @@ interface BlogPost {
   feature_image: string | null;
   video_url: string | null;
   shopping_link: string | null;
+  products: Product[];
   published: boolean;
   created_at: string;
 }
@@ -41,6 +48,7 @@ const Admin = () => {
     category: '',
     video_url: '',
     shopping_link: '',
+    products: [] as Product[],
     published: false,
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -282,6 +290,7 @@ const Admin = () => {
       category: '',
       video_url: '',
       shopping_link: '',
+      products: [],
       published: false,
     });
     setImageFile(null);
@@ -297,8 +306,31 @@ const Admin = () => {
       category: post.category,
       video_url: post.video_url || '',
       shopping_link: post.shopping_link || '',
+      products: post.products || [],
       published: post.published,
     });
+  };
+
+  const addProduct = () => {
+    if (formData.products.length < 6) {
+      setFormData({
+        ...formData,
+        products: [...formData.products, { brand_name: '', item_name: '', link: '' }]
+      });
+    }
+  };
+
+  const removeProduct = (index: number) => {
+    setFormData({
+      ...formData,
+      products: formData.products.filter((_, i) => i !== index)
+    });
+  };
+
+  const updateProduct = (index: number, field: keyof Product, value: string) => {
+    const updatedProducts = [...formData.products];
+    updatedProducts[index] = { ...updatedProducts[index], [field]: value };
+    setFormData({ ...formData, products: updatedProducts });
   };
 
   const handleDelete = async (id: string) => {
@@ -531,6 +563,66 @@ const Admin = () => {
                       setFormData({ ...formData, shopping_link: e.target.value })
                     }
                   />
+                </div>
+
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <Label>Products (up to 6)</Label>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      onClick={addProduct}
+                      disabled={formData.products.length >= 6}
+                    >
+                      + Add Product
+                    </Button>
+                  </div>
+                  <div className="space-y-4">
+                    {formData.products.map((product, index) => (
+                      <div key={index} className="border rounded-lg p-4 space-y-3">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-medium">Product {index + 1}</span>
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => removeProduct(index)}
+                          >
+                            Remove
+                          </Button>
+                        </div>
+                        <div>
+                          <Label htmlFor={`brand-${index}`}>Brand Name</Label>
+                          <Input
+                            id={`brand-${index}`}
+                            value={product.brand_name}
+                            onChange={(e) => updateProduct(index, 'brand_name', e.target.value)}
+                            placeholder="e.g., BigUp Street Greets"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`item-${index}`}>Item Name</Label>
+                          <Input
+                            id={`item-${index}`}
+                            value={product.item_name}
+                            onChange={(e) => updateProduct(index, 'item_name', e.target.value)}
+                            placeholder="e.g., Greeting Cards Set"
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor={`link-${index}`}>Product Link</Label>
+                          <Input
+                            id={`link-${index}`}
+                            type="url"
+                            value={product.link}
+                            onChange={(e) => updateProduct(index, 'link', e.target.value)}
+                            placeholder="https://example.com/product"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <div>
