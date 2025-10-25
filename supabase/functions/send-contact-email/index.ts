@@ -39,6 +39,7 @@ interface BrandPartnershipData {
   brandName: string;
   website: string;
   hasJoinedAfrofiliate: string;
+  budget: string;
   interestedInVideoFeature: string;
   interestedInWrittenContent: string;
   interestedInGrowthSupport: string;
@@ -174,6 +175,8 @@ const handler = async (req: Request): Promise<Response> => {
               <h3 style="color: #555; margin-top: 0;">Brand Information</h3>
               <p><strong>Brand Name:</strong> ${brandData.brandName}</p>
               <p><strong>Website:</strong> <a href="${brandData.website}">${brandData.website}</a></p>
+              <p><strong>On Afrofiliate:</strong> ${brandData.hasJoinedAfrofiliate}</p>
+              <p><strong>Budget Range:</strong> ${brandData.budget}</p>
             </div>
 
             <div style="background: #fff5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">

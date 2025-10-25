@@ -17,6 +17,7 @@ const formSchema = z.object({
   brandName: z.string().min(1, { message: 'Brand name is required.' }).max(100),
   website: urlSchema,
   hasJoinedAfrofiliate: z.string().min(1, { message: 'Please confirm if you have joined Afrofiliate.' }),
+  budget: z.string().min(1, { message: 'Please select your budget range.' }),
   interestedInVideoFeature: z.string().min(1, { message: 'Please indicate your interest in video feature.' }),
   interestedInWrittenContent: z.string().min(1, { message: 'Please indicate your interest in written content.' }),
   interestedInGrowthSupport: z.string().min(1, { message: 'Please indicate your interest in growth support.' }),
@@ -43,6 +44,7 @@ const BrandPartnership = () => {
       brandName: '',
       website: '',
       hasJoinedAfrofiliate: '',
+      budget: '',
       interestedInVideoFeature: '',
       interestedInWrittenContent: '',
       interestedInGrowthSupport: '',
@@ -291,6 +293,32 @@ const BrandPartnership = () => {
                           <SelectItem value="yes">Yes, I&apos;m already listed</SelectItem>
                           <SelectItem value="in-progress">Application in progress</SelectItem>
                           <SelectItem value="not-yet">No, interested in direct partnership</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <FormField
+                  control={form.control}
+                  name="budget"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>What is your budget range?</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select budget range..." />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="under-500">Under $500</SelectItem>
+                          <SelectItem value="500-1000">$500 - $1,000</SelectItem>
+                          <SelectItem value="1000-2500">$1,000 - $2,500</SelectItem>
+                          <SelectItem value="2500-5000">$2,500 - $5,000</SelectItem>
+                          <SelectItem value="5000-plus">$5,000+</SelectItem>
+                          <SelectItem value="flexible">Flexible / Open to discussion</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
