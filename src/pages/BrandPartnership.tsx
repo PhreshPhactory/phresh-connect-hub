@@ -142,15 +142,6 @@ const BrandPartnership = () => {
               written content, and business growth consulting. We work with brands through Afrofiliate&apos;s 
               affiliate program or through direct partnership arrangements.
             </p>
-            <Button asChild size="lg" className="mb-4">
-              <a 
-                href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                Join Afrofiliate (Optional)
-              </a>
-            </Button>
           </div>
         </div>
       </section>
@@ -203,23 +194,23 @@ const BrandPartnership = () => {
             <h2 className="text-3xl font-bold mb-6 text-center text-foreground">Partnership Application</h2>
             <div className="bg-muted/50 border border-border rounded-lg p-6 mb-8">
               <h3 className="text-lg font-semibold mb-3 text-foreground">How It Works:</h3>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
                 <li>
-                  <strong>Partnership Options:</strong> We work with brands through{' '}
-                  <a 
-                    href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline"
-                  >
-                    Afrofiliate&apos;s platform
-                  </a>
-                  {' '}or through direct arrangements
+                  <strong>Partnership Options:</strong> We work with brands through Afrofiliate&apos;s affiliate program or through direct arrangements
                 </li>
                 <li><strong>Professional Services:</strong> Our feature services are premium offerings tailored to your brand&apos;s needs</li>
                 <li><strong>Selective Process:</strong> We carefully curate partnerships to ensure the best fit and value for both our audience and your brand</li>
                 <li><strong>Next Steps:</strong> After reviewing your application, we&apos;ll reach out within 2-3 business days with pricing and partnership details</li>
               </ul>
+              <Button asChild size="lg" className="w-full">
+                <a 
+                  href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Join Afrofiliate Affiliate Program
+                </a>
+              </Button>
             </div>
             
             <Form {...form}>
