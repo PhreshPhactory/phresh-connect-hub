@@ -9,10 +9,8 @@ import SEOHead from '@/components/SEOHead';
 import RelatedBrands from '@/components/RelatedBrands';
 
 interface Product {
-  brand_name: string;
   item_name: string;
   link: string;
-  image_url?: string;
 }
 
 interface Spotlight {
@@ -198,19 +196,7 @@ const ProductSpotlight = () => {
                       rel="noopener noreferrer"
                       className="group p-4 bg-background/50 rounded-lg border border-border hover:border-primary/50 transition-all hover:shadow-md"
                     >
-                      {product.image_url && (
-                        <div className="mb-3 rounded-md overflow-hidden aspect-square">
-                          <img 
-                            src={product.image_url} 
-                            alt={product.item_name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        </div>
-                      )}
-                      <div className="text-sm font-semibold text-primary mb-1 group-hover:underline">
-                        {product.brand_name}
-                      </div>
-                      <div className="text-sm text-muted-foreground flex items-center gap-1">
+                      <div className="text-sm font-medium text-foreground flex items-center gap-1 group-hover:text-primary transition-colors">
                         {product.item_name}
                         <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>

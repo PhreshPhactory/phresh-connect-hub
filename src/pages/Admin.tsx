@@ -13,10 +13,8 @@ import { User, Session } from '@supabase/supabase-js';
 import { Link } from 'react-router-dom';
 
 interface Product {
-  brand_name: string;
   item_name: string;
   link: string;
-  image_url?: string;
 }
 
 interface BlogPost {
@@ -316,7 +314,7 @@ const Admin = () => {
     if (formData.products.length < 6) {
       setFormData({
         ...formData,
-        products: [...formData.products, { brand_name: '', item_name: '', link: '', image_url: '' }]
+        products: [...formData.products, { item_name: '', link: '' }]
       });
     }
   };
@@ -594,15 +592,6 @@ const Admin = () => {
                           </Button>
                         </div>
                         <div>
-                          <Label htmlFor={`brand-${index}`}>Brand Name</Label>
-                          <Input
-                            id={`brand-${index}`}
-                            value={product.brand_name}
-                            onChange={(e) => updateProduct(index, 'brand_name', e.target.value)}
-                            placeholder="e.g., BigUp Street Greets"
-                          />
-                        </div>
-                        <div>
                           <Label htmlFor={`item-${index}`}>Item Name</Label>
                           <Input
                             id={`item-${index}`}
@@ -619,16 +608,6 @@ const Admin = () => {
                             value={product.link}
                             onChange={(e) => updateProduct(index, 'link', e.target.value)}
                             placeholder="https://example.com/product"
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor={`image-${index}`}>Image URL (optional)</Label>
-                          <Input
-                            id={`image-${index}`}
-                            type="url"
-                            value={product.image_url || ''}
-                            onChange={(e) => updateProduct(index, 'image_url', e.target.value)}
-                            placeholder="https://example.com/product-image.jpg"
                           />
                         </div>
                       </div>
