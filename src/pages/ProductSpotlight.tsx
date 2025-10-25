@@ -16,6 +16,7 @@ interface Spotlight {
   slug: string;
   feature_image: string;
   video_url: string;
+  shopping_link: string;
   category: string;
   created_at: string;
 }
@@ -170,6 +171,30 @@ const ProductSpotlight = () => {
               prose-ol:text-muted-foreground"
             dangerouslySetInnerHTML={{ __html: spotlight.content }}
           />
+
+          {/* Shop the Episode Section */}
+          {spotlight.shopping_link && (
+            <div className="mt-12 p-8 bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg border border-primary/20">
+              <h3 className="text-2xl font-bold mb-4 text-foreground flex items-center gap-2">
+                <ExternalLink className="w-6 h-6 text-primary" />
+                Shop the Episode
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                Support this Black-owned business by purchasing directly from their store
+              </p>
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <a 
+                  href={spotlight.shopping_link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  Visit Store
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </Button>
+            </div>
+          )}
 
           {/* CTA to explore more */}
           <div className="mt-12 p-8 bg-muted rounded-lg text-center">
