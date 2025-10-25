@@ -26,6 +26,7 @@ interface BlogPost {
   slug: string;
   feature_image: string | null;
   video_url: string | null;
+  shorts_url: string | null;
   shopping_link: string | null;
   brand_name: string | null;
   products: Product[];
@@ -47,6 +48,7 @@ const Admin = () => {
     excerpt: '',
     category: '',
     video_url: '',
+    shorts_url: '',
     shopping_link: '',
     brand_name: '',
     products: [] as Product[],
@@ -290,6 +292,7 @@ const Admin = () => {
       excerpt: '',
       category: '',
       video_url: '',
+      shorts_url: '',
       shopping_link: '',
       brand_name: '',
       products: [],
@@ -307,6 +310,7 @@ const Admin = () => {
       excerpt: post.excerpt,
       category: post.category,
       video_url: post.video_url || '',
+      shorts_url: post.shorts_url || '',
       shopping_link: post.shopping_link || '',
       brand_name: post.brand_name || '',
       products: post.products || [],
@@ -553,6 +557,25 @@ const Admin = () => {
                       setFormData({ ...formData, video_url: e.target.value })
                     }
                   />
+                  <p className="text-sm text-muted-foreground mt-1">
+                    For full-length videos
+                  </p>
+                </div>
+
+                <div>
+                  <Label htmlFor="shorts_url">YouTube Shorts URL (optional)</Label>
+                  <Input
+                    id="shorts_url"
+                    type="url"
+                    placeholder="https://www.youtube.com/shorts/..."
+                    value={formData.shorts_url}
+                    onChange={(e) =>
+                      setFormData({ ...formData, shorts_url: e.target.value })
+                    }
+                  />
+                  <p className="text-sm text-muted-foreground mt-1">
+                    For YouTube Shorts - will appear in the Shoppable Shorts gallery
+                  </p>
                 </div>
 
                 <div>
