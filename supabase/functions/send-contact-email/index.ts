@@ -39,6 +39,9 @@ interface BrandPartnershipData {
   brandName: string;
   website: string;
   hasJoinedAfrofiliate: string;
+  interestedInVideoFeature: string;
+  interestedInWrittenContent: string;
+  interestedInGrowthSupport: string;
   interestedInUGC: string;
   interestedInSocialMedia: string;
   otherServices?: string;
@@ -174,10 +177,12 @@ const handler = async (req: Request): Promise<Response> => {
             </div>
 
             <div style="background: #fff5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #555; margin-top: 0;">Afrofiliate & Services</h3>
-              <p><strong>Joined Afrofiliate:</strong> ${brandData.hasJoinedAfrofiliate}</p>
-              <p><strong>Interested in UGC:</strong> ${brandData.interestedInUGC}</p>
-              <p><strong>Interested in Social Media Management:</strong> ${brandData.interestedInSocialMedia}</p>
+              <h3 style="color: #555; margin-top: 0;">Services Interested In</h3>
+              <p><strong>Video Feature:</strong> ${brandData.interestedInVideoFeature}</p>
+              <p><strong>Written Content:</strong> ${brandData.interestedInWrittenContent}</p>
+              <p><strong>Growth Support (Paid Service):</strong> ${brandData.interestedInGrowthSupport}</p>
+              <p><strong>UGC Creation:</strong> ${brandData.interestedInUGC}</p>
+              <p><strong>Social Media Management:</strong> ${brandData.interestedInSocialMedia}</p>
               ${brandData.otherServices ? `<p><strong>Other Services:</strong> ${brandData.otherServices}</p>` : ''}
             </div>
 
