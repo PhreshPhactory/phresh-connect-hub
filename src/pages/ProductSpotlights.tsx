@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Youtube, ArrowRight, Heart } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import ShortsGallery from '@/components/ShortsGallery';
 
 interface ProductSpotlight {
   id: string;
@@ -18,10 +19,13 @@ interface ProductSpotlight {
   brand_name: string;
   category: string;
   created_at: string;
+  shorts_url?: string;
+  products?: any[];
 }
 
 const ProductSpotlights = () => {
   const [spotlights, setSpotlights] = useState<ProductSpotlight[]>([]);
+  const [shorts, setShorts] = useState<ProductSpotlight[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,7 +42,15 @@ const ProductSpotlights = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setSpotlights(data || []);
+      
+      const allSpotlights = data || [];
+      
+      // Separate shorts from full spotlights
+      const shortsData = allSpotlights.filter(item => item.shorts_url);
+      const fullSpotlights = allSpotlights.filter(item => !item.shorts_url || item.video_url);
+
+      setShorts(shortsData as any);
+      setSpotlights(fullSpotlights as any);
     } catch (error) {
       console.error('Error fetching product spotlights:', error);
     } finally {
@@ -187,6 +199,9 @@ const ProductSpotlights = () => {
           )}
         </div>
       </section>
+
+      {/* Shoppable Shorts */}
+      <ShortsGallery shorts={shorts} />
 
       {/* About and CTA Section */}
       <section className="py-16 bg-background">

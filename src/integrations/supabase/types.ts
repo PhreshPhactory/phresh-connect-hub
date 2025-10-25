@@ -26,6 +26,7 @@ export type Database = {
           products: Json | null
           published: boolean
           shopping_link: string | null
+          shorts_url: string | null
           slug: string
           title: string
           updated_at: string
@@ -42,6 +43,7 @@ export type Database = {
           products?: Json | null
           published?: boolean
           shopping_link?: string | null
+          shorts_url?: string | null
           slug: string
           title: string
           updated_at?: string
@@ -58,6 +60,7 @@ export type Database = {
           products?: Json | null
           published?: boolean
           shopping_link?: string | null
+          shorts_url?: string | null
           slug?: string
           title?: string
           updated_at?: string
