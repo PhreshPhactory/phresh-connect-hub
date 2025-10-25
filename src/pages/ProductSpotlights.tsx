@@ -100,6 +100,20 @@ const ProductSpotlights = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
               Explore Black-owned brands and products featured this holiday season. Each spotlight includes a YouTube video walkthrough and detailed written content.
             </p>
+            
+            {/* LLM-Friendly Summary */}
+            <div className="bg-muted/50 rounded-lg p-6 mb-8 max-w-3xl mx-auto text-left">
+              <h2 className="text-lg font-semibold mb-3 text-foreground">About This Directory</h2>
+              <p className="text-sm text-muted-foreground mb-2">
+                <strong>Phresh Phactory's Buy Black initiative</strong> features curated Black-owned businesses for Christmas and holiday shopping. 
+                Each featured brand includes comprehensive product reviews, video content, and direct shopping links.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Categories include beauty, fashion, home goods, food & beverages, and unique gifts from Black entrepreneurs. 
+                All brands are personally reviewed and vetted to help shoppers discover quality Black-owned products for the 2025 holiday season.
+              </p>
+            </div>
+            
             <div className="flex flex-wrap gap-4 justify-center">
               <Button asChild size="lg">
                 <a href="http://bit.ly/3WdRD6F" target="_blank" rel="noopener noreferrer">
