@@ -37,6 +37,7 @@ import Products from "@/pages/Products";
 import ProductSpotlights from "@/pages/ProductSpotlights";
 import ProductSpotlight from "@/pages/ProductSpotlight";
 import BlackOwnedHolidayGuide from "@/pages/BlackOwnedHolidayGuide";
+import BrandPartnership from "@/pages/BrandPartnership";
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -90,6 +91,7 @@ const App: React.FC = () => {
                 <Route path="/holiday-gift-guide" element={<BlackOwnedHolidayGuide />} />
                 <Route path="/KieraH" element={<KieraProfile />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/brand-partnership" element={<BrandPartnership />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/admin" element={<Admin />} />

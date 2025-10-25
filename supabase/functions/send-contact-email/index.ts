@@ -17,7 +17,7 @@ interface ContactFormData {
   challenges?: string;
   serviceInterest?: string;
   message?: string;
-  formType: 'contact' | 'newsletter' | 'assessment';
+  formType: 'contact';
 }
 
 interface NewsletterData {
@@ -33,7 +33,20 @@ interface AssessmentData {
   formType: 'assessment';
 }
 
-type FormData = ContactFormData | NewsletterData | AssessmentData;
+interface BrandPartnershipData {
+  name: string;
+  email: string;
+  brandName: string;
+  website: string;
+  category: string;
+  stage: string;
+  socialMedia?: string;
+  helpNeeded: string;
+  message?: string;
+  formType: 'brand-partnership';
+}
+
+type FormData = ContactFormData | NewsletterData | AssessmentData | BrandPartnershipData;
 
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
@@ -131,6 +144,54 @@ const handler = async (req: Request): Promise<Response> => {
               ${assessmentData.company ? `<p><strong>Company:</strong> ${assessmentData.company}</p>` : ''}
             </div>
             <p><strong>Requested on:</strong> ${new Date().toLocaleString()}</p>
+          </div>
+        `,
+      });
+    } else if (data.formType === 'brand-partnership') {
+      const brandData = data as BrandPartnershipData;
+      
+      // Send brand partnership application to business
+      emailResponse = await resend.emails.send({
+        from: "Phresh Phactory Brand Partnership <no-reply@phreshphactory.com>",
+        to: ["info@phreshphactory.co"],
+        subject: `New Brand Partnership Application - ${brandData.brandName}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">
+              New Brand Partnership Application
+            </h2>
+            
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #555; margin-top: 0;">Contact Information</h3>
+              <p><strong>Owner Name:</strong> ${brandData.name}</p>
+              <p><strong>Email:</strong> ${brandData.email}</p>
+            </div>
+
+            <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #555; margin-top: 0;">Brand Information</h3>
+              <p><strong>Brand Name:</strong> ${brandData.brandName}</p>
+              <p><strong>Website:</strong> <a href="${brandData.website}">${brandData.website}</a></p>
+              <p><strong>Category:</strong> ${brandData.category}</p>
+              <p><strong>Stage:</strong> ${brandData.stage}</p>
+              ${brandData.socialMedia ? `<p><strong>Social Media:</strong> ${brandData.socialMedia}</p>` : ''}
+            </div>
+
+            <div style="background: #fff5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #555; margin-top: 0;">Help Needed</h3>
+              <p>${brandData.helpNeeded}</p>
+            </div>
+
+            ${brandData.message ? `
+              <div style="background: #f5fff5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="color: #555; margin-top: 0;">About the Brand</h3>
+                <p>${brandData.message}</p>
+              </div>
+            ` : ''}
+
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 12px;">
+              <p>This email was sent from the Phresh Phactory Brand Partnership form.</p>
+              <p>Submitted on: ${new Date().toLocaleString()}</p>
+            </div>
           </div>
         `,
       });

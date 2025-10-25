@@ -102,7 +102,7 @@ const ProductSpotlights = () => {
             </p>
             
             <Button asChild size="lg">
-              <Link to="/contact">
+              <Link to="/brand-partnership">
                 Feature Your Brand
               </Link>
             </Button>
