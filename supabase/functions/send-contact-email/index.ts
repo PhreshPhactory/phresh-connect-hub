@@ -53,7 +53,7 @@ const handler = async (req: Request): Promise<Response> => {
       // Send email to business
       emailResponse = await resend.emails.send({
         from: "Phresh Phactory Contact Form <no-reply@phreshphactory.com>",
-        to: ["hello@phreshphactory.com"],
+        to: ["info@phreshphactory.co"],
         subject: `New Contact Form Submission - ${contactData.serviceInterest || 'General Inquiry'}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -102,7 +102,7 @@ const handler = async (req: Request): Promise<Response> => {
       // Send newsletter signup notification to business
       emailResponse = await resend.emails.send({
         from: "Phresh Phactory Newsletter <no-reply@phreshphactory.com>",
-        to: ["hello@phreshphactory.com"],
+        to: ["info@phreshphactory.co"],
         subject: "New Newsletter Subscription",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -119,7 +119,7 @@ const handler = async (req: Request): Promise<Response> => {
       // Send assessment request to business
       emailResponse = await resend.emails.send({
         from: "Phresh Phactory Assessment <no-reply@phreshphactory.com>",
-        to: ["hello@phreshphactory.com"],
+        to: ["info@phreshphactory.co"],
         subject: "New Free Assessment Request",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

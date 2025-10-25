@@ -97,36 +97,12 @@ const ProductSpotlights = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
               Buy Black
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
-              Explore Black-owned brands and products featured this holiday season. Each spotlight includes a YouTube video walkthrough and detailed written content.
-            </p>
             
-            {/* LLM-Friendly Summary */}
-            <div className="bg-muted/50 rounded-lg p-6 mb-8 max-w-3xl mx-auto text-left">
-              <h2 className="text-lg font-semibold mb-3 text-foreground">About This Directory</h2>
-              <p className="text-sm text-muted-foreground mb-2">
-                <strong>Phresh Phactory's Buy Black initiative</strong> features curated Black-owned businesses for Christmas and holiday shopping. 
-                Each featured brand includes comprehensive product reviews, video content, and direct shopping links.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Categories include beauty, fashion, home goods, food & beverages, and unique gifts from Black entrepreneurs. 
-                All brands are personally reviewed and vetted to help shoppers discover quality Black-owned products for the 2025 holiday season.
-              </p>
-            </div>
-            
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg">
-                <a href="http://bit.ly/3WdRD6F" target="_blank" rel="noopener noreferrer">
-                  Join Afrofiliate Network
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to="/contact">
-                  Feature Your Brand
-                </Link>
-              </Button>
-            </div>
+            <Button asChild size="lg">
+              <Link to="/contact">
+                Feature Your Brand
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -209,21 +185,44 @@ const ProductSpotlights = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* About and CTA Section */}
       <section className="py-16 bg-background">
-        <div className="container-custom max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4 text-foreground">
-            Want to Earn Commissions Sharing These Brands?
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Join the Afrofiliate Network and earn by promoting Black-owned businesses you love
-          </p>
-          <Button asChild size="lg">
-            <a href="http://bit.ly/3WdRD6F" target="_blank" rel="noopener noreferrer">
-              Join Afrofiliate Network
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-          </Button>
+        <div className="container-custom max-w-4xl mx-auto">
+          {/* Description */}
+          <div className="text-center mb-12">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Explore Black-owned brands and products featured this holiday season. Each spotlight includes a YouTube video walkthrough and detailed written content.
+            </p>
+          </div>
+
+          {/* About This Directory */}
+          <div className="bg-muted/50 rounded-lg p-8 mb-12 text-left">
+            <h2 className="text-2xl font-semibold mb-4 text-foreground">About This Directory</h2>
+            <p className="text-base text-muted-foreground mb-4">
+              <strong>Phresh Phactory's Buy Black initiative</strong> features curated Black-owned businesses for Christmas and holiday shopping. 
+              Each featured brand includes comprehensive product reviews, video content, and direct shopping links.
+            </p>
+            <p className="text-base text-muted-foreground">
+              Categories include beauty, fashion, home goods, food & beverages, and unique gifts from Black entrepreneurs. 
+              All brands are personally reviewed and vetted to help shoppers discover quality Black-owned products for the 2025 holiday season.
+            </p>
+          </div>
+
+          {/* Join Afrofiliate CTA */}
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">
+              Want to Earn Commissions Sharing These Brands?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Join the Afrofiliate Network and earn by promoting Black-owned businesses you love
+            </p>
+            <Button asChild size="lg">
+              <a href="http://bit.ly/3WdRD6F" target="_blank" rel="noopener noreferrer">
+                Join Afrofiliate Network
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
     </div>
