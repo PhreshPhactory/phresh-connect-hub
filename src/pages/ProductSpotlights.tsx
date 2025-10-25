@@ -131,25 +131,27 @@ const ProductSpotlights = () => {
                       <p className="text-muted-foreground mb-4 line-clamp-3">
                         {spotlight.excerpt}
                       </p>
+                      <Button className="w-full mb-3">
+                        View Spotlight
+                      </Button>
                       {spotlight.shopping_link && (
                         <Button 
                           asChild 
-                          className="w-full mb-3"
+                          variant="outline"
+                          className="w-full"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <a 
                             href={spotlight.shopping_link} 
                             target="_blank" 
                             rel="noopener noreferrer"
+                            className="flex items-center justify-center"
                           >
-                            Shop Now
+                            Shop {spotlight.title.split(/[-:]/)[0].trim()} Now
+                            <ArrowRight className="w-4 h-4 ml-2" />
                           </a>
                         </Button>
                       )}
-                      <div className="flex items-center text-primary font-medium">
-                        <span>View Spotlight</span>
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </div>
                     </CardContent>
                   </Card>
                 </Link>
