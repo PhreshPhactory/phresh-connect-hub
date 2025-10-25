@@ -122,7 +122,7 @@ const ProductSpotlight = () => {
 
           {/* YouTube Video */}
           {embedUrl && (
-            <div className="mb-12">
+            <div className="mb-8">
               <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden shadow-lg">
                 <iframe
                   src={embedUrl}
@@ -151,7 +151,7 @@ const ProductSpotlight = () => {
 
           {/* Feature Image (if no video) */}
           {!embedUrl && spotlight.feature_image && (
-            <div className="mb-12">
+            <div className="mb-8">
               <img
                 src={spotlight.feature_image}
                 alt={spotlight.title}
@@ -160,21 +160,9 @@ const ProductSpotlight = () => {
             </div>
           )}
 
-          {/* Content */}
-          <div 
-            className="prose prose-lg max-w-none
-              prose-headings:text-foreground
-              prose-p:text-muted-foreground
-              prose-a:text-primary
-              prose-strong:text-foreground
-              prose-ul:text-muted-foreground
-              prose-ol:text-muted-foreground"
-            dangerouslySetInnerHTML={{ __html: spotlight.content }}
-          />
-
           {/* Shop the Episode Section */}
           {spotlight.shopping_link && (
-            <div className="mt-12 p-8 bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg border border-primary/20">
+            <div className="mb-12 p-8 bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg border border-primary/20">
               <h3 className="text-2xl font-bold mb-4 text-foreground flex items-center gap-2">
                 <ExternalLink className="w-6 h-6 text-primary" />
                 Shop the Episode
@@ -195,6 +183,18 @@ const ProductSpotlight = () => {
               </Button>
             </div>
           )}
+
+          {/* Content */}
+          <div 
+            className="prose prose-lg max-w-none
+              prose-headings:text-foreground
+              prose-p:text-muted-foreground
+              prose-a:text-primary
+              prose-strong:text-foreground
+              prose-ul:text-muted-foreground
+              prose-ol:text-muted-foreground"
+            dangerouslySetInnerHTML={{ __html: spotlight.content }}
+          />
 
           {/* CTA to explore more */}
           <div className="mt-12 p-8 bg-muted rounded-lg text-center">
