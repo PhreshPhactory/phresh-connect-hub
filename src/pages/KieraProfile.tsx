@@ -250,15 +250,6 @@ const KieraProfile = () => {
                         Apply as a Brand
                       </a>
                     </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Social Media Section */}
-              <Card className="p-6 md:p-8 mt-8">
-                <CardContent className="p-0 text-center">
-                  <h3 className="text-xl md:text-2xl font-bold mb-4 text-primary">Connect on Social Media</h3>
-                  <div className="flex justify-center gap-4">
                     <Button variant="outline" asChild>
                       <a href="https://www.linkedin.com/in/kieraphreshphactory/" target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-4 w-4 mr-2" />
@@ -268,6 +259,7 @@ const KieraProfile = () => {
                   </div>
                 </CardContent>
               </Card>
+
             </div>
           </div>
         </section>
