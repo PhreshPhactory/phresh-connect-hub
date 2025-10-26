@@ -24,13 +24,13 @@ const LinkInBio = () => {
   return (
     <>
       <SEOHead
-        title="Links | Phresh Phactory"
+        title="Links | Phresh Phactory, Inc."
         description="Explore our curated collection of Black-owned brands and business opportunities. Shop, partner with us, or book a consultation."
         keywords="link in bio, Black-owned brands, business partnerships, affiliate program, fractional COO"
       />
       
       <div 
-        className="min-h-screen py-12 px-4 bg-cover bg-center bg-no-repeat relative"
+        className="min-h-screen py-12 px-4 bg-cover bg-center bg-no-repeat relative font-heading"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="absolute inset-0 bg-black/20" />
@@ -40,12 +40,12 @@ const LinkInBio = () => {
             <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden bg-white">
               <img 
                 src={phreshLogo} 
-                alt="Phresh Phactory Inc Logo" 
+                alt="Phresh Phactory, Inc. Logo" 
                 className="w-full h-full object-cover"
               />
             </div>
-            <h1 className="text-3xl font-bold mb-2 text-foreground">Phresh Phactory Inc</h1>
-            <p className="text-muted-foreground">Your Source for Black Excellence</p>
+            <h1 className="text-3xl font-bold mb-2 text-white drop-shadow-lg">Phresh Phactory, Inc.</h1>
+            <p className="text-white drop-shadow-md">Your Source for Black Excellence</p>
           </div>
 
           {/* Main CTA */}
@@ -68,7 +68,7 @@ const LinkInBio = () => {
                 className="block w-full p-4 bg-white/95 backdrop-blur-sm hover:bg-white border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-medium text-gray-900">{link.name}</span>
+                  <span className="font-semibold text-gray-900">{link.name}</span>
                   <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
                 </div>
               </a>
@@ -86,7 +86,7 @@ const LinkInBio = () => {
                   className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-medium text-gray-900">{link.name}</span>
+                    <span className="font-semibold text-gray-900">{link.name}</span>
                     <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
                   </div>
                 </a>
@@ -95,8 +95,8 @@ const LinkInBio = () => {
           </div>
 
           {/* Footer */}
-          <div className="text-center text-sm text-white drop-shadow-lg">
-            <p>© {new Date().getFullYear()} Phresh Phactory Inc. All rights reserved.</p>
+          <div className="text-center text-sm text-white drop-shadow-lg font-medium">
+            <p>© {new Date().getFullYear()} Phresh Phactory, Inc. All rights reserved.</p>
           </div>
         </div>
       </div>
