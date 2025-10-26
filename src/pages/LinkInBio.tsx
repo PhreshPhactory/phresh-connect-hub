@@ -32,7 +32,7 @@ const LinkInBio = () => {
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="absolute inset-0 bg-black/20" />
-        <div className="max-w-2xl mx-auto relative z-10">
+        <div className="max-w-md mx-auto relative z-10">
           {/* Profile Section */}
           <div className="text-center mb-8">
             <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden bg-white">
