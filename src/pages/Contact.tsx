@@ -167,20 +167,6 @@ const Contact = () => {
                 <div className="flex items-start">
                   <div className="bg-teal text-teal-foreground p-3 rounded-full mr-4">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-medium mb-1 text-foreground">Call Us</h3>
-                    <a href="tel:+18328523367" className="text-teal hover:text-teal-600">
-                      832-852-3367
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-teal text-teal-foreground p-3 rounded-full mr-4">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
                   </div>
@@ -300,7 +286,7 @@ const Contact = () => {
                     name="companyStage"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Startup Stage</FormLabel>
+                        <FormLabel>Business Type</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
@@ -313,6 +299,8 @@ const Contact = () => {
                             <SelectItem value="series-a">Series A / Growth Stage</SelectItem>
                             <SelectItem value="series-b-plus">Series B+ / Scale Stage</SelectItem>
                             <SelectItem value="established">Established Business</SelectItem>
+                            <SelectItem value="ecommerce">E-commerce Brand</SelectItem>
+                            <SelectItem value="business-for-sale">Business for Sale</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
