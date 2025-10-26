@@ -38,6 +38,7 @@ import ProductSpotlights from "@/pages/ProductSpotlights";
 import ProductSpotlight from "@/pages/ProductSpotlight";
 import BlackOwnedHolidayGuide from "@/pages/BlackOwnedHolidayGuide";
 import BrandPartnership from "@/pages/BrandPartnership";
+import LinkInBio from "@/pages/LinkInBio";
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -97,6 +98,7 @@ const App: React.FC = () => {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/privacy" element={<Privacy />} />
+                <Route path="/links" element={<LinkInBio />} />
                 
                 <Route path="*" element={<NotFound />} />
               </Route>
