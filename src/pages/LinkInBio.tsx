@@ -43,6 +43,7 @@ const LinkInBio = () => {
               />
             </div>
             <h1 className="text-3xl font-bold mb-2 text-white drop-shadow-lg font-heading">Phresh Phactory, Inc.</h1>
+            <p className="text-xl font-semibold text-white drop-shadow-lg font-heading">Presents: Buy Black</p>
           </div>
 
           {/* Main CTA with Brand Links */}
