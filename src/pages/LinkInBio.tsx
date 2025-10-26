@@ -45,7 +45,6 @@ const LinkInBio = () => {
               />
             </div>
             <h1 className="text-3xl font-bold mb-2 text-white drop-shadow-lg">Phresh Phactory, Inc.</h1>
-            <p className="text-white drop-shadow-md">Your Source for Black Excellence</p>
           </div>
 
           {/* Main CTA */}
