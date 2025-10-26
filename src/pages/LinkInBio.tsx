@@ -4,11 +4,11 @@ import { ExternalLink } from "lucide-react";
 
 const LinkInBio = () => {
   const brandLinks = [
-    { name: "Name Your Ballz", url: "#" },
-    { name: "Petplate", url: "#" },
-    { name: "All Shades Cards", url: "#" },
-    { name: "BigUp Street Greets", url: "#" },
-    { name: "Be Rooted", url: "#" },
+    { name: "Name Your Ballz", url: "https://www.arjdj2msd.com/3DCFHG/23W5CH8/" },
+    { name: "No Guilt Bakes", url: "https://noguiltbakes.co.uk/?_ef_transaction_id=&oid=50&affid=53" },
+    { name: "All Shades Cards", url: "https://www.arjdj2msd.com/3DCFHG/9F3647" },
+    { name: "BigUp Street Greets", url: "https://www.arjdj2msd.com/3DCFHG/2HKTT6J/" },
+    { name: "Be Rooted", url: "https://www.arjdj2msd.com/3DCFHG/R74QP1/" },
     { name: "Affiliates", url: "#" },
   ];
 
