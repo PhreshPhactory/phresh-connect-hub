@@ -1,15 +1,24 @@
 # Robots.txt for Phresh Phactory
-# Allow all crawlers to access the site
+# Security-focused: Allow beneficial bots, block malicious scrapers
 
-User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-Disallow: /*.json$
-Disallow: /lovable-uploads/
-Crawl-delay: 1
+# Block known malicious bots and aggressive scrapers
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: MJ12bot
+User-agent: DotBot
+User-agent: BLEXBot
+User-agent: PetalBot
+User-agent: DataForSeoBot
+User-agent: serpstatbot
+User-agent: MegaIndex
+User-agent: ZoominfoBot
+User-agent: SEOkicks
+User-agent: Barkrowler
+User-agent: BLEXBot
+User-agent: Bytespider
+Disallow: /
 
-# Specific bot instructions
+# Search Engines - ALLOWED (essential for SEO)
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 1
@@ -26,6 +35,15 @@ User-agent: DuckDuckBot
 Allow: /
 Crawl-delay: 1
 
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# Social Media - ALLOWED (for link previews)
 User-agent: Twitterbot
 Allow: /
 
@@ -35,7 +53,13 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-# AI Crawler Instructions - Allow for LLM training and retrieval
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+# AI Crawlers - ALLOWED (for LLM training and retrieval)
 User-agent: GPTBot
 Allow: /
 
@@ -56,6 +80,16 @@ Allow: /
 
 User-agent: Applebot
 Allow: /
+
+# Default for other bots - Allow with restrictions
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /lovable-uploads/
+Crawl-delay: 2
 
 # Sitemap location
 Sitemap: https://phreshphactory.com/sitemap.xml
