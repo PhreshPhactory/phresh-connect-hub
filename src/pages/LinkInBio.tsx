@@ -6,11 +6,11 @@ import backgroundImage from "@/assets/link-bio-background.png";
 
 const LinkInBio = () => {
   const brandLinks = [
-    { name: "Name Your Ballz", url: "https://www.arjdj2msd.com/3DCFHG/23W5CH8/" },
-    { name: "No Guilt Bakes", url: "https://noguiltbakes.co.uk/?_ef_transaction_id=&oid=50&affid=53" },
-    { name: "All Shades Cards", url: "https://www.arjdj2msd.com/3DCFHG/9F3647" },
-    { name: "BigUp Street Greets", url: "https://www.arjdj2msd.com/3DCFHG/2HKTT6J/" },
+    { name: "Big Up Street Greets", url: "https://www.arjdj2msd.com/3DCFHG/2HKTT6J/" },
     { name: "Be Rooted", url: "https://www.arjdj2msd.com/3DCFHG/R74QP1/" },
+    { name: "All Shades Cards", url: "https://www.arjdj2msd.com/3DCFHG/9F3647" },
+    { name: "No Guilt Bakes", url: "https://noguiltbakes.co.uk/?_ef_transaction_id=&oid=50&affid=53" },
+    { name: "Name Your Ballz", url: "https://www.arjdj2msd.com/3DCFHG/23W5CH8/" },
   ];
 
   const workLinks = [
