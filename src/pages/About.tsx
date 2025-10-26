@@ -122,55 +122,6 @@ const About = () => {
         </div>
       </section>
       
-      {/* Caribbean Kiera Section */}
-      <section className="py-12 md:py-16 bg-muted">
-        <div className="container-custom">
-          <SectionTitle
-            title="Caribbean Kiera: The Personal Side of the Mission"
-            center
-          />
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-card border border-border p-6 md:p-8 rounded-lg shadow-sm text-center">
-              <p className="text-base md:text-lg text-muted-foreground mb-4">
-                In addition to leading Phresh Phactory, Kiera also shares her personal journey through her YouTube channel, Caribbean Kiera. The channel documents expat life, remote work, digital entrepreneurship, and what it means to build legacy while living in alignment with purpose and place.
-              </p>
-              <p className="text-base md:text-lg text-muted-foreground mb-6">
-                It's a real-time look at how systems meet soul—and how powerful things happen when you stop waiting for permission and start building your own blueprint.
-              </p>
-              <div className="text-center">
-                <Button variant="outline" size="lg" asChild>
-                  <a href="https://youtube.com/@CaribbeanKiera" target="_blank" rel="noopener noreferrer">
-                    <Video className="w-5 h-5 mr-2" />
-                    Visit Caribbean Kiera
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Caribbean Vision Section */}
-      <section className="bg-background py-12 md:py-16">
-        <div className="container-custom">
-          <SectionTitle
-            title="Why the Caribbean? Why Now?"
-            center
-          />
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-card border border-border p-6 md:p-8 rounded-lg">
-              <p className="text-base md:text-lg text-muted-foreground mb-4">
-                After years of working behind the scenes to support culturally impactful founders—Kiera made the decision to evaluate opportunities in the Dominican Republic and the greater Caribbean. It was both a strategic and personal shift.
-              </p>
-              <p className="text-base md:text-lg text-muted-foreground">
-                What began as a lifestyle shift quickly became a larger mission. Remote work is still rare in many parts of the Caribbean, and tech infrastructure is in its early stages. Phresh Phactory is uniquely positioned to help support this evolution—bringing proven systems, digital fluency, and scalable strategies to regions ready for transformation.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Collaboration Section */}
       <section className="py-12 md:py-16 bg-muted">
