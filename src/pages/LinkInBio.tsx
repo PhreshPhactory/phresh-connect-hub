@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
 import { ExternalLink } from "lucide-react";
+import phreshLogo from "@/assets/phresh-phactory-logo.png";
 
 const LinkInBio = () => {
   const brandLinks = [
@@ -31,8 +32,12 @@ const LinkInBio = () => {
         <div className="max-w-2xl mx-auto">
           {/* Profile Section */}
           <div className="text-center mb-8">
-            <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white text-2xl font-bold">
-              PF
+            <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden bg-white">
+              <img 
+                src={phreshLogo} 
+                alt="Phresh Phactory Inc Logo" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <h1 className="text-3xl font-bold mb-2 text-foreground">Phresh Phactory Inc</h1>
             <p className="text-muted-foreground">Your Source for Black Excellence</p>
