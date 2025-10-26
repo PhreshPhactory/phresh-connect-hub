@@ -47,32 +47,35 @@ const LinkInBio = () => {
             <h1 className="text-3xl font-bold mb-2 text-white drop-shadow-lg">Phresh Phactory, Inc.</h1>
           </div>
 
-          {/* Main CTA */}
-          <a 
-            href="/buyblack" 
-            className="block mb-8 group"
+          {/* Main CTA with Brand Links */}
+          <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl shadow-lg mb-8 border-2 border-yellow-400">
+            <h2 className="text-2xl font-bold text-center mb-6">SHOP BUY BLACK</h2>
+            <div className="space-y-3">
+              {brandLinks.slice(0, 5).map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-gray-900">{link.name}</span>
+                    <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Affiliates Link */}
+          <a
+            href={brandLinks[5].url}
+            className="block w-full p-4 bg-white/95 backdrop-blur-sm hover:bg-white border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group mb-8"
           >
-            <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02] border-2 border-yellow-400">
-              <h2 className="text-2xl font-bold text-center mb-2">SHOP BUY BLACK</h2>
-              <p className="text-center text-sm">Discover Black-Owned Brands</p>
+            <div className="flex items-center justify-between">
+              <span className="font-semibold text-gray-900">{brandLinks[5].name}</span>
+              <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
             </div>
           </a>
-
-          {/* Brand Links */}
-          <div className="space-y-3 mb-8">
-            {brandLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.url}
-                className="block w-full p-4 bg-white/95 backdrop-blur-sm hover:bg-white border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-gray-900">{link.name}</span>
-                  <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
-                </div>
-              </a>
-            ))}
-          </div>
 
           {/* Work With Us Section */}
           <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl border-2 border-green-600 mb-8 shadow-lg">
