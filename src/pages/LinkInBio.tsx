@@ -35,7 +35,7 @@ const LinkInBio = () => {
         <div className="max-w-md mx-auto relative z-10">
           {/* Profile Section */}
           <div className="text-center mb-8">
-            <div className="w-14 h-14 mx-auto mb-4 rounded-full overflow-hidden bg-white">
+            <div className="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden bg-white">
               <img 
                 src={phreshLogo} 
                 alt="Phresh Phactory, Inc. Logo" 
