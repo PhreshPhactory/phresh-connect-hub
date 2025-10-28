@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Briefcase, GraduationCap, Award, ExternalLink } from "lucide-react";
 import SEOHead from '@/components/SEOHead';
 import kieraProfileImage from '@/assets/kiera-profile-hero.png';
+import NewsletterForm from '@/components/NewsletterForm';
 
 const KieraProfile = () => {
   return (
@@ -234,9 +235,9 @@ const KieraProfile = () => {
               {/* Contact Section */}
               <Card className="p-6 md:p-8">
                 <CardContent className="p-0 text-center">
-                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-primary">Connect with Kiera</h3>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-primary">Work with Kiera</h3>
                   <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
-                    Ready to transform your business with strategic expertise and remote team solutions?
+                    Partner with Kiera for operations insight, business transformation, or spotlighting your brand.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Button asChild>
@@ -263,6 +264,19 @@ const KieraProfile = () => {
             </div>
           </div>
         </section>
+
+        {/* Newsletter Section */}
+        <NewsletterForm 
+          title="Strategic Insights from Kiera"
+          subtitle="Get weekly operational insights, remote team management strategies, and business transformation tips from a seasoned fractional executive."
+          benefits={[
+            "Fractional leadership case studies",
+            "Remote workforce development tips",
+            "Systems design best practices",
+            "Black business growth strategies"
+          ]}
+          dark={true}
+        />
       </div>
     </>
   );

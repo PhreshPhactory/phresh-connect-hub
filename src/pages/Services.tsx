@@ -5,6 +5,7 @@ import { Check } from 'lucide-react';
 import SectionTitle from '@/components/SectionTitle';
 import CallToAction from '@/components/CallToAction';
 import SEOHead from '@/components/SEOHead';
+import NewsletterForm from '@/components/NewsletterForm';
 
 const Services = () => {
   return (
@@ -382,7 +383,17 @@ const Services = () => {
         </div>
       </section>
       
-      
+      {/* Newsletter Section for Business Owners */}
+      <NewsletterForm 
+        title="Get Insights on Working with Global Remote Teams"
+        subtitle="Join 500+ business owners learning to build high-performing remote teams from the global diaspora. Get practical strategies for operational excellence and sustainable growth."
+        benefits={[
+          "Remote team management strategies",
+          "Operational systems that scale",
+          "Fractional leadership insights",
+          "Global talent acquisition best practices"
+        ]}
+      />
       
       {/* CTA */}
       <CallToAction 

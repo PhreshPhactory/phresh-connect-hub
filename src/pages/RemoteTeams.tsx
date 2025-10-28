@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
+import NewsletterForm from '@/components/NewsletterForm';
 
 const RemoteTeams = () => {
   const benefits = [
@@ -241,6 +242,18 @@ const RemoteTeams = () => {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Section for Freelancers & Remote Teams */}
+      <NewsletterForm 
+        title="Master Remote Work & Freelance Success"
+        subtitle="Get expert insights on building high-performing remote teams, thriving as a freelancer, and mastering the future of work from the global diaspora."
+        benefits={[
+          "Remote workforce management strategies",
+          "Freelancer hiring & integration best practices",
+          "Virtual team productivity tips",
+          "Global talent opportunities"
+        ]}
+      />
       </main>
     </>
   );

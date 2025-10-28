@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import SEOHead from '@/components/SEOHead';
 import { emailSchema, nameSchema, urlSchema, messageSchema, createRateLimiter, validateHoneypot, sanitizeInput } from '@/utils/security';
+import NewsletterForm from '@/components/NewsletterForm';
 
 const formSchema = z.object({
   name: nameSchema,
@@ -503,6 +504,18 @@ const BrandPartnership = () => {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Section for Brands */}
+      <NewsletterForm 
+        title="Brand Growth Insights for Black-Owned Businesses"
+        subtitle="Get practical strategies on brand partnerships, affiliate marketing, and scaling your Black-owned business through strategic visibility."
+        benefits={[
+          "Partnership opportunities & case studies",
+          "Affiliate marketing best practices",
+          "Brand visibility strategies that work",
+          "Exclusive invites to brand collaboration events"
+        ]}
+      />
     </>
   );
 };

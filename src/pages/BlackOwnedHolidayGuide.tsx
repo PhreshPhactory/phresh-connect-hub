@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Gift, Heart, ShoppingBag, Star, ArrowRight } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import NewsletterForm from '@/components/NewsletterForm';
 
 const BlackOwnedHolidayGuide = () => {
   const faqSchema = {
@@ -231,6 +232,18 @@ const BlackOwnedHolidayGuide = () => {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Section */}
+      <NewsletterForm 
+        title="Get Weekly Black-Owned Brand Spotlights"
+        subtitle="Join thousands discovering authentic Black-owned businesses. Get exclusive product reviews, shopping guides, and direct links to support Black entrepreneurs."
+        benefits={[
+          "Weekly video reviews of Black-owned brands",
+          "Exclusive discount codes from featured businesses",
+          "Early access to holiday shopping guides",
+          "Curated gift recommendations"
+        ]}
+      />
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-background">
