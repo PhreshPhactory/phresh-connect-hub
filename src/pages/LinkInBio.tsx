@@ -60,7 +60,7 @@ const LinkInBio = () => {
 
           {/* Main CTA with Brand Links */}
           <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl shadow-lg mb-8 border-2 border-yellow-400">
-            <h2 className="text-2xl font-bold text-center mb-6 font-heading">SHOP BUY BLACK</h2>
+            <h2 className="text-2xl font-bold text-center mb-6 font-heading">Shop the Brands</h2>
             <div className="space-y-3">
               {brandLinks.map((link, index) => (
                 <a
