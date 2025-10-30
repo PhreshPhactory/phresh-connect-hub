@@ -53,7 +53,7 @@ const LinkInBio = () => {
                   <Play className="w-6 h-6" />
                   <span className="text-xl font-bold">Watch & Shop</span>
                 </div>
-                <span className="text-lg font-semibold leading-tight">Buy Black Series</span>
+                <span className="text-lg font-semibold leading-tight">Buy Black</span>
               </div>
             </Button>
           </Link>
