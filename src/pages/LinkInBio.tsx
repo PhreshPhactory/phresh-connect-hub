@@ -7,11 +7,15 @@ import backgroundImage from "@/assets/link-bio-background.png";
 
 const LinkInBio = () => {
   const brandLinks = [
+    { name: "No Guilt Bakes", url: "https://noguiltbakes.co.uk/?_ef_transaction_id=&oid=50&affid=53" },
     { name: "Big Up Street Greets", url: "https://www.arjdj2msd.com/3DCFHG/2HKTT6J/" },
+    { name: "Name Your Ballz", url: "https://www.arjdj2msd.com/3DCFHG/23W5CH8/" },
+  ];
+
+  const upNextBrands = [
+    { name: "PetPlate", url: "https://www.arjdj2msd.com/3DCFHG/PETPLATE" },
     { name: "Be Rooted", url: "https://www.arjdj2msd.com/3DCFHG/R74QP1/" },
     { name: "All Shades Cards", url: "https://www.arjdj2msd.com/3DCFHG/9F3647" },
-    { name: "No Guilt Bakes", url: "https://noguiltbakes.co.uk/?_ef_transaction_id=&oid=50&affid=53" },
-    { name: "Name Your Ballz", url: "https://www.arjdj2msd.com/3DCFHG/23W5CH8/" },
   ];
 
   const workLinks = [
@@ -67,6 +71,24 @@ const LinkInBio = () => {
               <h2 className="text-2xl font-bold text-center mb-6 font-heading">Shop the Brands</h2>
             <div className="space-y-3">
               {brandLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.url}
+                  className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-gray-900 font-heading">{link.name}</span>
+                    <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
+                  </div>
+                </a>
+              ))}
+              
+              {/* Up Next Divider */}
+              <div className="py-2 text-center">
+                <span className="text-lg font-bold text-gray-700 font-heading">Up Next</span>
+              </div>
+              
+              {upNextBrands.map((link, index) => (
                 <a
                   key={index}
                   href={link.url}
