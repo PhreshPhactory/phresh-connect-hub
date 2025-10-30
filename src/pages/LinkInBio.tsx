@@ -85,7 +85,7 @@ const LinkInBio = () => {
           {/* Work With Us Section */}
           <div className="p-[2px] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-lg mb-8">
             <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl">
-              <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 font-heading">WORK WITH US</h2>
+              <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 font-heading">Work With Us</h2>
             <div className="space-y-3">
               {workLinks.map((link, index) => (
                 <a
