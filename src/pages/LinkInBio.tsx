@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
-import { ExternalLink, PlayCircle, Play, PlaySquare, Circle } from "lucide-react";
+import { ExternalLink, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import backgroundImage from "@/assets/link-bio-background.png";
@@ -45,37 +45,11 @@ const LinkInBio = () => {
             </div>
           </div>
 
-          {/* Play Button Options - Choose One */}
-          <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg mb-6">
-            <h3 className="text-lg font-bold text-center mb-4 text-gray-900">Choose Your Play Button Style:</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-lg">
-                <PlayCircle className="w-24 h-24 text-green-600" />
-                <span className="text-sm font-semibold text-gray-900">PlayCircle (Current)</span>
-              </div>
-              <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-lg">
-                <Play className="w-24 h-24 text-green-600" />
-                <span className="text-sm font-semibold text-gray-900">Play Triangle</span>
-              </div>
-              <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-lg">
-                <PlaySquare className="w-24 h-24 text-green-600" />
-                <span className="text-sm font-semibold text-gray-900">PlaySquare</span>
-              </div>
-              <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-lg">
-                <div className="relative">
-                  <Circle className="w-24 h-24 text-green-600 fill-green-600" />
-                  <Play className="w-12 h-12 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                </div>
-                <span className="text-sm font-semibold text-gray-900">Filled Circle</span>
-              </div>
-            </div>
-          </div>
-
           {/* Watch & Shop Buy Black Button */}
           <Link to="/BuyBlack" className="block mb-6">
             <Button className="w-full py-14 px-8 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] rounded-xl">
               <div className="flex items-center gap-4 w-full justify-center">
-                <PlayCircle className="w-24 h-24 flex-shrink-0" />
+                <Play className="w-24 h-24 flex-shrink-0 text-white fill-white" />
                 <div className="flex flex-col items-start gap-1">
                   <span className="text-3xl font-bold">Watch & Shop</span>
                   <span className="text-4xl font-bold leading-tight">Buy Black</span>
