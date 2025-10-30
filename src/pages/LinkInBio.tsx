@@ -47,9 +47,14 @@ const LinkInBio = () => {
 
           {/* Watch & Shop Buy Black Button */}
           <Link to="/BuyBlack" className="block mb-6">
-            <Button className="w-full py-10 px-6 text-xl font-bold bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] rounded-xl leading-tight">
-              <Play className="w-6 h-6 mr-2 flex-shrink-0" />
-              <span className="text-center">Watch, Read and Shop the entire series of Phresh Phactory, Inc. Presents: Buy Black</span>
+            <Button className="w-full py-12 px-6 text-2xl font-bold bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] rounded-xl">
+              <div className="flex flex-col items-center gap-2 w-full">
+                <div className="flex items-center gap-2">
+                  <Play className="w-7 h-7" />
+                  <span>Watch, Read and Shop the entire series of</span>
+                </div>
+                <span>Phresh Phactory, Inc. Presents: Buy Black</span>
+              </div>
             </Button>
           </Link>
 
