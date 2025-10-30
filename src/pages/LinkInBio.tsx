@@ -53,8 +53,8 @@ const LinkInBio = () => {
                   <Play className="w-24 h-24 flex-shrink-0 text-white fill-white" />
                 </div>
                 <div className="flex flex-col items-start gap-1">
-                  <span className="text-3xl font-bold">Watch & Shop</span>
-                  <span className="text-4xl font-bold leading-tight">Buy Black</span>
+                  <span className="text-4xl font-bold">Watch & Shop</span>
+                  <span className="text-3xl font-bold leading-tight">Buy Black</span>
                 </div>
               </div>
             </Button>
