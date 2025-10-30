@@ -43,8 +43,6 @@ const LinkInBio = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h1 className="text-3xl font-bold mb-2 text-white drop-shadow-lg font-heading">Phresh Phactory, Inc.</h1>
-            <p className="text-xl font-semibold text-white drop-shadow-lg font-heading">Presents: Buy Black</p>
           </div>
 
           {/* Watch & Shop Buy Black Button */}
