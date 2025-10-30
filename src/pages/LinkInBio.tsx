@@ -17,6 +17,7 @@ const LinkInBio = () => {
   const workLinks = [
     { name: "Feature Your Brand", url: "/brands" },
     { name: "Work With Us", url: "/contact" },
+    { name: "Become an Afrofiliate", url: "/contact" },
     { name: "Book Kiera H.", url: "https://phreshphactory.com/kierah" },
   ];
 
@@ -61,8 +62,9 @@ const LinkInBio = () => {
           </Link>
 
           {/* Main CTA with Brand Links */}
-          <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl shadow-lg mb-8 border-2 border-yellow-400">
-            <h2 className="text-2xl font-bold text-center mb-6 font-heading">Shop the Brands</h2>
+          <div className="p-[2px] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-lg mb-8">
+            <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl">
+              <h2 className="text-2xl font-bold text-center mb-6 font-heading">Shop the Brands</h2>
             <div className="space-y-3">
               {brandLinks.map((link, index) => (
                 <a
@@ -77,11 +79,13 @@ const LinkInBio = () => {
                 </a>
               ))}
             </div>
+            </div>
           </div>
 
           {/* Work With Us Section */}
-          <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl border-2 border-green-600 mb-8 shadow-lg">
-            <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 font-heading">WORK WITH US</h2>
+          <div className="p-[2px] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-lg mb-8">
+            <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl">
+              <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 font-heading">WORK WITH US</h2>
             <div className="space-y-3">
               {workLinks.map((link, index) => (
                 <a
@@ -96,13 +100,7 @@ const LinkInBio = () => {
                 </a>
               ))}
             </div>
-            
-            {/* Become an Affiliate Button */}
-            <Link to="/contact" className="block mt-6">
-              <Button className="w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-gray-900 font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] rounded-xl">
-                Become an Affiliate
-              </Button>
-            </Link>
+            </div>
           </div>
 
           {/* Footer */}
