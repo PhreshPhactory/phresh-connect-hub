@@ -96,6 +96,13 @@ const LinkInBio = () => {
                 </a>
               ))}
             </div>
+            
+            {/* Become an Affiliate Button */}
+            <Link to="/contact" className="block mt-6">
+              <Button className="w-full py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-gray-900 font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] rounded-xl">
+                Become an Affiliate
+              </Button>
+            </Link>
           </div>
 
           {/* Footer */}
