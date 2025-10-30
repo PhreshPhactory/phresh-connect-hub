@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Play } from "lucide-react";
+import { Link } from "react-router-dom";
 import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import backgroundImage from "@/assets/link-bio-background.png";
 
@@ -45,6 +46,14 @@ const LinkInBio = () => {
             <h1 className="text-3xl font-bold mb-2 text-white drop-shadow-lg font-heading">Phresh Phactory, Inc.</h1>
             <p className="text-xl font-semibold text-white drop-shadow-lg font-heading">Presents: Buy Black</p>
           </div>
+
+          {/* Watch & Shop Buy Black Button */}
+          <Link to="/BuyBlack" className="block mb-6">
+            <Button className="w-full py-6 text-lg font-bold bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] rounded-xl">
+              <Play className="w-5 h-5 mr-2" />
+              Watch & Shop Buy Black
+            </Button>
+          </Link>
 
           {/* Main CTA with Brand Links */}
           <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl shadow-lg mb-8 border-2 border-yellow-400">
