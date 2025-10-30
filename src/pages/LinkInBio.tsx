@@ -48,8 +48,10 @@ const LinkInBio = () => {
           {/* Watch & Shop Buy Black Button */}
           <Link to="/BuyBlack" className="block mb-6">
             <Button className="w-full py-14 px-8 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] rounded-xl">
-              <div className="flex items-center gap-4 w-full justify-center">
-                <Play className="w-24 h-24 flex-shrink-0 text-white fill-white" />
+              <div className="flex items-center gap-6 w-full justify-center">
+                <div className="bg-white/20 rounded-xl p-4 flex items-center justify-center">
+                  <Play className="w-24 h-24 flex-shrink-0 text-white fill-white" />
+                </div>
                 <div className="flex flex-col items-start gap-1">
                   <span className="text-3xl font-bold">Watch & Shop</span>
                   <span className="text-4xl font-bold leading-tight">Buy Black</span>
