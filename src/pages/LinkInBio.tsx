@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
-import { ExternalLink, PlayCircle } from "lucide-react";
+import { ExternalLink, PlayCircle, Play, PlaySquare, Circle } from "lucide-react";
 import { Link } from "react-router-dom";
 import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import backgroundImage from "@/assets/link-bio-background.png";
@@ -42,6 +42,32 @@ const LinkInBio = () => {
                 alt="Phresh Phactory, Inc. Logo" 
                 className="w-full h-full object-cover"
               />
+            </div>
+          </div>
+
+          {/* Play Button Options - Choose One */}
+          <div className="bg-white/95 backdrop-blur-sm p-6 rounded-2xl shadow-lg mb-6">
+            <h3 className="text-lg font-bold text-center mb-4 text-gray-900">Choose Your Play Button Style:</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-lg">
+                <PlayCircle className="w-24 h-24 text-green-600" />
+                <span className="text-sm font-semibold text-gray-900">PlayCircle (Current)</span>
+              </div>
+              <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-lg">
+                <Play className="w-24 h-24 text-green-600" />
+                <span className="text-sm font-semibold text-gray-900">Play Triangle</span>
+              </div>
+              <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-lg">
+                <PlaySquare className="w-24 h-24 text-green-600" />
+                <span className="text-sm font-semibold text-gray-900">PlaySquare</span>
+              </div>
+              <div className="flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-lg">
+                <div className="relative">
+                  <Circle className="w-24 h-24 text-green-600 fill-green-600" />
+                  <Play className="w-12 h-12 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                </div>
+                <span className="text-sm font-semibold text-gray-900">Filled Circle</span>
+              </div>
             </div>
           </div>
 
