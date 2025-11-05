@@ -88,7 +88,7 @@ const ProductSpotlight = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4 text-foreground">Brand not found</h1>
-          <Link to="/BuyBlack">
+          <Link to="/shop">
             <Button>
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Buy Black
@@ -151,7 +151,7 @@ const ProductSpotlight = () => {
       <article className="py-12">
         <div className="container-custom max-w-4xl mx-auto">
           {/* Back Button */}
-          <Link to="/BuyBlack" className="inline-flex items-center text-primary hover:underline mb-8">
+          <Link to="/shop" className="inline-flex items-center text-primary hover:underline mb-8">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Buy Black
           </Link>
@@ -283,7 +283,7 @@ const ProductSpotlight = () => {
               Discover other incredible businesses featured in our Buy Black series
             </p>
             <Button asChild size="lg">
-              <Link to="/BuyBlack">
+              <Link to="/shop">
                 View All Brands
                 <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
               </Link>

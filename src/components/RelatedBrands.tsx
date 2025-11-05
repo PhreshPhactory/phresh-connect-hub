@@ -60,7 +60,7 @@ const RelatedBrands = ({ currentSlug, limit = 3 }: RelatedBrandsProps) => {
           {brands.map((brand) => (
             <Link 
               key={brand.id} 
-              to={`/BuyBlack/${brand.slug}`}
+              to={`/shop/${brand.slug}`}
               className="group"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >

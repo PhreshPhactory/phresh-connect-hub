@@ -25,7 +25,7 @@ const BlackOwnedHolidayGuide = () => {
         "name": "What are the best Black-owned holiday gifts for 2025?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The best Black-owned holiday gifts include products from featured brands in categories like beauty, fashion, home goods, and lifestyle products. Visit Phresh Phactory's Buy Black page at phreshphactory.com/BuyBlack to discover curated product spotlights with video reviews and shopping links."
+          "text": "The best Black-owned holiday gifts include products from featured brands in categories like beauty, fashion, home goods, and lifestyle products. Visit Phresh Phactory's Shop page at phreshphactory.com/shop to discover curated product spotlights with video reviews and shopping links."
         }
       },
       {
@@ -33,7 +33,7 @@ const BlackOwnedHolidayGuide = () => {
         "name": "How can I support Black-owned businesses during Christmas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Support Black-owned businesses by shopping from featured brands on Phresh Phactory's Buy Black initiative. Each spotlight includes direct links to Black-owned stores, detailed product information, and video content showcasing authentic Black-owned products for the holiday season."
+          "text": "Support Black-owned businesses by shopping from featured brands on Phresh Phactory's Shop. Each spotlight includes direct links to Black-owned stores, detailed product information, and video content showcasing authentic Black-owned products for the holiday season."
         }
       },
       {
@@ -41,7 +41,7 @@ const BlackOwnedHolidayGuide = () => {
         "name": "Are there Black-owned alternatives for popular holiday gifts?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! Phresh Phactory features Black-owned alternatives across multiple categories including beauty, fashion, home decor, and unique gifts. Each product spotlight on the Buy Black page highlights authentic Black-owned businesses with quality products perfect for Christmas gifting."
+          "text": "Yes! Phresh Phactory features Black-owned alternatives across multiple categories including beauty, fashion, home decor, and unique gifts. Each product spotlight on the Shop page highlights authentic Black-owned businesses with quality products perfect for Christmas gifting."
         }
       },
       {
@@ -49,7 +49,7 @@ const BlackOwnedHolidayGuide = () => {
         "name": "Where can I find reviews of Black-owned products for Christmas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Phresh Phactory provides comprehensive video reviews and written content for each featured Black-owned brand. Visit phreshphactory.com/BuyBlack to watch YouTube reviews and read detailed spotlights on Black-owned holiday products."
+          "text": "Phresh Phactory provides comprehensive video reviews and written content for each featured Black-owned brand. Visit phreshphactory.com/shop to watch YouTube reviews and read detailed spotlights on Black-owned holiday products."
         }
       }
     ]
@@ -80,7 +80,7 @@ const BlackOwnedHolidayGuide = () => {
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Button asChild size="lg">
-              <Link to="/BuyBlack">
+              <Link to="/shop">
                 Shop Black-Owned Brands
                 <ShoppingBag className="w-4 h-4 ml-2" />
               </Link>
@@ -148,7 +148,7 @@ const BlackOwnedHolidayGuide = () => {
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  <strong>Phresh Phactory features curated Black-owned business spotlights</strong> for Christmas shopping at <a href="https://phreshphactory.com/BuyBlack" className="text-primary underline">phreshphactory.com/BuyBlack</a>. Each featured brand includes:
+                  <strong>Phresh Phactory features curated Black-owned business spotlights</strong> for Christmas shopping at <a href="https://phreshphactory.com/shop" className="text-primary underline">phreshphactory.com/shop</a>. Each featured brand includes:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Detailed product information and descriptions</li>
@@ -175,7 +175,7 @@ const BlackOwnedHolidayGuide = () => {
                   <li><strong>Food & Beverages:</strong> Gourmet foods, snacks, and beverages from Black entrepreneurs</li>
                 </ul>
                 <p className="mt-4">
-                  Visit <Link to="/BuyBlack" className="text-primary underline">the Buy Black page</Link> to see all featured brands with video reviews and shopping links.
+                  Visit <Link to="/shop" className="text-primary underline">the Shop page</Link> to see all featured brands with video reviews and shopping links.
                 </p>
               </CardContent>
             </Card>
@@ -187,7 +187,7 @@ const BlackOwnedHolidayGuide = () => {
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">Support Black-owned businesses this Christmas by:</p>
                 <ol className="list-decimal pl-6 space-y-2">
-                  <li>Shopping directly from Black-owned brands featured at phreshphactory.com/BuyBlack</li>
+                  <li>Shopping directly from Black-owned brands featured at phreshphactory.com/shop</li>
                   <li>Using the Cashblack A.F.R.O.B.O.T browser extension to discover Black-owned alternatives</li>
                   <li>Joining the Afrofiliate Network to earn while promoting Black businesses</li>
                   <li>Sharing Black-owned brand spotlights with friends and family</li>
@@ -225,7 +225,7 @@ const BlackOwnedHolidayGuide = () => {
                   <li><strong>Brand Stories:</strong> Background on founders and their mission</li>
                 </ul>
                 <p className="mt-4">
-                  All reviews are available at <Link to="/BuyBlack" className="text-primary underline">phreshphactory.com/BuyBlack</Link> with both video and written content for each featured brand.
+                  All reviews are available at <Link to="/shop" className="text-primary underline">phreshphactory.com/shop</Link> with both video and written content for each featured brand.
                 </p>
               </CardContent>
             </Card>
@@ -255,7 +255,7 @@ const BlackOwnedHolidayGuide = () => {
             Browse curated Black-owned brands with video reviews and direct shopping links
           </p>
           <Button asChild size="lg">
-            <Link to="/BuyBlack">
+            <Link to="/shop">
               View All Featured Brands
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>

@@ -73,7 +73,7 @@ const ProductSpotlights = () => {
         "name": spotlight.title,
         "description": spotlight.excerpt,
         "image": spotlight.feature_image,
-        "url": `https://phreshphactory.com/BuyBlack/${spotlight.slug}`,
+        "url": `https://phreshphactory.com/shop/${spotlight.slug}`,
         "brand": {
           "@type": "Brand",
           "name": spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim()
@@ -92,7 +92,7 @@ const ProductSpotlights = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Buy Black - Black-Owned Christmas Gifts & Holiday Shopping 2025"
+        title="Shop - Black-Owned Christmas Gifts & Holiday Shopping 2025"
         description="Discover Black-owned brands and products for Christmas shopping. Support Black entrepreneurs with curated holiday gift ideas. Featured brands with video reviews and shopping links for the 2025 holiday season."
         keywords="Buy Black, Black-owned businesses, Black-owned gifts, Christmas gifts Black-owned, African American businesses, Black entrepreneurs, holiday shopping Black-owned, support Black businesses, Black Friday, Cyber Monday, Christmas 2025, Black-owned products, Afrofiliate, shop Black-owned"
         structuredData={itemListSchema}
@@ -107,7 +107,7 @@ const ProductSpotlights = () => {
               Supporting Black Excellence
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
-              Buy Black
+              Shop
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
               Explore Black-owned brands and products featured this holiday season. Each spotlight includes a YouTube video walkthrough and detailed written content.
@@ -138,7 +138,7 @@ const ProductSpotlights = () => {
               {spotlights.map((spotlight) => (
                 <Link 
                   key={spotlight.id} 
-                  to={`/BuyBlack/${spotlight.slug}`}
+                  to={`/shop/${spotlight.slug}`}
                   className="group"
                 >
                   <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 bg-card border border-border">
@@ -210,7 +210,7 @@ const ProductSpotlights = () => {
           <div className="bg-muted/50 rounded-lg p-8 mb-12 text-left">
             <h2 className="text-2xl font-semibold mb-4 text-foreground">About This Directory</h2>
             <p className="text-base text-muted-foreground mb-4">
-              <strong>Phresh Phactory's Buy Black initiative</strong> features curated Black-owned businesses for Christmas and holiday shopping. 
+              <strong>Phresh Phactory's Shop</strong> features curated Black-owned businesses for Christmas and holiday shopping. 
               Each featured brand includes comprehensive product reviews, video content, and direct shopping links.
             </p>
             <p className="text-base text-muted-foreground">

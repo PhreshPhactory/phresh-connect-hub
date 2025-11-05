@@ -64,7 +64,7 @@ const FeaturedBrands = () => {
           {brands.map((brand) => (
             <Link 
               key={brand.id} 
-              to={`/BuyBlack/${brand.slug}`}
+              to={`/shop/${brand.slug}`}
               className="group"
             >
               <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300">
@@ -108,7 +108,7 @@ const FeaturedBrands = () => {
 
         <div className="text-center">
           <Button asChild size="lg">
-            <Link to="/BuyBlack">
+            <Link to="/shop">
               View All Black-Owned Brands
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
