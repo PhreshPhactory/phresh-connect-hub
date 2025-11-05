@@ -72,7 +72,7 @@ const ExitIntentPopup = () => {
               Get Strategic Insights
             </Button>
             <p className="text-xs text-muted-foreground text-center">
-              Join leaders from Fortune 500s and high-growth startups
+              Join leaders from high-growth startups and brands
             </p>
           </form>
         </CardContent>
