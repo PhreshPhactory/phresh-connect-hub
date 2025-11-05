@@ -116,6 +116,9 @@ const TV = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               Discover product spotlights, brand stories, and exclusive content featuring amazing businesses you can support today.
             </p>
+            <Button asChild size="lg" variant="default">
+              <a href="/shop">Shop All Brands</a>
+            </Button>
           </div>
         </section>
 
