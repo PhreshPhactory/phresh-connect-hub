@@ -97,9 +97,9 @@ const TV = () => {
   return (
     <>
       <Helmet>
-        <title>Phresh TV - Black-Owned Business Video Content | Phresh Phactory</title>
-        <meta name="description" content="Watch product spotlights, brand stories, and shoppable video content featuring Black-owned businesses and entrepreneurs." />
-        <meta name="keywords" content="Black-owned business videos, product spotlights, brand stories, video content, YouTube, shoppable videos" />
+        <title>Phresh TV - Business Video Content | Phresh Phactory</title>
+        <meta name="description" content="Watch product spotlights, brand stories, and shoppable video content featuring businesses and entrepreneurs." />
+        <meta name="keywords" content="business videos, product spotlights, brand stories, video content, YouTube, shoppable videos" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -111,10 +111,10 @@ const TV = () => {
               <span className="font-medium">Phresh TV</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Watch & Shop Black-Owned
+              Watch & Shop
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Discover product spotlights, brand stories, and exclusive content featuring amazing Black-owned businesses you can support today.
+              Discover product spotlights, brand stories, and exclusive content featuring amazing businesses you can support today.
             </p>
           </div>
         </section>
@@ -235,7 +235,7 @@ const TV = () => {
               Want Your Brand Featured?
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-              Join our growing network of Black-owned businesses and get your products in front of our engaged audience.
+              Join our growing network of businesses and get your products in front of our engaged audience.
             </p>
             <Button asChild size="lg" variant="secondary">
               <a href="/brands">Apply Now</a>
