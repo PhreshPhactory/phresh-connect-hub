@@ -108,7 +108,7 @@ const TV = () => {
           <div className="container mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/20 rounded-full mb-6">
               <Play className="w-5 h-5" />
-              <span className="font-medium">Phresh TV</span>
+              <span className="font-medium">Phresh Phactory TV</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Watch & Shop
