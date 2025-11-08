@@ -4,6 +4,7 @@ import { ExternalLink, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import backgroundImage from "@/assets/link-bio-background.png";
+import { supabase } from "@/integrations/supabase/client";
 
 const LinkInBio = () => {
   const brandLinks = [
@@ -24,6 +25,19 @@ const LinkInBio = () => {
     { name: "Become an Afrofiliate", url: "/contact" },
     { name: "Book Kiera H.", url: "https://phreshphactory.com/kierah" },
   ];
+
+  const trackClick = async (linkName: string, linkUrl: string) => {
+    try {
+      await supabase.from('link_clicks').insert({
+        link_name: linkName,
+        link_url: linkUrl,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent,
+      });
+    } catch (error) {
+      console.error('Error tracking click:', error);
+    }
+  };
 
   return (
     <>
@@ -51,7 +65,11 @@ const LinkInBio = () => {
           </div>
 
           {/* Watch & Shop Button */}
-          <Link to="/shop" className="block mb-10">
+          <Link 
+            to="/shop" 
+            className="block mb-10"
+            onClick={() => trackClick("Watch & Shop - Phresh Phactory TV", "/shop")}
+          >
             <Button className="w-full py-14 px-8 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] rounded-xl">
               <div className="flex items-center gap-6 w-full justify-center">
                 <div className="bg-white/20 rounded-xl p-4 flex items-center justify-center">
@@ -74,6 +92,7 @@ const LinkInBio = () => {
                 <a
                   key={index}
                   href={link.url}
+                  onClick={() => trackClick(link.name, link.url)}
                   className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
                 >
                   <div className="flex items-center justify-between">
@@ -92,6 +111,7 @@ const LinkInBio = () => {
                 <a
                   key={index}
                   href={link.url}
+                  onClick={() => trackClick(link.name, link.url)}
                   className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
                 >
                   <div className="flex items-center justify-between">
@@ -113,6 +133,7 @@ const LinkInBio = () => {
                 <a
                   key={index}
                   href={link.url}
+                  onClick={() => trackClick(link.name, link.url)}
                   className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
                 >
                   <div className="flex items-center justify-between">
