@@ -34,7 +34,7 @@ const BlogPost = () => {
   const trackView = async (postId: string) => {
     try {
       // Increment view count
-      await supabase.rpc('increment_view_count', { post_id: postId });
+      await (supabase as any).rpc('increment_view_count', { post_id: postId });
       
       // Track detailed analytics
       await supabase.from('blog_analytics').insert({
