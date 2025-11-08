@@ -64,13 +64,14 @@ const ShortsGallery: React.FC<ShortsGalleryProps> = ({ shorts }) => {
           {validShorts.map((short) => (
             <Card key={short.id} className="overflow-hidden group hover:shadow-xl transition-all duration-300">
               {/* Video Player - Mobile Optimized */}
-              <div className="relative aspect-[9/16] bg-black">
+              <div className="relative w-full" style={{ paddingBottom: '177.78%' }}>
                 <iframe
                   src={getYouTubeShortsEmbedUrl(short.shorts_url!)}
-                  className="w-full h-full"
+                  className="absolute inset-0 w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   title={short.title}
+                  style={{ border: 'none' }}
                 />
               </div>
 
