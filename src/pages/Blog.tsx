@@ -44,6 +44,7 @@ const Blog = () => {
         .from('blog_posts')
         .select('*')
         .eq('published', true)
+        .neq('category', 'Product Spotlight')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
