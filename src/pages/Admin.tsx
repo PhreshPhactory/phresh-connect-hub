@@ -32,6 +32,7 @@ interface BlogPost {
   products: Product[];
   published: boolean;
   created_at: string;
+  view_count?: number;
 }
 
 const Admin = () => {
@@ -733,8 +734,11 @@ const Admin = () => {
                     <p className="text-sm text-muted-foreground mb-2">
                       {post.excerpt}
                     </p>
-                    <div className="flex justify-between text-xs text-muted-foreground">
-                      <span>Category: {post.category}</span>
+                    <div className="flex justify-between items-center text-xs text-muted-foreground">
+                      <div className="flex gap-4">
+                        <span>Category: {post.category}</span>
+                        <span>Views: {post.view_count || 0}</span>
+                      </div>
                       <span>
                         Status: {post.published ? 'Published' : 'Draft'}
                       </span>

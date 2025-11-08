@@ -31,6 +31,22 @@ const BlogPost = () => {
     }
   }, [slug]);
 
+  const trackView = async (postId: string) => {
+    try {
+      // Increment view count
+      await supabase.rpc('increment_view_count', { post_id: postId });
+      
+      // Track detailed analytics
+      await supabase.from('blog_analytics').insert({
+        blog_post_id: postId,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent,
+      });
+    } catch (error) {
+      console.error('Error tracking view:', error);
+    }
+  };
+
   const fetchPost = async () => {
     try {
       const { data, error } = await (supabase as any)
@@ -42,6 +58,11 @@ const BlogPost = () => {
 
       if (error) throw error;
       setPost(data);
+      
+      // Track view after successfully loading the post
+      if (data) {
+        trackView(data.id);
+      }
     } catch (error) {
       console.error('Error fetching post:', error);
       toast({

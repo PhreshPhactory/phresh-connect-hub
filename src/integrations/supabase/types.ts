@@ -14,6 +14,38 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_analytics: {
+        Row: {
+          blog_post_id: string
+          id: string
+          referrer: string | null
+          user_agent: string | null
+          viewed_at: string
+        }
+        Insert: {
+          blog_post_id: string
+          id?: string
+          referrer?: string | null
+          user_agent?: string | null
+          viewed_at?: string
+        }
+        Update: {
+          blog_post_id?: string
+          id?: string
+          referrer?: string | null
+          user_agent?: string | null
+          viewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_analytics_blog_post_id_fkey"
+            columns: ["blog_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_posts: {
         Row: {
           brand_name: string | null
@@ -31,6 +63,7 @@ export type Database = {
           title: string
           updated_at: string
           video_url: string | null
+          view_count: number
         }
         Insert: {
           brand_name?: string | null
@@ -48,6 +81,7 @@ export type Database = {
           title: string
           updated_at?: string
           video_url?: string | null
+          view_count?: number
         }
         Update: {
           brand_name?: string | null
@@ -65,6 +99,7 @@ export type Database = {
           title?: string
           updated_at?: string
           video_url?: string | null
+          view_count?: number
         }
         Relationships: []
       }
