@@ -186,14 +186,11 @@ const ProductSpotlights = () => {
                         <p className="text-muted-foreground mb-4 line-clamp-3">
                           {item.excerpt}
                         </p>
-                        <Button className="w-full mb-3">
-                          {isShort ? 'View Short' : 'View Spotlight'}
-                        </Button>
                         {item.shopping_link && (
                           <Button 
                             asChild 
-                            variant="outline"
-                            className="w-full"
+                            size="lg"
+                            className="w-full mb-3"
                             onClick={(e) => e.stopPropagation()}
                           >
                             <a 
@@ -202,11 +199,14 @@ const ProductSpotlights = () => {
                               rel="noopener noreferrer"
                               className="flex items-center justify-center"
                             >
-                              Shop Now
+                              Shop {item.brand_name || 'Now'}
                               <ArrowRight className="w-4 h-4 ml-2" />
                             </a>
                           </Button>
                         )}
+                        <Button variant="outline" className="w-full">
+                          {isShort ? 'View Short' : 'View Full Review'}
+                        </Button>
                       </CardContent>
                     </Card>
                   </Link>
