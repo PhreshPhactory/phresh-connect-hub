@@ -177,10 +177,10 @@ const ProductSpotlights = () => {
       />
 
       {/* Hero Section with Shop Links */}
-      <section className="py-12 bg-background">
+      <section className="py-12 bg-gradient-to-b from-tertiary/5 to-background">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center mb-8">
-            <Badge className="mb-4">
+            <Badge className="mb-4 bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
               <Heart className="w-4 h-4 mr-2" />
               Supporting Black Excellence
             </Badge>
@@ -194,20 +194,20 @@ const ProductSpotlights = () => {
 
           {/* Shop Links Section */}
           <div className="max-w-2xl mx-auto mb-12">
-            <div className="p-[2px] bg-gradient-to-r from-primary to-secondary rounded-2xl shadow-lg mb-8">
+            <div className="p-[2px] bg-gradient-to-r from-tertiary via-teal to-tertiary rounded-2xl shadow-lg mb-8">
               <div className="bg-card backdrop-blur-sm p-6 rounded-2xl">
-                <h2 className="text-2xl font-bold text-center mb-6 text-foreground">Shop the Brands</h2>
+                <h2 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-tertiary to-teal bg-clip-text text-transparent">Shop the Brands</h2>
                 <div className="space-y-3">
                   {brandLinks.map((link, index) => (
                     <a
                       key={index}
                       href={link.url}
                       onClick={() => trackClick(link.name, link.url)}
-                      className="block w-full p-4 bg-background hover:bg-muted border border-border rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
+                      className="block w-full p-4 bg-gradient-to-r from-tertiary/10 to-teal/10 hover:from-tertiary/20 hover:to-teal/20 border border-tertiary/20 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-tertiary/10 hover:scale-[1.02] group"
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-semibold text-foreground">{link.name}</span>
-                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                        <ExternalLink className="w-4 h-4 text-tertiary group-hover:text-teal transition-colors" />
                       </div>
                     </a>
                   ))}
@@ -235,7 +235,7 @@ const ProductSpotlights = () => {
             </div>
 
             <div className="text-center">
-              <Button asChild size="lg" variant="outline">
+              <Button asChild size="lg" className="bg-gradient-to-r from-tertiary to-teal text-primary-foreground hover:opacity-90">
                 <Link to="/brands">
                   Feature Your Brand
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -247,7 +247,7 @@ const ProductSpotlights = () => {
       </section>
 
       {/* Video Content Section */}
-      <section className="py-16 bg-muted">
+      <section className="py-16 bg-gradient-to-b from-background to-teal/5">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4 text-foreground">Watch & Learn About Each Brand</h2>
@@ -379,7 +379,7 @@ const ProductSpotlights = () => {
             <p className="text-lg text-muted-foreground mb-8">
               Join the Afrofiliate Network and earn by promoting Black-owned businesses you love
             </p>
-            <Button asChild size="lg">
+            <Button asChild size="lg" className="bg-gradient-to-r from-teal to-tertiary text-primary-foreground hover:opacity-90">
               <a href="http://bit.ly/3WdRD6F" target="_blank" rel="noopener noreferrer">
                 Join Afrofiliate Network
                 <ArrowRight className="w-4 h-4 ml-2" />
