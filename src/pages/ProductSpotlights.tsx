@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Youtube, ArrowRight, Heart } from 'lucide-react';
+import { Youtube, ArrowRight, Heart, ExternalLink } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import ShortsGallery from '@/components/ShortsGallery';
 
@@ -26,6 +26,31 @@ interface ProductSpotlight {
 const ProductSpotlights = () => {
   const [allContent, setAllContent] = useState<ProductSpotlight[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const brandLinks = [
+    { name: "No Guilt Bakes", url: "https://noguiltbakes.co.uk/?_ef_transaction_id=&oid=50&affid=53" },
+    { name: "Big Up Street Greets", url: "https://www.arjdj2msd.com/3DCFHG/2HKTT6J/" },
+    { name: "Name Your Ballz", url: "https://www.arjdj2msd.com/3DCFHG/23W5CH8/" },
+  ];
+
+  const upNextBrands = [
+    { name: "PetPlate", url: "https://www.arjdj2msd.com/3DCFHG/PETPLATE" },
+    { name: "Be Rooted", url: "https://www.arjdj2msd.com/3DCFHG/R74QP1/" },
+    { name: "All Shades Cards", url: "https://www.arjdj2msd.com/3DCFHG/9F3647" },
+  ];
+
+  const trackClick = async (linkName: string, linkUrl: string) => {
+    try {
+      await supabase.from('link_clicks').insert({
+        link_name: linkName,
+        link_url: linkUrl,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent,
+      });
+    } catch (error) {
+      console.error('Error tracking click:', error);
+    }
+  };
 
   useEffect(() => {
     fetchSpotlights();
@@ -151,10 +176,10 @@ const ProductSpotlights = () => {
         structuredData={itemListSchema}
       />
 
-      {/* Hero Section */}
-      <section className="py-20 bg-background">
+      {/* Hero Section with Shop Links */}
+      <section className="py-12 bg-background">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center mb-8">
             <Badge className="mb-4">
               <Heart className="w-4 h-4 mr-2" />
               Supporting Black Excellence
@@ -163,21 +188,73 @@ const ProductSpotlights = () => {
               Shop
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Explore Black-owned brands and products featured this holiday season. Each spotlight includes a YouTube video walkthrough and detailed written content.
+              Click to shop the featured Black-owned brands below, then scroll to watch videos and learn more.
             </p>
-            
-            <Button asChild size="lg">
-              <Link to="/brands">
-                Feature Your Brand
-              </Link>
-            </Button>
+          </div>
+
+          {/* Shop Links Section */}
+          <div className="max-w-2xl mx-auto mb-12">
+            <div className="p-[2px] bg-gradient-to-r from-primary to-secondary rounded-2xl shadow-lg mb-8">
+              <div className="bg-card backdrop-blur-sm p-6 rounded-2xl">
+                <h2 className="text-2xl font-bold text-center mb-6 text-foreground">Shop the Brands</h2>
+                <div className="space-y-3">
+                  {brandLinks.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.url}
+                      onClick={() => trackClick(link.name, link.url)}
+                      className="block w-full p-4 bg-background hover:bg-muted border border-border rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-foreground">{link.name}</span>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                      </div>
+                    </a>
+                  ))}
+                  
+                  {/* Up Next Divider */}
+                  <div className="py-2 text-center">
+                    <span className="text-lg font-bold text-muted-foreground">Up Next</span>
+                  </div>
+                  
+                  {upNextBrands.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.url}
+                      onClick={() => trackClick(link.name, link.url)}
+                      className="block w-full p-4 bg-background hover:bg-muted border border-border rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-foreground">{link.name}</span>
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Button asChild size="lg" variant="outline">
+                <Link to="/brands">
+                  Feature Your Brand
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* All Content Grid - Mixed Videos and Shorts */}
+      {/* Video Content Section */}
       <section className="py-16 bg-muted">
         <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">Watch & Learn About Each Brand</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Get an inside look at each Black-owned brand with our video reviews and product showcases
+            </p>
+          </div>
           {loading ? (
             <div className="text-center py-12">
               <p className="text-muted-foreground">Loading brands...</p>
