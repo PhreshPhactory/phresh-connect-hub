@@ -70,6 +70,28 @@ const ProductSpotlights = () => {
     };
   }, []);
 
+  // Throttled (1h) playlist sync to ensure latest videos/shorts are imported
+  useEffect(() => {
+    const key = 'bb_last_playlist_sync';
+    const last = localStorage.getItem(key);
+    const now = Date.now();
+    const shouldSync = !last || now - Number(last) > 60 * 60 * 1000; // 1 hour
+
+    if (!shouldSync) return;
+
+    supabase.functions
+      .invoke('sync-youtube-playlist')
+      .then((res) => {
+        console.log('Invoked sync-youtube-playlist:', res);
+        localStorage.setItem(key, String(now));
+        // Refresh after sync
+        fetchSpotlights();
+      })
+      .catch((err) => {
+        console.error('Failed to invoke sync-youtube-playlist:', err);
+      });
+  }, []);
+
   const fetchSpotlights = async () => {
     try {
       const { data, error } = await supabase
