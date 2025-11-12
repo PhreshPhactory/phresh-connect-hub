@@ -23,21 +23,19 @@ interface ProductSpotlight {
   products?: any[];
 }
 
+interface BrandLink {
+  id: string;
+  name: string;
+  url: string;
+  display_order: number;
+  is_featured: boolean;
+}
+
 const ProductSpotlights = () => {
   const [allContent, setAllContent] = useState<ProductSpotlight[]>([]);
+  const [brandLinks, setBrandLinks] = useState<BrandLink[]>([]);
+  const [upNextBrands, setUpNextBrands] = useState<BrandLink[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const brandLinks = [
-    { name: "No Guilt Bakes", url: "https://noguiltbakes.co.uk/?_ef_transaction_id=&oid=50&affid=53" },
-    { name: "Big Up Street Greets", url: "https://www.arjdj2msd.com/3DCFHG/2HKTT6J/" },
-    { name: "Name Your Ballz", url: "https://www.arjdj2msd.com/3DCFHG/23W5CH8/" },
-  ];
-
-  const upNextBrands = [
-    { name: "PetPlate", url: "https://www.arjdj2msd.com/3DCFHG/PETPLATE" },
-    { name: "Be Rooted", url: "https://www.arjdj2msd.com/3DCFHG/R74QP1/" },
-    { name: "All Shades Cards", url: "https://www.arjdj2msd.com/3DCFHG/9F3647" },
-  ];
 
   const trackClick = async (linkName: string, linkUrl: string) => {
     try {
@@ -54,6 +52,7 @@ const ProductSpotlights = () => {
 
   useEffect(() => {
     fetchSpotlights();
+    fetchBrandLinks();
 
     // Set up realtime subscription for new product spotlights
     const channel = supabase
@@ -133,6 +132,25 @@ const ProductSpotlights = () => {
       console.error('Error fetching product spotlights:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchBrandLinks = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('brand_links')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (error) throw error;
+      
+      const featured = (data || []).filter(link => link.is_featured);
+      const upNext = (data || []).filter(link => !link.is_featured);
+      
+      setBrandLinks(featured);
+      setUpNextBrands(upNext);
+    } catch (error) {
+      console.error('Error fetching brand links:', error);
     }
   };
 

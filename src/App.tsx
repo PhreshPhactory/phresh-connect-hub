@@ -38,6 +38,7 @@ import ProductSpotlights from "@/pages/ProductSpotlights";
 import ProductSpotlight from "@/pages/ProductSpotlight";
 import BlackOwnedHolidayGuide from "@/pages/BlackOwnedHolidayGuide";
 import BrandPartnership from "@/pages/BrandPartnership";
+import BrandLinksAdmin from "@/pages/BrandLinksAdmin";
 import LinkInBio from "@/pages/LinkInBio";
 import TV from "@/pages/TV";
 
@@ -98,6 +99,7 @@ const App: React.FC = () => {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/admin/brand-links" element={<BrandLinksAdmin />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/links" element={<LinkInBio />} />

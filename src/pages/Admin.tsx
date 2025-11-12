@@ -468,7 +468,7 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-background py-12">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold">Blog Admin</h1>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">
@@ -478,6 +478,16 @@ const Admin = () => {
               Sign Out
             </Button>
           </div>
+        </div>
+
+        {/* Admin Navigation */}
+        <div className="flex gap-2 mb-8">
+          <Button variant="default" asChild>
+            <Link to="/admin">Blog Posts</Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link to="/admin/brand-links">Brand Links</Link>
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
