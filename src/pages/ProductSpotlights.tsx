@@ -234,8 +234,14 @@ const ProductSpotlights = () => {
               </div>
             </div>
 
-            <div className="text-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button asChild size="lg" className="bg-gradient-to-r from-tertiary to-teal text-primary-foreground hover:opacity-90">
+                <Link to="/links">
+                  View All {allContent.length} Brands
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-tertiary text-tertiary hover:bg-tertiary/10">
                 <Link to="/brands">
                   Feature Your Brand
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -351,16 +357,6 @@ const ProductSpotlights = () => {
                   </Link>
                 );
               })}
-            </div>
-            
-            {/* View All Brands Button */}
-            <div className="text-center mt-12">
-              <Button asChild size="lg" className="bg-gradient-to-r from-tertiary to-teal text-primary-foreground hover:opacity-90">
-                <Link to="/links">
-                  View All {allContent.length} Brands
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
             </div>
           </>
           )}
