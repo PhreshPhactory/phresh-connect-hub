@@ -78,6 +78,23 @@ Deno.serve(async (req) => {
 
     console.log(`Found ${videos.length} videos in playlist`);
 
+    // Get all video URLs currently in the playlist
+    const currentPlaylistUrls = videos.map(v => v.videoUrl);
+    
+    // Unpublish any videos in the database that are no longer in the playlist
+    const { error: unpublishError } = await supabase
+      .from('blog_posts')
+      .update({ published: false })
+      .eq('category', 'Product Spotlight')
+      .not('video_url', 'in', `(${currentPlaylistUrls.map(url => `"${url}"`).join(',')})`)
+      .eq('published', true);
+    
+    if (unpublishError) {
+      console.error('Error unpublishing removed videos:', unpublishError);
+    } else {
+      console.log('Unpublished videos that are no longer in playlist');
+    }
+
     let syncedCount = 0;
     let skippedCount = 0;
 
