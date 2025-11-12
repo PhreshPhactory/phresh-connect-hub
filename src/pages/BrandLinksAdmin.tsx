@@ -71,6 +71,30 @@ const BrandLinksAdmin = () => {
     ));
   };
 
+  const toggleFeatured = async (link: BrandLink) => {
+    const newValue = !link.is_featured;
+    updateLink(link.id, 'is_featured', newValue);
+
+    if (link.id.startsWith('new-')) {
+      return; // Don't save unsaved links
+    }
+
+    try {
+      const { error } = await supabase
+        .from('brand_links')
+        .update({ is_featured: newValue })
+        .eq('id', link.id);
+
+      if (error) throw error;
+      toast.success(newValue ? 'Marked as featured' : 'Removed from featured');
+    } catch (error) {
+      console.error('Error updating featured status:', error);
+      toast.error('Failed to update featured status');
+      // Revert on error
+      updateLink(link.id, 'is_featured', !newValue);
+    }
+  };
+
   const saveLink = async (link: BrandLink) => {
     try {
       if (link.id.startsWith('new-')) {
@@ -225,7 +249,7 @@ const BrandLinksAdmin = () => {
                       <Label>Featured</Label>
                       <Switch
                         checked={link.is_featured}
-                        onCheckedChange={(checked) => updateLink(link.id, 'is_featured', checked)}
+                        onCheckedChange={() => toggleFeatured(link)}
                       />
                     </div>
                   </div>
