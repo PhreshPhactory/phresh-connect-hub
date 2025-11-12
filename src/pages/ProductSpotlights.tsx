@@ -187,7 +187,7 @@ const ProductSpotlights = () => {
               <p className="text-muted-foreground">No brands available yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
               {allContent.map((item) => {
                 const isShort = !!item.shorts_url;
                 
@@ -195,7 +195,7 @@ const ProductSpotlights = () => {
                   <Link 
                     key={item.id} 
                     to={`/shop/${item.slug}`}
-                    className="group"
+                    className={`group ${isShort ? 'col-span-1 md:col-span-1 lg:col-span-1' : 'col-span-2 md:col-span-2 lg:col-span-2'}`}
                   >
                     <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 bg-card border border-border">
                       {isShort ? (
