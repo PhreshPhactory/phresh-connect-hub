@@ -481,13 +481,41 @@ const Admin = () => {
         </div>
 
         {/* Admin Navigation */}
-        <div className="flex gap-2 mb-8">
-          <Button variant="default" asChild>
-            <Link to="/admin">Blog Posts</Link>
-          </Button>
-          <Button variant="outline" asChild>
-            <Link to="/admin/brand-links">Brand Links</Link>
-          </Button>
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4">Quick Access</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <Card className="border-2 border-primary">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span>📝</span> Blog Posts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Create and manage blog posts, product spotlights, and articles
+                </p>
+                <Button variant="default" className="w-full" asChild>
+                  <Link to="/admin">Manage Blog Posts</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-tertiary">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span>🔗</span> Brand Links
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Add, edit, and reorder the brand shopping links on your shop page
+                </p>
+                <Button variant="default" className="w-full bg-gradient-to-r from-tertiary to-teal" asChild>
+                  <Link to="/admin/brand-links">Manage Brand Links</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
