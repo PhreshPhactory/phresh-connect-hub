@@ -16,6 +16,9 @@ interface YouTubeVideo {
   description: string;
   thumbnailUrl: string;
   videoUrl: string;
+  isShort: boolean;
+  shortsUrl?: string;
+  duration?: string;
 }
 
 Deno.serve(async (req) => {
@@ -38,13 +41,38 @@ Deno.serve(async (req) => {
     }
 
     const playlistData = await playlistResponse.json();
-    const videos: YouTubeVideo[] = playlistData.items.map((item: any) => ({
-      id: item.snippet.resourceId.videoId,
-      title: item.snippet.title,
-      description: item.snippet.description,
-      thumbnailUrl: item.snippet.thumbnails.maxres?.url || item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url,
-      videoUrl: `https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`,
-    }));
+    const videoIds = playlistData.items.map((item: any) => item.snippet.resourceId.videoId);
+    
+    // Fetch video details to detect Shorts (check duration and other metadata)
+    const videoDetailsResponse = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoIds.join(',')}&key=${YOUTUBE_API_KEY}`
+    );
+
+    if (!videoDetailsResponse.ok) {
+      throw new Error(`YouTube API error fetching video details: ${videoDetailsResponse.statusText}`);
+    }
+
+    const videoDetailsData = await videoDetailsResponse.json();
+    
+    const videos: YouTubeVideo[] = playlistData.items.map((item: any) => {
+      const videoId = item.snippet.resourceId.videoId;
+      const videoDetails = videoDetailsData.items.find((v: any) => v.id === videoId);
+      const duration = videoDetails?.contentDetails?.duration || '';
+      
+      // Parse ISO 8601 duration (e.g., "PT59S" = 59 seconds)
+      const isShort = duration.includes('PT') && !duration.includes('H') && !duration.includes('M') && parseInt(duration.replace(/\D/g, '')) <= 60;
+      
+      return {
+        id: videoId,
+        title: item.snippet.title,
+        description: item.snippet.description,
+        thumbnailUrl: item.snippet.thumbnails.maxres?.url || item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url,
+        videoUrl: `https://www.youtube.com/watch?v=${videoId}`,
+        isShort,
+        shortsUrl: isShort ? `https://www.youtube.com/shorts/${videoId}` : undefined,
+        duration,
+      };
+    });
 
     console.log(`Found ${videos.length} videos in playlist`);
 
@@ -77,6 +105,10 @@ Deno.serve(async (req) => {
         ? video.description.substring(0, 200) + (video.description.length > 200 ? '...' : '')
         : `Watch ${video.title} on YouTube`;
 
+      // Try to extract brand name from title (usually format: "Brand Name - Product" or "Brand Name: Product")
+      const brandMatch = video.title.match(/^([^-:]+)[-:]/) || video.title.match(/^(.+?)\s*\|/);
+      const brandName = brandMatch ? brandMatch[1].trim() : null;
+
       // Insert new blog post
       const { error: insertError } = await supabase
         .from('blog_posts')
@@ -88,6 +120,8 @@ Deno.serve(async (req) => {
           slug: slug,
           feature_image: video.thumbnailUrl,
           video_url: video.videoUrl,
+          shorts_url: video.shortsUrl,
+          brand_name: brandName,
           published: true,
         });
 
