@@ -8,6 +8,7 @@ import { Switch } from '@/components/ui/switch';
 import { Trash2, Plus, Save, ArrowUp, ArrowDown } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import { cn } from '@/lib/utils';
 
 interface BrandLink {
   id: string;
@@ -245,11 +246,22 @@ const BrandLinksAdmin = () => {
                         <ArrowDown className="w-4 h-4" />
                       </Button>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Label>Featured</Label>
+                    <div className={cn(
+                      "flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all",
+                      link.is_featured 
+                        ? "bg-primary/10 border-primary shadow-lg shadow-primary/20" 
+                        : "border-border"
+                    )}>
+                      <Label className={cn(
+                        "font-semibold transition-colors",
+                        link.is_featured && "text-primary"
+                      )}>Featured</Label>
                       <Switch
                         checked={link.is_featured}
                         onCheckedChange={() => toggleFeatured(link)}
+                        className={cn(
+                          link.is_featured && "ring-2 ring-primary/50 ring-offset-2"
+                        )}
                       />
                     </div>
                   </div>
