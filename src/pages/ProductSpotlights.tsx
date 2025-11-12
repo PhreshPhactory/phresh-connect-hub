@@ -263,8 +263,9 @@ const ProductSpotlights = () => {
               <p className="text-muted-foreground">No brands available yet. Check back soon!</p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
-              {allContent.map((item) => {
+            <>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
+                {allContent.slice(0, 4).map((item) => {
                 const isShort = !!item.shorts_url;
                 
                 return (
@@ -350,6 +351,19 @@ const ProductSpotlights = () => {
                 );
               })}
             </div>
+            
+            {/* View All Brands Button */}
+            {allContent.length > 4 && (
+              <div className="text-center mt-12">
+                <Button asChild size="lg" className="bg-gradient-to-r from-tertiary to-teal text-primary-foreground hover:opacity-90">
+                  <Link to="/links">
+                    View All {allContent.length} Brands
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+            )}
+          </>
           )}
         </div>
       </section>
