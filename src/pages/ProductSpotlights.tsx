@@ -127,6 +127,7 @@ const ProductSpotlights = () => {
 
       if (error) throw error;
       
+      console.log('Fetched spotlights:', data?.length, 'brands');
       setAllContent((data || []) as any);
     } catch (error) {
       console.error('Error fetching product spotlights:', error);
@@ -353,16 +354,14 @@ const ProductSpotlights = () => {
             </div>
             
             {/* View All Brands Button */}
-            {allContent.length > 4 && (
-              <div className="text-center mt-12">
-                <Button asChild size="lg" className="bg-gradient-to-r from-tertiary to-teal text-primary-foreground hover:opacity-90">
-                  <Link to="/links">
-                    View All {allContent.length} Brands
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
-              </div>
-            )}
+            <div className="text-center mt-12">
+              <Button asChild size="lg" className="bg-gradient-to-r from-tertiary to-teal text-primary-foreground hover:opacity-90">
+                <Link to="/links">
+                  View All {allContent.length} Brands
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+              </Button>
+            </div>
           </>
           )}
         </div>
