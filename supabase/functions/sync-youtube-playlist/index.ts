@@ -90,7 +90,18 @@ Deno.serve(async (req) => {
         .maybeSingle();
 
       if (existing) {
-        console.log(`Video already exists: ${video.title}`);
+        // Update created_at to match YouTube publish date for proper ordering
+        const { error: updateError } = await supabase
+          .from('blog_posts')
+          .update({ created_at: video.publishedAt })
+          .eq('id', existing.id);
+        
+        if (updateError) {
+          console.error(`Error updating video date ${video.title}:`, updateError);
+        } else {
+          console.log(`Updated date for: ${video.title}`);
+        }
+        
         skippedCount++;
         continue;
       }
