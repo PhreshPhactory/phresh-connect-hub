@@ -16,6 +16,7 @@ interface YouTubeVideo {
   description: string;
   thumbnailUrl: string;
   videoUrl: string;
+  publishedAt: string;
   isShort: boolean;
   shortsUrl?: string;
   duration?: string;
@@ -68,6 +69,7 @@ Deno.serve(async (req) => {
         description: item.snippet.description,
         thumbnailUrl: item.snippet.thumbnails.maxres?.url || item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url,
         videoUrl: `https://www.youtube.com/watch?v=${videoId}`,
+        publishedAt: item.snippet.publishedAt,
         isShort,
         shortsUrl: isShort ? `https://www.youtube.com/shorts/${videoId}` : undefined,
         duration,
@@ -123,6 +125,7 @@ Deno.serve(async (req) => {
           shorts_url: video.shortsUrl,
           brand_name: brandName,
           published: true,
+          created_at: video.publishedAt,
         });
 
       if (insertError) {
