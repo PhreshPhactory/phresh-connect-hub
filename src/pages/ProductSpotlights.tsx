@@ -29,6 +29,45 @@ const ProductSpotlights = () => {
 
   useEffect(() => {
     fetchSpotlights();
+
+    // Set up realtime subscription for new product spotlights
+    const channel = supabase
+      .channel('product-spotlights-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'blog_posts',
+          filter: 'category=eq.Product Spotlight'
+        },
+        (payload) => {
+          console.log('New product spotlight added:', payload.new);
+          // Add new spotlight to the list
+          setAllContent(prev => [payload.new as ProductSpotlight, ...prev]);
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'blog_posts',
+          filter: 'category=eq.Product Spotlight'
+        },
+        (payload) => {
+          console.log('Product spotlight updated:', payload.new);
+          // Update the spotlight in the list
+          setAllContent(prev => 
+            prev.map(item => item.id === payload.new.id ? payload.new as ProductSpotlight : item)
+          );
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const fetchSpotlights = async () => {
