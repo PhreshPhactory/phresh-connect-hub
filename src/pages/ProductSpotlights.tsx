@@ -229,25 +229,6 @@ const ProductSpotlights = () => {
                       </div>
                     </a>
                   ))}
-                  
-                  {/* Up Next Divider */}
-                  <div className="py-2 text-center">
-                    <span className="text-lg font-bold text-muted-foreground">Up Next</span>
-                  </div>
-                  
-                  {upNextBrands.map((link, index) => (
-                    <a
-                      key={index}
-                      href={link.url}
-                      onClick={() => trackClick(link.name, link.url)}
-                      className="block w-full p-4 bg-background hover:bg-muted border border-border rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-semibold text-foreground">{link.name}</span>
-                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                      </div>
-                    </a>
-                  ))}
                 </div>
               </div>
             </div>
