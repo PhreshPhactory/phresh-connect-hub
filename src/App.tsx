@@ -43,6 +43,7 @@ import LinkInBio from "@/pages/LinkInBio";
 import TV from "@/pages/TV";
 import AffiliateSalesBlueprint from "@/pages/AffiliateSalesBlueprint";
 import HolidaySprint from "@/pages/HolidaySprint";
+import HolidaySprintLanding from "@/pages/HolidaySprintLanding";
 import HolidaySprintThankYou from "@/pages/HolidaySprintThankYou";
 
 // Simplified loading fallback component
