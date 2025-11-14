@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import EmailCaptureModal from "@/components/EmailCaptureModal";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 const HolidaySprintExplained = () => {
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
@@ -416,6 +417,17 @@ const HolidaySprintExplained = () => {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="py-20 px-4 bg-background">
+          <div className="container max-w-5xl mx-auto">
+            <NewsletterSignup 
+              source="holiday-explained"
+              title="Get Strategic Insights for Your Brand"
+              description="Join brand founders receiving weekly insights on affiliate marketing, holiday strategies, and scaling affiliate revenue."
+            />
           </div>
         </section>
 

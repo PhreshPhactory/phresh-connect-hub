@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "@/hooks/use-toast";
 import { Upload, Loader2 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
+import NewsletterSignup from "@/components/NewsletterSignup";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name must be at least 2 characters"),
@@ -359,6 +360,15 @@ export default function HolidaySprint() {
               </form>
             </CardContent>
           </Card>
+          
+          {/* Newsletter Section */}
+          <div className="mt-16">
+            <NewsletterSignup 
+              source="holiday-application"
+              title="Get Strategic Insights While You Wait"
+              description="Join brand founders receiving weekly insights on affiliate marketing and holiday strategies."
+            />
+          </div>
         </div>
       </div>
     </>

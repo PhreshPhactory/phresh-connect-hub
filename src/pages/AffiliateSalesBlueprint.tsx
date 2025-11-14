@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { CheckCircle2, Target, Users, Rocket, Package, TrendingUp, FileText, Share2, Zap } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import NewsletterSignup from '@/components/NewsletterSignup';
 
 const AffiliateSalesBlueprint = () => {
   const [formData, setFormData] = React.useState({
@@ -380,6 +381,17 @@ const AffiliateSalesBlueprint = () => {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <NewsletterSignup 
+              source="affiliate-sales-blueprint"
+              title="Get Strategic Affiliate Marketing Insights"
+              description="Join brand founders receiving actionable strategies to transform affiliate programs into revenue drivers."
+            />
           </div>
         </section>
 
