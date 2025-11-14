@@ -43,6 +43,31 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Verify webhook secret
+    const authHeader = req.headers.get('authorization');
+    const webhookSecret = Deno.env.get('BLOGIFY_WEBHOOK_SECRET');
+    
+    if (!webhookSecret) {
+      console.error('BLOGIFY_WEBHOOK_SECRET not configured');
+      return new Response(
+        JSON.stringify({ error: 'Server configuration error' }),
+        { 
+          status: 500, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+    
+    if (!authHeader || authHeader !== `Bearer ${webhookSecret}`) {
+      console.error('Unauthorized webhook attempt');
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { 
+          status: 401, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;

@@ -9,6 +9,17 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
+}
+
 interface ContactFormData {
   name: string;
   email: string;
@@ -80,28 +91,28 @@ const handler = async (req: Request): Promise<Response> => {
             
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Contact Information</h3>
-              <p><strong>Name:</strong> ${contactData.name}</p>
-              <p><strong>Email:</strong> ${contactData.email}</p>
-              ${contactData.website ? `<p><strong>Website:</strong> ${contactData.website}</p>` : ''}
+              <p><strong>Name:</strong> ${escapeHtml(contactData.name)}</p>
+              <p><strong>Email:</strong> ${escapeHtml(contactData.email)}</p>
+              ${contactData.website ? `<p><strong>Website:</strong> ${escapeHtml(contactData.website)}</p>` : ''}
             </div>
 
             <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Business Details</h3>
-              ${contactData.companyStage ? `<p><strong>Company Stage:</strong> ${contactData.companyStage}</p>` : ''}
-              ${contactData.serviceInterest ? `<p><strong>Service Interest:</strong> ${contactData.serviceInterest}</p>` : ''}
+              ${contactData.companyStage ? `<p><strong>Company Stage:</strong> ${escapeHtml(contactData.companyStage)}</p>` : ''}
+              ${contactData.serviceInterest ? `<p><strong>Service Interest:</strong> ${escapeHtml(contactData.serviceInterest)}</p>` : ''}
             </div>
 
             ${contactData.challenges ? `
               <div style="background: #fff5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3 style="color: #555; margin-top: 0;">Challenges</h3>
-                <p>${contactData.challenges}</p>
+                <p>${escapeHtml(contactData.challenges)}</p>
               </div>
             ` : ''}
 
             ${contactData.message ? `
               <div style="background: #f5fff5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3 style="color: #555; margin-top: 0;">Additional Message</h3>
-                <p>${contactData.message}</p>
+                <p>${escapeHtml(contactData.message)}</p>
               </div>
             ` : ''}
 
@@ -124,7 +135,7 @@ const handler = async (req: Request): Promise<Response> => {
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333;">New Newsletter Subscription</h2>
-            <p><strong>Email:</strong> ${newsletterData.email}</p>
+            <p><strong>Email:</strong> ${escapeHtml(newsletterData.email)}</p>
             <p><strong>Subscribed on:</strong> ${new Date().toLocaleString()}</p>
           </div>
         `,
@@ -142,10 +153,10 @@ const handler = async (req: Request): Promise<Response> => {
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333;">New Free Assessment Request</h2>
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <p><strong>Name:</strong> ${assessmentData.name}</p>
-              <p><strong>Email:</strong> ${assessmentData.email}</p>
-              <p><strong>Type:</strong> ${assessmentData.type}</p>
-              ${assessmentData.company ? `<p><strong>Company:</strong> ${assessmentData.company}</p>` : ''}
+              <p><strong>Name:</strong> ${escapeHtml(assessmentData.name)}</p>
+              <p><strong>Email:</strong> ${escapeHtml(assessmentData.email)}</p>
+              <p><strong>Type:</strong> ${escapeHtml(assessmentData.type)}</p>
+              ${assessmentData.company ? `<p><strong>Company:</strong> ${escapeHtml(assessmentData.company)}</p>` : ''}
             </div>
             <p><strong>Requested on:</strong> ${new Date().toLocaleString()}</p>
           </div>
@@ -158,7 +169,7 @@ const handler = async (req: Request): Promise<Response> => {
       emailResponse = await resend.emails.send({
         from: "Phresh Phactory Brand Partnership <no-reply@phreshphactory.com>",
         to: ["info@phreshphactory.co"],
-        subject: `Brand Feature Application - ${brandData.brandName}`,
+        subject: `Brand Feature Application - ${escapeHtml(brandData.brandName)}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">
@@ -167,16 +178,16 @@ const handler = async (req: Request): Promise<Response> => {
             
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Contact Information</h3>
-              <p><strong>Owner Name:</strong> ${brandData.name}</p>
-              <p><strong>Email:</strong> ${brandData.email}</p>
+              <p><strong>Owner Name:</strong> ${escapeHtml(brandData.name)}</p>
+              <p><strong>Email:</strong> ${escapeHtml(brandData.email)}</p>
             </div>
 
             <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Brand Information</h3>
-              <p><strong>Brand Name:</strong> ${brandData.brandName}</p>
-              <p><strong>Website:</strong> <a href="${brandData.website}">${brandData.website}</a></p>
-              <p><strong>On Afrofiliate:</strong> ${brandData.hasJoinedAfrofiliate}</p>
-              <p><strong>Budget Range:</strong> ${brandData.budget}</p>
+              <p><strong>Brand Name:</strong> ${escapeHtml(brandData.brandName)}</p>
+              <p><strong>Website:</strong> <a href="${escapeHtml(brandData.website)}">${escapeHtml(brandData.website)}</a></p>
+              <p><strong>On Afrofiliate:</strong> ${escapeHtml(brandData.hasJoinedAfrofiliate)}</p>
+              <p><strong>Budget Range:</strong> ${escapeHtml(brandData.budget)}</p>
             </div>
 
             <div style="background: #fff5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -192,7 +203,7 @@ const handler = async (req: Request): Promise<Response> => {
             ${brandData.message ? `
               <div style="background: #f5fff5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3 style="color: #555; margin-top: 0;">About the Brand</h3>
-                <p>${brandData.message}</p>
+                <p>${escapeHtml(brandData.message)}</p>
               </div>
             ` : ''}
 
