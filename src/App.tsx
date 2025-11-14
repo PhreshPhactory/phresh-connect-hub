@@ -105,12 +105,11 @@ const App: React.FC = () => {
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/links" element={<LinkInBio />} />
                 <Route path="/tv" element={<TV />} />
-                <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
-                
                 <Route path="*" element={<NotFound />} />
               </Route>
+              <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
             </Routes>
-            </BrowserRouter>
+          </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>
       </GeoBlocker>
