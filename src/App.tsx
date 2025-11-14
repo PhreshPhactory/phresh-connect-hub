@@ -41,6 +41,7 @@ import BrandPartnership from "@/pages/BrandPartnership";
 import BrandLinksAdmin from "@/pages/BrandLinksAdmin";
 import LinkInBio from "@/pages/LinkInBio";
 import TV from "@/pages/TV";
+import AffiliateSalesBlueprint from "@/pages/AffiliateSalesBlueprint";
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -104,6 +105,7 @@ const App: React.FC = () => {
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/links" element={<LinkInBio />} />
                 <Route path="/tv" element={<TV />} />
+                <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
                 
                 <Route path="*" element={<NotFound />} />
               </Route>

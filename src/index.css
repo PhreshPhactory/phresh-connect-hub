@@ -39,6 +39,8 @@
     --tertiary-foreground: 0 0% 0%; /* Ink Black */
     --teal: 180 100% 21%; /* Global Teal */
     --teal-foreground: 0 0% 100%; /* Bright White */
+    --rust: 15 78% 45%; /* Rust Accent */
+    --rust-foreground: 0 0% 100%; /* Bright White */
   }
 
   .dark {
@@ -71,6 +73,10 @@
     --sidebar-ring: 49 69% 52%;
     --tertiary: 49 69% 52%; /* Strategic Gold */
     --tertiary-foreground: 0 0% 0%; /* Ink Black */
+    --teal: 180 100% 21%; /* Global Teal */
+    --teal-foreground: 0 0% 100%; /* Bright White */
+    --rust: 15 78% 45%; /* Rust Accent */
+    --rust-foreground: 0 0% 100%; /* Bright White */
   }
 }
 

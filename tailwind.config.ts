@@ -107,6 +107,18 @@ export default {
 					600: 'hsl(180 100% 17%)',
 					700: 'hsl(180 100% 13%)',
 				},
+				rust: {
+					DEFAULT: 'hsl(var(--rust))',
+					foreground: 'hsl(var(--rust-foreground))',
+					50: 'hsl(15 78% 95%)',
+					100: 'hsl(15 78% 85%)',
+					200: 'hsl(15 78% 75%)',
+					300: 'hsl(15 78% 65%)',
+					400: 'hsl(15 78% 55%)',
+					500: 'hsl(var(--rust))', // Rust Accent
+					600: 'hsl(15 78% 35%)',
+					700: 'hsl(15 78% 25%)',
+				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
