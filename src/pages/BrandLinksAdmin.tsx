@@ -34,6 +34,20 @@ const BrandLinksAdmin = () => {
       navigate('/auth');
       return;
     }
+    
+    // Check if user is content manager
+    const { data, error } = await supabase
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', session.user.id)
+      .in('role', ['admin', 'editor']);
+      
+    if (error || !data || data.length === 0) {
+      toast.error("Access denied. Content manager role required.");
+      navigate('/');
+      return;
+    }
+    
     setIsAuthenticated(true);
     fetchLinks();
   };
