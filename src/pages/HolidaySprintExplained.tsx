@@ -2,333 +2,334 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
 import { Check } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const HolidaySprintExplained = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollToForm = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
   return (
     <>
       <SEOHead
         title="THE HOLIDAY AFFILIATE SALES SPRINT™ - Phresh Phactory"
-        description="A 3-day, done-with-you accelerator that builds the affiliate sales system your brand needs to move products before the holiday window closes."
+        description="Get a complete, ready-to-use holiday affiliate sales system in 72 hours — with zero meetings, zero overwhelm, and zero guesswork."
         keywords="holiday affiliate sales, affiliate marketing sprint, Q4 sales accelerator, affiliate content creation, brand partnership"
         canonicalUrl="https://phreshphactory.com/holiday-explained"
       />
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="relative pt-20 md:pt-32 pb-12 md:pb-16 px-4 overflow-hidden">
+        <section className="relative pt-20 md:pt-32 pb-16 md:pb-20 px-4 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-tertiary/5 via-background to-teal/5" />
           
           <div className="container max-w-5xl mx-auto relative z-10">
             <div className="text-center space-y-8">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight">
-                THE HOLIDAY AFFILIATE<br />SALES SPRINT™
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-tight">
+                Your Holiday Affiliate Program<br />Isn't the Problem.<br />Your System Is.
               </h1>
               
               <p className="text-xl md:text-2xl lg:text-3xl text-foreground/90 max-w-4xl mx-auto font-light leading-relaxed">
-                A 3-day, done-with-you accelerator that builds the affiliate sales system your brand needs to move products before the holiday window closes.
+                Get a complete, ready-to-use holiday affiliate sales system in 72 hours — with zero meetings, zero overwhelm, and zero guesswork.
               </p>
               
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                This sprint is for brands who need results fast — not just a link.
-              </p>
-              
-              <div className="pt-6 flex flex-col items-center gap-4">
+              <div className="pt-6">
                 <Button
-                  asChild
+                  onClick={scrollToForm}
                   size="lg"
-                  className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
-                  <Link to="/holiday">Apply Now</Link>
+                  Start Your Holiday Sprint
                 </Button>
-                <p className="text-sm text-muted-foreground italic">
-                  Limited holiday enrollment.
-                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Problem Section */}
-        <section className="pt-12 pb-20 px-4 bg-muted/30">
-          <div className="container max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 text-center">
-              Most affiliate programs fail because affiliates don't get what they need to actually sell.
-            </h2>
-            
-            <div className="prose prose-lg md:prose-xl max-w-none space-y-6 text-foreground/90">
-              <p>
-                Affiliates can't drive sales if they're sent into Q4 empty-handed.<br />
-                They need messaging. Assets. Talking points. Scripts. Content.
-              </p>
-              
-              <p>
-                Most brands never give them these tools — and then assume affiliates "don't work."
-              </p>
-              
-              <p className="font-medium text-foreground">
-                The truth is simple:<br />
-                Affiliates WANT to sell your products — but no one has given them what to say or share.
-              </p>
-              
-              <p className="text-xl font-semibold text-foreground">
-                The Holiday Affiliate Sales Sprint solves this in 72 hours.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* 3 Hero Products Framework */}
-        <section className="py-20 px-4">
+        {/* Pain Points Section */}
+        <section className="py-20 px-4 bg-muted/30">
           <div className="container max-w-5xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
-              We streamline your brand into three products that convert best.
+              Why Most Affiliate Programs Fail
             </h2>
             
-            <p className="text-lg md:text-xl text-foreground/90 mb-12 text-center max-w-3xl mx-auto">
-              Instead of overwhelming affiliates with your entire catalog, the sprint helps your brand choose the three products most likely to sell RIGHT NOW:
-            </p>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Product 1 */}
-              <div className="bg-card border border-border p-8 rounded-lg space-y-4">
-                <div className="w-12 h-12 rounded-full bg-tertiary/20 flex items-center justify-center text-2xl font-bold text-tertiary">
-                  1
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-4">
+                  <span className="text-rust text-xl font-bold">×</span>
                 </div>
-                <h3 className="text-2xl font-heading font-semibold">
-                  Highest-Margin Product
-                </h3>
-                <p className="text-muted-foreground text-sm uppercase tracking-wide">
-                  Your Profit Driver
-                </p>
-                <p className="text-foreground/90">
-                  The product that makes you the most per sale.<br />
-                  Great for affiliate boosts + holiday promos.
-                </p>
+                <h3 className="font-semibold text-lg mb-2">No Talking Points</h3>
+                <p className="text-muted-foreground">Affiliates don't know what to say about your products.</p>
               </div>
-
-              {/* Product 2 */}
-              <div className="bg-card border border-border p-8 rounded-lg space-y-4">
-                <div className="w-12 h-12 rounded-full bg-teal/20 flex items-center justify-center text-2xl font-bold text-teal">
-                  2
+              
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-4">
+                  <span className="text-rust text-xl font-bold">×</span>
                 </div>
-                <h3 className="text-2xl font-heading font-semibold">
-                  Best-Selling Product
-                </h3>
-                <p className="text-muted-foreground text-sm uppercase tracking-wide">
-                  Your Fastest Converter
-                </p>
-                <p className="text-foreground/90">
-                  Your proven winner — the product audiences already want.<br />
-                  Perfect for quick results and easy affiliate content.
-                </p>
+                <h3 className="font-semibold text-lg mb-2">No Consistent Content Kit</h3>
+                <p className="text-muted-foreground">No branded assets, product images, or positioning guides.</p>
               </div>
-
-              {/* Product 3 */}
-              <div className="bg-card border border-border p-8 rounded-lg space-y-4">
-                <div className="w-12 h-12 rounded-full bg-rust/20 flex items-center justify-center text-2xl font-bold text-rust">
-                  3
+              
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-4">
+                  <span className="text-rust text-xl font-bold">×</span>
                 </div>
-                <h3 className="text-2xl font-heading font-semibold">
-                  Seasonal or Holiday Product
-                </h3>
-                <p className="text-muted-foreground text-sm uppercase tracking-wide">
-                  Your Urgency Driver
-                </p>
-                <p className="text-foreground/90">
-                  A limited-edition item, seasonal collection, or giftable product.<br />
-                  Affiliates love sharing what's timely + exclusive.
-                </p>
+                <h3 className="font-semibold text-lg mb-2">No Seasonal Angles</h3>
+                <p className="text-muted-foreground">Missing the urgency and gifting angles that drive holiday sales.</p>
+              </div>
+              
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-4">
+                  <span className="text-rust text-xl font-bold">×</span>
+                </div>
+                <h3 className="font-semibold text-lg mb-2">No Clear Product Focus</h3>
+                <p className="text-muted-foreground">Affiliates are overwhelmed by too many SKUs and no guidance.</p>
+              </div>
+              
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-4">
+                  <span className="text-rust text-xl font-bold">×</span>
+                </div>
+                <h3 className="font-semibold text-lg mb-2">No Ready Links</h3>
+                <p className="text-muted-foreground">Affiliates can't find or access the right links when they need them.</p>
+              </div>
+              
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-4">
+                  <span className="text-rust text-xl font-bold">×</span>
+                </div>
+                <h3 className="font-semibold text-lg mb-2">No Creator Brief</h3>
+                <p className="text-muted-foreground">No instructions on how to create content or what to emphasize.</p>
+              </div>
+              
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-4">
+                  <span className="text-rust text-xl font-bold">×</span>
+                </div>
+                <h3 className="font-semibold text-lg mb-2">No Sample Scripts</h3>
+                <p className="text-muted-foreground">Affiliates have to guess what to say in videos and posts.</p>
+              </div>
+              
+              <div className="bg-card border border-border p-6 rounded-lg">
+                <div className="w-10 h-10 rounded-full bg-rust/20 flex items-center justify-center mb-4">
+                  <span className="text-rust text-xl font-bold">×</span>
+                </div>
+                <h3 className="font-semibold text-lg mb-2">No System to Follow</h3>
+                <p className="text-muted-foreground">No clear roadmap for affiliates to execute successfully.</p>
               </div>
             </div>
 
-            <div className="mt-12 space-y-4 text-center max-w-3xl mx-auto">
-              <p className="text-lg text-foreground/90">
-                These three products become the <strong>"Holiday Hero Trio"</strong> — the foundation of all the assets we build.
+            <div className="text-center max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl font-semibold text-foreground mb-4">
+                Brands think affiliates aren't working.
               </p>
-              <p className="text-lg text-foreground/90">
-                Affiliates don't need 50 SKUs.<br />
-                <strong>They need three products they can confidently push.</strong>
+              <p className="text-xl md:text-2xl text-foreground/90">
+                But affiliates simply have nothing strong to work with.
               </p>
             </div>
           </div>
         </section>
 
-        {/* 3-Day Sprint Breakdown */}
-        <section className="py-20 px-4 bg-muted/30">
+        {/* What This Sprint Delivers */}
+        <section className="py-20 px-4">
           <div className="container max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
-              In just 72 hours, your brand leaves with a complete affiliate sales system.
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-6 text-center">
+              What This Sprint Delivers — Fully Done For You
             </h2>
             
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Day 1 */}
-              <div className="bg-card border-2 border-tertiary/30 p-8 rounded-lg space-y-6">
-                <div>
-                  <div className="inline-block px-4 py-2 bg-tertiary/20 rounded-full mb-4">
-                    <span className="text-sm font-semibold uppercase tracking-wide text-tertiary-foreground">Day 1</span>
+            <p className="text-xl text-center text-foreground/90 max-w-3xl mx-auto mb-16">
+              Submit one intake form. We build everything. No calls, no back-and-forth, no homework.
+            </p>
+
+            <div className="space-y-8">
+              {/* Holiday Product Focus Strategy */}
+              <div className="bg-card border-2 border-tertiary/30 p-8 rounded-lg">
+                <h3 className="text-2xl font-heading font-bold mb-4 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-tertiary/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-tertiary" />
                   </div>
-                  <h3 className="text-2xl font-heading font-bold mb-2">
-                    Strategy + Positioning
-                  </h3>
+                  Holiday Product Focus Strategy
+                </h3>
+                <p className="text-foreground/90 mb-6 ml-11">
+                  We choose 3 products with the highest earning potential:
+                </p>
+                <div className="grid md:grid-cols-3 gap-6 ml-11">
+                  <div className="space-y-2">
+                    <div className="text-lg font-semibold text-tertiary">1. Highest-Margin Product</div>
+                    <p className="text-sm text-muted-foreground">Your profit driver</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-lg font-semibold text-teal">2. Top-Selling Product</div>
+                    <p className="text-sm text-muted-foreground">Your fastest converter</p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-lg font-semibold text-rust">3. Seasonal/Giftable Product</div>
+                    <p className="text-sm text-muted-foreground">Strong holiday appeal</p>
+                  </div>
                 </div>
-                
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-tertiary mt-0.5 flex-shrink-0" />
-                    <span>Identify your three Hero Products</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-tertiary mt-0.5 flex-shrink-0" />
-                    <span>Map your seasonal offer</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-tertiary mt-0.5 flex-shrink-0" />
-                    <span>Define brand messaging affiliates will use</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-tertiary mt-0.5 flex-shrink-0" />
-                    <span>Review your affiliate setup or platform</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-tertiary mt-0.5 flex-shrink-0" />
-                    <span>"Affiliate Sales Positioning Framework" session</span>
-                  </li>
-                </ul>
               </div>
 
-              {/* Day 2 */}
-              <div className="bg-card border-2 border-teal/30 p-8 rounded-lg space-y-6">
-                <div>
-                  <div className="inline-block px-4 py-2 bg-teal/20 rounded-full mb-4">
-                    <span className="text-sm font-semibold uppercase tracking-wide text-teal-foreground">Day 2</span>
+              {/* Complete Creator Brief */}
+              <div className="bg-card border border-border p-8 rounded-lg">
+                <h3 className="text-2xl font-heading font-bold mb-3 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-teal/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-teal" />
                   </div>
-                  <h3 className="text-2xl font-heading font-bold mb-2">
-                    The Affiliate Asset Kit
-                  </h3>
-                </div>
-                
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-teal mt-0.5 flex-shrink-0" />
-                    <span>Branded share-ready images</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-teal mt-0.5 flex-shrink-0" />
-                    <span>3–5 talking point templates</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-teal mt-0.5 flex-shrink-0" />
-                    <span>Short & long scripts for affiliates</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-teal mt-0.5 flex-shrink-0" />
-                    <span>Creator brief</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-teal mt-0.5 flex-shrink-0" />
-                    <span>Caption starters</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-teal mt-0.5 flex-shrink-0" />
-                    <span>Link placement guide</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-teal mt-0.5 flex-shrink-0" />
-                    <span>Holiday product positioning</span>
-                  </li>
-                </ul>
+                  Complete Creator Brief
+                </h3>
+                <p className="text-foreground/90 ml-11">
+                  Tells affiliates exactly what to highlight, how to speak about your product, and who it's for.
+                </p>
               </div>
 
-              {/* Day 3 */}
-              <div className="bg-card border-2 border-rust/30 p-8 rounded-lg space-y-6">
-                <div>
-                  <div className="inline-block px-4 py-2 bg-rust/20 rounded-full mb-4">
-                    <span className="text-sm font-semibold uppercase tracking-wide text-rust-foreground">Day 3</span>
+              {/* Holiday Talking Points */}
+              <div className="bg-card border border-border p-8 rounded-lg">
+                <h3 className="text-2xl font-heading font-bold mb-3 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-rust/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-rust" />
                   </div>
-                  <h3 className="text-2xl font-heading font-bold mb-2">
-                    The Holiday Launch Plan
-                  </h3>
-                </div>
-                
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-rust mt-0.5 flex-shrink-0" />
-                    <span>7-day promo & posting plan</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-rust mt-0.5 flex-shrink-0" />
-                    <span>Affiliate activation messages</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-rust mt-0.5 flex-shrink-0" />
-                    <span>Content distribution roadmap</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-rust mt-0.5 flex-shrink-0" />
-                    <span>Step-by-step instructions for keeping affiliates engaged</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-rust mt-0.5 flex-shrink-0" />
-                    <span>Holiday offer rollout checklist</span>
-                  </li>
-                </ul>
+                  Holiday Talking Points
+                </h3>
+                <p className="text-foreground/90 ml-11">
+                  Clear, persuasive, benefit-led messaging affiliates can copy/paste.
+                </p>
+              </div>
+
+              {/* Content Kit for Affiliates */}
+              <div className="bg-card border border-border p-8 rounded-lg">
+                <h3 className="text-2xl font-heading font-bold mb-3 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-tertiary/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-tertiary" />
+                  </div>
+                  Content Kit for Affiliates
+                </h3>
+                <p className="text-foreground/90 ml-11">
+                  Includes stills, mockups, angles, and positioning statements.
+                </p>
+              </div>
+
+              {/* Holiday Sales Angles + B-Roll Guidance */}
+              <div className="bg-card border border-border p-8 rounded-lg">
+                <h3 className="text-2xl font-heading font-bold mb-3 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-teal/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-teal" />
+                  </div>
+                  Holiday Sales Angles + B-Roll Guidance
+                </h3>
+                <p className="text-foreground/90 ml-11">
+                  Shows affiliates how to naturally incorporate your product in holiday moments.
+                </p>
+              </div>
+
+              {/* Affiliate Deep Links + Easy Access */}
+              <div className="bg-card border border-border p-8 rounded-lg">
+                <h3 className="text-2xl font-heading font-bold mb-3 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-rust/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-rust" />
+                  </div>
+                  Affiliate Deep Links + Easy Access
+                </h3>
+                <p className="text-foreground/90 ml-11">
+                  Ensures every affiliate has the right link, ready to use instantly.
+                </p>
+              </div>
+
+              {/* Your Holiday Affiliate Sales System */}
+              <div className="bg-card border-2 border-primary/30 p-8 rounded-lg">
+                <h3 className="text-2xl font-heading font-bold mb-3 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-5 h-5 text-primary" />
+                  </div>
+                  Your Holiday Affiliate Sales System (PDF)
+                </h3>
+                <p className="text-foreground/90 ml-11">
+                  One organized, easy-to-share package.
+                </p>
               </div>
             </div>
-
-            <p className="text-xl md:text-2xl font-semibold text-center mt-12 text-foreground">
-              Affiliates won't post without content.<br />
-              This sprint creates everything they need — fast.
-            </p>
           </div>
         </section>
 
-        {/* Who This Is For */}
+        {/* No-Meeting Structure */}
+        <section className="py-20 px-4 bg-gradient-to-br from-teal/5 via-background to-tertiary/5">
+          <div className="container max-w-4xl mx-auto text-center">
+            <div className="bg-card border-2 border-primary/30 p-10 md:p-16 rounded-lg shadow-lg">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+                Built for Busy Founders
+              </h2>
+              <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
+                This Sprint is built for busy founders. There are no meetings, no calls, and no strategy sessions. You submit your information, and in 72 hours, your entire holiday affiliate system is complete.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Why This Matters */}
         <section className="py-20 px-4">
           <div className="container max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
-              Perfect for brands who need to move product this holiday season.
+              Why This Matters for Holiday Sales
             </h2>
             
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="flex items-start gap-4 p-6 bg-card border border-border rounded-lg">
-                <Check className="w-6 h-6 text-tertiary flex-shrink-0 mt-1" />
-                <span className="text-lg">Brands on Afrofiliate or any affiliate platform</span>
+            <div className="space-y-8">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-tertiary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                  <Check className="w-6 h-6 text-tertiary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Creators Need Simplicity</h3>
+                  <p className="text-foreground/90">
+                    Affiliates perform best when they have clear, organized instructions they can follow immediately.
+                  </p>
+                </div>
               </div>
-              
-              <div className="flex items-start gap-4 p-6 bg-card border border-border rounded-lg">
-                <Check className="w-6 h-6 text-tertiary flex-shrink-0 mt-1" />
-                <span className="text-lg">Brands whose affiliates aren't posting</span>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-teal/20 flex items-center justify-center flex-shrink-0 mt-1">
+                  <Check className="w-6 h-6 text-teal" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">The Holiday Window Is Short</h3>
+                  <p className="text-foreground/90">
+                    You have weeks, not months, to maximize Q4 sales. Every day without a system is lost revenue.
+                  </p>
+                </div>
               </div>
-              
-              <div className="flex items-start gap-4 p-6 bg-card border border-border rounded-lg">
-                <Check className="w-6 h-6 text-tertiary flex-shrink-0 mt-1" />
-                <span className="text-lg">Founders without a marketing team</span>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-rust/20 flex items-center justify-center flex-shrink-0 mt-1">
+                  <Check className="w-6 h-6 text-rust" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">You Can't Afford to Waste 30 Days Training Affiliates</h3>
+                  <p className="text-foreground/90">
+                    Traditional onboarding takes too long. This system gets affiliates selling from day one.
+                  </p>
+                </div>
               </div>
-              
-              <div className="flex items-start gap-4 p-6 bg-card border border-border rounded-lg">
-                <Check className="w-6 h-6 text-tertiary flex-shrink-0 mt-1" />
-                <span className="text-lg">Businesses launching last-minute Q4 campaigns</span>
-              </div>
-              
-              <div className="flex items-start gap-4 p-6 bg-card border border-border rounded-lg">
-                <Check className="w-6 h-6 text-tertiary flex-shrink-0 mt-1" />
-                <span className="text-lg">Brands missing the internal capacity to make content</span>
-              </div>
-              
-              <div className="flex items-start gap-4 p-6 bg-card border border-border rounded-lg">
-                <Check className="w-6 h-6 text-tertiary flex-shrink-0 mt-1" />
-                <span className="text-lg">Anyone who wants real affiliate sales before December ends</span>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                  <Check className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">A Done-For-You System Means Affiliates Can Start Selling Immediately</h3>
+                  <p className="text-foreground/90">
+                    No learning curve. No confusion. Just clear content and instant activation.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Testimonial Section */}
-        <section className="py-20 px-4 bg-gradient-to-br from-tertiary/5 via-background to-teal/5">
+        <section className="py-20 px-4 bg-muted/30">
           <div className="container max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-12 text-center">
               What Founders Are Saying
@@ -349,82 +350,81 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
-        {/* Why This Works */}
+        {/* FAQ Section */}
         <section className="py-20 px-4">
-          <div className="container max-w-4xl mx-auto">
+          <div className="container max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
-              Why this sprint delivers results in days — not months.
+              Frequently Asked Questions
             </h2>
             
-            <div className="prose prose-lg md:prose-xl max-w-none space-y-6 text-foreground/90">
-              <p>
-                Most affiliate strategies rely on hope.<br />
-                Hope affiliates post.<br />
-                Hope affiliates know what to say.<br />
-                Hope customers understand the offer.
-              </p>
-              
-              <p className="text-xl font-bold text-foreground">
-                Hope is not a system.
-              </p>
-              
-              <p>
-                This sprint works because it gives affiliates what they've been missing:<br />
-                clarity, content, instructions, and a structured plan.
-              </p>
-              
-              <p>
-                Phresh Phactory works directly with Afrofiliate and understands exactly what affiliates need to convert.<br />
-                This sprint was built from real-world affiliate behavior — not theory.
-              </p>
-            </div>
-          </div>
-        </section>
+            <Accordion type="single" collapsible className="space-y-4">
+              <AccordionItem value="item-1" className="bg-card border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                  Do I need to get on a meeting?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/90 text-base">
+                  No. Everything is done without calls. You submit your intake form, and we build your complete system — no meetings required.
+                </AccordionContent>
+              </AccordionItem>
 
-        {/* Pricing Teaser */}
-        <section className="py-20 px-4 bg-muted/30">
-          <div className="container max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8">
-              A holiday-only offer for brands who want to make Q4 count.
-            </h2>
-            
-            <p className="text-lg md:text-xl text-foreground/90 mb-10">
-              Because this sprint involves hands-on work, enrollment is extremely limited.<br />
-              Pricing will be shared upon application approval.
-            </p>
-            
-            <Button
-              asChild
-              size="lg"
-              className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
-            >
-              <Link to="/holiday">Apply Now</Link>
-            </Button>
+              <AccordionItem value="item-2" className="bg-card border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                  How long does it take?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/90 text-base">
+                  72 hours from completed intake. Once you submit your information, we deliver your full holiday affiliate sales system within three business days.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="bg-card border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                  What if I don't have an affiliate program yet?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/90 text-base">
+                  We will guide you on the simplest path to get started. Our system works with any affiliate platform or can help you choose the right one for your brand.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="bg-card border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                  Will I need to create content?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/90 text-base">
+                  No, we handle the structure and creator assets. You provide product information and brand details — we build everything your affiliates need to create content and drive sales.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5" className="bg-card border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+                  Can my team use the system internally?
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/90 text-base">
+                  Yes, it's yours permanently. You can share it with your team, use it for your own content creation, and adapt it as your business grows.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </section>
 
         {/* Final CTA Section */}
-        <section className="py-20 md:py-32 px-4 bg-gradient-to-br from-teal/10 via-background to-tertiary/10">
+        <section className="py-20 md:py-32 px-4 bg-gradient-to-br from-tertiary/10 via-background to-teal/10">
           <div className="container max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold">
-              Holiday sales aren't waiting — your affiliate system shouldn't either.
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
+              Holiday sales do not happen by accident.<br />They happen because affiliates have a system.
             </h2>
             
-            <p className="text-xl md:text-2xl text-foreground/90">
-              Apply now to secure your 3-day sprint slot.
+            <p className="text-xl md:text-2xl text-foreground/90 font-light">
+              Let us build yours — fast.
             </p>
             
-            <div className="pt-6 flex flex-col items-center gap-4">
+            <div className="pt-6">
               <Button
                 asChild
                 size="lg"
                 className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground"
               >
-                <Link to="/holiday">Apply Now</Link>
+                <Link to="/holiday">Start Your Holiday Sprint</Link>
               </Button>
-              <p className="text-sm text-muted-foreground italic">
-                Slots are extremely limited for the holiday season.
-              </p>
             </div>
           </div>
         </section>
