@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -505,8 +506,25 @@ const BrandPartnership = () => {
         </div>
       </section>
 
+      {/* Holiday Sprint CTA Section */}
+      <section className="py-16 px-4 bg-primary/5">
+        <div className="container-custom max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Need Holiday Sales Support Now?
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Get your complete holiday affiliate sales system built in 72 hours — no meetings, no overwhelm, just results.
+          </p>
+          <Button asChild size="lg" className="btn-primary">
+            <Link to="/holiday-explained">
+              Learn About The Holiday Affiliate Sales Sprint™
+            </Link>
+          </Button>
+        </div>
+      </section>
+
       {/* Newsletter Section for Brands */}
-      <NewsletterForm 
+      <NewsletterForm
         title="Brand Growth Insights for Black-Owned Businesses"
         subtitle="Get practical strategies on brand partnerships, affiliate marketing, and scaling your Black-owned business through strategic visibility."
         benefits={[
