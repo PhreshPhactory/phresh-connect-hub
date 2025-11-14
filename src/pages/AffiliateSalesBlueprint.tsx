@@ -273,25 +273,29 @@ const AffiliateSalesBlueprint = () => {
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                  See what Afrofiliate/CashBlack have to say about Kiera and Phresh Phactory, Inc.
+                </h2>
+              </div>
+
               <Card className="border-2 border-strategic-gold shadow-2xl bg-gradient-to-br from-background to-muted/20">
                 <CardContent className="p-10 md:p-16">
                   <div className="text-center mb-8">
-                    <div className="flex justify-center mb-6">
+                    <p className="font-heading font-bold text-2xl text-foreground mb-1">Matthew Addai</p>
+                    <p className="text-lg text-muted-foreground mb-2">Co-Founder and CEO</p>
+                    <p className="text-lg text-teal font-semibold mb-6">Afrofiliate / CashBlack</p>
+                    <div className="flex justify-center">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-8 h-8 text-strategic-gold fill-current" viewBox="0 0 24 24">
+                        <svg key={i} className="w-6 h-6 text-strategic-gold fill-current" viewBox="0 0 24 24">
                           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
                       ))}
                     </div>
                   </div>
-                  <blockquote className="text-xl md:text-2xl text-foreground leading-relaxed text-center mb-8 italic">
+                  <blockquote className="text-xl md:text-2xl text-foreground leading-relaxed text-center italic border-t-2 border-strategic-gold/30 pt-8">
                     "Working with Kiera has been transformational to me and my business on a personal and professional level. In addition to the improved communication and organisation skills we now posses, the processes and systems we've built together and put in place have proved invaluable to the growth and sustainability in everything we do. We can see a tangible and measurable difference in before working with Kiera to where we are now and I would highly recommend her to everyone."
                   </blockquote>
-                  <div className="text-center border-t-2 border-strategic-gold/30 pt-6">
-                    <p className="font-heading font-bold text-xl text-foreground">Matthew Addai</p>
-                    <p className="text-muted-foreground">Co-Founder and CEO</p>
-                    <p className="text-teal font-semibold">Afrofiliate / CashBlack</p>
-                  </div>
                 </CardContent>
               </Card>
             </div>
