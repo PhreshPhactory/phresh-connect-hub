@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Youtube, ExternalLink } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import RelatedBrands from '@/components/RelatedBrands';
+import { sanitizeHTML } from '@/utils/security';
 
 interface Product {
   item_name: string;
@@ -271,7 +272,7 @@ const ProductSpotlight = () => {
               prose-strong:text-foreground
               prose-ul:text-muted-foreground
               prose-ol:text-muted-foreground"
-            dangerouslySetInnerHTML={{ __html: spotlight.content }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHTML(spotlight.content) }}
           />
 
           {/* CTA to explore more */}
