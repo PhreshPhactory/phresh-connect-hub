@@ -57,9 +57,23 @@ const NewsletterSignup = ({
           throw error;
         }
       } else {
+        // Send welcome email
+        try {
+          await supabase.functions.invoke('send-welcome-email', {
+            body: {
+              email: email.trim().toLowerCase(),
+              name: name.trim() || undefined,
+              source,
+            },
+          });
+        } catch (emailError) {
+          console.error('Error sending welcome email:', emailError);
+          // Don't fail the whole subscription if email fails
+        }
+
         toast({
           title: "Success!",
-          description: "You've been added to our newsletter.",
+          description: "You've been added to our newsletter. Check your email for a welcome message!",
         });
         setEmail('');
         setName('');
