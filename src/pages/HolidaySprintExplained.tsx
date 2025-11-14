@@ -323,7 +323,7 @@ const HolidaySprintExplained = () => {
               </blockquote>
               <div className="text-center">
                 <p className="font-semibold text-foreground text-lg">Matthew Addai</p>
-                <p className="text-muted-foreground">[Title/Company]</p>
+                <p className="text-muted-foreground">Co-Founder and CEO, Afrofiliate/ Cashblack</p>
               </div>
             </div>
           </div>
