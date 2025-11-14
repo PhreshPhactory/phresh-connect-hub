@@ -44,6 +44,7 @@ import TV from "@/pages/TV";
 import AffiliateSalesBlueprint from "@/pages/AffiliateSalesBlueprint";
 import HolidaySprint from "@/pages/HolidaySprint";
 import HolidaySprintLanding from "@/pages/HolidaySprintLanding";
+import HolidaySprintExplained from "@/pages/HolidaySprintExplained";
 import HolidaySprintThankYou from "@/pages/HolidaySprintThankYou";
 
 // Simplified loading fallback component
@@ -111,6 +112,7 @@ const App: React.FC = () => {
                 <Route path="*" element={<NotFound />} />
               </Route>
               <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
+              <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
               <Route path="/holiday" element={<HolidaySprint />} />
               <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
             </Routes>
