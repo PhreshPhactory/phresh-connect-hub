@@ -106,7 +106,7 @@ const Navigation = () => {
             </Link>
             
             <Button asChild className="btn-primary">
-              <Link to="/contact">Get Started</Link>
+              <Link to="/holiday-explained">Get Started</Link>
             </Button>
           </div>
 
@@ -179,7 +179,7 @@ const Navigation = () => {
                 Contact
               </Link>
               <Button asChild className="btn-primary w-full mt-4">
-                <Link to="/contact">Get Started</Link>
+                <Link to="/holiday-explained">Get Started</Link>
               </Button>
             </div>
           </div>
