@@ -75,10 +75,10 @@ export default function HolidaySprintThankYou() {
               <p className="mt-8 text-sm text-muted-foreground">
                 Questions? Email us at{" "}
                 <a
-                  href="mailto:hello@phreshphactory.com"
+                  href="mailto:info@phreshphactory.co"
                   className="text-strategic-gold hover:underline font-semibold"
                 >
-                  hello@phreshphactory.com
+                  info@phreshphactory.co
                 </a>
               </p>
             </CardContent>
