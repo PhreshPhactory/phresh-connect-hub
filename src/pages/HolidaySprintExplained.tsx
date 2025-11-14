@@ -31,9 +31,9 @@ const HolidaySprintExplained = () => {
   return (
     <>
       <SEOHead
-        title="THE HOLIDAY AFFILIATE SALES SPRINT™ - Phresh Phactory"
-        description="Get a complete, ready-to-use holiday affiliate sales system in 72 hours — with zero meetings, zero overwhelm, and zero guesswork."
-        keywords="holiday affiliate sales, affiliate marketing sprint, Q4 sales accelerator, affiliate content creation, brand partnership"
+        title="Holiday Affiliate Sales Strategy | THE HOLIDAY AFFILIATE SALES SPRINT™ - Phresh Phactory"
+        description="Get a complete holiday affiliate sales system in 72 hours. Phresh Phactory helps product brands optimize affiliate programs with multicultural storytelling and premium content production."
+        keywords="holiday affiliate sales, affiliate marketing sprint, Q4 sales accelerator, affiliate content creation, brand partnership, product content agency, affiliate sales strategist, holiday sales system, e-commerce brand strategy"
         canonicalUrl="https://phreshphactory.com/holiday-explained"
       />
 
@@ -43,9 +43,16 @@ const HolidaySprintExplained = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-tertiary/5 via-background to-teal/5" />
           
           <div className="container max-w-5xl mx-auto relative z-10">
+            {/* SEO Introduction */}
+            <div className="mb-8">
+              <p className="text-lg md:text-xl text-center text-foreground/90 max-w-4xl mx-auto leading-relaxed">
+                Phresh Phactory, Inc. helps product brands grow through multicultural storytelling, affiliate program optimization, and premium content production designed to increase visibility and sales.
+              </p>
+            </div>
+
             <div className="text-center space-y-8">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-tight">
-                Your Holiday Affiliate Sales System — Built in 72 Hours
+                Your Holiday Affiliate Sales Strategy — Built in 72 Hours
               </h1>
               
               <p className="text-xl md:text-2xl lg:text-3xl text-foreground/90 max-w-4xl mx-auto font-light leading-relaxed">
@@ -82,7 +89,7 @@ const HolidaySprintExplained = () => {
             <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-2xl bg-muted">
               <iframe
                 src="https://www.youtube.com/embed/2FWrAuYIlmU"
-                title="Why Most Affiliate Programs Don't Work"
+                title="Holiday Affiliate Sales Strategy: Why Most Affiliate Programs Don't Work - Phresh Phactory"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
@@ -302,6 +309,26 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
+        {/* Testimonial Section */}
+        <section className="py-20 px-4 bg-muted/30">
+          <div className="container max-w-4xl mx-auto">
+            <div className="bg-card border-2 border-primary/30 p-8 md:p-12 rounded-lg shadow-lg">
+              <div className="text-center mb-6">
+                <svg className="w-12 h-12 mx-auto text-primary/40 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+              <blockquote className="text-lg md:text-xl text-center text-foreground/90 mb-8 leading-relaxed">
+                "This testimonial content should be replaced with the actual Matthew Addai testimonial. The structure is ready to highlight social proof and build credibility for the Holiday Affiliate Sales Sprint program."
+              </blockquote>
+              <div className="text-center">
+                <p className="font-semibold text-foreground text-lg">Matthew Addai</p>
+                <p className="text-muted-foreground">[Title/Company]</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* No-Meeting Structure */}
         <section className="py-20 px-4 bg-gradient-to-br from-teal/5 via-background to-tertiary/5">
           <div className="container max-w-4xl mx-auto text-center">
@@ -479,6 +506,25 @@ const HolidaySprintExplained = () => {
               title="Get Strategic Insights for Your Brand"
               description="Join brand founders receiving weekly insights on affiliate marketing, holiday strategies, and scaling affiliate revenue."
             />
+          </div>
+        </section>
+
+        {/* Work With Us for Content Creation Section */}
+        <section className="py-20 px-4 bg-gradient-to-br from-primary/5 via-background to-teal/5">
+          <div className="container max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
+              Work With Us for Content Creation
+            </h2>
+            <p className="text-lg md:text-xl text-foreground/90 leading-relaxed max-w-3xl mx-auto">
+              Need premium content to promote your products? Phresh Phactory, Inc. creates high-quality product videos, UGC-style reels, and branded content your team can use across your channels to increase visibility and conversions.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg" variant="outline" className="px-8">
+                <Link to="/brands">
+                  Explore Content Production Services
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
 
