@@ -70,7 +70,7 @@ const Header: React.FC = memo(() => {
     { label: 'Shop', path: '/shop' },
     { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
-    { label: 'Packages', path: '/packages' },
+    { label: 'Holiday Sprint', path: '/holiday-explained' },
     { label: 'Blog', path: '/blog' },
     { label: 'Contact', path: '/contact' }
   ];
