@@ -19,7 +19,7 @@ const HolidaySprintExplained = () => {
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="relative py-20 md:py-32 px-4 overflow-hidden">
+        <section className="relative pt-20 md:pt-32 pb-12 md:pb-16 px-4 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-tertiary/5 via-background to-teal/5" />
           
           <div className="container max-w-5xl mx-auto relative z-10">
@@ -53,7 +53,7 @@ const HolidaySprintExplained = () => {
         </section>
 
         {/* Problem Section */}
-        <section className="py-20 px-4 bg-muted/30">
+        <section className="pt-12 pb-20 px-4 bg-muted/30">
           <div className="container max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 text-center">
               Most affiliate programs fail because affiliates don't get what they need to actually sell.
