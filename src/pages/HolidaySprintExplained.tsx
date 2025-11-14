@@ -45,11 +45,15 @@ const HolidaySprintExplained = () => {
           <div className="container max-w-5xl mx-auto relative z-10">
             <div className="text-center space-y-8">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-tight">
-                Your Holiday Affiliate Program<br />Isn't the Problem.<br />Your System Is.
+                Your Holiday Affiliate Sales System — Built in 72 Hours
               </h1>
               
               <p className="text-xl md:text-2xl lg:text-3xl text-foreground/90 max-w-4xl mx-auto font-light leading-relaxed">
-                Get a complete, ready-to-use holiday affiliate sales system in 72 hours — with zero meetings, zero overwhelm, and zero guesswork.
+                No meetings. No calls. No overwhelm. Just results.
+              </p>
+              
+              <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto">
+                We build the assets your affiliates need so they can finally sell your products during the holiday rush.
               </p>
               
               <div className="pt-6">
@@ -68,6 +72,10 @@ const HolidaySprintExplained = () => {
         {/* Pain Points Section */}
         <section className="py-20 px-4 bg-muted/30">
           <div className="container max-w-5xl mx-auto">
+            <p className="text-xl md:text-2xl text-center text-foreground/90 max-w-4xl mx-auto mb-12">
+              Most holiday affiliate programs fail not because of the affiliates — but because brands don't have a system designed for seasonal selling.
+            </p>
+            
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
               Why Most Affiliate Programs Fail
             </h2>
@@ -157,7 +165,7 @@ const HolidaySprintExplained = () => {
             </h2>
             
             <p className="text-xl text-center text-foreground/90 max-w-3xl mx-auto mb-16">
-              Submit one intake form. We build everything. No calls, no back-and-forth, no homework.
+              Submit one intake form and we handle the rest. This is a fast, done-for-you 72-hour build where every piece of your holiday affiliate system is created and delivered ready to launch — with zero meetings required.
             </p>
 
             <div className="space-y-8">
@@ -175,17 +183,20 @@ const HolidaySprintExplained = () => {
                 <div className="grid md:grid-cols-3 gap-6 ml-11">
                   <div className="space-y-2">
                     <div className="text-lg font-semibold text-tertiary">1. Highest-Margin Product</div>
-                    <p className="text-sm text-muted-foreground">Your profit driver</p>
+                    <p className="text-sm text-muted-foreground">the one that earns you the most profit</p>
                   </div>
                   <div className="space-y-2">
                     <div className="text-lg font-semibold text-teal">2. Top-Selling Product</div>
-                    <p className="text-sm text-muted-foreground">Your fastest converter</p>
+                    <p className="text-sm text-muted-foreground">the one that converts quickly</p>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-lg font-semibold text-rust">3. Seasonal/Giftable Product</div>
-                    <p className="text-sm text-muted-foreground">Strong holiday appeal</p>
+                    <div className="text-lg font-semibold text-rust">3. Seasonal or Giftable Product</div>
+                    <p className="text-sm text-muted-foreground">positioned specifically for holiday buyers</p>
                   </div>
                 </div>
+                <p className="text-foreground/90 mt-6 ml-11">
+                  We choose products strategically so your affiliates aren't overwhelmed and can promote with clarity and confidence.
+                </p>
               </div>
 
               {/* Complete Creator Brief */}
@@ -276,8 +287,11 @@ const HolidaySprintExplained = () => {
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
                 Built for Busy Founders
               </h2>
-              <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
+              <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed mb-6">
                 This Sprint is built for busy founders. There are no meetings, no calls, and no strategy sessions. You submit your information, and in 72 hours, your entire holiday affiliate system is complete.
+              </p>
+              <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed">
+                You don't need a kickoff call, a strategy session, or any back-and-forth. We build everything using the information you submit.
               </p>
             </div>
           </div>
@@ -339,6 +353,21 @@ const HolidaySprintExplained = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Why This Sprint Works Section */}
+        <section className="py-20 px-4">
+          <div className="container max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8">
+              Why This Sprint Works
+            </h2>
+            <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed max-w-3xl mx-auto">
+              Affiliates can only sell what they clearly understand.
+            </p>
+            <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed max-w-3xl mx-auto mt-4">
+              This system gives them simple talking points, clean assets, organized links, and ready-to-use content so they can start promoting immediately — without asking you questions.
+            </p>
           </div>
         </section>
 
@@ -440,6 +469,13 @@ const HolidaySprintExplained = () => {
             
             <p className="text-xl md:text-2xl text-foreground/90 font-light">
               Let us build yours — fast.
+            </p>
+            
+            <p className="text-lg md:text-xl text-foreground/80 mt-8">
+              Want a year-round affiliate system, not just a holiday sprint?<br />
+              <Link to="/affiliate-sales-blueprint" className="text-primary hover:text-primary/80 underline font-semibold">
+                Explore The Evergreen Affiliate Sales Blueprint™
+              </Link>
             </p>
             
             <div className="pt-6">
