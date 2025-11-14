@@ -23,10 +23,14 @@ const assessmentSchema = z.object({
 
 const rateLimiter = createRateLimiter(3, 60000); // 3 attempts per minute
 
-const AssessmentForm = () => {
+interface AssessmentFormProps {
+  initialEmail?: string;
+}
+
+const AssessmentForm = ({ initialEmail = '' }: AssessmentFormProps) => {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    email: initialEmail,
     type: '',
     company: '',
     honeypot: ''

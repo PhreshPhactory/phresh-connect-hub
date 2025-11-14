@@ -42,6 +42,9 @@ export default function HolidaySprint() {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: new URLSearchParams(window.location.search).get('email') || '',
+    },
   });
 
   const hasAffiliateProgram = watch("hasAffiliateProgram");

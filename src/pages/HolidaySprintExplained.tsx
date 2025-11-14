@@ -23,9 +23,8 @@ const HolidaySprintExplained = () => {
     setCapturedEmail(email);
     setIsEmailModalOpen(false);
     
-    setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }, 100);
+    // Navigate to application form with pre-filled email
+    window.location.href = `/holiday?email=${encodeURIComponent(email)}`;
   };
 
   return (
