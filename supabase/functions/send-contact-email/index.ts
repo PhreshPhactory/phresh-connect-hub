@@ -80,7 +80,7 @@ const handler = async (req: Request): Promise<Response> => {
       
       // Send email to business
       emailResponse = await resend.emails.send({
-        from: "Phresh Phactory Contact Form <no-reply@phreshphactory.com>",
+        from: "Phresh Phactory <onboarding@resend.dev>",
         to: ["info@phreshphactory.co"],
         subject: `New Contact Form Submission - ${contactData.serviceInterest || 'General Inquiry'}`,
         html: `
@@ -124,12 +124,44 @@ const handler = async (req: Request): Promise<Response> => {
         `,
       });
 
+      // Send confirmation email to submitter
+      await resend.emails.send({
+        from: "Phresh Phactory <onboarding@resend.dev>",
+        to: [contactData.email],
+        subject: "Thank you for contacting Phresh Phactory",
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">
+              Thank You for Reaching Out!
+            </h2>
+            
+            <p>Hi ${escapeHtml(contactData.name)},</p>
+            
+            <p>We've received your message and appreciate you taking the time to contact us. Our team will review your inquiry and get back to you shortly.</p>
+            
+            <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #555; margin-top: 0;">Your Submission Summary</h3>
+              <p><strong>Service Interest:</strong> ${contactData.serviceInterest || 'General Inquiry'}</p>
+              ${contactData.companyStage ? `<p><strong>Company Stage:</strong> ${escapeHtml(contactData.companyStage)}</p>` : ''}
+            </div>
+            
+            <p>In the meantime, feel free to explore our services and resources on our website.</p>
+            
+            <p>Best regards,<br>The Phresh Phactory Team</p>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 12px;">
+              <p>Questions? Reply to this email at info@phreshphactory.co</p>
+            </div>
+          </div>
+        `,
+      });
+
     } else if (data.formType === 'newsletter') {
       const newsletterData = data as NewsletterData;
       
       // Send newsletter signup notification to business
       emailResponse = await resend.emails.send({
-        from: "Phresh Phactory Newsletter <no-reply@phreshphactory.com>",
+        from: "Phresh Phactory <onboarding@resend.dev>",
         to: ["info@phreshphactory.co"],
         subject: "New Newsletter Subscription",
         html: `
@@ -146,7 +178,7 @@ const handler = async (req: Request): Promise<Response> => {
       
       // Send assessment request to business
       emailResponse = await resend.emails.send({
-        from: "Phresh Phactory Assessment <no-reply@phreshphactory.com>",
+        from: "Phresh Phactory <onboarding@resend.dev>",
         to: ["info@phreshphactory.co"],
         subject: "New Free Assessment Request",
         html: `
@@ -167,7 +199,7 @@ const handler = async (req: Request): Promise<Response> => {
       
       // Send brand partnership application to business
       emailResponse = await resend.emails.send({
-        from: "Phresh Phactory Brand Partnership <no-reply@phreshphactory.com>",
+        from: "Phresh Phactory <onboarding@resend.dev>",
         to: ["info@phreshphactory.co"],
         subject: `Brand Feature Application - ${escapeHtml(brandData.brandName)}`,
         html: `
