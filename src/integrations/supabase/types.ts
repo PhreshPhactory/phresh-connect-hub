@@ -133,6 +133,54 @@ export type Database = {
         }
         Relationships: []
       }
+      holiday_sprint_applications: {
+        Row: {
+          affiliate_platform: string | null
+          biggest_challenge: string
+          brand_name: string
+          brand_website: string | null
+          created_at: string
+          desired_results: string
+          email: string
+          full_name: string
+          has_affiliate_program: boolean
+          id: string
+          materials_urls: string[] | null
+          products_description: string
+          social_handle: string | null
+        }
+        Insert: {
+          affiliate_platform?: string | null
+          biggest_challenge: string
+          brand_name: string
+          brand_website?: string | null
+          created_at?: string
+          desired_results: string
+          email: string
+          full_name: string
+          has_affiliate_program: boolean
+          id?: string
+          materials_urls?: string[] | null
+          products_description: string
+          social_handle?: string | null
+        }
+        Update: {
+          affiliate_platform?: string | null
+          biggest_challenge?: string
+          brand_name?: string
+          brand_website?: string | null
+          created_at?: string
+          desired_results?: string
+          email?: string
+          full_name?: string
+          has_affiliate_program?: boolean
+          id?: string
+          materials_urls?: string[] | null
+          products_description?: string
+          social_handle?: string | null
+        }
+        Relationships: []
+      }
       link_clicks: {
         Row: {
           clicked_at: string
