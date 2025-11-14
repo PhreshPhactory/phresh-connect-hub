@@ -420,27 +420,6 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
-        {/* Testimonial Section */}
-        <section className="py-20 px-4 bg-muted/30">
-          <div className="container max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-heading font-semibold mb-12 text-center">
-              What Founders Are Saying
-            </h2>
-            
-            <div className="bg-card border border-border p-8 md:p-12 rounded-lg shadow-lg">
-              <blockquote className="space-y-6">
-                <p className="text-lg md:text-xl leading-relaxed font-serif italic text-foreground/90">
-                  "Working with Kiera has been transformational to me and my business on a personal and professional level. In addition to the improved communication and organisation skills we now posses, the processes and systems we've built together and put in place have proved invaluable to the growth and sustainability in everything we do. We can see a tangible and measurable difference in before working with Kiera to where we are now and I would highly recommend her to everyone."
-                </p>
-                
-                <footer className="pt-6 border-t border-border">
-                  <div className="font-semibold text-foreground">Matthew Addai</div>
-                  <div className="text-muted-foreground">Co-Founder & CEO, Afrofiliate / CashBlack</div>
-                </footer>
-              </blockquote>
-            </div>
-          </div>
-        </section>
 
         {/* FAQ Section */}
         <section className="py-20 px-4">
