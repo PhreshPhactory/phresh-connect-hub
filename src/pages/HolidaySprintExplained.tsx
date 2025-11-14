@@ -69,6 +69,28 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
+        {/* Video Section */}
+        <section className="py-20 px-4">
+          <div className="container max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-4">
+              Watch: Why Most Affiliate Programs Don't Work (and How We Fix Them)
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground mb-10">
+              A short message from Kiera H., Founder of Phresh Phactory, Inc.
+            </p>
+            
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-2xl bg-muted">
+              <iframe
+                src="https://www.youtube.com/embed/2FWrAuYIlmU"
+                title="Why Most Affiliate Programs Don't Work"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Pain Points Section */}
         <section className="py-20 px-4 bg-muted/30">
           <div className="container max-w-5xl mx-auto">
