@@ -46,6 +46,7 @@ import HolidaySprint from "@/pages/HolidaySprint";
 import HolidaySprintLanding from "@/pages/HolidaySprintLanding";
 import HolidaySprintExplained from "@/pages/HolidaySprintExplained";
 import HolidaySprintThankYou from "@/pages/HolidaySprintThankYou";
+import NewsletterAdmin from "@/pages/NewsletterAdmin";
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -105,6 +106,7 @@ const App: React.FC = () => {
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/admin/brand-links" element={<BrandLinksAdmin />} />
+                <Route path="/admin/newsletter" element={<NewsletterAdmin />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/links" element={<LinkInBio />} />

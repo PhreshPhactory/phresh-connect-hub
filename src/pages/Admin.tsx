@@ -483,7 +483,7 @@ const Admin = () => {
         {/* Admin Navigation */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Quick Access</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             <Card className="border-2 border-primary">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -512,6 +512,22 @@ const Admin = () => {
                 </p>
                 <Button variant="default" className="w-full bg-gradient-to-r from-tertiary to-teal" asChild>
                   <Link to="/admin/brand-links">Manage Brand Links</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-teal">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span>📧</span> Newsletter Subscribers
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  View, filter, and export your newsletter subscriber list
+                </p>
+                <Button variant="default" className="w-full bg-gradient-to-r from-teal to-primary" asChild>
+                  <Link to="/admin/newsletter">View Subscribers</Link>
                 </Button>
               </CardContent>
             </Card>
