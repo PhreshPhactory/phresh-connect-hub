@@ -190,9 +190,86 @@ const BrandPartnership = () => {
           </div>
         </div>
       </section>
+
+      {/* Premium Content Production Section */}
+      <section className="py-16 bg-background border-t border-border">
+        <div className="container-custom max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+              Premium Content Production for Brands
+            </h2>
+            <div className="space-y-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p>
+                Phresh Phactory, Inc. produces high-quality, conversion-driven product content for brands 
+                who want editorial storytelling, cultural intelligence, and strategic positioning baked into 
+                every asset.
+              </p>
+              <p className="font-medium text-foreground">
+                You don't need a million followers for content to drive revenue — you need the right strategy, 
+                message, and execution.
+              </p>
+              <p className="font-semibold text-foreground">
+                We handle everything end-to-end.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-muted/50 border border-border rounded-lg p-8 mb-8">
+            <h3 className="text-xl font-semibold mb-6 text-foreground">
+              Available content services include:
+            </h3>
+            <ul className="space-y-3 text-muted-foreground">
+              <li className="flex items-start">
+                <span className="text-teal mr-3 mt-1">•</span>
+                <span>Product story videos</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-teal mr-3 mt-1">•</span>
+                <span>Seasonal and holiday campaigns</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-teal mr-3 mt-1">•</span>
+                <span>Premium UGC-style product explainers</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-teal mr-3 mt-1">•</span>
+                <span>Scriptwriting + voiceover</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-teal mr-3 mt-1">•</span>
+                <span>Video editing + packaging</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-teal mr-3 mt-1">•</span>
+                <span>Social-ready assets for your brand channels</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="text-center space-y-4">
+            <p className="text-lg text-foreground">
+              <span className="font-medium">You own the content. You post it where you want.</span>
+              <br />
+              We produce it with excellence — fast.
+            </p>
+            <Button 
+              size="lg" 
+              onClick={() => {
+                const formSection = document.getElementById('brand-inquiry-form');
+                if (formSection) {
+                  formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="px-8 py-6 text-lg"
+            >
+              Book Premium Content Production for Your Brand
+            </Button>
+          </div>
+        </div>
+      </section>
       
       {/* Form Section */}
-      <section className="py-15 bg-background">
+      <section id="brand-inquiry-form" className="py-15 bg-background">
         <div className="container-custom max-w-3xl">
           <div className="animate-on-scroll">
             <h2 className="text-3xl font-bold mb-6 text-center text-foreground">Partnership Application</h2>
