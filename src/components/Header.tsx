@@ -68,12 +68,10 @@ const Header: React.FC = memo(() => {
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Shop', path: '/shop' },
-    { label: 'About', path: '/about' },
     { label: 'Services', path: '/services' },
     { label: 'Blueprint', path: '/affiliate-sales-blueprint' },
     { label: 'Holiday Sprint', path: '/holiday-explained' },
-    { label: 'Blog', path: '/blog' },
-    { label: 'Contact', path: '/contact' }
+    { label: 'Blog', path: '/blog' }
   ];
   
   const isActive = (path: string) => {
