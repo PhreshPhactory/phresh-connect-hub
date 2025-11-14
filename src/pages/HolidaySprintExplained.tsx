@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import SEOHead from "@/components/SEOHead";
@@ -8,10 +9,23 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import EmailCaptureModal from "@/components/EmailCaptureModal";
 
 const HolidaySprintExplained = () => {
-  const scrollToForm = () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [capturedEmail, setCapturedEmail] = useState('');
+
+  const handleCTAClick = () => {
+    setIsEmailModalOpen(true);
+  };
+
+  const handleEmailSuccess = (email: string) => {
+    setCapturedEmail(email);
+    setIsEmailModalOpen(false);
+    
+    setTimeout(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }, 100);
   };
 
   return (
@@ -40,7 +54,7 @@ const HolidaySprintExplained = () => {
               
               <div className="pt-6">
                 <Button
-                  onClick={scrollToForm}
+                  onClick={handleCTAClick}
                   size="lg"
                   className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
@@ -419,16 +433,22 @@ const HolidaySprintExplained = () => {
             
             <div className="pt-6">
               <Button
-                asChild
+                onClick={handleCTAClick}
                 size="lg"
                 className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground"
               >
-                <Link to="/holiday">Start Your Holiday Sprint</Link>
+                Start Your Holiday Sprint
               </Button>
             </div>
           </div>
         </section>
       </div>
+
+      <EmailCaptureModal 
+        isOpen={isEmailModalOpen}
+        onClose={() => setIsEmailModalOpen(false)}
+        onSuccess={handleEmailSuccess}
+      />
     </>
   );
 };
