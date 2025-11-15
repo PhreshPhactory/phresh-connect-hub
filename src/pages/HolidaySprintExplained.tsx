@@ -445,6 +445,92 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
+        {/* Pricing Section */}
+        <section className="py-20 px-4 bg-background">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
+              Investment
+            </h2>
+            
+            <div className="bg-card border-4 border-primary p-10 md:p-14 rounded-lg shadow-2xl max-w-2xl mx-auto">
+              <div className="text-center mb-8">
+                <p className="text-6xl md:text-7xl font-heading font-bold text-primary mb-4">
+                  $5,000
+                </p>
+                <p className="text-2xl font-semibold mb-6">
+                  The Holiday Affiliate Sales Sprint™
+                </p>
+              </div>
+              
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4">Includes:</h3>
+                <p className="text-foreground/90 leading-relaxed">
+                  Full 72-hour build, all deliverables, deep links, content kit, briefs, and the master PDF system.
+                </p>
+              </div>
+              
+              <div className="mb-8 p-6 bg-muted/50 rounded-lg">
+                <h3 className="text-xl font-semibold mb-4">Payment Options:</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span>Pay in full: $5,000</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span>Split-Pay: $2,750 × 2 months</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <p className="text-center text-sm text-foreground/70 italic">
+                If the system is not fully usable by your affiliates, we will revise it until it is.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Visual Mockups Section */}
+        <section className="py-20 px-4 bg-muted/30">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
+              What Your System Looks Like
+            </h2>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-card p-6 rounded-lg border-2 border-border">
+                <div className="aspect-[3/4] bg-gradient-to-br from-primary/10 to-tertiary/10 rounded-lg mb-4 flex items-center justify-center">
+                  <p className="text-muted-foreground text-sm px-4 text-center">Master PDF Preview</p>
+                </div>
+                <h3 className="font-semibold text-lg text-center">Complete System PDF</h3>
+                <p className="text-sm text-muted-foreground text-center mt-2">
+                  Everything in one organized document
+                </p>
+              </div>
+              
+              <div className="bg-card p-6 rounded-lg border-2 border-border">
+                <div className="aspect-[3/4] bg-gradient-to-br from-teal/10 to-primary/10 rounded-lg mb-4 flex items-center justify-center">
+                  <p className="text-muted-foreground text-sm px-4 text-center">Creator Brief Sample</p>
+                </div>
+                <h3 className="font-semibold text-lg text-center">Creator Briefs</h3>
+                <p className="text-sm text-muted-foreground text-center mt-2">
+                  Clear instructions for your affiliates
+                </p>
+              </div>
+              
+              <div className="bg-card p-6 rounded-lg border-2 border-border">
+                <div className="aspect-[3/4] bg-gradient-to-br from-rust/10 to-teal/10 rounded-lg mb-4 flex items-center justify-center">
+                  <p className="text-muted-foreground text-sm px-4 text-center">Link Map Example</p>
+                </div>
+                <h3 className="font-semibold text-lg text-center">Affiliate Link Map</h3>
+                <p className="text-sm text-muted-foreground text-center mt-2">
+                  Organized tracking for every product
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Mid-Page CTA */}
         <section className="py-16 px-4">
           <div className="container max-w-3xl mx-auto text-center">
@@ -458,6 +544,84 @@ const HolidaySprintExplained = () => {
             <p className="text-sm text-foreground/70 mt-3">
               Takes 7 minutes. No meetings. No calls.
             </p>
+          </div>
+        </section>
+
+        {/* What Happens After You Book */}
+        <section className="py-20 px-4 bg-gradient-to-br from-teal/5 via-background to-primary/5">
+          <div className="container max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
+              What Happens After You Book
+            </h2>
+            
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-primary-foreground font-bold text-xl">
+                  1
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-2">Complete the 7-minute intake form.</h3>
+                  <p className="text-foreground/90">
+                    Provide your brand details, product information, and affiliate links.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-primary-foreground font-bold text-xl">
+                  2
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-2">Select your Sprint Start Date.</h3>
+                  <p className="text-foreground/90">
+                    Choose when you want your 72-hour build to begin.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-primary-foreground font-bold text-xl">
+                  3
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-2">Your 72-hour build begins once assets are submitted.</h3>
+                  <p className="text-foreground/90">
+                    We immediately start creating your complete affiliate sales system.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-primary-foreground font-bold text-xl">
+                  4
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-2">We create your full system and deliver:</h3>
+                  <ul className="space-y-2 mt-3">
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>1 Master PDF</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span>1 Organized Asset Folder (scripts, talking points, link map, content kit)</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-primary-foreground font-bold text-xl">
+                  5
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold mb-2">You send it to affiliates immediately.</h3>
+                  <p className="text-foreground/90">
+                    No calls. No meetings. Everything is ready to use.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -476,6 +640,26 @@ const HolidaySprintExplained = () => {
               <div className="text-center">
                 <p className="font-semibold text-foreground text-lg">Matthew Addai</p>
                 <p className="text-muted-foreground">Co-Founder & CEO, Afrofiliate / Cashblack</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Second Testimonial */}
+        <section className="py-20 px-4 bg-muted/30">
+          <div className="container max-w-4xl mx-auto">
+            <div className="bg-card border-2 border-primary/30 p-8 md:p-12 rounded-lg shadow-lg">
+              <div className="mb-6">
+                <svg className="w-12 h-12 text-primary mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+              <blockquote className="text-lg md:text-xl text-center text-foreground/90 mb-8 leading-relaxed">
+                "Kiera showed us exactly why our affiliate program wasn't converting — and she fixed it in one session. The system she built activated our creators immediately."
+              </blockquote>
+              <div className="text-center">
+                <p className="font-semibold text-foreground text-lg">Founder, Product Brand</p>
+                <p className="text-muted-foreground">(Name Hidden)</p>
               </div>
             </div>
           </div>
@@ -637,8 +821,19 @@ const HolidaySprintExplained = () => {
                 Holiday Sprint Availability
               </h2>
               <p className="text-xl text-foreground/90 mb-6 leading-relaxed">
+                Limited to <strong className="text-rust">15 Holiday Sprints</strong> this season. First come, first served.
+              </p>
+              <p className="text-xl text-foreground/90 mb-6 leading-relaxed">
                 To protect quality, we're accepting a limited number of Holiday Sprints this season. Once the calendar is full, the offer closes until next year.
               </p>
+              <div className="bg-rust/10 p-6 rounded-lg mb-4">
+                <p className="text-2xl font-bold text-rust mb-2">
+                  Holiday 2025 Cutoff Date: December 10 (11:59 PM EST)
+                </p>
+                <p className="text-foreground/80">
+                  (Ensures full delivery before the final holiday sales window.)
+                </p>
+              </div>
               <p className="text-lg text-foreground/80">
                 <strong>Note:</strong> Holiday Sprints must be booked before the final seasonal cutoff date to ensure delivery before the holiday sales window.
               </p>
