@@ -254,6 +254,97 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
+        {/* Compatible With These Affiliate Platforms Section */}
+        <section className="py-20 px-4">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
+              Compatible With These Affiliate Platforms
+            </h2>
+            
+            <div className="max-w-4xl mx-auto">
+              <p className="text-lg md:text-xl text-foreground/90 mb-8 text-center">
+                Our systems work seamlessly across the most widely used affiliate platforms for product-based brands, including:
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-x-8 gap-y-4 mb-10">
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Shopify Affiliate & Referral Programs</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Impact</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">CJ Affiliate (Commission Junction)</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">ShareASale</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Refersion</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">UpPromote (Shopify)</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">GoAffPro</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Awin</span>
+                  </li>
+                </ul>
+                
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Rakuten Advertising</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Amazon Associates</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Pepperjam</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Skimlinks</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">LTK (LIKEtoKNOW.it)</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">ShopStyle Collective</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">CashBlack</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-tertiary flex-shrink-0"></div>
+                    <span className="text-foreground/90">Afrofiliate</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <p className="text-center text-lg text-foreground/80 italic">
+                Your brand can use any affiliate platform — the systems we build are platform-agnostic and fully adaptable.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* How the 72-Hour Sprint Works */}
         <section className="py-20 px-4 bg-muted/30">
           <div className="container max-w-5xl mx-auto">
