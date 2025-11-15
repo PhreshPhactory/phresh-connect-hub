@@ -465,7 +465,7 @@ const HolidaySprintExplained = () => {
               <div className="mb-8">
                 <h3 className="text-xl font-semibold mb-4">Includes:</h3>
                 <p className="text-foreground/90 leading-relaxed">
-                  Full 72-hour build, all deliverables, deep links, content kit, briefs, and the master PDF system.
+                  A complete 72-hour build of your full affiliate sales system — hero product selection, talking points, scripts, deep link map, content kit, creator brief, holiday angles, and the master PDF system.
                 </p>
               </div>
               
@@ -483,9 +483,21 @@ const HolidaySprintExplained = () => {
                 </ul>
               </div>
               
-              <p className="text-center text-sm text-foreground/70 italic">
-                If the system is not fully usable by your affiliates, we will revise it until it is.
-              </p>
+              <div className="text-center pt-4 pb-6 px-4">
+                <p className="text-sm text-foreground/70 italic">
+                  If your system is not fully usable by your affiliates, we will revise it until it is.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <Button
+                  onClick={handleCTAClick}
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10 py-6"
+                >
+                  Start Your Holiday Sprint
+                </Button>
+              </div>
             </div>
           </div>
         </section>
@@ -645,25 +657,6 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
-        {/* Second Testimonial */}
-        <section className="py-20 px-4 bg-muted/30">
-          <div className="container max-w-4xl mx-auto">
-            <div className="bg-card border-2 border-primary/30 p-8 md:p-12 rounded-lg shadow-lg">
-              <div className="mb-6">
-                <svg className="w-12 h-12 text-primary mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-              </div>
-              <blockquote className="text-lg md:text-xl text-center text-foreground/90 mb-8 leading-relaxed">
-                "Kiera showed us exactly why our affiliate program wasn't converting — and she fixed it in one session. The system she built activated our creators immediately."
-              </blockquote>
-              <div className="text-center">
-                <p className="font-semibold text-foreground text-lg">Founder, Product Brand</p>
-                <p className="text-muted-foreground">(Name Hidden)</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* No-Meeting Structure */}
         <section className="py-20 px-4 bg-gradient-to-br from-teal/5 via-background to-tertiary/5">

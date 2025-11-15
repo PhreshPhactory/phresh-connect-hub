@@ -139,6 +139,16 @@ const AffiliateSalesBlueprint = () => {
                   </Card>
                 ))}
               </div>
+              
+              <div className="mt-12 text-center">
+                <Card className="border-2 border-strategic-gold shadow-lg bg-gradient-to-br from-background to-strategic-gold/5">
+                  <CardContent className="p-8">
+                    <p className="text-lg text-foreground/90 leading-relaxed">
+                      All deliverables are packaged in a clean, actionable <strong className="text-strategic-gold">Affiliate Asset Kit</strong> you can share with your affiliates immediately.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
@@ -471,30 +481,6 @@ const AffiliateSalesBlueprint = () => {
           </div>
         </section>
 
-        {/* Second Testimonial */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Card className="border-2 border-strategic-gold shadow-2xl bg-gradient-to-br from-background to-muted/20">
-                <CardContent className="p-10 md:p-16">
-                  <div className="text-center mb-8">
-                    <p className="font-heading font-bold text-2xl text-foreground mb-1">Founder, Lifestyle Brand</p>
-                    <div className="flex justify-center mb-6">
-                      {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-6 h-6 text-strategic-gold fill-current" viewBox="0 0 24 24">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                      ))}
-                    </div>
-                  </div>
-                  <blockquote className="text-xl md:text-2xl text-foreground leading-relaxed text-center italic border-t-2 border-strategic-gold/30 pt-8">
-                    "Kiera helped us understand exactly what our affiliates needed and why our sales were inconsistent. The Bootcamp changed our entire sales process."
-                  </blockquote>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
 
         {/* Primary CTA Section */}
         <section id="apply-form" className="py-20 bg-gradient-to-br from-ink-black via-teal-700 to-ink-black relative overflow-hidden">
