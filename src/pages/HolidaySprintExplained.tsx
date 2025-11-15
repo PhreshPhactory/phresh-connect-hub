@@ -445,6 +445,22 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
+        {/* Mid-Page CTA */}
+        <section className="py-16 px-4">
+          <div className="container max-w-3xl mx-auto text-center">
+            <Button
+              onClick={handleCTAClick}
+              size="lg"
+              className="text-lg px-10 py-7 bg-primary hover:bg-primary/90 text-primary-foreground"
+            >
+              Start Your Holiday Sprint
+            </Button>
+            <p className="text-sm text-foreground/70 mt-3">
+              Takes 7 minutes. No meetings. No calls.
+            </p>
+          </div>
+        </section>
+
         {/* Social Proof Section */}
         <section className="py-20 px-4">
           <div className="container max-w-4xl mx-auto">
