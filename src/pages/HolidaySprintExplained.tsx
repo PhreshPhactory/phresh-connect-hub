@@ -455,7 +455,7 @@ const HolidaySprintExplained = () => {
                 </svg>
               </div>
               <blockquote className="text-lg md:text-xl text-center text-foreground/90 mb-8 leading-relaxed">
-                "The Holiday Affiliate Sales Sprint is everything brands need to activate creators quickly. Kiera has helped us strengthen our affiliate strategy and improve customer communication — this program gives brands a system that creators can actually use."
+                "Working with Kiera has been transformational to me and my business on a personal and professional level. In addition to the improved communication and organisation skills we now posses, the processes and systems we've built together and put in place have proved invaluable to the growth and sustainability in everything we do. We can see a tangible and measurable difference in before working with Kiera to where we are now and I would highly recommend her to everyone."
               </blockquote>
               <div className="text-center">
                 <p className="font-semibold text-foreground text-lg">Matthew Addai</p>
