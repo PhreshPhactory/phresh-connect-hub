@@ -132,14 +132,20 @@ export default function HolidaySprint() {
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
               Apply for THE HOLIDAY AFFILIATE SALES SPRINT™
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               Tell us about your brand so we can prepare your custom affiliate sales system.
               This is a limited-time holiday offer.
             </p>
+            <Button
+              onClick={() => document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-strategic-gold hover:bg-strategic-gold/90 text-background font-bold text-lg px-8 py-6 rounded-lg"
+            >
+              Start Your Application
+            </Button>
           </div>
 
           {/* Form Card */}
-          <Card className="border-2 border-strategic-gold/30 shadow-xl bg-card">
+          <Card id="application-form" className="border-2 border-strategic-gold/30 shadow-xl bg-card">
             <CardContent className="p-8 md:p-12">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                 {/* Full Name */}
@@ -296,6 +302,27 @@ export default function HolidaySprint() {
                   {errors.desiredResults && (
                     <p className="text-sm text-destructive">{errors.desiredResults.message}</p>
                   )}
+                </div>
+
+                {/* Mid-form CTA */}
+                <div className="bg-muted/50 p-6 rounded-lg border border-strategic-gold/20 text-center">
+                  <p className="text-foreground font-semibold mb-4">
+                    Almost there! Complete your application to secure your spot.
+                  </p>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-strategic-gold hover:bg-strategic-gold/90 text-background font-bold px-8 py-3"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      "Submit Application Now"
+                    )}
+                  </Button>
                 </div>
 
                 {/* Biggest Challenge */}
