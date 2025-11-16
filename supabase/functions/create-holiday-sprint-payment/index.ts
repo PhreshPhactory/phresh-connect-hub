@@ -67,8 +67,17 @@ serve(async (req) => {
         },
       ],
       mode: mode,
-      success_url: `${req.headers.get("origin")}/holiday-sprint-payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${req.headers.get("origin")}/holiday?payment_success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/holiday-sprint-landing`,
+      payment_method_types: ['card', 'affirm', 'afterpay_clearpay', 'klarna'],
+      custom_text: {
+        submit: {
+          message: "Complete 72-hour, done-for-you Holiday Affiliate Sales System. Includes hero product selection, creator brief, holiday talking points, scripts, B-roll direction, affiliate link map, rollout checklist, and the master PDF system. No meetings. No calls. Immediate delivery in 72 hours after all assets are submitted."
+        },
+        after_submit: {
+          message: "Thank you! Your Holiday Affiliate Sales Sprint™ is officially booked. Please complete the application form so we can begin your 72-hour build."
+        }
+      },
       metadata: {
         paymentType: paymentType,
         productType: "holiday_sprint",
