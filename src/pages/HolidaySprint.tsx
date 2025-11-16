@@ -36,26 +36,34 @@ const formSchema = z.object({
   brandDescription: z.string().min(10, "Please provide a short description"),
   brandCategory: z.string().min(1, "Please select a category"),
   hasAffiliateProgram: z.enum(["yes", "no", "not-sure"]),
+  primaryAffiliatePlatform: z.string().min(1, "Please select a platform"),
   affiliatePlatform: z.string().optional(),
   affiliateSignupLink: z.string().optional(),
+  currentTrackingLinks: z.string().min(1, "Please provide at least one tracking link"),
   sampleTrackingLinks: z.string().optional(),
   hasDeepLinks: z.string().optional(),
   needDeepLinksCreated: z.string().optional(),
+  totalProductCount: z.string().min(1, "Please specify total product count"),
   products: z.array(productSchema).min(1, "At least one product is required"),
   holidayDiscounts: z.string().optional(),
   brandVoice: z.string().min(1, "Please select a brand voice"),
   productBenefits: z.string().min(10, "Please list 3-5 key benefits"),
   emotionsToEvoke: z.string().optional(),
+  repeatPhrases: z.string().optional(),
   idealBuyer: z.string().min(10, "Please describe the ideal buyer"),
   idealGiftRecipient: z.string().optional(),
   problemSolved: z.string().optional(),
+  multipleProblemsList: z.string().optional(),
   competitiveAdvantage: z.string().optional(),
   affiliateCount: z.string().optional(),
   creatorsInMind: z.string().optional(),
+  affiliateContentPlatforms: z.array(z.string()).optional(),
+  currentCreatorsList: z.string().optional(),
   campaignPlatforms: z.string().optional(),
   mainGoal: z.string().optional(),
   preferredStartDate: z.string().min(1, "Please select a start date"),
   blackoutDates: z.string().optional(),
+  deliveryLocation: z.string().min(1, "Please specify delivery location"),
   deliveryFormat: z.string().optional(),
   anythingElse: z.string().optional(),
   authorization: z.boolean().refine((val) => val === true, {
@@ -365,6 +373,46 @@ export default function HolidaySprint() {
                     {errors.hasAffiliateProgram && <p className="text-sm text-destructive">{errors.hasAffiliateProgram.message}</p>}
                   </div>
 
+                  <div className="space-y-2">
+                    <Label htmlFor="primaryAffiliatePlatform" className="text-foreground font-semibold">Primary Affiliate Platform *</Label>
+                    <Select onValueChange={(value) => setValue("primaryAffiliatePlatform", value)}>
+                      <SelectTrigger className="border-border focus:border-strategic-gold bg-background">
+                        <SelectValue placeholder="Select a platform" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border-border z-50">
+                        <SelectItem value="impact">Impact</SelectItem>
+                        <SelectItem value="refersion">Refersion</SelectItem>
+                        <SelectItem value="shareasale">ShareASale</SelectItem>
+                        <SelectItem value="cj">CJ Affiliate</SelectItem>
+                        <SelectItem value="uppromote">UpPromote</SelectItem>
+                        <SelectItem value="goaffpro">GoAffPro</SelectItem>
+                        <SelectItem value="awin">Awin</SelectItem>
+                        <SelectItem value="rakuten">Rakuten</SelectItem>
+                        <SelectItem value="amazon">Amazon Associates</SelectItem>
+                        <SelectItem value="shopify">Shopify Affiliate/Collabs</SelectItem>
+                        <SelectItem value="cashblack">CashBlack</SelectItem>
+                        <SelectItem value="afrofiliate">Afrofiliate</SelectItem>
+                        <SelectItem value="skimlinks">Skimlinks</SelectItem>
+                        <SelectItem value="ltk">LTK</SelectItem>
+                        <SelectItem value="shopstyle">ShopStyle Collective</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {errors.primaryAffiliatePlatform && <p className="text-sm text-destructive">{errors.primaryAffiliatePlatform.message}</p>}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="currentTrackingLinks" className="text-foreground font-semibold">Paste 1–3 current affiliate tracking links *</Label>
+                    <Textarea 
+                      id="currentTrackingLinks" 
+                      {...register("currentTrackingLinks")} 
+                      className="border-border focus:border-strategic-gold min-h-[100px]" 
+                      placeholder="Paste your tracking links here (one per line)" 
+                    />
+                    <p className="text-sm text-muted-foreground">Paste any sample affiliate links, storefront links, or dashboard-generated links. If you don't have deep links, include the main tracking link.</p>
+                    {errors.currentTrackingLinks && <p className="text-sm text-destructive">{errors.currentTrackingLinks.message}</p>}
+                  </div>
+
                   {hasAffiliateProgram === "yes" && (
                     <>
                       <div className="space-y-2">
@@ -436,10 +484,23 @@ export default function HolidaySprint() {
 
                 {/* SECTION 3: Products */}
                 <div className="space-y-6">
+                  <h2 className="text-2xl font-heading font-bold text-foreground border-b-2 border-strategic-gold pb-2">
+                    Section 3: Product Details
+                  </h2>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="totalProductCount" className="text-foreground font-semibold">How many total products do you sell? *</Label>
+                    <Input 
+                      id="totalProductCount" 
+                      {...register("totalProductCount")} 
+                      className="border-border focus:border-strategic-gold" 
+                      placeholder="E.g., 5, 10-15, 50+" 
+                    />
+                    {errors.totalProductCount && <p className="text-sm text-destructive">{errors.totalProductCount.message}</p>}
+                  </div>
+
                   <div className="flex items-center justify-between">
-                    <h2 className="text-2xl font-heading font-bold text-foreground border-b-2 border-strategic-gold pb-2">
-                      Section 3: Product Details
-                    </h2>
+                    <h3 className="text-xl font-semibold text-foreground">Products to Feature</h3>
                     <Button
                       type="button"
                       onClick={() => append({
@@ -694,6 +755,11 @@ export default function HolidaySprint() {
                     <Label htmlFor="emotionsToEvoke" className="text-foreground font-semibold">What emotions should the holiday messaging evoke?</Label>
                     <Textarea id="emotionsToEvoke" {...register("emotionsToEvoke")} className="border-border focus:border-strategic-gold min-h-[100px]" placeholder="E.g., giftable, luxury, self-care, practical, last-minute shopping" />
                   </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="repeatPhrases" className="text-foreground font-semibold">Any phrases or taglines you want repeated in the system? (Optional)</Label>
+                    <Textarea id="repeatPhrases" {...register("repeatPhrases")} className="border-border focus:border-strategic-gold min-h-[100px]" placeholder="List any key phrases, taglines, or messaging that should be consistently used" />
+                  </div>
                 </div>
 
                 {/* SECTION 6: Customer Targeting */}
@@ -722,6 +788,11 @@ export default function HolidaySprint() {
                     <Label htmlFor="competitiveAdvantage" className="text-foreground font-semibold">Why do customers choose your brand over competitors?</Label>
                     <Textarea id="competitiveAdvantage" {...register("competitiveAdvantage")} className="border-border focus:border-strategic-gold min-h-[100px]" placeholder="What makes your brand unique?" />
                   </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="multipleProblemsList" className="text-foreground font-semibold">If your product solves multiple problems, list them in order of importance. (Optional)</Label>
+                    <Textarea id="multipleProblemsList" {...register("multipleProblemsList")} className="border-border focus:border-strategic-gold min-h-[100px]" placeholder="List problems in order from most to least important" />
+                  </div>
                 </div>
 
                 {/* SECTION 7: Affiliate Goals */}
@@ -738,6 +809,35 @@ export default function HolidaySprint() {
                   <div className="space-y-2">
                     <Label htmlFor="creatorsInMind" className="text-foreground font-semibold">Do you already have creators in mind?</Label>
                     <Textarea id="creatorsInMind" {...register("creatorsInMind")} className="border-border focus:border-strategic-gold min-h-[100px]" placeholder="List any creators you're already working with or have in mind" />
+                  </div>
+
+                  <div className="space-y-4">
+                    <Label className="text-foreground font-semibold">Where do your affiliates primarily create content? *</Label>
+                    <div className="grid grid-cols-2 gap-4">
+                      {["TikTok", "Instagram", "YouTube", "Facebook", "Pinterest", "Blogs/Articles", "Email Lists", "Snapchat", "Other"].map((platform) => (
+                        <div key={platform} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={`platform-${platform}`}
+                            onCheckedChange={(checked) => {
+                              const current = watch("affiliateContentPlatforms") || [];
+                              if (checked) {
+                                setValue("affiliateContentPlatforms", [...current, platform]);
+                              } else {
+                                setValue("affiliateContentPlatforms", current.filter((p) => p !== platform));
+                              }
+                            }}
+                          />
+                          <Label htmlFor={`platform-${platform}`} className="cursor-pointer font-normal">
+                            {platform}
+                          </Label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="currentCreatorsList" className="text-foreground font-semibold">List any creators who currently post your products (Optional)</Label>
+                    <Textarea id="currentCreatorsList" {...register("currentCreatorsList")} className="border-border focus:border-strategic-gold min-h-[100px]" placeholder="List creators with their handles or links" />
                   </div>
 
                   <div className="space-y-2">
@@ -779,6 +879,17 @@ export default function HolidaySprint() {
                   </div>
 
                   <div className="space-y-2">
+                    <Label htmlFor="deliveryLocation" className="text-foreground font-semibold">Where should we deliver the final system? *</Label>
+                    <Input 
+                      id="deliveryLocation" 
+                      {...register("deliveryLocation")} 
+                      className="border-border focus:border-strategic-gold" 
+                      placeholder="Enter email address, Google Drive address, or folder link" 
+                    />
+                    {errors.deliveryLocation && <p className="text-sm text-destructive">{errors.deliveryLocation.message}</p>}
+                  </div>
+
+                  <div className="space-y-2">
                     <Label htmlFor="deliveryFormat" className="text-foreground font-semibold">Preferred delivery format</Label>
                     <Select onValueChange={(value) => setValue("deliveryFormat", value)}>
                       <SelectTrigger className="border-border focus:border-strategic-gold bg-background">
@@ -802,6 +913,12 @@ export default function HolidaySprint() {
                   <div className="space-y-2">
                     <Label htmlFor="anythingElse" className="text-foreground font-semibold">Anything else we should know before we begin?</Label>
                     <Textarea id="anythingElse" {...register("anythingElse")} className="border-border focus:border-strategic-gold min-h-[150px]" placeholder="Share any additional information that would be helpful" />
+                  </div>
+
+                  <div className="bg-muted/50 border border-border rounded-lg p-4 mb-4">
+                    <p className="text-sm text-foreground">
+                      <strong>Reminder:</strong> Please confirm that all links, product images, and brand assets you've uploaded are final. Your 72-hour build begins once all required assets are submitted.
+                    </p>
                   </div>
 
                   <div className="flex items-center space-x-2">
