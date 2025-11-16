@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -75,7 +75,6 @@ type FormData = z.infer<typeof formSchema>;
 
 export default function HolidaySprint() {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [brandAssets, setBrandAssets] = useState<{
     logo: File[];
@@ -121,19 +120,6 @@ export default function HolidaySprint() {
     control,
     name: "products",
   });
-
-  // Show success message if redirected from payment
-  useEffect(() => {
-    if (searchParams.get('payment_success') === 'true') {
-      toast({
-        title: "Payment Successful! 🎉",
-        description: "Your Holiday Affiliate Sales Sprint™ is officially booked. Please complete the application form below to begin your 72-hour build.",
-        duration: 8000,
-      });
-      // Clean up URL
-      window.history.replaceState({}, '', '/holiday');
-    }
-  }, [searchParams]);
 
   const hasAffiliateProgram = watch("hasAffiliateProgram");
 
