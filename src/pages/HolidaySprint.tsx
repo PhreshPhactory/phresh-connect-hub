@@ -248,6 +248,21 @@ export default function HolidaySprint() {
 
       if (error) throw error;
 
+      // Send intake confirmation email
+      try {
+        await supabase.functions.invoke("send-intake-confirmation", {
+          body: {
+            email: data.email,
+            name: data.fullName,
+            brandName: data.brandName,
+          },
+        });
+        console.log("Intake confirmation email sent");
+      } catch (emailError) {
+        console.error("Error sending intake confirmation email:", emailError);
+        // Don't block the user experience if email fails
+      }
+
       toast({
         title: "Application Submitted!",
         description: "We'll review your application and get back to you soon.",
