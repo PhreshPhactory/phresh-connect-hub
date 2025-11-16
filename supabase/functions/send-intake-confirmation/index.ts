@@ -54,7 +54,7 @@ const handler = async (req: Request): Promise<Response> => {
             <li>Your holiday activation plan, ready to send to affiliates immediately</li>
           </ul>
           
-          <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 30px;">If you have any questions before your Sprint begins, reply to this email.</p>
+          <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 30px;">If you have any questions before your Sprint begins, reply to Brands@PhreshPhactory.co</p>
           
           <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 30px;">— Phresh Phactory, Inc.</p>
         </div>
