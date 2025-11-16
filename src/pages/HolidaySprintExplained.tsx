@@ -597,13 +597,47 @@ const HolidaySprintExplained = () => {
                 <p className="text-2xl font-semibold mb-6">
                   The Holiday Affiliate Sales Sprint™
                 </p>
+                <p className="text-lg text-foreground/90 leading-relaxed">
+                  The fastest, clearest way to prepare your brand for holiday selling — with a complete affiliate sales system delivered in 72 hours.
+                </p>
               </div>
               
               <div className="mb-8">
                 <h3 className="text-xl font-semibold mb-4">Includes:</h3>
-                <p className="text-foreground/90 leading-relaxed">
-                  A complete 72-hour build of your full affiliate sales system — hero product selection, talking points, scripts, deep link map, content kit, creator brief, holiday angles, and the master PDF system.
-                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-foreground/90">Hero product selection (chosen for maximum holiday earning potential)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-foreground/90">Holiday talking points & creator scripts</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-foreground/90">Deep link map with organized affiliate links</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-foreground/90">Full content kit (stills, mockups, angles, positioning)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-foreground/90">Creator brief with clarity on what to say and highlight</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-foreground/90">Holiday sales angles + B-roll guidance</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-foreground/90">One master PDF for your entire affiliate system</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                    <span className="text-foreground/90">Organized asset folder ready to send to affiliates immediately</span>
+                  </li>
+                </ul>
               </div>
               
               <div className="mb-8 p-6 bg-muted/50 rounded-lg">
@@ -615,14 +649,24 @@ const HolidaySprintExplained = () => {
                   </li>
                   <li className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
-                    <span>Split-Pay: $2,750 × 2 months</span>
+                    <span>Split-pay: $2,750 × 2 months</span>
                   </li>
                 </ul>
               </div>
               
               <div className="text-center pt-4 pb-6 px-4">
                 <p className="text-sm text-foreground/70 italic">
-                  If your system is not fully usable by your affiliates, we will revise it until it is.
+                  If your system isn't fully usable by your affiliates, we revise it until it is.
+                </p>
+              </div>
+              
+              <div className="mb-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+                <h3 className="text-xl font-semibold mb-4">Why This Price Makes Sense</h3>
+                <p className="text-foreground/90 leading-relaxed mb-4">
+                  This Sprint replaces 30+ days of lost sales, disorganized creator outreach, and unclear messaging with a done-for-you system your affiliates can use immediately.
+                </p>
+                <p className="text-foreground/90 leading-relaxed">
+                  A single affiliate campaign — with direction — can cover your investment. Most brands lose far more than $5,000 every holiday season due to unclear systems.
                 </p>
               </div>
               
