@@ -4,7 +4,7 @@ import { CheckCircle, ExternalLink } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 
 export default function HolidaySprintThankYou() {
-  // Replace this with your actual Stripe checkout URL
+  // Replace this with your actual Stripe checkout URL for the $5,000 Holiday Sprint
   const stripeCheckoutUrl = "https://buy.stripe.com/test_yourcheckoutlink";
 
   return (
@@ -25,16 +25,14 @@ export default function HolidaySprintThankYou() {
 
               {/* Headline */}
               <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
-                Application Received for
-                <br />
-                THE HOLIDAY AFFILIATE SALES SPRINT™
+                Your Holiday Sprint Application Has Been Received
               </h1>
 
               {/* Subtext */}
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Thank you — your application has been submitted.
                 <br />
-                To secure your session, complete payment below.
+                To secure your 72-Hour Holiday Sprint, please complete your payment below.
               </p>
 
               {/* Payment Button */}
@@ -44,31 +42,36 @@ export default function HolidaySprintThankYou() {
                 className="w-full md:w-auto bg-strategic-gold hover:bg-strategic-gold/90 text-background font-bold text-lg px-12 py-6 rounded-lg transition-all shadow-lg hover:shadow-xl"
               >
                 <a href={stripeCheckoutUrl} target="_blank" rel="noopener noreferrer">
-                  Complete Payment - $497
+                  Complete Payment — $5,000
                   <ExternalLink className="ml-2 h-5 w-5" />
                 </a>
               </Button>
 
-              {/* Note */}
-              <div className="mt-10 pt-8 border-t border-border">
+              {/* Clarity Line */}
+              <div className="mt-6">
                 <p className="text-sm text-muted-foreground italic">
-                  Your session date will be emailed after payment is confirmed.
+                  Takes 7 minutes. No meetings. No calls. Your 72 hours begin after assets are received.
                 </p>
               </div>
 
               {/* Additional Info */}
               <div className="mt-8 p-6 bg-muted/30 rounded-lg">
-                <p className="text-sm text-foreground">
-                  <strong className="text-strategic-gold">What's Next?</strong>
-                  <br />
-                  Once payment is complete, you'll receive a confirmation email with:
+                <p className="text-sm text-foreground mb-4">
+                  <strong className="text-strategic-gold">What Happens After Payment</strong>
                 </p>
-                <ul className="text-sm text-muted-foreground mt-3 space-y-2 text-left max-w-md mx-auto">
-                  <li>• Your scheduled session date and time</li>
-                  <li>• Pre-session questionnaire link</li>
-                  <li>• Meeting access details</li>
-                  <li>• What to prepare before your session</li>
+                <p className="text-sm text-foreground mb-3">
+                  After your payment is confirmed, you will automatically receive:
+                </p>
+                <ul className="text-sm text-muted-foreground space-y-2 text-left max-w-md mx-auto">
+                  <li>• A confirmation email</li>
+                  <li>• A link to your 7-minute intake form</li>
+                  <li>• Instructions for submitting brand assets</li>
+                  <li>• Your Sprint Start Date</li>
+                  <li>• Details on when your 72-hour build will begin</li>
                 </ul>
+                <p className="text-sm text-foreground mt-4 italic">
+                  <strong>Reminder:</strong> Your 72-hour Sprint begins once your intake form and required brand assets are submitted.
+                </p>
               </div>
 
               {/* Contact */}
