@@ -16,16 +16,65 @@ import SEOHead from "@/components/SEOHead";
 import NewsletterSignup from "@/components/NewsletterSignup";
 
 const formSchema = z.object({
+  // Section 1: Brand Information
   fullName: z.string().min(2, "Name must be at least 2 characters"),
   brandName: z.string().min(2, "Brand name is required"),
   email: z.string().email("Invalid email address"),
-  brandWebsite: z.string().url("Invalid URL").optional().or(z.literal("")),
+  brandWebsite: z.string().url("Invalid URL"),
   socialHandle: z.string().min(1, "Social handle is required"),
-  hasAffiliateProgram: z.enum(["yes", "no"]),
+  brandDescription: z.string().min(10, "Please provide a short description"),
+  brandCategory: z.string().min(1, "Please select a category"),
+  
+  // Section 2: Affiliate Program Details
+  hasAffiliateProgram: z.enum(["yes", "no", "not-sure"]),
   affiliatePlatform: z.string().optional(),
-  productsDescription: z.string().min(20, "Please provide more detail (minimum 20 characters)"),
-  desiredResults: z.string().min(20, "Please provide more detail (minimum 20 characters)"),
-  biggestChallenge: z.string().min(20, "Please provide more detail (minimum 20 characters)"),
+  affiliateSignupLink: z.string().optional(),
+  sampleTrackingLinks: z.string().optional(),
+  hasDeepLinks: z.string().optional(),
+  needDeepLinksCreated: z.string().optional(),
+  
+  // Section 3: Product Details
+  productsDescription: z.string().min(20, "Please list all products with URLs"),
+  highestMarginProducts: z.string().optional(),
+  bestSellingProducts: z.string().optional(),
+  priorityProducts: z.string().optional(),
+  specialInstructions: z.string().optional(),
+  
+  // Section 4: Pricing & Margin Details
+  retailPrices: z.string().min(1, "Please provide retail prices"),
+  costPerProduct: z.string().optional(),
+  mostProfitableProducts: z.string().optional(),
+  holidayDiscounts: z.string().optional(),
+  
+  // Section 5: Brand Assets - handled via file uploads
+  
+  // Section 6: Brand Voice & Messaging
+  brandVoice: z.string().min(1, "Please select a brand voice"),
+  productBenefits: z.string().min(10, "Please list 3-5 key benefits"),
+  emotionsToEvoke: z.string().optional(),
+  
+  // Section 7: Customer Targeting
+  idealBuyer: z.string().min(10, "Please describe the ideal buyer"),
+  idealGiftRecipient: z.string().optional(),
+  problemSolved: z.string().optional(),
+  competitiveAdvantage: z.string().optional(),
+  
+  // Section 8: Affiliate Goals
+  affiliateCount: z.string().optional(),
+  creatorsInMind: z.string().optional(),
+  campaignPlatforms: z.string().optional(),
+  mainGoal: z.string().optional(),
+  
+  // Section 9: Logistics
+  preferredStartDate: z.string().min(1, "Please select a start date"),
+  blackoutDates: z.string().optional(),
+  deliveryFormat: z.string().optional(),
+  
+  // Section 10: Final Submission
+  anythingElse: z.string().optional(),
+  authorization: z.boolean().refine((val) => val === true, {
+    message: "You must confirm authorization",
+  }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -33,7 +82,21 @@ type FormData = z.infer<typeof formSchema>;
 export default function HolidaySprint() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [brandAssets, setBrandAssets] = useState<{
+    logo: File[];
+    productPhotos: File[];
+    lifestylePhotos: File[];
+    creatorContent: File[];
+    affiliateMaterials: File[];
+    brandGuidelines: File[];
+  }>({
+    logo: [],
+    productPhotos: [],
+    lifestylePhotos: [],
+    creatorContent: [],
+    affiliateMaterials: [],
+    brandGuidelines: [],
+  });
   
   const {
     register,
@@ -50,20 +113,32 @@ export default function HolidaySprint() {
 
   const hasAffiliateProgram = watch("hasAffiliateProgram");
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (category: keyof typeof brandAssets) => (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newFiles = Array.from(e.target.files);
-      setUploadedFiles((prev) => [...prev, ...newFiles]);
+      setBrandAssets((prev) => ({
+        ...prev,
+        [category]: [...prev[category], ...newFiles],
+      }));
     }
   };
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      // Upload files if any
+      // Upload all files from different categories
       let materialsUrls: string[] = [];
-      if (uploadedFiles.length > 0) {
-        for (const file of uploadedFiles) {
+      const allFiles = [
+        ...brandAssets.logo,
+        ...brandAssets.productPhotos,
+        ...brandAssets.lifestylePhotos,
+        ...brandAssets.creatorContent,
+        ...brandAssets.affiliateMaterials,
+        ...brandAssets.brandGuidelines,
+      ];
+
+      if (allFiles.length > 0) {
+        for (const file of allFiles) {
           const fileExt = file.name.split(".").pop();
           const fileName = `${Math.random()}.${fileExt}`;
           const filePath = `${fileName}`;
@@ -82,7 +157,54 @@ export default function HolidaySprint() {
         }
       }
 
-      // Insert application
+      // Compile comprehensive data
+      const comprehensiveData = {
+        // Section 2-4 Details
+        affiliateDetails: {
+          signupLink: data.affiliateSignupLink,
+          sampleLinks: data.sampleTrackingLinks,
+          hasDeepLinks: data.hasDeepLinks,
+          needDeepLinksCreated: data.needDeepLinksCreated,
+        },
+        productDetails: {
+          highestMargin: data.highestMarginProducts,
+          bestSelling: data.bestSellingProducts,
+          priority: data.priorityProducts,
+          specialInstructions: data.specialInstructions,
+        },
+        pricingDetails: {
+          retailPrices: data.retailPrices,
+          costPerProduct: data.costPerProduct,
+          mostProfitable: data.mostProfitableProducts,
+          holidayDiscounts: data.holidayDiscounts,
+        },
+        // Section 6-8 Details
+        brandVoice: {
+          voice: data.brandVoice,
+          benefits: data.productBenefits,
+          emotions: data.emotionsToEvoke,
+        },
+        targeting: {
+          idealBuyer: data.idealBuyer,
+          giftRecipient: data.idealGiftRecipient,
+          problemSolved: data.problemSolved,
+          competitiveAdvantage: data.competitiveAdvantage,
+        },
+        goals: {
+          affiliateCount: data.affiliateCount,
+          creatorsInMind: data.creatorsInMind,
+          platforms: data.campaignPlatforms,
+          mainGoal: data.mainGoal,
+        },
+        logistics: {
+          startDate: data.preferredStartDate,
+          blackoutDates: data.blackoutDates,
+          deliveryFormat: data.deliveryFormat,
+          anythingElse: data.anythingElse,
+        },
+      };
+
+      // Insert application with comprehensive data stored in existing fields
       const { error } = await supabase.from("holiday_sprint_applications").insert({
         full_name: data.fullName,
         brand_name: data.brandName,
@@ -91,9 +213,9 @@ export default function HolidaySprint() {
         social_handle: data.socialHandle,
         has_affiliate_program: data.hasAffiliateProgram === "yes",
         affiliate_platform: data.affiliatePlatform || null,
-        products_description: data.productsDescription,
-        desired_results: data.desiredResults,
-        biggest_challenge: data.biggestChallenge,
+        products_description: `${data.brandDescription}\n\n${data.productsDescription}\n\nCOMPREHENSIVE DATA:\n${JSON.stringify(comprehensiveData, null, 2)}`,
+        desired_results: `Brand Category: ${data.brandCategory}\n\n${JSON.stringify(comprehensiveData.goals, null, 2)}`,
+        biggest_challenge: JSON.stringify(comprehensiveData, null, 2),
         materials_urls: materialsUrls,
       });
 
