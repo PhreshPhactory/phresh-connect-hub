@@ -67,7 +67,7 @@ serve(async (req) => {
         },
       ],
       mode: mode,
-      success_url: `${req.headers.get("origin")}/holiday?payment_success=true&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${req.headers.get("origin")}/holiday-sprint-payment-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.get("origin")}/holiday-sprint-landing`,
       payment_method_types: ['card', 'affirm', 'afterpay_clearpay', 'klarna'],
       custom_text: {

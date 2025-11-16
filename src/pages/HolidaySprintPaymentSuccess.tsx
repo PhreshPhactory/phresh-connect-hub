@@ -1,22 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import SEOHead from "@/components/SEOHead";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function HolidaySprintPaymentSuccess() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
+  const [emailSent, setEmailSent] = useState(false);
 
   useEffect(() => {
-    // Redirect to application form after 3 seconds
+    // Send confirmation email if we have a session ID
+    const sendConfirmationEmail = async () => {
+      if (sessionId && !emailSent) {
+        try {
+          console.log("Sending confirmation email for session:", sessionId);
+          await supabase.functions.invoke("send-holiday-sprint-confirmation", {
+            body: { sessionId },
+          });
+          setEmailSent(true);
+          console.log("Confirmation email sent successfully");
+        } catch (error) {
+          console.error("Error sending confirmation email:", error);
+          // Don't block the user experience if email fails
+        }
+      }
+    };
+
+    sendConfirmationEmail();
+
+    // Redirect to application form after 5 seconds
     const timer = setTimeout(() => {
-      navigate("/holiday");
-    }, 3000);
+      navigate("/holiday-sprint");
+    }, 5000);
 
     return () => clearTimeout(timer);
-  }, [navigate]);
+  }, [navigate, sessionId, emailSent]);
 
   return (
     <>
@@ -56,10 +77,10 @@ export default function HolidaySprintPaymentSuccess() {
 
             <div className="pt-4">
               <p className="text-sm text-muted-foreground">
-                Redirecting you to the application form in a few seconds...
+                Redirecting you to complete your intake form in a few seconds...
               </p>
               <button
-                onClick={() => navigate("/holiday")}
+                onClick={() => navigate("/holiday-sprint")}
                 className="text-strategic-gold hover:underline font-semibold mt-2"
               >
                 Click here if you're not redirected automatically

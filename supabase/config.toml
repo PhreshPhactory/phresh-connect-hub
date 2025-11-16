@@ -2,3 +2,6 @@ project_id = "xmmfafefyfqzmsutqwug"
 
 [functions.create-holiday-sprint-payment]
 verify_jwt = false
+
+[functions.send-holiday-sprint-confirmation]
+verify_jwt = false
