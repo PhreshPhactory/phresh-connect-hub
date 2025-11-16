@@ -46,8 +46,8 @@ export default function HolidaySprintLanding() {
                 size="lg"
                 className="bg-strategic-gold hover:bg-strategic-gold/90 text-background font-bold text-lg px-12 py-6 rounded-lg transition-all shadow-lg hover:shadow-xl"
               >
-                <Link to="/holiday">
-                  Enroll in The Holiday Affiliate Sales Sprint™
+                <Link to="/holiday-sprint-payment">
+                  Start Your Holiday Sprint
                 </Link>
               </Button>
             </div>

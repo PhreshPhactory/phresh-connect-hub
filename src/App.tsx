@@ -45,6 +45,8 @@ import AffiliateSalesBlueprint from "@/pages/AffiliateSalesBlueprint";
 import HolidaySprint from "@/pages/HolidaySprint";
 import HolidaySprintLanding from "@/pages/HolidaySprintLanding";
 import HolidaySprintExplained from "@/pages/HolidaySprintExplained";
+import HolidaySprintPayment from "@/pages/HolidaySprintPayment";
+import HolidaySprintPaymentSuccess from "@/pages/HolidaySprintPaymentSuccess";
 import HolidaySprintThankYou from "@/pages/HolidaySprintThankYou";
 import NewsletterAdmin from "@/pages/NewsletterAdmin";
 
@@ -113,6 +115,9 @@ const App: React.FC = () => {
                 <Route path="/tv" element={<TV />} />
                 <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
                 <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
+                <Route path="/holiday-sprint-landing" element={<HolidaySprintLanding />} />
+                <Route path="/holiday-sprint-payment" element={<HolidaySprintPayment />} />
+                <Route path="/holiday-sprint-payment-success" element={<HolidaySprintPaymentSuccess />} />
                 <Route path="/holiday" element={<HolidaySprint />} />
                 <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
                 <Route path="*" element={<NotFound />} />
