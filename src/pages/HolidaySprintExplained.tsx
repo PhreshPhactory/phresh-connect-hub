@@ -345,6 +345,52 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
+        {/* Who Books the Holiday Sprint */}
+        <section className="py-20 px-4">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
+              Who Books the Holiday Sprint
+            </h2>
+            
+            <div className="max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-foreground/90 mb-6">
+                The founders who book this Sprint are usually:
+              </p>
+              
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span className="text-lg text-foreground/90">Running out of time to prepare a holiday sales push</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span className="text-lg text-foreground/90">Already working with affiliates or creators but seeing low conversions</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span className="text-lg text-foreground/90">Sitting on great products but lacking a clear seasonal system</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span className="text-lg text-foreground/90">Too busy to train or micromanage creators during Q4</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span className="text-lg text-foreground/90">Ready for a clear, done-for-you structure they can hand to affiliates immediately</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <span className="text-lg text-foreground/90">Wanting to stop "winging it" and have something professional, organized, and repeatable</span>
+                </li>
+              </ul>
+              
+              <p className="text-lg md:text-xl text-foreground/90 mt-8 italic text-center">
+                If this sounds like you, the Holiday Sprint replaces confusion with clarity — in 72 hours.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* How the 72-Hour Sprint Works */}
         <section className="py-20 px-4 bg-muted/30">
           <div className="container max-w-5xl mx-auto">
