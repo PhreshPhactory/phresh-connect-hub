@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { supabase } from "@/integrations/supabase/client";
@@ -10,10 +10,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/hooks/use-toast";
-import { Upload, Loader2 } from "lucide-react";
+import { Upload, Loader2, Plus, Trash2 } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import NewsletterSignup from "@/components/NewsletterSignup";
+
+const productSchema = z.object({
+  productName: z.string().min(2, "Product name is required"),
+  productUrl: z.string().url("Invalid product URL").or(z.literal("")),
+  retailPrice: z.string().min(1, "Retail price is required"),
+  costPerUnit: z.string().optional(),
+  isHighMargin: z.boolean().default(false),
+  sellsWellHistorically: z.boolean().default(false),
+  isPriorityForHoliday: z.boolean().default(false),
+  specialInstructions: z.string().optional(),
+});
 
 const formSchema = z.object({
   // Section 1: Brand Information
@@ -33,44 +45,35 @@ const formSchema = z.object({
   hasDeepLinks: z.string().optional(),
   needDeepLinksCreated: z.string().optional(),
   
-  // Section 3: Product Details
-  productsDescription: z.string().min(20, "Please list all products with URLs"),
-  highestMarginProducts: z.string().optional(),
-  bestSellingProducts: z.string().optional(),
-  priorityProducts: z.string().optional(),
-  specialInstructions: z.string().optional(),
-  
-  // Section 4: Pricing & Margin Details
-  retailPrices: z.string().min(1, "Please provide retail prices"),
-  costPerProduct: z.string().optional(),
-  mostProfitableProducts: z.string().optional(),
+  // Section 3: Products (restructured)
+  products: z.array(productSchema).min(1, "At least one product is required"),
   holidayDiscounts: z.string().optional(),
   
-  // Section 5: Brand Assets - handled via file uploads
+  // Section 4: Brand Assets - handled via file uploads
   
-  // Section 6: Brand Voice & Messaging
+  // Section 5: Brand Voice & Messaging
   brandVoice: z.string().min(1, "Please select a brand voice"),
   productBenefits: z.string().min(10, "Please list 3-5 key benefits"),
   emotionsToEvoke: z.string().optional(),
   
-  // Section 7: Customer Targeting
+  // Section 6: Customer Targeting
   idealBuyer: z.string().min(10, "Please describe the ideal buyer"),
   idealGiftRecipient: z.string().optional(),
   problemSolved: z.string().optional(),
   competitiveAdvantage: z.string().optional(),
   
-  // Section 8: Affiliate Goals
+  // Section 7: Affiliate Goals
   affiliateCount: z.string().optional(),
   creatorsInMind: z.string().optional(),
   campaignPlatforms: z.string().optional(),
   mainGoal: z.string().optional(),
   
-  // Section 9: Logistics
+  // Section 8: Logistics
   preferredStartDate: z.string().min(1, "Please select a start date"),
   blackoutDates: z.string().optional(),
   deliveryFormat: z.string().optional(),
   
-  // Section 10: Final Submission
+  // Section 9: Final Submission
   anythingElse: z.string().optional(),
   authorization: z.boolean().refine((val) => val === true, {
     message: "You must confirm authorization",
@@ -84,19 +87,19 @@ export default function HolidaySprint() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [brandAssets, setBrandAssets] = useState<{
     logo: File[];
-    productPhotos: File[];
     lifestylePhotos: File[];
     creatorContent: File[];
     affiliateMaterials: File[];
     brandGuidelines: File[];
   }>({
     logo: [],
-    productPhotos: [],
     lifestylePhotos: [],
     creatorContent: [],
     affiliateMaterials: [],
     brandGuidelines: [],
   });
+  
+  const [productPhotos, setProductPhotos] = useState<Record<number, File[]>>({});
   
   const {
     register,
