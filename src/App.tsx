@@ -82,9 +82,9 @@ const App: React.FC = () => {
       <GeoBlocker>
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
-            <Toaster />
-            <Sonner />
             <BrowserRouter>
+              <Toaster />
+              <Sonner />
               <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
