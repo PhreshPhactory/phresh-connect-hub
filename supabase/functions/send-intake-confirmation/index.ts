@@ -25,7 +25,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending intake confirmation email to:", email);
 
     const emailResponse = await resend.emails.send({
-      from: "Phresh Phactory, Inc. <info@phreshphactory.co>",
+      from: "Phresh Phactory, Inc. <info@phreshphactory.com>",
       to: [email],
       subject: "Intake Form Received — Your 72-Hour Sprint Is Almost Ready",
       html: `
