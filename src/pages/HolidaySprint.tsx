@@ -410,21 +410,6 @@ export default function HolidaySprint() {
                   )}
                 </div>
 
-                {/* Desired Results */}
-                <div className="space-y-2">
-                  <Label htmlFor="desiredResults" className="text-foreground font-semibold">
-                    What results are you hoping to achieve before the holiday season ends? *
-                  </Label>
-                  <Textarea
-                    id="desiredResults"
-                    {...register("desiredResults")}
-                    className="border-border focus:border-strategic-gold min-h-[120px]"
-                    placeholder="Describe your goals and targets..."
-                  />
-                  {errors.desiredResults && (
-                    <p className="text-sm text-destructive">{errors.desiredResults.message}</p>
-                  )}
-                </div>
 
                 {/* Mid-form CTA */}
                 <div className="bg-muted/50 p-6 rounded-lg border border-strategic-gold/20 text-center">
@@ -447,49 +432,7 @@ export default function HolidaySprint() {
                   </Button>
                 </div>
 
-                {/* Biggest Challenge */}
-                <div className="space-y-2">
-                  <Label htmlFor="biggestChallenge" className="text-foreground font-semibold">
-                    What is your biggest challenge with affiliates right now? *
-                  </Label>
-                  <Textarea
-                    id="biggestChallenge"
-                    {...register("biggestChallenge")}
-                    className="border-border focus:border-strategic-gold min-h-[120px]"
-                    placeholder="Share your main challenges..."
-                  />
-                  {errors.biggestChallenge && (
-                    <p className="text-sm text-destructive">{errors.biggestChallenge.message}</p>
-                  )}
-                </div>
 
-                {/* File Upload */}
-                <div className="space-y-2">
-                  <Label htmlFor="materials" className="text-foreground font-semibold">
-                    Upload any current affiliate materials (optional)
-                  </Label>
-                  <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-strategic-gold transition-colors">
-                    <input
-                      id="materials"
-                      type="file"
-                      multiple
-                      accept="image/*,.pdf"
-                      onChange={handleFileUpload}
-                      className="hidden"
-                    />
-                    <label htmlFor="materials" className="cursor-pointer">
-                      <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-                      <p className="text-sm text-muted-foreground">
-                        Click to upload images, PDFs, or product info
-                      </p>
-                    </label>
-                    {uploadedFiles.length > 0 && (
-                      <div className="mt-4 text-sm text-foreground">
-                        {uploadedFiles.length} file(s) selected
-                      </div>
-                    )}
-                  </div>
-                </div>
 
                 {/* Submit Button */}
                 <Button
