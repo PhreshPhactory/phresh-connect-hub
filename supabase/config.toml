@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.send-holiday-sprint-confirmation]
 verify_jwt = false
+
+[functions.send-intake-confirmation]
+verify_jwt = false
