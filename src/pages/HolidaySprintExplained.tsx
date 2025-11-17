@@ -52,11 +52,12 @@ const HolidaySprintExplained = () => {
 
             <div className="text-center space-y-8">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-tight">
-                Your Holiday Affiliate Sales System — Built in 72 Hours
+                Your Holiday Affiliate Program Isn't the Problem.<br />
+                Your System Is.
               </h1>
               
               <p className="text-xl md:text-2xl lg:text-3xl text-foreground/90 max-w-4xl mx-auto font-light leading-relaxed">
-                A complete, plug-and-play affiliate sales system created for your brand in just 72 hours — so your creators know exactly what to say, what to post, and where to send buyers this holiday season.
+                A 72-hour affiliate sales system built from real operational experience supporting EatOkra's marketplace and Afrofiliate's brand + creator ecosystem.
               </p>
               
               <div className="pt-6">
@@ -930,6 +931,46 @@ const HolidaySprintExplained = () => {
           </div>
         </section>
 
+        {/* Supported by Our Ecosystem Section */}
+        <section className="py-20 px-4 bg-muted">
+          <div className="container max-w-5xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-8 text-center">
+              Supported by Our Ecosystem
+            </h2>
+            <p className="text-xl text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
+              Holiday Sprint clients aren't building in isolation. Your work is supported by both sides of our ecosystem:
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {/* Phactory */}
+              <div className="bg-background p-8 rounded-lg border border-border">
+                <h3 className="text-2xl font-bold mb-4">Phactory (Brand Owners)</h3>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Learn how to prepare your digital storefront, affiliate kit, and messaging.
+                </p>
+                <Button asChild variant="outline" className="w-full">
+                  <a href="https://tinyurl.com/Phactory-Owners" target="_blank" rel="noopener noreferrer">
+                    Join Phactory
+                  </a>
+                </Button>
+              </div>
+
+              {/* Phreelance */}
+              <div className="bg-background p-8 rounded-lg border border-border">
+                <h3 className="text-2xl font-bold mb-4">Phreelance (Affiliates + Freelancers)</h3>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Work with trained talent ready to support your holiday efforts.
+                </p>
+                <Button asChild variant="outline" className="w-full">
+                  <a href="https://tinyurl.com/Phreelance-Affiliate" target="_blank" rel="noopener noreferrer">
+                    Join Phreelance
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
 
         {/* FAQ Section */}
         <section className="py-20 px-4">
@@ -1070,9 +1111,9 @@ const HolidaySprintExplained = () => {
             </div>
 
             <p className="text-lg md:text-xl text-foreground/80 mt-12 pt-8 border-t border-border">
-              Want a year-round affiliate system, not just a holiday sprint?<br />
+              Want year-round affiliate sales?<br />
               <Link to="/affiliate-sales-blueprint" className="text-primary hover:text-primary/80 underline font-semibold">
-                Explore The Evergreen Affiliate Sales Blueprint™
+                Join the Affiliate Sales Blueprint™ Bootcamp
               </Link>
             </p>
           </div>

@@ -11,6 +11,9 @@ import WhatWeDoSection from '@/components/home/WhatWeDoSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import ResultsSection from '@/components/home/ResultsSection';
 import YouTubeSection from '@/components/home/YouTubeSection';
+import EcosystemSection from '@/components/home/EcosystemSection';
+import LeadingPlatformsSection from '@/components/home/LeadingPlatformsSection';
+import ChoosePathSection from '@/components/home/ChoosePathSection';
 import SEOHead from '@/components/SEOHead';
 
 const Home = () => {
@@ -25,24 +28,21 @@ const Home = () => {
        <main>
         <HeroSection />
         
-        {/* Early CTA for engagement */}
-        <CallToAction
-          title="Ready for strategic business transformation?"
-          subtitle="Book a free discovery call to discuss your growth challenges."
-          primaryButtonText="Book a Discovery Call"
-          primaryButtonLink="http://calendly.com/PhreshPhactory"
-          secondaryButtonText="Explore Services"
-          secondaryButtonLink="/services"
-          dark={false}
-          className="py-16"
-        />
-        
         {/* Video content moved higher for engagement */}
         <YouTubeSection />
         
+        {/* Our Ecosystem */}
+        <EcosystemSection />
+        
+        {/* Leading Platforms Work */}
+        <LeadingPlatformsSection />
+        
         <WhatWeDoSection />
         
-        {/* Social proof early in the journey */}
+        {/* Choose Your Path */}
+        <ChoosePathSection />
+        
+        {/* Social proof */}
         <TestimonialsSection />
         <ResultsSection />
 
@@ -61,7 +61,7 @@ const Home = () => {
       
       <CallToAction
         title="Let's build the systems and teams you need to scale"
-        subtitle="Connect with our team to explore fractional leadership, global talent, and transformation services."
+        subtitle="Work with the operational partner behind EatOkra, Afrofiliate, and leading diaspora brands."
         primaryButtonText="Schedule a Call"
         primaryButtonLink="http://calendly.com/PhreshPhactory"
         secondaryButtonText="View All Services"

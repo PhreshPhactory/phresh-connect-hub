@@ -93,31 +93,48 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Column 4: Newsletter */}
+          {/* Column 4: Communities */}
           <div className="lg:col-span-1">
-            <h3 className="font-medium text-lg lg:text-xl mb-4 lg:mb-6 text-white">Get Ops Insights</h3>
-            <p className="text-white mb-4 lg:mb-6 text-base lg:text-lg">
-              Join 500+ founders getting practical ops strategies, delivered weekly.
-            </p>
-            <form onSubmit={handleSubscribe} className="space-y-4">
-              <div className="flex flex-col gap-3">
-                <Input 
-                  type="email" 
-                  placeholder="Your email address" 
-                  value={email} 
-                  onChange={e => setEmail(e.target.value)} 
-                  className="bg-secondary border-secondary focus:border-tertiary text-primary-foreground placeholder:text-muted-foreground h-12 text-base" 
-                />
-                <Button type="submit" className="bg-tertiary hover:bg-tertiary/90 text-primary transition-all duration-300 hover:scale-105 h-12 text-base font-medium">
-                  Subscribe
-                </Button>
-              </div>
-            </form>
+            <h3 className="font-medium text-lg lg:text-xl mb-4 lg:mb-6 text-white">Communities</h3>
+            <ul className="space-y-3 lg:space-y-4">
+              <li>
+                <a href="https://tinyurl.com/Phactory-Owners" target="_blank" rel="noopener noreferrer" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">
+                  Phactory (Brands)
+                </a>
+              </li>
+              <li>
+                <a href="https://tinyurl.com/Phreelance-Affiliate" target="_blank" rel="noopener noreferrer" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">
+                  Phreelance (Affiliates)
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         
+        {/* Newsletter Section moved to full-width below the columns */}
+        <div className="mt-12 pt-12 border-t border-muted max-w-md mx-auto">
+          <h3 className="font-medium text-lg lg:text-xl mb-4 lg:mb-6 text-white text-center">Get Ops Insights</h3>
+          <p className="text-white mb-4 lg:mb-6 text-base lg:text-lg text-center">
+            Join 500+ founders getting practical ops strategies, delivered weekly.
+          </p>
+          <form onSubmit={handleSubscribe} className="space-y-4">
+            <div className="flex flex-col gap-3">
+              <Input 
+                type="email" 
+                placeholder="Your email address" 
+                value={email} 
+                onChange={e => setEmail(e.target.value)} 
+                className="bg-secondary border-secondary focus:border-tertiary text-primary-foreground placeholder:text-muted-foreground h-12 text-base" 
+              />
+              <Button type="submit" className="bg-tertiary hover:bg-tertiary/90 text-primary transition-all duration-300 hover:scale-105 h-12 text-base font-medium">
+                Subscribe
+              </Button>
+            </div>
+          </form>
+        </div>
+        
         {/* Bottom Bar */}
-        <div className="pt-6 lg:pt-8 border-t border-muted">
+        <div className="pt-6 lg:pt-8 border-t border-muted mt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
             <p className="text-white text-base lg:text-lg text-center lg:text-left">
               © {new Date().getFullYear()} Phresh Phactory, Inc. All rights reserved.
