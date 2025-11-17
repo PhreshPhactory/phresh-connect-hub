@@ -45,11 +45,8 @@ const Home = () => {
         {/* Social proof early in the journey */}
         <TestimonialsSection />
         <ResultsSection />
-        
-        {/* Buy Black featured brands */}
-        <FeaturedBrands />
 
-      <NewsletterForm 
+      <NewsletterForm
         title="Join leaders from culturally impactful, global organizations and brands"
         subtitle="Weekly strategies on transformation, global talent, and building high-performance teams—insights for executives and brand owners."
         benefits={[
