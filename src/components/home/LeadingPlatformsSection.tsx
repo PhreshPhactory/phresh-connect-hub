@@ -27,7 +27,7 @@ const LeadingPlatformsSection = () => {
               {[
                 'Operational partner for 5+ years',
                 'Manage & maintain national restaurant database',
-                'Advise thousands of food business owners 1-on-1',
+                'Advisor to food business entrepreneurs 1-on-1',
                 'Run vendor advertising campaigns',
                 'Write the "EatOkra for Business" B2B newsletter',
                 'Support marketplace operations and vendor success'
