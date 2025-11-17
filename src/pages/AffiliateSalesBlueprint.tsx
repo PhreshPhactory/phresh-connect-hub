@@ -725,7 +725,7 @@ const AffiliateSalesBlueprint = () => {
                       variant="outline"
                       className="border-teal hover:bg-teal/10 font-heading font-semibold"
                     >
-                      <Link to="/contact">Join the Waitlist</Link>
+                      <Link to="/affiliate-starter-course-waitlist">Join the Waitlist</Link>
                     </Button>
                   </CardContent>
                 </Card>

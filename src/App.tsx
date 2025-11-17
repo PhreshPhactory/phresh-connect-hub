@@ -42,6 +42,7 @@ import BrandLinksAdmin from "@/pages/BrandLinksAdmin";
 import LinkInBio from "@/pages/LinkInBio";
 import TV from "@/pages/TV";
 import AffiliateSalesBlueprint from "@/pages/AffiliateSalesBlueprint";
+import AffiliateCourseWaitlist from "@/pages/AffiliateCourseWaitlist";
 import HolidaySprint from "@/pages/HolidaySprint";
 import HolidaySprintLanding from "@/pages/HolidaySprintLanding";
 import HolidaySprintExplained from "@/pages/HolidaySprintExplained";
@@ -114,6 +115,7 @@ const App: React.FC = () => {
                 <Route path="/links" element={<LinkInBio />} />
                 <Route path="/tv" element={<TV />} />
                 <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
+                <Route path="/affiliate-starter-course-waitlist" element={<AffiliateCourseWaitlist />} />
                 <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
                 <Route path="/holiday-sprint-landing" element={<HolidaySprintLanding />} />
                 <Route path="/holiday-sprint-payment" element={<HolidaySprintPayment />} />
