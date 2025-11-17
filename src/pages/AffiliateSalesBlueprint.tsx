@@ -23,6 +23,10 @@ const AffiliateSalesBlueprint = () => {
     console.log('Form submitted:', formData);
   };
 
+  const scrollToPricing = () => {
+    document.getElementById('pricing-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const scrollToForm = () => {
     document.getElementById('apply-form')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -63,11 +67,11 @@ const AffiliateSalesBlueprint = () => {
               </p>
               
               <Button
-                onClick={scrollToForm}
+                onClick={scrollToPricing}
                 size="lg"
                 className="bg-strategic-gold hover:bg-strategic-gold/90 text-ink-black font-heading font-semibold text-lg px-8 py-6 h-auto shadow-2xl hover:shadow-strategic-gold/50 transition-all duration-300 hover:scale-105"
               >
-                Apply Now
+                Choose Your Blueprint Tier
               </Button>
             </div>
           </div>
@@ -476,34 +480,260 @@ const AffiliateSalesBlueprint = () => {
           </div>
         </section>
 
-        {/* Investment Section */}
-        <section className="py-20 bg-background">
+        {/* Which Option Is Right for You? */}
+        <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <Card className="border-4 border-strategic-gold shadow-2xl bg-gradient-to-br from-background to-strategic-gold/5">
-                <CardContent className="p-12 text-center">
-                  <div className="mb-6">
-                    <p className="text-muted-foreground text-lg mb-2 uppercase tracking-wide font-heading">Investment</p>
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="text-7xl font-heading font-bold text-foreground">$497</span>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-center mb-12">
+                Which Option Is Right for You?
+              </h2>
+              
+              <div className="space-y-4 text-lg text-foreground">
+                <p>
+                  <strong>Choose Tier 1 ($1,500)</strong> if you're a small brand, new to affiliates, or only need support with ONE product.
+                </p>
+                <p>
+                  <strong>Choose Tier 2 ($2,500)</strong> if you want a complete affiliate system built WITH you in a single working session.
+                </p>
+                <p>
+                  <strong>Choose Tier 3 ($5,000)</strong> if you want a fully done-for-you system that requires zero meetings and is delivered in 72 hours.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Investment Section */}
+        <section id="pricing-section" className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+                  Investment
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-strategic-gold to-rust mx-auto" />
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 mb-16">
+                <Card className="border-2 border-border hover:border-strategic-gold transition-all duration-300 shadow-lg">
+                  <CardContent className="p-8">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                        TIER 1 — Affiliate Sales Blueprint™ Bootcamp (Starter)
+                      </h3>
+                      <div className="flex items-baseline mb-4">
+                        <span className="text-5xl font-heading font-bold text-foreground">$1,500</span>
+                      </div>
+                      <p className="text-muted-foreground">
+                        Perfect for small brands or first-time affiliate programs.
+                      </p>
                     </div>
+                    
+                    <div className="space-y-3 mb-8">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">1 Hero Product</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">1 Creator Brief</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">1 Script + set of talking points</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">"Sell This Week" Micro Campaign</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">1 deep link map</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Affiliate activation instructions</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Delivered live inside the 1:1 session</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Full asset kit for immediate use</span>
+                      </div>
+                    </div>
+
+                    <Button
+                      onClick={scrollToForm}
+                      className="w-full bg-background hover:bg-muted text-foreground border-2 border-strategic-gold font-heading font-semibold"
+                    >
+                      Choose Tier 1
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-4 border-strategic-gold shadow-2xl transform scale-105 relative">
+                  <div className="absolute -top-4 left-0 right-0 flex justify-center">
+                    <span className="bg-strategic-gold text-ink-black text-sm font-heading font-semibold px-4 py-1 rounded-full">
+                      RECOMMENDED
+                    </span>
                   </div>
-                  <p className="text-xl text-muted-foreground mb-8">
-                    One private session + full deliverables + follow-up review
-                  </p>
-                  <Button
-                    onClick={scrollToForm}
-                    size="lg"
-                    className="bg-strategic-gold hover:bg-strategic-gold/90 text-ink-black font-heading font-semibold text-lg px-12 py-6 h-auto shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-                  >
-                    Apply Now
-                  </Button>
-                  
-                  <p className="text-sm text-muted-foreground mt-6 italic">
-                    If your affiliates cannot use what we build, we will revise it until it is fully sellable.
-                  </p>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-8">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                        TIER 2 — Affiliate Sales Blueprint™ Working Session (Growth)
+                      </h3>
+                      <div className="flex items-baseline mb-4">
+                        <span className="text-5xl font-heading font-bold text-foreground">$2,500</span>
+                      </div>
+                      <p className="text-muted-foreground">
+                        For brands with some traction who need a complete affiliate activation system.
+                      </p>
+                    </div>
+                    
+                    <div className="space-y-3 mb-8">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">2 Hero Products</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">2 Creator Briefs</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Scripts + talking points for each product</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Product positioning cheat sheet</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Seasonal Micro Campaign</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Deep link maps</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Full affiliate activation plan</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Delivered live inside the 1:1 session</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Full asset kit</span>
+                      </div>
+                    </div>
+
+                    <Button
+                      onClick={scrollToForm}
+                      className="w-full bg-strategic-gold hover:bg-strategic-gold/90 text-ink-black font-heading font-semibold"
+                    >
+                      Choose Tier 2
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-2 border-border hover:border-rust transition-all duration-300 shadow-lg">
+                  <CardContent className="p-8">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
+                        TIER 3 — Holiday Affiliate Sales Sprint™ (Premium)
+                      </h3>
+                      <div className="flex items-baseline mb-4">
+                        <span className="text-5xl font-heading font-bold text-foreground">$5,000</span>
+                      </div>
+                      <p className="text-muted-foreground">
+                        A 72-hour, fully done-for-you build. No meetings. No calls.
+                      </p>
+                    </div>
+                    
+                    <div className="space-y-3 mb-8">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">3 Hero Products</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Complete creator briefs</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Holiday scripts + talking points</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Full content kit</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Holiday angles + B-roll direction</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Affiliate deep link map</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Rollout checklist</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Master PDF + organized asset folder</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Delivered in 72 hours after intake</span>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-strategic-gold mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground">Ideal for seasonal selling or Q4 urgency</span>
+                      </div>
+                    </div>
+
+                    <Button
+                      onClick={scrollToForm}
+                      className="w-full bg-background hover:bg-muted text-foreground border-2 border-rust font-heading font-semibold"
+                    >
+                      Choose Tier 3
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Coming Soon Course Placeholder */}
+              <div className="max-w-3xl mx-auto">
+                <Card className="border-2 border-teal/30 bg-gradient-to-br from-background to-teal/5">
+                  <CardContent className="p-8 text-center">
+                    <h3 className="text-2xl font-heading font-bold text-foreground mb-4">
+                      Coming Soon: Affiliate Sales Starter Course
+                    </h3>
+                    <p className="text-lg text-muted-foreground mb-6">
+                      A self-paced course for founders who want to set up their affiliate programs the right way — at a beginner-friendly price.
+                    </p>
+                    <p className="text-foreground mb-6">
+                      Join the waitlist to be notified when it launches.
+                    </p>
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-teal hover:bg-teal/10 font-heading font-semibold"
+                    >
+                      <Link to="/contact">Join the Waitlist</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <p className="text-center text-sm text-muted-foreground mt-8 italic max-w-2xl mx-auto">
+                If your affiliates cannot use what we build, we will revise it until it is fully sellable.
+              </p>
             </div>
           </div>
         </section>
