@@ -156,6 +156,67 @@ const About = () => {
         </div>
       </section>
       
+      {/* The Communities Behind Our Work Section */}
+      <section className="py-12 md:py-16 bg-muted">
+        <div className="container-custom">
+          <SectionTitle
+            title="The Communities Behind Our Work"
+            center
+            className="mb-12"
+          />
+          
+          <div className="max-w-4xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground mb-12 text-center leading-relaxed">
+              To support the long-term success of diaspora-centered companies, Phresh Phactory created two online communities — one for talent and one for brands.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {/* Phreelance */}
+              <div className="bg-background p-8 rounded-lg border border-border hover:border-primary transition-all duration-300">
+                <div className="flex items-center gap-3 mb-6">
+                  <Users className="h-8 w-8 text-primary" />
+                  <h3 className="text-2xl font-bold">Phreelance</h3>
+                </div>
+                <p className="text-base text-muted-foreground mb-4 leading-relaxed">
+                  Affiliate + Freelancer Community
+                </p>
+                <p className="text-base text-foreground mb-8 leading-relaxed">
+                  A training community for freelancers, creators, and affiliates looking to support brands and create income through digital partnerships.
+                </p>
+                <Button asChild variant="outline" className="w-full">
+                  <a href="https://tinyurl.com/Phreelance-Affiliate" target="_blank" rel="noopener noreferrer">
+                    Join Phreelance
+                  </a>
+                </Button>
+              </div>
+
+              {/* Phactory */}
+              <div className="bg-background p-8 rounded-lg border border-border hover:border-primary transition-all duration-300">
+                <div className="flex items-center gap-3 mb-6">
+                  <Handshake className="h-8 w-8 text-primary" />
+                  <h3 className="text-2xl font-bold">Phactory</h3>
+                </div>
+                <p className="text-base text-muted-foreground mb-4 leading-relaxed">
+                  Brand Owner Community
+                </p>
+                <p className="text-base text-foreground mb-8 leading-relaxed">
+                  A training community for founders and product-based businesses learning to prepare for affiliate partnerships and digital growth.
+                </p>
+                <Button asChild variant="outline" className="w-full">
+                  <a href="https://tinyurl.com/Phactory-Owners" target="_blank" rel="noopener noreferrer">
+                    Join Phactory
+                  </a>
+                </Button>
+              </div>
+            </div>
+            
+            <p className="text-lg text-center text-foreground font-medium">
+              These communities form a complete ecosystem that strengthens the companies we serve — including EatOkra and Afrofiliate.
+            </p>
+          </div>
+        </div>
+      </section>
+      
       {/* About Kiera Section - Brief */}
       <section className="bg-background py-12 md:py-16">
         <div className="container-custom">

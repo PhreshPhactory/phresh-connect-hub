@@ -55,11 +55,11 @@ const AffiliateSalesBlueprint = () => {
               </div>
               
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-bright-white mb-6 leading-tight">
-                The Affiliate Sales<br />Blueprint™ Bootcamp
+                Master the System That Makes Affiliate Sales Work — All Year Long.
               </h1>
               
               <p className="text-xl md:text-2xl text-bright-white/90 mb-6 max-w-3xl mx-auto leading-relaxed">
-                A 1:1 working session for brands ready to turn affiliate programs into actual revenue.
+                A 1-on-1 bootcamp built from real operational work with EatOkra and Afrofiliate.
               </p>
               
               <p className="text-lg md:text-xl text-bright-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
@@ -733,6 +733,69 @@ const AffiliateSalesBlueprint = () => {
 
               <p className="text-center text-sm text-muted-foreground mt-8 italic max-w-2xl mx-auto">
                 If your affiliates cannot use what we build, we will revise it until it is fully sellable.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Built For Our Two-Sided Community Section */}
+        <section className="py-20 bg-muted">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4">
+                  Built For Our Two-Sided Community
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-strategic-gold to-rust mx-auto mb-6" />
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                  The Affiliate Sales Blueprint™ Bootcamp supports both sides of our ecosystem:
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 mb-12">
+                {/* Phactory */}
+                <Card className="border-2 border-border hover:border-primary transition-all duration-300">
+                  <CardContent className="p-8">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="p-3 bg-primary/10 rounded-lg">
+                        <Package className="h-6 w-6 text-primary" />
+                      </div>
+                      <h3 className="text-2xl font-bold">Phactory (Brands)</h3>
+                    </div>
+                    <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                      Become affiliate-ready with systems, templates, and messaging frameworks.
+                    </p>
+                    <Button asChild variant="outline" className="w-full">
+                      <a href="https://tinyurl.com/Phactory-Owners" target="_blank" rel="noopener noreferrer">
+                        Join Phactory
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Phreelance */}
+                <Card className="border-2 border-border hover:border-primary transition-all duration-300">
+                  <CardContent className="p-8">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="p-3 bg-primary/10 rounded-lg">
+                        <Users className="h-6 w-6 text-primary" />
+                      </div>
+                      <h3 className="text-2xl font-bold">Phreelance (Affiliates + Freelancers)</h3>
+                    </div>
+                    <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                      Learn how to promote brands professionally and earn commissions consistently.
+                    </p>
+                    <Button asChild variant="outline" className="w-full">
+                      <a href="https://tinyurl.com/Phreelance-Affiliate" target="_blank" rel="noopener noreferrer">
+                        Join Phreelance
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <p className="text-xl text-center text-foreground font-medium">
+                This two-way readiness system is what makes affiliate sales predictable and sustainable.
               </p>
             </div>
           </div>

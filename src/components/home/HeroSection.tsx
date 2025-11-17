@@ -15,14 +15,11 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="animate-on-scroll relative z-30">
             <h1 className="font-heading font-bold mb-8 leading-tight text-white text-center sm:text-left text-[40px] leading-[50px] sm:text-[56px] sm:leading-tight">
-              Global Operations Partners for
-              <span className="block text-strategic-gold">Vision-Led Businesses</span>
+              Scale Without
+              <span className="block text-strategic-gold">the Chaos.</span>
             </h1>
-            <div className="text-xl md:text-2xl mb-6 text-white/90 relative z-30 font-heading font-medium" style={{ lineHeight: '1.4' }}>
-              <TypingText text="Transformation is not scary - stagnation is. We step into the chaos, build order from it, and leave businesses stronger than they have ever been." speed={30} delay={500} className="relative z-30" />
-            </div>
-            <p className="text-lg mb-6 text-white/80 leading-relaxed font-medium">
-              Transform your business with <Link to="/services/fractional-leadership" className="text-strategic-gold hover:text-strategic-gold/80 underline transition-colors">fractional executive leadership</Link>, <Link to="/services/global-talent" className="text-strategic-gold hover:text-strategic-gold/80 underline transition-colors">global talent teams</Link>, and <Link to="/services/legacy-transformation" className="text-strategic-gold hover:text-strategic-gold/80 underline transition-colors">legacy system modernization</Link>. We help companies scale efficiently without the overhead of traditional business models.
+            <p className="text-xl md:text-2xl mb-10 text-white/90 leading-relaxed font-medium">
+              Strategic leadership, global talent, and operations systems for founders ready to grow.
             </p>
             <p className="text-lg mb-10 font-medium flex items-center text-strategic-gold animate-on-scroll relative z-30">
               <Star className="text-strategic-gold w-6 h-6 mr-3 glow-tertiary" />
