@@ -67,7 +67,7 @@ const Home = () => {
         secondaryButtonText="View All Services"
         secondaryButtonLink="/services"
         dark={true}
-        className="py-24"
+        className="py-16"
       />
       
       {/* Exit intent popup */}
