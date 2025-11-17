@@ -1,5 +1,5 @@
 // Service Worker for caching and performance optimization
-const CACHE_VERSION = '2.0.0';
+const CACHE_VERSION = '2.0.1';
 const CACHE_NAME = `phresh-phactory-v${CACHE_VERSION}`;
 const STATIC_CACHE_NAME = `phresh-phactory-static-v${CACHE_VERSION}`;
 const DYNAMIC_CACHE_NAME = `phresh-phactory-dynamic-v${CACHE_VERSION}`;
