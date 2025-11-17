@@ -16,10 +16,8 @@ import { emailSchema, nameSchema, urlSchema, challengesSchema, messageSchema, cr
 const formSchema = z.object({
   name: nameSchema,
   email: emailSchema,
-  website: urlSchema,
-  companyStage: z.string().min(1, { message: 'Please select your startup stage.' }),
-  challenges: challengesSchema,
-  serviceInterest: z.string().min(1, { message: 'Please select a service you\'re interested in.' }),
+  brand: z.string().optional().or(z.literal('')),
+  inquiryType: z.string().min(1, { message: 'Please select an inquiry type.' }),
   message: messageSchema,
   honeypot: z.string().optional()
 });
@@ -37,10 +35,8 @@ const Contact = () => {
     defaultValues: {
       name: '',
       email: '',
-      website: '',
-      companyStage: '',
-      challenges: '',
-      serviceInterest: '',
+      brand: '',
+      inquiryType: '',
       message: '',
       honeypot: '',
     },
@@ -68,7 +64,7 @@ const Contact = () => {
     const sanitizedData = {
       ...data,
       name: sanitizeInput(data.name),
-      challenges: sanitizeInput(data.challenges),
+      brand: data.brand ? sanitizeInput(data.brand) : '',
       message: data.message ? sanitizeInput(data.message) : ''
     };
 
@@ -145,9 +141,9 @@ const Contact = () => {
       <section className="bg-background py-15 md:py-15">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Let's Start the Conversation</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Contact Phresh Phactory, Inc.</h1>
             <p className="text-xl mb-8 text-muted-foreground">
-              Schedule a discovery call or send us a message to explore how we can help your startup.
+              We'll respond within 2 business days.
             </p>
           </div>
         </div>
@@ -269,12 +265,12 @@ const Contact = () => {
                   
                   <FormField
                     control={form.control}
-                    name="website"
+                    name="brand"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Company Website</FormLabel>
+                        <FormLabel>Brand or Company Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="https://yourcompany.com" {...field} />
+                          <Input placeholder="Your Brand Name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -283,69 +279,24 @@ const Contact = () => {
                   
                   <FormField
                     control={form.control}
-                    name="companyStage"
+                    name="inquiryType"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Business Type</FormLabel>
+                        <FormLabel>What are you contacting us about?</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select your company stage" />
+                              <SelectValue placeholder="Select inquiry type" />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="pre-seed">Pre-Seed / Idea Stage</SelectItem>
-                            <SelectItem value="seed">Seed / Early Stage</SelectItem>
-                            <SelectItem value="series-a">Series A / Growth Stage</SelectItem>
-                            <SelectItem value="series-b-plus">Series B+ / Scale Stage</SelectItem>
-                            <SelectItem value="established">Established Business</SelectItem>
-                            <SelectItem value="ecommerce">E-commerce Brand</SelectItem>
-                            <SelectItem value="business-for-sale">Business for Sale</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="challenges"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>What operational challenges are you facing?</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            placeholder="E.g., We're struggling with team coordination, unclear processes, etc." 
-                            className="min-h-24"
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="serviceInterest"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Which service are you most interested in?</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a service" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="audit">Starter Audit</SelectItem>
-                            <SelectItem value="fractional">Fractional Executive</SelectItem>
-                            <SelectItem value="phreelance">Phreelance™ Team Management</SelectItem>
-                            <SelectItem value="hiring">Hiring & Onboarding Support</SelectItem>
-                            <SelectItem value="advisory">Advisory Board Role</SelectItem>
-                            <SelectItem value="feature-brand">Feature My Brand</SelectItem>
-                            <SelectItem value="not-sure">Not Sure Yet</SelectItem>
+                            <SelectItem value="affiliate-blueprint">Affiliate Sales Blueprint</SelectItem>
+                            <SelectItem value="holiday-sprint">Holiday Sprint</SelectItem>
+                            <SelectItem value="content-production">Content Production</SelectItem>
+                            <SelectItem value="advisory-services">Advisory Services</SelectItem>
+                            <SelectItem value="media-press">Media / Press Inquiry</SelectItem>
+                            <SelectItem value="partnerships">Partnerships & Collaborations</SelectItem>
+                            <SelectItem value="other">Something Else</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -358,10 +309,10 @@ const Contact = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Additional Information (Optional)</FormLabel>
+                        <FormLabel>Message</FormLabel>
                         <FormControl>
                           <Textarea 
-                            placeholder="Any other details you'd like to share..." 
+                            placeholder="Tell us more about your inquiry..." 
                             className="min-h-24"
                             {...field} 
                           />
@@ -383,7 +334,7 @@ const Contact = () => {
                   />
                   
                   <Button type="submit" size="lg" disabled={isSubmitting}>
-                    {isSubmitting ? 'Submitting...' : 'Submit & Schedule'}
+                    {isSubmitting ? 'Submitting...' : 'Send Message'}
                   </Button>
                 </form>
               </Form>
