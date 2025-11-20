@@ -1,16 +1,35 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ChatWidget = () => {
+  const [scriptLoaded, setScriptLoaded] = useState(false);
+
   useEffect(() => {
     // Only run on client side
-    if (typeof document === 'undefined') return;
+    if (typeof window === 'undefined') return;
+    
+    // Check if script already exists
+    const existingScript = document.querySelector('script[src*="elevenlabs"]');
+    if (existingScript) {
+      setScriptLoaded(true);
+      return;
+    }
     
     // Load the ElevenLabs script
     const script = document.createElement('script');
     script.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed';
     script.async = true;
     script.type = 'text/javascript';
+    
+    script.onload = () => {
+      setScriptLoaded(true);
+    };
+    
+    script.onerror = () => {
+      console.error('Failed to load ElevenLabs widget');
+      setScriptLoaded(false);
+    };
+    
     document.head.appendChild(script);
 
     return () => {
@@ -20,6 +39,10 @@ const ChatWidget = () => {
       }
     };
   }, []);
+
+  if (!scriptLoaded) {
+    return null;
+  }
 
   return (
     <div 
