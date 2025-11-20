@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const ChatWidget = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     // Only run on client side
@@ -27,12 +28,23 @@ const ChatWidget = () => {
     
     script.onerror = () => {
       console.error('Failed to load ElevenLabs widget');
-      setScriptLoaded(false);
+      setHasError(true);
     };
     
     document.head.appendChild(script);
 
+    // Handle widget errors
+    const handleError = (event: ErrorEvent) => {
+      if (event.message?.includes('device') || event.message?.includes('microphone')) {
+        console.warn('Microphone access issue detected');
+        setHasError(true);
+      }
+    };
+
+    window.addEventListener('error', handleError);
+
     return () => {
+      window.removeEventListener('error', handleError);
       // Cleanup script on unmount
       if (document.head.contains(script)) {
         document.head.removeChild(script);
@@ -40,7 +52,8 @@ const ChatWidget = () => {
     };
   }, []);
 
-  if (!scriptLoaded) {
+  // Don't render if there's an error or script hasn't loaded
+  if (hasError || !scriptLoaded) {
     return null;
   }
 
