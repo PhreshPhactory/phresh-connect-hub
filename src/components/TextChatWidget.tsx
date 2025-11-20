@@ -20,6 +20,15 @@ const TextChatWidget = () => {
     }
   }, [messages]);
 
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
+      setMessages([{
+        role: "assistant",
+        content: "Hi! I'm Phreelance AI, your assistant for all things Phresh Phactory. How can I help you today?"
+      }]);
+    }
+  }, [isOpen]);
+
   const streamChat = async (userMessage: string) => {
     const newMessages: Message[] = [...messages, { role: "user", content: userMessage }];
     setMessages(newMessages);
@@ -110,10 +119,11 @@ const TextChatWidget = () => {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:bg-primary/90 transition-all z-50"
-        aria-label="Open chat"
+        className="fixed bottom-6 right-6 bg-primary text-primary-foreground px-6 py-4 rounded-full shadow-lg hover:bg-primary/90 transition-all z-50 flex items-center gap-3 font-semibold"
+        aria-label="Start chat"
       >
         <MessageCircle className="w-6 h-6" />
+        <span>Start Chat</span>
       </button>
     );
   }
