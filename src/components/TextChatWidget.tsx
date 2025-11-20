@@ -34,14 +34,15 @@ const TextChatWidget = () => {
     setMessages(newMessages);
     setIsLoading(true);
 
-    const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat-support`;
+    const CHAT_URL = 'https://xmmfafefyfqzmsutqwug.supabase.co/functions/v1/chat-support';
+    const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhtbWZhZmVmeWZxem1zdXRxd3VnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2NjI4NTUsImV4cCI6MjA3MDIzODg1NX0.GCCIabDOH8qnctlr-v-R71OkUxed5Q_aEcel8_KTVDQ';
 
     try {
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          Authorization: `Bearer ${ANON_KEY}`,
         },
         body: JSON.stringify({ messages: newMessages }),
       });
