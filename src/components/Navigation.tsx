@@ -44,49 +44,31 @@ const Navigation = () => {
                 isActive('/shop') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              Shop
+              SHOP
             </Link>
             <Link
-              to="/about"
+              to="/brands"
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive('/about') ? 'text-primary' : 'text-muted-foreground'
+                isActive('/brands') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              About
+              Brands
             </Link>
-            
-            {/* Services Dropdown */}
-            <div className="relative">
-              <button
-                className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary"
-                onClick={() => setServicesOpen(!servicesOpen)}
-              >
-                Services
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              {servicesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-card border border-border rounded-lg shadow-lg z-50">
-                  {services.map((service) => (
-                    <Link
-                      key={service.href}
-                      to={service.href}
-                      className="block px-4 py-3 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
-                      onClick={() => setServicesOpen(false)}
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
             <Link
               to="/holiday-explained"
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 isActive('/holiday-explained') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              Holiday Sprint
+              Sprint
+            </Link>
+            <Link
+              to="/affiliate-sales-blueprint"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/affiliate-sales-blueprint') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              Blueprint
             </Link>
             <Link
               to="/blog"
@@ -95,6 +77,14 @@ const Navigation = () => {
               }`}
             >
               Blog
+            </Link>
+            <Link
+              to="/about"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/about') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              About
             </Link>
             <Link
               to="/contact"
@@ -135,34 +125,28 @@ const Navigation = () => {
                 className="block text-sm font-medium text-muted-foreground hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
-                Shop
+                SHOP
               </Link>
               <Link
-                to="/about"
+                to="/brands"
                 className="block text-sm font-medium text-muted-foreground hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
-                About
+                Brands
               </Link>
-              <div className="space-y-2">
-                <div className="text-sm font-medium text-muted-foreground">Services</div>
-                {services.map((service) => (
-                  <Link
-                    key={service.href}
-                    to={service.href}
-                    className="block ml-4 text-sm text-muted-foreground hover:text-primary"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {service.name}
-                  </Link>
-                ))}
-              </div>
               <Link
                 to="/holiday-explained"
                 className="block text-sm font-medium text-muted-foreground hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
-                Holiday Sprint
+                Sprint
+              </Link>
+              <Link
+                to="/affiliate-sales-blueprint"
+                className="block text-sm font-medium text-muted-foreground hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                Blueprint
               </Link>
               <Link
                 to="/blog"
@@ -170,6 +154,13 @@ const Navigation = () => {
                 onClick={() => setIsOpen(false)}
               >
                 Blog
+              </Link>
+              <Link
+                to="/about"
+                className="block text-sm font-medium text-muted-foreground hover:text-primary"
+                onClick={() => setIsOpen(false)}
+              >
+                About
               </Link>
               <Link
                 to="/contact"
