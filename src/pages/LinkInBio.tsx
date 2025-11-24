@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
 import { ExternalLink, Play } from "lucide-react";
@@ -6,18 +7,18 @@ import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import backgroundImage from "@/assets/link-bio-background.png";
 import { supabase } from "@/integrations/supabase/client";
 
-const LinkInBio = () => {
-  const brandLinks = [
-    { name: "No Guilt Bakes", url: "https://noguiltbakes.co.uk/?_ef_transaction_id=&oid=50&affid=53" },
-    { name: "Big Up Street Greets", url: "https://www.arjdj2msd.com/3DCFHG/2HKTT6J/" },
-    { name: "Name Your Ballz", url: "https://www.arjdj2msd.com/3DCFHG/23W5CH8/" },
-  ];
+interface BrandLink {
+  id: string;
+  name: string;
+  url: string;
+  display_order: number;
+  is_featured: boolean;
+}
 
-  const upNextBrands = [
-    { name: "PetPlate", url: "https://www.arjdj2msd.com/3DCFHG/PETPLATE" },
-    { name: "Be Rooted", url: "https://www.arjdj2msd.com/3DCFHG/R74QP1/" },
-    { name: "All Shades Cards", url: "https://www.arjdj2msd.com/3DCFHG/9F3647" },
-  ];
+const LinkInBio = () => {
+  const [brandLinks, setBrandLinks] = useState<BrandLink[]>([]);
+  const [upNextBrands, setUpNextBrands] = useState<BrandLink[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const workLinks = [
     { name: "Feature Your Brand", url: "/brands" },
@@ -25,6 +26,31 @@ const LinkInBio = () => {
     { name: "Become an Afrofiliate", url: "/contact" },
     { name: "Book Kiera H.", url: "https://phreshphactory.com/kierah" },
   ];
+
+  useEffect(() => {
+    fetchBrandLinks();
+  }, []);
+
+  const fetchBrandLinks = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('brand_links')
+        .select('*')
+        .order('display_order', { ascending: true });
+
+      if (error) throw error;
+      
+      const featured = (data || []).filter(link => link.is_featured);
+      const upNext = (data || []).filter(link => !link.is_featured);
+      
+      setBrandLinks(featured);
+      setUpNextBrands(upNext);
+    } catch (error) {
+      console.error('Error fetching brand links:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const trackClick = async (linkName: string, linkUrl: string) => {
     try {
@@ -84,45 +110,61 @@ const LinkInBio = () => {
           </Link>
 
           {/* Main CTA with Brand Links */}
-          <div className="p-[2px] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-lg mb-8">
-            <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl">
-              <h2 className="text-2xl font-bold text-center mb-6 font-heading">Shop the Brands</h2>
-            <div className="space-y-3">
-              {brandLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  onClick={() => trackClick(link.name, link.url)}
-                  className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-semibold text-gray-900 font-heading">{link.name}</span>
-                    <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
-                  </div>
-                </a>
-              ))}
-              
-              {/* Up Next Divider */}
-              <div className="py-2 text-center">
-                <span className="text-lg font-bold text-gray-700 font-heading">Up Next</span>
+          {loading ? (
+            <div className="p-[2px] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-lg mb-8">
+              <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl text-center">
+                <p className="text-gray-600">Loading brands...</p>
               </div>
-              
-              {upNextBrands.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  onClick={() => trackClick(link.name, link.url)}
-                  className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-semibold text-gray-900 font-heading">{link.name}</span>
-                    <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
-                  </div>
-                </a>
-              ))}
             </div>
+          ) : (
+            <div className="p-[2px] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-lg mb-8">
+              <div className="bg-white/95 backdrop-blur-sm text-gray-900 p-6 rounded-2xl">
+                <h2 className="text-2xl font-bold text-center mb-6 font-heading">Shop the Brands</h2>
+              <div className="space-y-3">
+                {brandLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackClick(link.name, link.url)}
+                    className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-gray-900 font-heading">{link.name}</span>
+                      <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
+                    </div>
+                  </a>
+                ))}
+                
+                {upNextBrands.length > 0 && (
+                  <>
+                    {/* Up Next Divider */}
+                    <div className="py-2 text-center">
+                      <span className="text-lg font-bold text-gray-700 font-heading">Up Next</span>
+                    </div>
+                    
+                    {upNextBrands.map((link) => (
+                      <a
+                        key={link.id}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackClick(link.name, link.url)}
+                        className="block w-full p-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl transition-all duration-200 hover:shadow-md hover:scale-[1.02] group"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold text-gray-900 font-heading">{link.name}</span>
+                          <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-gray-900 transition-colors" />
+                        </div>
+                      </a>
+                    ))}
+                  </>
+                )}
+              </div>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Work With Us Section */}
           <div className="p-[2px] bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-2xl shadow-lg mb-8">
