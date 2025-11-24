@@ -109,6 +109,8 @@ const ProductSpotlights = () => {
       if (error) throw error;
       
       console.log('Fetched spotlights:', data?.length, 'brands');
+      console.log('Shorts found:', data?.filter(item => item.shorts_url).length);
+      console.log('Recent shorts:', data?.filter(item => item.shorts_url).slice(0, 3).map(s => ({ title: s.title, created_at: s.created_at })));
       setAllContent((data || []) as any);
     } catch (error) {
       console.error('Error fetching product spotlights:', error);
