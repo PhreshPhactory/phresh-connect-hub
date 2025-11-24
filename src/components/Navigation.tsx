@@ -44,7 +44,7 @@ const Navigation = () => {
                 isActive('/shop') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              Buy Black
+              Shop
             </Link>
             <Link
               to="/about"
@@ -135,7 +135,7 @@ const Navigation = () => {
                 className="block text-sm font-medium text-muted-foreground hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
-                Buy Black
+                Shop
               </Link>
               <Link
                 to="/about"
