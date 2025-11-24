@@ -1,5 +1,8 @@
 project_id = "xmmfafefyfqzmsutqwug"
 
+[functions.sync-youtube-playlist]
+verify_jwt = false
+
 [functions.create-holiday-sprint-payment]
 verify_jwt = false
 

@@ -152,6 +152,36 @@ const Admin = () => {
     }
   };
 
+  const syncYouTubeShorts = async () => {
+    try {
+      toast({
+        title: 'Syncing...',
+        description: 'Fetching latest YouTube shorts from your playlist',
+      });
+
+      const { data, error } = await supabase.functions.invoke('sync-youtube-playlist', {
+        body: {}
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: 'Success!',
+        description: `Synced ${data.synced || 0} new shorts from YouTube`,
+      });
+
+      // Refresh the posts list
+      fetchPosts();
+    } catch (error: any) {
+      console.error('Sync error:', error);
+      toast({
+        title: 'Sync Failed',
+        description: error.message || 'Failed to sync YouTube shorts',
+        variant: 'destructive',
+      });
+    }
+  };
+
   const signIn = async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -528,6 +558,26 @@ const Admin = () => {
                 </p>
                 <Button variant="default" className="w-full bg-gradient-to-r from-teal to-primary" asChild>
                   <Link to="/admin/newsletter">View Subscribers</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-red-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span>🎬</span> Sync YouTube Shorts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Fetch and sync your latest YouTube shorts to the shop page
+                </p>
+                <Button 
+                  variant="default" 
+                  className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700"
+                  onClick={syncYouTubeShorts}
+                >
+                  Sync Now
                 </Button>
               </CardContent>
             </Card>
