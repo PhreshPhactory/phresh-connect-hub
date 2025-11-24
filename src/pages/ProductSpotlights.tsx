@@ -233,6 +233,9 @@ const ProductSpotlights = () => {
         </div>
       </section>
 
+      {/* Shorts Gallery Section */}
+      <ShortsGallery shorts={allContent.filter(item => item.shorts_url)} />
+
       {/* Video Content Section */}
       <section className="py-16 bg-gradient-to-b from-background to-teal/5">
         <div className="container-custom">
