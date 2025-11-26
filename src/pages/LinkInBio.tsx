@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
-import { ExternalLink, Play } from "lucide-react";
+import { ExternalLink, Play, Youtube, Instagram, Twitter, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
 import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import backgroundImage from "@/assets/link-bio-background.png";
@@ -87,6 +87,55 @@ const LinkInBio = () => {
                 alt="Phresh Phactory, Inc. Logo" 
                 className="w-full h-full object-cover"
               />
+            </div>
+            
+            {/* Social Media Links */}
+            <div className="flex justify-center gap-4 mt-6">
+              <a
+                href="https://youtube.com/@PhreshPhactoryTV"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackClick("YouTube - @PhreshPhactoryTV", "https://youtube.com/@PhreshPhactoryTV")}
+                className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
+              >
+                <Youtube className="w-6 h-6 text-red-600" />
+              </a>
+              <a
+                href="https://instagram.com/PhreshPhactoryTV"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackClick("Instagram - @PhreshPhactoryTV", "https://instagram.com/PhreshPhactoryTV")}
+                className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
+              >
+                <Instagram className="w-6 h-6 text-pink-600" />
+              </a>
+              <a
+                href="https://tiktok.com/@PhreshPhactoryTV"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackClick("TikTok - @PhreshPhactoryTV", "https://tiktok.com/@PhreshPhactoryTV")}
+                className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
+              >
+                <Play className="w-6 h-6 text-gray-900" />
+              </a>
+              <a
+                href="https://twitter.com/PhreshPhactoryTV"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackClick("X/Twitter - @PhreshPhactoryTV", "https://twitter.com/PhreshPhactoryTV")}
+                className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
+              >
+                <Twitter className="w-6 h-6 text-gray-900" />
+              </a>
+              <a
+                href="https://facebook.com/PhreshPhactoryTV"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackClick("Facebook - @PhreshPhactoryTV", "https://facebook.com/PhreshPhactoryTV")}
+                className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
+              >
+                <Facebook className="w-6 h-6 text-blue-600" />
+              </a>
             </div>
           </div>
 
