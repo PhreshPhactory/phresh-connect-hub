@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
-import { ExternalLink, Play, Youtube, Instagram } from "lucide-react";
+import { ExternalLink, Play, Youtube, Instagram, Grid3x3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import backgroundImage from "@/assets/link-bio-background.png";
@@ -108,6 +108,15 @@ const LinkInBio = () => {
                 className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
               >
                 <Instagram className="w-6 h-6 text-pink-600" />
+              </a>
+              <a
+                href="https://www.pinterest.com/phreshphactorytv/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackClick("Pinterest - @PhreshPhactoryTV", "https://www.pinterest.com/phreshphactorytv/")}
+                className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
+              >
+                <Grid3x3 className="w-6 h-6 text-red-600" />
               </a>
               <a
                 href="https://www.tiktok.com/@PhreshPhactoryTV"
