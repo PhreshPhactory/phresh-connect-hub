@@ -92,19 +92,19 @@ const LinkInBio = () => {
             {/* Social Media Links */}
             <div className="flex justify-center gap-4 mt-6">
               <a
-                href="https://www.youtube.com/@PhreshPhactoryTV"
+                href="https://www.youtube.com/@phreshphactoryTV"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackClick("YouTube - @PhreshPhactoryTV", "https://www.youtube.com/@PhreshPhactoryTV")}
+                onClick={() => trackClick("YouTube - @PhreshPhactoryTV", "https://www.youtube.com/@phreshphactoryTV")}
                 className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
               >
                 <Youtube className="w-6 h-6 text-red-600" />
               </a>
               <a
-                href="https://www.instagram.com/PhreshPhactoryTV"
+                href="https://www.instagram.com/phreshphactorytv/"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackClick("Instagram - @PhreshPhactoryTV", "https://www.instagram.com/PhreshPhactoryTV")}
+                onClick={() => trackClick("Instagram - @PhreshPhactoryTV", "https://www.instagram.com/phreshphactorytv/")}
                 className="w-12 h-12 bg-white/95 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110 shadow-lg"
               >
                 <Instagram className="w-6 h-6 text-pink-600" />
