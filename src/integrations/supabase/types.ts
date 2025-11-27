@@ -48,13 +48,7 @@ export type Database = {
       }
       blog_posts: {
         Row: {
-          brand_email: string | null
-          brand_instagram: string | null
           brand_name: string | null
-          brand_tiktok: string | null
-          brand_website: string | null
-          brand_whatsapp: string | null
-          brand_youtube: string | null
           category: string
           content: string
           created_at: string
@@ -72,13 +66,7 @@ export type Database = {
           view_count: number
         }
         Insert: {
-          brand_email?: string | null
-          brand_instagram?: string | null
           brand_name?: string | null
-          brand_tiktok?: string | null
-          brand_website?: string | null
-          brand_whatsapp?: string | null
-          brand_youtube?: string | null
           category: string
           content: string
           created_at?: string
@@ -96,13 +84,7 @@ export type Database = {
           view_count?: number
         }
         Update: {
-          brand_email?: string | null
-          brand_instagram?: string | null
           brand_name?: string | null
-          brand_tiktok?: string | null
-          brand_website?: string | null
-          brand_whatsapp?: string | null
-          brand_youtube?: string | null
           category?: string
           content?: string
           created_at?: string
@@ -118,6 +100,48 @@ export type Database = {
           updated_at?: string
           video_url?: string | null
           view_count?: number
+        }
+        Relationships: []
+      }
+      brand_contacts: {
+        Row: {
+          brand_email: string | null
+          brand_instagram: string | null
+          brand_name: string
+          brand_tiktok: string | null
+          brand_website: string | null
+          brand_whatsapp: string | null
+          brand_youtube: string | null
+          created_at: string
+          id: string
+          notes: string | null
+          updated_at: string
+        }
+        Insert: {
+          brand_email?: string | null
+          brand_instagram?: string | null
+          brand_name: string
+          brand_tiktok?: string | null
+          brand_website?: string | null
+          brand_whatsapp?: string | null
+          brand_youtube?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          updated_at?: string
+        }
+        Update: {
+          brand_email?: string | null
+          brand_instagram?: string | null
+          brand_name?: string
+          brand_tiktok?: string | null
+          brand_website?: string | null
+          brand_whatsapp?: string | null
+          brand_youtube?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
