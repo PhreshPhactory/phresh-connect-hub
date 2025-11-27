@@ -50,6 +50,7 @@ import HolidaySprintPayment from "@/pages/HolidaySprintPayment";
 import HolidaySprintPaymentSuccess from "@/pages/HolidaySprintPaymentSuccess";
 import HolidaySprintThankYou from "@/pages/HolidaySprintThankYou";
 import NewsletterAdmin from "@/pages/NewsletterAdmin";
+import BrandContactsAdmin from "@/pages/BrandContactsAdmin";
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -110,6 +111,7 @@ const App: React.FC = () => {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/admin/brand-links" element={<BrandLinksAdmin />} />
                 <Route path="/admin/newsletter" element={<NewsletterAdmin />} />
+                <Route path="/admin/brand-contacts" element={<BrandContactsAdmin />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/links" element={<LinkInBio />} />
