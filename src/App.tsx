@@ -50,6 +50,8 @@ import HolidaySprintPayment from "@/pages/HolidaySprintPayment";
 import HolidaySprintPaymentSuccess from "@/pages/HolidaySprintPaymentSuccess";
 import HolidaySprintThankYou from "@/pages/HolidaySprintThankYou";
 import NewsletterAdmin from "@/pages/NewsletterAdmin";
+import Shop from "@/pages/Shop";
+import ProductDetail from "@/pages/ProductDetail";
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -98,9 +100,10 @@ const App: React.FC = () => {
                 <Route path="/remote-teams" element={<RemoteTeams />} />
                 <Route path="/packages" element={<Packages />} />
                 <Route path="/products" element={<Products />} />
-                <Route path="/shop" element={<ProductSpotlights />} />
-                <Route path="/buyblack" element={<ProductSpotlights />} />
-                <Route path="/shop/:slug" element={<ProductSpotlight />} />
+                <Route path="/shop" element={<Shop />} />
+                <Route path="/buyblack" element={<Shop />} />
+                <Route path="/product/:handle" element={<ProductDetail />} />
+                <Route path="/spotlight/:slug" element={<ProductSpotlight />} />
                 <Route path="/holiday-gift-guide" element={<BlackOwnedHolidayGuide />} />
                 <Route path="/KieraH" element={<KieraProfile />} />
                 <Route path="/contact" element={<Contact />} />
