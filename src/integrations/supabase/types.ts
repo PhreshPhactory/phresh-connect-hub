@@ -48,7 +48,13 @@ export type Database = {
       }
       blog_posts: {
         Row: {
+          brand_email: string | null
+          brand_instagram: string | null
           brand_name: string | null
+          brand_tiktok: string | null
+          brand_website: string | null
+          brand_whatsapp: string | null
+          brand_youtube: string | null
           category: string
           content: string
           created_at: string
@@ -66,7 +72,13 @@ export type Database = {
           view_count: number
         }
         Insert: {
+          brand_email?: string | null
+          brand_instagram?: string | null
           brand_name?: string | null
+          brand_tiktok?: string | null
+          brand_website?: string | null
+          brand_whatsapp?: string | null
+          brand_youtube?: string | null
           category: string
           content: string
           created_at?: string
@@ -84,7 +96,13 @@ export type Database = {
           view_count?: number
         }
         Update: {
+          brand_email?: string | null
+          brand_instagram?: string | null
           brand_name?: string | null
+          brand_tiktok?: string | null
+          brand_website?: string | null
+          brand_whatsapp?: string | null
+          brand_youtube?: string | null
           category?: string
           content?: string
           created_at?: string
