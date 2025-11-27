@@ -29,6 +29,12 @@ interface BlogPost {
   shorts_url: string | null;
   shopping_link: string | null;
   brand_name: string | null;
+  brand_email: string | null;
+  brand_website: string | null;
+  brand_whatsapp: string | null;
+  brand_instagram: string | null;
+  brand_tiktok: string | null;
+  brand_youtube: string | null;
   products: Product[];
   published: boolean;
   created_at: string;
@@ -52,6 +58,12 @@ const Admin = () => {
     shorts_url: '',
     shopping_link: '',
     brand_name: '',
+    brand_email: '',
+    brand_website: '',
+    brand_whatsapp: '',
+    brand_instagram: '',
+    brand_tiktok: '',
+    brand_youtube: '',
     products: [] as Product[],
     published: false,
   });
@@ -326,6 +338,12 @@ const Admin = () => {
       shorts_url: '',
       shopping_link: '',
       brand_name: '',
+      brand_email: '',
+      brand_website: '',
+      brand_whatsapp: '',
+      brand_instagram: '',
+      brand_tiktok: '',
+      brand_youtube: '',
       products: [],
       published: false,
     });
@@ -344,6 +362,12 @@ const Admin = () => {
       shorts_url: post.shorts_url || '',
       shopping_link: post.shopping_link || '',
       brand_name: post.brand_name || '',
+      brand_email: post.brand_email || '',
+      brand_website: post.brand_website || '',
+      brand_whatsapp: post.brand_whatsapp || '',
+      brand_instagram: post.brand_instagram || '',
+      brand_tiktok: post.brand_tiktok || '',
+      brand_youtube: post.brand_youtube || '',
       products: post.products || [],
       published: post.published,
     });
@@ -710,6 +734,85 @@ const Admin = () => {
                   <p className="text-sm text-muted-foreground mt-1">
                     This will appear as "Shop [Brand Name] Now" on the Buy Black page
                   </p>
+                </div>
+
+                {/* Brand Contact Information */}
+                <div className="border-t pt-6 mt-6">
+                  <h3 className="text-lg font-semibold mb-4">Brand Contact Information</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="brand_email">Brand Email</Label>
+                      <Input
+                        id="brand_email"
+                        type="email"
+                        placeholder="contact@brand.com"
+                        value={formData.brand_email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, brand_email: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="brand_website">Brand Website</Label>
+                      <Input
+                        id="brand_website"
+                        type="url"
+                        placeholder="https://brand.com"
+                        value={formData.brand_website}
+                        onChange={(e) =>
+                          setFormData({ ...formData, brand_website: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="brand_whatsapp">WhatsApp</Label>
+                      <Input
+                        id="brand_whatsapp"
+                        type="text"
+                        placeholder="+1234567890"
+                        value={formData.brand_whatsapp}
+                        onChange={(e) =>
+                          setFormData({ ...formData, brand_whatsapp: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="brand_instagram">Instagram Handle</Label>
+                      <Input
+                        id="brand_instagram"
+                        type="text"
+                        placeholder="@brandname"
+                        value={formData.brand_instagram}
+                        onChange={(e) =>
+                          setFormData({ ...formData, brand_instagram: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="brand_tiktok">TikTok Handle</Label>
+                      <Input
+                        id="brand_tiktok"
+                        type="text"
+                        placeholder="@brandname"
+                        value={formData.brand_tiktok}
+                        onChange={(e) =>
+                          setFormData({ ...formData, brand_tiktok: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="brand_youtube">YouTube Channel</Label>
+                      <Input
+                        id="brand_youtube"
+                        type="text"
+                        placeholder="@brandchannel or URL"
+                        value={formData.brand_youtube}
+                        onChange={(e) =>
+                          setFormData({ ...formData, brand_youtube: e.target.value })
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div>
