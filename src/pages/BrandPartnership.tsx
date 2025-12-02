@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import SEOHead from '@/components/SEOHead';
 import { emailSchema, nameSchema, urlSchema, messageSchema, createRateLimiter, validateHoneypot, sanitizeInput } from '@/utils/security';
 import NewsletterForm from '@/components/NewsletterForm';
+import VideoReelSubmissionForm from '@/components/VideoReelSubmissionForm';
 
 const formSchema = z.object({
   name: nameSchema,
@@ -37,6 +38,24 @@ const rateLimiter = createRateLimiter(3, 600000);
 const BrandPartnership = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [searchParams] = useSearchParams();
+  
+  // Show toast on payment success
+  useEffect(() => {
+    const paymentStatus = searchParams.get('payment');
+    if (paymentStatus === 'success') {
+      toast({
+        title: 'Payment successful!',
+        description: 'Your video reel request has been submitted. We\'ll start working on it within 2-3 business days.',
+      });
+    } else if (paymentStatus === 'cancelled') {
+      toast({
+        title: 'Payment cancelled',
+        description: 'Your payment was cancelled. You can try again anytime.',
+        variant: 'destructive',
+      });
+    }
+  }, [searchParams, toast]);
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -265,6 +284,22 @@ const BrandPartnership = () => {
               Book Premium Content Production for Your Brand
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* $100 Video Reel Section */}
+      <section id="video-reel-order" className="py-16 bg-muted">
+        <div className="container-custom max-w-2xl">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Quick Video Reel Order
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Get a professional video reel featuring your product on our social media channels. 
+              Upload your product info and images, pay $100, and we&apos;ll create your reel.
+            </p>
+          </div>
+          <VideoReelSubmissionForm />
         </div>
       </section>
       

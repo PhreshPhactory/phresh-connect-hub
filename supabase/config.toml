@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.send-intake-confirmation]
 verify_jwt = false
+
+[functions.create-video-reel-payment]
+verify_jwt = false
