@@ -597,6 +597,22 @@ const Admin = () => {
                 </Button>
               </CardContent>
             </Card>
+
+            <Card className="border-2 border-orange-500">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span>🎥</span> Video Reel Orders
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  View paid $100 video reel submissions from brands
+                </p>
+                <Button variant="default" className="w-full bg-gradient-to-r from-orange-500 to-orange-600" asChild>
+                  <Link to="/admin/video-reels">View Orders</Link>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
 

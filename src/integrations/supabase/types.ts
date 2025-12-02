@@ -295,6 +295,48 @@ export type Database = {
         }
         Relationships: []
       }
+      video_reel_submissions: {
+        Row: {
+          brand_email: string
+          brand_name: string
+          created_at: string
+          id: string
+          image_urls: string[] | null
+          payment_status: string
+          product_description: string
+          product_name: string
+          product_url: string
+          stripe_session_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          brand_email: string
+          brand_name: string
+          created_at?: string
+          id?: string
+          image_urls?: string[] | null
+          payment_status?: string
+          product_description: string
+          product_name: string
+          product_url: string
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          brand_email?: string
+          brand_name?: string
+          created_at?: string
+          id?: string
+          image_urls?: string[] | null
+          payment_status?: string
+          product_description?: string
+          product_name?: string
+          product_url?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
