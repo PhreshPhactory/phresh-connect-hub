@@ -169,8 +169,24 @@ const BrandPartnership = () => {
         </div>
       </section>
 
+      {/* $100 Video Reel Section - Top Priority */}
+      <section id="video-reel-order" className="py-16 bg-muted">
+        <div className="container-custom max-w-2xl">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Quick Video Reel Order
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Get a professional video reel featuring your product on our social media channels. 
+              Upload your product info and images, pay $100, and we&apos;ll create your reel.
+            </p>
+          </div>
+          <VideoReelSubmissionForm />
+        </div>
+      </section>
+
       {/* Services Section */}
-      <section className="py-12 bg-muted">
+      <section className="py-12 bg-background">
         <div className="container-custom max-w-5xl">
           <h2 className="text-3xl font-bold text-center mb-4 text-foreground">Our Partnership Services</h2>
           <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
@@ -211,7 +227,7 @@ const BrandPartnership = () => {
       </section>
 
       {/* Premium Content Production Section */}
-      <section className="py-16 bg-background border-t border-border">
+      <section className="py-16 bg-muted border-t border-border">
         <div className="container-custom max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
@@ -233,7 +249,7 @@ const BrandPartnership = () => {
             </div>
           </div>
 
-          <div className="bg-muted/50 border border-border rounded-lg p-8 mb-8">
+          <div className="bg-background/50 border border-border rounded-lg p-8 mb-8">
             <h3 className="text-xl font-semibold mb-6 text-foreground">
               Available content services include:
             </h3>
@@ -284,22 +300,6 @@ const BrandPartnership = () => {
               Book Premium Content Production for Your Brand
             </Button>
           </div>
-        </div>
-      </section>
-
-      {/* $100 Video Reel Section */}
-      <section id="video-reel-order" className="py-16 bg-muted">
-        <div className="container-custom max-w-2xl">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-              Quick Video Reel Order
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Get a professional video reel featuring your product on our social media channels. 
-              Upload your product info and images, pay $100, and we&apos;ll create your reel.
-            </p>
-          </div>
-          <VideoReelSubmissionForm />
         </div>
       </section>
       
