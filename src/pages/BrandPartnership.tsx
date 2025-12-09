@@ -162,8 +162,8 @@ const BrandPartnership = () => {
             </h1>
             <p className="text-xl mb-8 text-muted-foreground">
               Partner with Phresh Phactory for professional brand feature services including video reviews, 
-              written content, and business growth consulting. We work with brands through Afrofiliate&apos;s 
-              affiliate program or through direct partnership arrangements.
+              written content, and business growth consulting. We work with brands through affiliate programs 
+              and through direct partnership arrangements available below.
             </p>
           </div>
         </div>
@@ -222,6 +222,20 @@ const BrandPartnership = () => {
               <h3 className="text-xl font-semibold mb-2 text-foreground">Growth Support (Paid Service)</h3>
               <p className="text-muted-foreground">Business consulting, operational support, and strategic guidance for scaling your brand.</p>
             </div>
+          </div>
+          <div className="text-center mt-10">
+            <Button 
+              size="lg" 
+              onClick={() => {
+                const formSection = document.getElementById('brand-inquiry-form');
+                if (formSection) {
+                  formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              className="px-8 py-6 text-lg"
+            >
+              Book Premium Content Production for Your Brand
+            </Button>
           </div>
         </div>
       </section>
@@ -287,18 +301,6 @@ const BrandPartnership = () => {
               <br />
               We produce it with excellence — fast.
             </p>
-            <Button 
-              size="lg" 
-              onClick={() => {
-                const formSection = document.getElementById('brand-inquiry-form');
-                if (formSection) {
-                  formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }}
-              className="px-8 py-6 text-lg"
-            >
-              Book Premium Content Production for Your Brand
-            </Button>
           </div>
         </div>
       </section>
@@ -318,15 +320,6 @@ const BrandPartnership = () => {
                 <li><strong>Selective Process:</strong> We carefully curate partnerships to ensure the best fit and value for both our audience and your brand</li>
                 <li><strong>Next Steps:</strong> After reviewing your application, we&apos;ll reach out within 2-3 business days with pricing and partnership details if there is a fit</li>
               </ul>
-              <Button asChild size="lg" className="w-full">
-                <a 
-                  href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  Join Afrofiliate Affiliate Program
-                </a>
-              </Button>
             </div>
             
             <Form {...form}>
@@ -646,6 +639,25 @@ const BrandPartnership = () => {
           "Exclusive invites to brand collaboration events"
         ]}
       />
+
+      {/* Join Afrofiliate Section - Bottom of Page */}
+      <section className="py-12 bg-muted border-t border-border">
+        <div className="container-custom max-w-2xl text-center">
+          <h3 className="text-2xl font-bold mb-4 text-foreground">Ready to Join Our Affiliate Network?</h3>
+          <p className="text-muted-foreground mb-6">
+            Connect with our audience through Afrofiliate&apos;s affiliate program.
+          </p>
+          <Button asChild size="lg">
+            <a 
+              href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Join Afrofiliate Affiliate Program
+            </a>
+          </Button>
+        </div>
+      </section>
     </>
   );
 };
