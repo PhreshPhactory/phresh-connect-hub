@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Logo from '@/components/Logo';
 
@@ -65,12 +65,16 @@ const Header: React.FC = memo(() => {
     }
   };
   
+  // Shop items with sublabels - visually emphasized
+  const shopItems = [
+    { label: 'Shop', sublabel: 'Cards & Gifts', path: '/shop' },
+    { label: 'Compro', sublabel: 'Tarjetas y Regalos', path: '/compro' },
+  ];
+  
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Blueprint', path: '/affiliate-sales-blueprint' },
     { label: 'Services', path: '/services' },
-    { label: 'Shop', path: '/shop' },
-    { label: 'Compro', path: '/compro' },
     { label: 'Brands', path: '/brands' }
   ];
   
@@ -95,76 +99,112 @@ const Header: React.FC = memo(() => {
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Shop items - Visually emphasized with sublabels */}
+          <div className="flex items-center gap-1 mr-2 px-3 py-1.5 bg-strategic-gold/10 rounded-full border border-strategic-gold/20">
+            <ShoppingBag className="w-4 h-4 text-strategic-gold mr-1" />
+            {shopItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => handleMenuItemClick(item.path)}
+                className={`group flex flex-col items-center px-3 py-1 rounded-lg transition-all duration-200 ${
+                  isActive(item.path)
+                    ? 'bg-strategic-gold/20 text-strategic-gold'
+                    : 'text-foreground hover:bg-strategic-gold/10 hover:text-strategic-gold'
+                }`}
+              >
+                <span className="text-sm font-bold">{item.label}</span>
+                <span className="text-[10px] opacity-70 font-medium">{item.sublabel}</span>
+              </Link>
+            ))}
+          </div>
+          
+          {/* Regular nav items */}
           {navItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
-              className={`text-base xl:text-lg font-medium transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100 ${
-                isActive(item.path) 
-                  ? 'text-primary after:scale-x-100' 
-                  : 'text-muted-foreground hover:text-primary'
+              onClick={() => handleMenuItemClick(item.path)}
+              className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                isActive(item.path)
+                  ? 'text-tertiary'
+                  : 'text-foreground hover:text-tertiary'
               }`}
             >
               {item.label}
             </Link>
           ))}
-          <Button asChild size="sm" className="ml-4 px-4 xl:px-6">
-            <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">Book a Discovery Call</a>
+          
+          <Button asChild size="sm" className="ml-3 bg-tertiary hover:bg-tertiary/90 text-primary font-semibold">
+            <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">
+              Get Started
+            </a>
           </Button>
         </nav>
         
         {/* Mobile Menu Button */}
         <button 
-          onClick={toggleMenu} 
-          className="lg:hidden z-50 text-muted-foreground hover:text-primary transition-colors p-2"
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          className="lg:hidden z-50 text-foreground"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
         
-        {/* Mobile Navigation Panel */}
-        {isOpen && (
-          <div 
-            className="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-background z-40 shadow-xl transform transition-transform duration-300 ease-in-out lg:hidden animate-in slide-in-from-left"
-          >
-            <div className="flex flex-col h-full">
-              {/* Header area with logo */}
-              <div className="flex items-center justify-between p-6 border-b">
-                <Link to="/" onClick={closeMenu}>
-                  <Logo className="max-w-[100px] h-auto" />
+        {/* Mobile Navigation */}
+        <div 
+          className={`fixed inset-0 bg-background/98 backdrop-blur-sm lg:hidden transition-all duration-300 ${
+            isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+        >
+          <div className="flex flex-col items-center justify-center h-full gap-6 px-6">
+            {/* Shop items first - emphasized on mobile */}
+            <div className="flex flex-col items-center gap-3 pb-4 mb-2 border-b border-border/30 w-full max-w-xs">
+              <div className="flex items-center gap-2 text-strategic-gold mb-2">
+                <ShoppingBag className="w-5 h-5" />
+                <span className="text-sm font-semibold uppercase tracking-wide">Shop Now</span>
+              </div>
+              {shopItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => handleMenuItemClick(item.path)}
+                  className={`flex flex-col items-center px-6 py-3 rounded-xl w-full transition-all duration-200 ${
+                    isActive(item.path)
+                      ? 'bg-strategic-gold/20 text-strategic-gold'
+                      : 'text-foreground hover:bg-strategic-gold/10'
+                  }`}
+                >
+                  <span className="text-xl font-bold">{item.label}</span>
+                  <span className="text-sm opacity-70">{item.sublabel}</span>
                 </Link>
-              </div>
-              
-              {/* Navigation items */}
-              <div className="flex-1 px-6 py-4">
-                <nav className="space-y-0">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      onClick={() => handleMenuItemClick(item.path)}
-                      className={`block text-lg font-medium py-4 px-2 transition-all duration-200 border-b border-border hover:bg-muted hover:pl-4 ${
-                        isActive(item.path) 
-                          ? 'text-primary bg-muted' 
-                          : 'text-muted-foreground hover:text-primary'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </nav>
-                
-                {/* CTA Button */}
-                <div className="mt-6 px-2">
-                  <Button asChild className="w-full py-3 text-base">
-                    <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Book a Discovery Call</a>
-                  </Button>
-                </div>
-              </div>
+              ))}
             </div>
+            
+            {/* Regular nav items */}
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => handleMenuItemClick(item.path)}
+                className={`text-lg font-medium py-2 transition-all duration-200 ${
+                  isActive(item.path)
+                    ? 'text-tertiary'
+                    : 'text-foreground hover:text-tertiary'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+            
+            <Button asChild size="lg" className="mt-4 bg-tertiary hover:bg-tertiary/90 text-primary font-semibold px-8">
+              <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">
+                Book a Discovery Call
+              </a>
+            </Button>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
