@@ -22,6 +22,7 @@ interface ProductSpotlight {
   id: string;
   title: string;
   excerpt: string;
+  content: string;
   slug: string;
   feature_image: string;
   video_url: string;
@@ -41,6 +42,22 @@ const ProductSpotlights = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+
+  // Helper function to extract first URL from text (content/excerpt)
+  const extractFirstShopLink = (text: string | null): string | null => {
+    if (!text) return null;
+    // Match URLs that look like shopping links (tinyurl, amazon, etsy, etc.)
+    const urlRegex = /(https?:\/\/(?:tinyurl\.com|amzn\.to|bit\.ly|amazon\.com|etsy\.com|shopify\.com|gumroad\.com|[a-zA-Z0-9-]+\.myshopify\.com)[^\s<>"')\]]*)/gi;
+    const match = text.match(urlRegex);
+    return match ? match[0] : null;
+  };
+
+  // Get shop link - either from shopping_link field or extracted from content/excerpt
+  const getShopLink = (product: ProductSpotlight): string | null => {
+    if (product.shopping_link) return product.shopping_link;
+    // Try to extract from excerpt first, then content
+    return extractFirstShopLink(product.excerpt) || extractFirstShopLink(product.content);
+  };
 
   const trackClick = async (linkName: string, linkUrl: string) => {
     try {
@@ -83,7 +100,7 @@ const ProductSpotlights = () => {
 
     // Apply filter
     if (activeFilter === 'shop') {
-      products = products.filter(p => p.shopping_link);
+      products = products.filter(p => getShopLink(p));
     } else if (activeFilter === 'video') {
       products = products.filter(p => p.shorts_url || p.video_url);
     }
@@ -104,7 +121,7 @@ const ProductSpotlights = () => {
   // Filter counts
   const filterCounts = useMemo(() => ({
     all: allContent.length,
-    shop: allContent.filter(p => p.shopping_link).length,
+    shop: allContent.filter(p => getShopLink(p)).length,
     video: allContent.filter(p => p.shorts_url || p.video_url).length,
   }), [allContent]);
 
@@ -132,7 +149,8 @@ const ProductSpotlights = () => {
   };
 
   const ProductCard = ({ product, isListView = false }: { product: ProductSpotlight; isListView?: boolean }) => {
-    const hasShopLink = !!product.shopping_link;
+    const shopLink = getShopLink(product);
+    const hasShopLink = !!shopLink;
     const hasVideo = !!(product.shorts_url || product.video_url);
 
     if (isListView) {
@@ -170,12 +188,12 @@ const ProductSpotlights = () => {
               {product.excerpt || "Discover this amazing Black-owned brand"}
             </p>
             <div className="flex items-center gap-2 mt-3">
-              {hasShopLink && (
+              {hasShopLink && shopLink && (
                 <a
-                  href={product.shopping_link}
+                  href={shopLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackClick(product.brand_name || product.title, product.shopping_link)}
+                  onClick={() => trackClick(product.brand_name || product.title, shopLink)}
                 >
                   <Badge className="text-xs bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer">
                     <ShoppingBag className="w-3 h-3 mr-1" />
@@ -249,12 +267,12 @@ const ProductSpotlights = () => {
           </p>
           
           {/* Shop this item link */}
-          {hasShopLink && (
+          {hasShopLink && shopLink && (
             <a
-              href={product.shopping_link}
+              href={shopLink}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackClick(product.brand_name || product.title, product.shopping_link)}
+              onClick={() => trackClick(product.brand_name || product.title, shopLink)}
               className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
             >
               <ShoppingBag className="w-3.5 h-3.5" />
