@@ -92,10 +92,10 @@ const Compro = () => {
           </h1>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Array.from({ length: 6 }).map((_, i) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} className="animate-pulse">
-                  <div className="aspect-[9/16] bg-muted rounded-lg mb-3" />
+                  <div className="aspect-square bg-muted rounded-lg mb-3" />
                   <div className="h-4 bg-muted rounded w-3/4 mb-2" />
                   <div className="h-10 bg-muted rounded w-1/2" />
                 </div>
@@ -106,7 +106,7 @@ const Compro = () => {
               No se encontraron productos.
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {products
                 .filter((item) => {
                   const videoUrl = item.shorts_url || item.video_url;
@@ -120,7 +120,7 @@ const Compro = () => {
                 return (
                   <div key={item.id} className="flex flex-col">
                     {/* Video */}
-                    <div className="aspect-[9/16] rounded-lg overflow-hidden bg-muted mb-3">
+                    <div className="aspect-square rounded-lg overflow-hidden bg-muted mb-3">
                       <iframe
                         src={`https://www.youtube.com/embed/${videoId}`}
                         title={item.title}
