@@ -9,10 +9,41 @@ type Message = { role: "user" | "assistant"; content: string };
 
 const TextChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Delay chat widget appearance - show after scroll or 5s delay
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    let hasScrolled = false;
+
+    const handleScroll = () => {
+      if (!hasScrolled && window.scrollY > 300) {
+        hasScrolled = true;
+        setIsVisible(true);
+        window.removeEventListener('scroll', handleScroll);
+        clearTimeout(timeoutId);
+      }
+    };
+
+    // Show after 5 seconds regardless of scroll
+    timeoutId = setTimeout(() => {
+      if (!isVisible) {
+        setIsVisible(true);
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }, 5000);
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -116,21 +147,24 @@ const TextChatWidget = () => {
     await streamChat(userInput);
   };
 
+  // Don't render until visible
+  if (!isVisible) return null;
+
   if (!isOpen) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 bg-primary text-primary-foreground px-6 py-4 rounded-full shadow-lg hover:bg-primary/90 transition-all z-50 flex items-center gap-3 font-semibold"
+        className="fixed bottom-6 right-6 bg-tertiary text-primary px-5 py-3 rounded-full shadow-lg hover:bg-tertiary/90 transition-all z-50 flex items-center gap-2 font-semibold animate-fade-in hover:scale-105"
         aria-label="Start chat"
       >
-        <MessageCircle className="w-6 h-6" />
-        <span>Start Chat</span>
+        <MessageCircle className="w-5 h-5" />
+        <span className="text-sm">Chat</span>
       </button>
     );
   }
 
   return (
-    <Card className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col">
+    <Card className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col animate-fade-in">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b">
         <CardTitle className="text-lg">Chat with Phreelance AI</CardTitle>
         <div className="flex gap-2">
