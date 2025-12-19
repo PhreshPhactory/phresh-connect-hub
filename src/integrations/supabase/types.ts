@@ -55,6 +55,7 @@ export type Database = {
           excerpt: string | null
           feature_image: string | null
           id: string
+          language: string
           products: Json | null
           published: boolean
           shopping_link: string | null
@@ -73,6 +74,7 @@ export type Database = {
           excerpt?: string | null
           feature_image?: string | null
           id?: string
+          language?: string
           products?: Json | null
           published?: boolean
           shopping_link?: string | null
@@ -91,6 +93,7 @@ export type Database = {
           excerpt?: string | null
           feature_image?: string | null
           id?: string
+          language?: string
           products?: Json | null
           published?: boolean
           shopping_link?: string | null

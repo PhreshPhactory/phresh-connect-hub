@@ -36,6 +36,7 @@ import KieraProfile from "@/pages/KieraProfile";
 import Products from "@/pages/Products";
 import ProductSpotlights from "@/pages/ProductSpotlights";
 import ProductSpotlight from "@/pages/ProductSpotlight";
+import Compro from "@/pages/Compro";
 import BlackOwnedHolidayGuide from "@/pages/BlackOwnedHolidayGuide";
 import BrandPartnership from "@/pages/BrandPartnership";
 import BrandLinksAdmin from "@/pages/BrandLinksAdmin";
@@ -103,6 +104,7 @@ const App: React.FC = () => {
                 <Route path="/shop" element={<ProductSpotlights />} />
                 <Route path="/buyblack" element={<ProductSpotlights />} />
                 <Route path="/shop/:slug" element={<ProductSpotlight />} />
+                <Route path="/compro" element={<Compro />} />
                 <Route path="/holiday-gift-guide" element={<BlackOwnedHolidayGuide />} />
                 <Route path="/KieraH" element={<KieraProfile />} />
                 <Route path="/contact" element={<Contact />} />
