@@ -171,7 +171,14 @@ const Compro = () => {
                   </p>
                 )}
               </div>
-              <div className="flex gap-2 mt-3">
+              <div className="flex flex-wrap gap-2 mt-3">
+                <Button size="sm" variant="outline" asChild className="gap-1.5">
+                  <Link to={`/shop/${item.slug}`}>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    Detalles
+                  </Link>
+                </Button>
+
                 {shopLink && (
                   <Button
                     size="sm"
@@ -188,7 +195,7 @@ const Compro = () => {
                 {videoLink && (
                   <Button
                     size="sm"
-                    variant="outline"
+                    variant="secondary"
                     className="gap-1.5"
                     onClick={() => {
                       trackClick(`${item.title} - Video`, videoLink);
@@ -208,22 +215,48 @@ const Compro = () => {
 
     return (
       <Card className="group overflow-hidden border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-        <div className="aspect-video relative overflow-hidden bg-muted">
-          {item.feature_image ? (
-            <img
-              src={item.feature_image}
-              alt={item.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <ShoppingBag className="w-12 h-12 text-muted-foreground/30" />
-            </div>
+        <Link to={`/shop/${item.slug}`} className="block">
+          <div className="aspect-video relative overflow-hidden bg-muted">
+            {item.feature_image ? (
+              <img
+                src={item.feature_image}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <ShoppingBag className="w-12 h-12 text-muted-foreground/30" />
+              </div>
+            )}
+          </div>
+        </Link>
+
+        <div className="p-4">
+          {item.brand_name && (
+            <Badge variant="secondary" className="mb-2 text-xs">
+              {item.brand_name}
+            </Badge>
           )}
-          
-          {/* Overlay actions */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-2">
+          <Link to={`/shop/${item.slug}`} className="block">
+            <h3 className="font-semibold text-foreground line-clamp-2 mb-1 group-hover:text-primary transition-colors">
+              {item.title}
+            </h3>
+          </Link>
+          {item.excerpt && (
+            <p className="text-sm text-muted-foreground line-clamp-2">
+              {item.excerpt}
+            </p>
+          )}
+
+          <div className="flex flex-wrap gap-2 mt-3">
+            <Button size="sm" variant="outline" asChild className="gap-1.5">
+              <Link to={`/shop/${item.slug}`}>
+                <ExternalLink className="w-3.5 h-3.5" />
+                Detalles
+              </Link>
+            </Button>
+
             {shopLink && (
               <Button
                 size="sm"
@@ -252,22 +285,6 @@ const Compro = () => {
               </Button>
             )}
           </div>
-        </div>
-        
-        <div className="p-4">
-          {item.brand_name && (
-            <Badge variant="secondary" className="mb-2 text-xs">
-              {item.brand_name}
-            </Badge>
-          )}
-          <h3 className="font-semibold text-foreground line-clamp-2 mb-1 group-hover:text-primary transition-colors">
-            {item.title}
-          </h3>
-          {item.excerpt && (
-            <p className="text-sm text-muted-foreground line-clamp-2">
-              {item.excerpt}
-            </p>
-          )}
         </div>
       </Card>
     );
