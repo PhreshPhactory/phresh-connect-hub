@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Play, ShoppingBag } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import { Link } from 'react-router-dom';
 
 interface ProductSpotlight {
   id: string;
@@ -12,6 +13,9 @@ interface ProductSpotlight {
   video_url: string | null;
   shopping_link: string | null;
   shorts_url?: string | null;
+  feature_image?: string | null;
+  slug: string;
+  brand_name?: string | null;
 }
 
 const Compro = () => {
@@ -42,6 +46,10 @@ const Compro = () => {
     return match ? match[1] : null;
   };
 
+  const getYouTubeThumbnail = (videoId: string): string => {
+    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  };
+
   const trackClick = async (linkName: string, linkUrl: string) => {
     try {
       await supabase.from('link_clicks').insert({
@@ -60,7 +68,7 @@ const Compro = () => {
       setIsLoading(true);
       const { data, error } = await supabase
         .from('blog_posts')
-        .select('id, title, excerpt, content, video_url, shopping_link, shorts_url')
+        .select('id, title, excerpt, content, video_url, shopping_link, shorts_url, feature_image, slug, brand_name')
         .eq('category', 'Product Spotlight')
         .eq('published', true)
         .eq('language', 'es')
@@ -116,38 +124,64 @@ const Compro = () => {
                 const videoUrl = item.shorts_url || item.video_url;
                 const videoId = getVideoId(videoUrl);
                 const shopLink = getShopLink(item);
+                const thumbnailUrl = item.feature_image || (videoId ? getYouTubeThumbnail(videoId) : null);
+                const hasVideo = !!(item.shorts_url || item.video_url);
 
                 return (
-                  <div key={item.id} className="flex flex-col">
-                    {/* Video */}
-                    <div className="aspect-square rounded-lg overflow-hidden bg-muted mb-3">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1`}
-                        title={item.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full h-full pointer-events-none"
-                      />
+                  <div key={item.id} className="group block">
+                    {/* Product Image - links to detail page */}
+                    <Link to={`/shop/${item.slug}`} className="block">
+                      <div className="aspect-square bg-muted rounded-xl overflow-hidden relative border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl">
+                        {thumbnailUrl ? (
+                          <img
+                            src={thumbnailUrl}
+                            alt={item.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10">
+                            <ShoppingBag className="w-12 h-12 text-primary/30" />
+                          </div>
+                        )}
+                        
+                        {/* Play Button Overlay - centered for videos */}
+                        {hasVideo && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="bg-black/50 rounded-full p-4 group-hover:bg-black/70 transition-colors duration-300">
+                              <Play className="w-8 h-8 text-white fill-white" />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </Link>
+
+                    {/* Product Info */}
+                    <div className="mt-3 space-y-2">
+                      <Link to={`/shop/${item.slug}`}>
+                        <h3 className="font-medium text-foreground text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors">
+                          {item.brand_name || item.title.split(/[-:|]/)[0].trim()}
+                        </h3>
+                      </Link>
+                      <p className="text-xs text-muted-foreground line-clamp-2">
+                        {item.excerpt || "Haz clic para descubrir"}
+                      </p>
+                      
+                      {/* Shop Button */}
+                      {shopLink && (
+                        <Button
+                          size="sm"
+                          className="gap-2"
+                          onClick={() => {
+                            trackClick(item.title, shopLink);
+                            window.open(shopLink, '_blank');
+                          }}
+                        >
+                          <ShoppingCart className="w-4 h-4" />
+                          Comprar
+                        </Button>
+                      )}
                     </div>
-
-                    {/* Description */}
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
-                      {item.excerpt || item.title}
-                    </p>
-
-                    {/* Buy Button */}
-                    {shopLink && (
-                      <Button
-                        className="gap-2 w-fit"
-                        onClick={() => {
-                          trackClick(item.title, shopLink);
-                          window.open(shopLink, '_blank');
-                        }}
-                      >
-                        <ShoppingCart className="w-4 h-4" />
-                        Comprar
-                      </Button>
-                    )}
                   </div>
                 );
               })}
