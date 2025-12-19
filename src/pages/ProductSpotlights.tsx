@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { 
   ExternalLink, 
-  Heart, 
   ArrowRight, 
   ShoppingBag, 
   Search, 
@@ -33,20 +32,11 @@ interface ProductSpotlight {
   shorts_url?: string;
 }
 
-interface BrandLink {
-  id: string;
-  name: string;
-  url: string;
-  display_order: number;
-  is_featured: boolean;
-}
-
 type ViewMode = 'grid' | 'list';
 type FilterType = 'all' | 'shop' | 'video';
 
 const ProductSpotlights = () => {
   const [allContent, setAllContent] = useState<ProductSpotlight[]>([]);
-  const [brandLinks, setBrandLinks] = useState<BrandLink[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
@@ -67,7 +57,6 @@ const ProductSpotlights = () => {
 
   useEffect(() => {
     fetchSpotlights();
-    fetchBrandLinks();
   }, []);
 
   const fetchSpotlights = async () => {
@@ -85,21 +74,6 @@ const ProductSpotlights = () => {
       console.error('Error fetching product spotlights:', error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const fetchBrandLinks = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('brand_links')
-        .select('*')
-        .eq('is_featured', true)
-        .order('display_order', { ascending: true });
-
-      if (error) throw error;
-      setBrandLinks(data || []);
-    } catch (error) {
-      console.error('Error fetching brand links:', error);
     }
   };
 
@@ -160,24 +134,12 @@ const ProductSpotlights = () => {
   const ProductCard = ({ product, isListView = false }: { product: ProductSpotlight; isListView?: boolean }) => {
     const hasShopLink = !!product.shopping_link;
     const hasVideo = !!(product.shorts_url || product.video_url);
-    const CardWrapper = hasShopLink ? 'a' : Link;
-    const cardProps = hasShopLink 
-      ? { 
-          href: product.shopping_link, 
-          target: "_blank", 
-          rel: "noopener noreferrer",
-          onClick: () => trackClick(product.brand_name || product.title, product.shopping_link)
-        }
-      : { to: `/shop/${product.slug}` };
 
     if (isListView) {
       return (
-        <CardWrapper
-          {...cardProps as any}
-          className="group flex gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-        >
-          {/* Image */}
-          <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-lg overflow-hidden bg-muted relative">
+        <div className="group flex gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+          {/* Image - links to detail page */}
+          <Link to={`/shop/${product.slug}`} className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-lg overflow-hidden bg-muted relative block">
             {product.feature_image ? (
               <img
                 src={product.feature_image}
@@ -195,20 +157,32 @@ const ProductSpotlights = () => {
                 <Play className="w-3 h-3 text-white fill-white" />
               </div>
             )}
-          </div>
+          </Link>
 
           {/* Content */}
           <div className="flex-1 flex flex-col justify-center min-w-0">
-            <h3 className="font-semibold text-foreground text-base md:text-lg line-clamp-1 group-hover:text-primary transition-colors">
-              {product.brand_name || product.title.split(/[-:|]/)[0].trim()}
-            </h3>
+            <Link to={`/shop/${product.slug}`}>
+              <h3 className="font-semibold text-foreground text-base md:text-lg line-clamp-1 group-hover:text-primary transition-colors">
+                {product.brand_name || product.title.split(/[-:|]/)[0].trim()}
+              </h3>
+            </Link>
             <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
               {product.excerpt || "Discover this amazing Black-owned brand"}
             </p>
             <div className="flex items-center gap-2 mt-3">
-              <Badge variant="secondary" className="text-xs">
-                {hasShopLink ? "Shop Now" : "View Details"}
-              </Badge>
+              {hasShopLink && (
+                <a
+                  href={product.shopping_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackClick(product.brand_name || product.title, product.shopping_link)}
+                >
+                  <Badge className="text-xs bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer">
+                    <ShoppingBag className="w-3 h-3 mr-1" />
+                    Shop this item
+                  </Badge>
+                </a>
+              )}
               {hasVideo && (
                 <Badge variant="outline" className="text-xs text-red-500 border-red-500/30">
                   <Play className="w-3 h-3 mr-1" />
@@ -218,86 +192,87 @@ const ProductSpotlights = () => {
             </div>
           </div>
 
-          {/* Action */}
-          <div className="flex-shrink-0 flex items-center">
-            {hasShopLink ? (
-              <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-            ) : (
-              <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-            )}
-          </div>
-        </CardWrapper>
+          {/* Action - View Details */}
+          <Link to={`/shop/${product.slug}`} className="flex-shrink-0 flex items-center">
+            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+          </Link>
+        </div>
       );
     }
 
     return (
-      <CardWrapper
-        {...cardProps as any}
-        className="group block"
-      >
-        {/* Product Image */}
-        <div className="aspect-square bg-muted rounded-xl overflow-hidden relative border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl">
-          {product.feature_image ? (
-            <img
-              src={product.feature_image}
-              alt={product.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10">
-              <ShoppingBag className="w-12 h-12 text-primary/30" />
-            </div>
-          )}
-          
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white rounded-full p-3 shadow-lg transform scale-90 group-hover:scale-100">
-              {hasShopLink ? (
-                <ShoppingBag className="w-5 h-5 text-foreground" />
-              ) : (
+      <div className="group block">
+        {/* Product Image - links to detail page */}
+        <Link to={`/shop/${product.slug}`} className="block">
+          <div className="aspect-square bg-muted rounded-xl overflow-hidden relative border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl">
+            {product.feature_image ? (
+              <img
+                src={product.feature_image}
+                alt={product.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10">
+                <ShoppingBag className="w-12 h-12 text-primary/30" />
+              </div>
+            )}
+            
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white rounded-full p-3 shadow-lg transform scale-90 group-hover:scale-100">
                 <ArrowRight className="w-5 h-5 text-foreground" />
-              )}
+              </div>
             </div>
-          </div>
 
-          {/* Badges */}
-          <div className="absolute top-2 left-2 flex gap-1.5">
+            {/* Video Badge */}
             {hasVideo && (
-              <Badge className="bg-red-500 text-white text-xs px-2">
-                <Play className="w-3 h-3 mr-1 fill-white" />
-                Video
-              </Badge>
+              <div className="absolute top-2 left-2">
+                <Badge className="bg-red-500 text-white text-xs px-2">
+                  <Play className="w-3 h-3 mr-1 fill-white" />
+                  Video
+                </Badge>
+              </div>
             )}
           </div>
-
-          {/* Quick Shop Badge */}
-          {hasShopLink && (
-            <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              <Badge className="bg-primary text-primary-foreground text-xs">
-                Shop Now
-              </Badge>
-            </div>
-          )}
-        </div>
+        </Link>
 
         {/* Product Info */}
-        <div className="mt-3 space-y-1">
-          <h3 className="font-medium text-foreground text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors">
-            {product.brand_name || product.title.split(/[-:|]/)[0].trim()}
-          </h3>
+        <div className="mt-3 space-y-2">
+          <Link to={`/shop/${product.slug}`}>
+            <h3 className="font-medium text-foreground text-sm md:text-base line-clamp-2 group-hover:text-primary transition-colors">
+              {product.brand_name || product.title.split(/[-:|]/)[0].trim()}
+            </h3>
+          </Link>
           <p className="text-xs text-muted-foreground line-clamp-2">
             {product.excerpt || "Click to discover"}
           </p>
-          <p className="text-xs font-medium text-primary flex items-center gap-1">
-            {hasShopLink ? (
-              <>Shop Now <ExternalLink className="w-3 h-3" /></>
-            ) : (
-              <>View Details <ArrowRight className="w-3 h-3" /></>
-            )}
-          </p>
+          
+          {/* Shop this item link */}
+          {hasShopLink && (
+            <a
+              href={product.shopping_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackClick(product.brand_name || product.title, product.shopping_link)}
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:text-primary/80 transition-colors"
+            >
+              <ShoppingBag className="w-3.5 h-3.5" />
+              Shop this item
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          )}
+          
+          {!hasShopLink && (
+            <Link 
+              to={`/shop/${product.slug}`}
+              className="inline-flex items-center gap-1 text-xs font-medium text-primary"
+            >
+              View Details <ArrowRight className="w-3 h-3" />
+            </Link>
+          )}
         </div>
-      </CardWrapper>
+      </div>
     );
   };
 
@@ -413,52 +388,8 @@ const ProductSpotlights = () => {
         </div>
       </div>
 
-      {/* Featured Brands */}
-      {brandLinks.length > 0 && !searchQuery && activeFilter === 'all' && (
-        <section className="py-10 md:py-14">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <Heart className="w-5 h-5 text-primary" />
-                <h2 className="text-xl md:text-2xl font-bold text-foreground">Featured Brands</h2>
-              </div>
-              <span className="text-sm text-muted-foreground bg-muted px-3 py-1 rounded-full">{brandLinks.length} brands</span>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
-              {brandLinks.map((brand) => (
-                <a
-                  key={brand.id}
-                  href={brand.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackClick(brand.name, brand.url)}
-                  className="group block"
-                >
-                  <div className="aspect-square bg-gradient-to-br from-primary/5 to-primary/15 rounded-xl overflow-hidden relative border border-border hover:border-primary/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                    <div className="absolute inset-0 flex items-center justify-center p-3">
-                      <div className="text-center">
-                        <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <ShoppingBag className="w-5 h-5 text-primary" />
-                        </div>
-                        <h3 className="font-semibold text-foreground text-xs md:text-sm line-clamp-2 group-hover:text-primary transition-colors">
-                          {brand.name}
-                        </h3>
-                      </div>
-                    </div>
-                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ExternalLink className="w-3.5 h-3.5 text-primary" />
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Product Grid */}
-      <section className={`py-10 md:py-14 ${brandLinks.length > 0 && !searchQuery && activeFilter === 'all' ? 'bg-muted/30' : ''}`}>
+      <section className="py-10 md:py-14">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
