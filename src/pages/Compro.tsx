@@ -107,7 +107,12 @@ const Compro = () => {
             </p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((item) => {
+              {products
+                .filter((item) => {
+                  const videoUrl = item.shorts_url || item.video_url;
+                  return videoUrl && getVideoId(videoUrl);
+                })
+                .map((item) => {
                 const videoUrl = item.shorts_url || item.video_url;
                 const videoId = getVideoId(videoUrl);
                 const shopLink = getShopLink(item);
@@ -115,17 +120,15 @@ const Compro = () => {
                 return (
                   <div key={item.id} className="flex flex-col">
                     {/* Video */}
-                    {videoId && (
-                      <div className="aspect-[9/16] rounded-lg overflow-hidden bg-muted mb-3">
-                        <iframe
-                          src={`https://www.youtube.com/embed/${videoId}`}
-                          title={item.title}
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="w-full h-full"
-                        />
-                      </div>
-                    )}
+                    <div className="aspect-[9/16] rounded-lg overflow-hidden bg-muted mb-3">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${videoId}`}
+                        title={item.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full"
+                      />
+                    </div>
 
                     {/* Description */}
                     <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
