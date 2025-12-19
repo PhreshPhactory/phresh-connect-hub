@@ -80,9 +80,9 @@ const Compro = () => {
   return (
     <>
       <SEOHead
-        title="Compro | Marcas Afrodescendientes"
-        description="Descubre productos únicos de marcas afrodescendientes seleccionadas diariamente."
-        keywords="marcas afrodescendientes, compras, productos, negocios negros"
+        title="Compro | Tienda de Marcas Afrodescendientes | Compras Navideñas 2025"
+        description="Descubre y compra productos únicos de marcas afrodescendientes. Apoya a emprendedores negros con regalos navideños, decoración y más. Compras en español."
+        keywords="comprar negro, marcas afrodescendientes, tienda afrolatina, regalos navideños, compras navideñas 2025, productos afrodescendientes, negocios negros, apoyar negocios negros, tienda latina, compras en español, regalos afrolatinos"
       />
 
       <div className="min-h-screen bg-background py-8">
