@@ -122,11 +122,11 @@ const Compro = () => {
                     {/* Video */}
                     <div className="aspect-square rounded-lg overflow-hidden bg-muted mb-3">
                       <iframe
-                        src={`https://www.youtube.com/embed/${videoId}`}
+                        src={`https://www.youtube.com/embed/${videoId}?controls=0&modestbranding=1`}
                         title={item.title}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
-                        className="w-full h-full"
+                        className="w-full h-full pointer-events-none"
                       />
                     </div>
 
