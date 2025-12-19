@@ -311,11 +311,8 @@ const ProductSpotlights = () => {
               Curated Collection
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground tracking-tight">
-              Shop Black Excellence
+              Afro-descendant brands curated daily.
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Every click supports Black entrepreneurs. Discover unique products from curated Black-owned brands.
-            </p>
           </div>
         </div>
       </section>
