@@ -62,10 +62,10 @@ const HeroSection = () => {
                   <span className="text-sm font-semibold text-strategic-gold uppercase tracking-wide">Curated Collection</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-heading font-bold mb-3 text-black">
-                  Discover Black-Owned Products
+                  Shop the Diaspora
                 </h3>
                 <p className="text-jet-gray mb-6 font-medium text-lg">
-                  Support founders. Shop intentionally. Cards, gifts & more from culturally impactful brands.
+                  Afro-Descendant Brands Curated Daily
                 </p>
                 
                 {/* Product CTAs - Primary Focus */}
