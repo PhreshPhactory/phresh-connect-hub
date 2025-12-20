@@ -53,10 +53,10 @@ const FeaturedBrands = () => {
             Buy Black
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-            Support Black-Owned Brands
+            Shop the Diaspora
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Discover incredible Black-owned businesses we're featuring this season
+            Afro-Descendant Brands Curated Daily
           </p>
         </div>
 
