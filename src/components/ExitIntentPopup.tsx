@@ -49,9 +49,9 @@ const ExitIntentPopup = () => {
         </Button>
         
         <CardHeader>
-          <CardTitle className="text-2xl">Get the Product Recap</CardTitle>
+          <CardTitle className="text-2xl">The Product Digest</CardTitle>
           <CardDescription>
-            A curated digital magazine featuring the best products from Phresh Phactory TV — with direct shopping links to cards, gifts, and culturally impactful Black-owned brands.
+            A curated selection of featured products from Phresh Phactory TV — including cards, gifts, and exceptional Black-owned brands, delivered directly to your inbox.
           </CardDescription>
         </CardHeader>
         
@@ -60,7 +60,7 @@ const ExitIntentPopup = () => {
             <div className="space-y-2">
               <Input
                 type="email"
-                placeholder="Where should we send the drops?"
+                placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -69,10 +69,10 @@ const ExitIntentPopup = () => {
             </div>
             <Button type="submit" className="w-full">
               <Mail className="w-4 h-4 mr-2" />
-              Send Me the Drops
+              Subscribe to the Digest
             </Button>
             <p className="text-xs text-muted-foreground text-center">
-              Featured products. No spam. Unsubscribe anytime.
+              Curated selections. No spam. Unsubscribe anytime.
             </p>
           </form>
         </CardContent>
