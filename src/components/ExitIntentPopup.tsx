@@ -49,9 +49,9 @@ const ExitIntentPopup = () => {
         </Button>
         
         <CardHeader>
-          <CardTitle className="text-2xl">Wait! Before You Go...</CardTitle>
+          <CardTitle className="text-2xl">Get the Product Recap</CardTitle>
           <CardDescription>
-            Get weekly insights on business transformation, global talent strategies, and scaling operations.
+            A curated digital magazine featuring the best products from Phresh Phactory TV — with direct shopping links to cards, gifts, and culturally impactful Black-owned brands.
           </CardDescription>
         </CardHeader>
         
@@ -60,7 +60,7 @@ const ExitIntentPopup = () => {
             <div className="space-y-2">
               <Input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Where should we send the drops?"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -69,10 +69,10 @@ const ExitIntentPopup = () => {
             </div>
             <Button type="submit" className="w-full">
               <Mail className="w-4 h-4 mr-2" />
-              Get Strategic Insights
+              Send Me the Drops
             </Button>
             <p className="text-xs text-muted-foreground text-center">
-              Join leaders from high-growth startups and brands
+              Featured products. No spam. Unsubscribe anytime.
             </p>
           </form>
         </CardContent>
