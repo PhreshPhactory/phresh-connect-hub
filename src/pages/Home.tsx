@@ -23,7 +23,7 @@ const Home = () => {
         title="Phresh Phactory | Your Business Transformation & Growth Strategy"
         description="Phresh Phactory powers growth with business transformation, fractional leadership, global talent, legacy modernization, and scalable operations."
         keywords="business transformation, fractional leadership, global talent, legacy modernization, scalable operations, growth strategy, C-Suite executives, digital transformation"
-        canonicalUrl="https://phreshphactory.co/"
+        canonicalUrl="https://phreshphactory.com/"
       />
        <main>
         <HeroSection />

@@ -150,7 +150,7 @@ const BrandPartnership = () => {
         title="Brand Feature Services | Phresh Phactory Buy Black Directory"
         description="Partner with Phresh Phactory for professional brand feature services including video reviews, written content, and business consulting."
         keywords="Feature Black-owned brand, Black business directory, brand services, Black entrepreneurship, video reviews, content creation, Afrofiliate"
-        canonicalUrl="https://phreshphactory.co/brands"
+        canonicalUrl="https://phreshphactory.com/brands"
       />
       
       {/* Hero Section */}

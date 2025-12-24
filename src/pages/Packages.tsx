@@ -105,7 +105,7 @@ const Packages = () => {
         title="Packages | Business Transformation & Scalable Growth Plans"
         description="Explore Phresh Phactory's tailored packages for transformation, leadership, and talent, built to match your growth stage with simple, transparent pricing."
         keywords="Business Transformation Packages, Executive Leadership, Talent Solutions, Scalable Growth Plans"
-        canonicalUrl="https://phreshphactory.co/packages"
+        canonicalUrl="https://phreshphactory.com/packages"
       />
       {/* Hero Section */}
       <section className="bg-background py-16 md:py-20">

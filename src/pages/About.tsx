@@ -55,7 +55,7 @@ const About = () => {
         title="About Phresh Phactory | Operations Consulting for Your Business Growth"
         description="Phresh Phactory helps visionary founders scale through operational strategy, business systems, and culturally aligned teams built for sustainable growth."
         keywords="Operational Strategy, Operations Consulting, Sustainable Growth, Business Systems, Scaling Startups"
-        canonicalUrl="https://phreshphactory.co/about"
+        canonicalUrl="https://phreshphactory.com/about"
       />
       {/* Hero Section */}
       <section className="bg-background py-16 md:py-20">

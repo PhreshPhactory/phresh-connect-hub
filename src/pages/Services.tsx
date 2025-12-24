@@ -14,7 +14,7 @@ const Services = () => {
         title="Phresh Phactory Services | Business Transformation & Leadership"
         description="Phresh Phactory drives business transformation with fractional leadership, global talent, legacy modernization, and systems built for sustainable growth."
         keywords="Business Transformation Services, Fractional Leadership, Global Talent Acquisition, Legacy Modernization, Strategic Operations, Phresh Phactory Solutions"
-        canonicalUrl="https://phreshphactory.co/services"
+        canonicalUrl="https://phreshphactory.com/services"
       />
       {/* Hero Section */}
       <section className="bg-background py-12 md:py-16 relative overflow-hidden">
