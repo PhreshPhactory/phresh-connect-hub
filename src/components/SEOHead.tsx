@@ -63,7 +63,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       },
       {
         "@type": "ContactPoint",
-        "email": "info@phreshphactory.com",
+        "email": "info@phreshphactory.co",
         "contactType": "sales",
         "availableLanguage": "English"
       }
