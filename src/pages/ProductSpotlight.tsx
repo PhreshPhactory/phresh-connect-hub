@@ -116,15 +116,17 @@ const ProductSpotlight = () => {
       "@type": "Brand",
       "name": brandName
     },
-    "offers": spotlight.shopping_link ? {
+    "offers": {
       "@type": "Offer",
-      "url": spotlight.shopping_link,
+      "url": spotlight.shopping_link || `https://phreshphactory.com/shop/${spotlight.slug}`,
       "availability": "https://schema.org/InStock",
+      "priceCurrency": "USD",
+      "price": "0",
       "seller": {
         "@type": "Organization",
         "name": brandName
       }
-    } : undefined,
+    },
     "video": spotlight.video_url ? {
       "@type": "VideoObject",
       "name": spotlight.title,
