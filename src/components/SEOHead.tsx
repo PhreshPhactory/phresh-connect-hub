@@ -41,7 +41,14 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       "@type": "ImageObject",
       "url": "https://phreshphactory.com/logo.png",
       "width": 400,
-      "height": 400
+      "height": 400,
+      "copyrightNotice": "© 2024 Phresh Phactory, Inc. All rights reserved.",
+      "creditText": "Phresh Phactory, Inc.",
+      "creator": {
+        "@type": "Organization",
+        "name": "Phresh Phactory, Inc."
+      },
+      "acquireLicensePage": "https://phreshphactory.com/contact"
     },
     "foundingDate": "2020",
     "founder": {
