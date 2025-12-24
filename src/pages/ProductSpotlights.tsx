@@ -143,6 +143,13 @@ const ProductSpotlights = () => {
         "brand": {
           "@type": "Brand",
           "name": spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim()
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": `https://phreshphactory.com/shop/${spotlight.slug}`,
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "USD",
+          "price": "0"
         }
       }
     }))
