@@ -111,7 +111,17 @@ const ProductSpotlight = () => {
     "@type": "Product",
     "name": spotlight.title,
     "description": spotlight.excerpt,
-    "image": spotlight.feature_image,
+    "image": {
+      "@type": "ImageObject",
+      "url": spotlight.feature_image,
+      "copyrightNotice": `© ${new Date().getFullYear()} ${brandName}. All rights reserved.`,
+      "creditText": brandName,
+      "creator": {
+        "@type": "Organization",
+        "name": brandName
+      },
+      "acquireLicensePage": spotlight.shopping_link || `https://phreshphactory.com/shop/${spotlight.slug}`
+    },
     "brand": {
       "@type": "Brand",
       "name": brandName

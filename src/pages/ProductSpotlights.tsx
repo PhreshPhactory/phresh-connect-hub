@@ -138,7 +138,17 @@ const ProductSpotlights = () => {
         "@type": "Product",
         "name": spotlight.title,
         "description": spotlight.excerpt,
-        "image": spotlight.feature_image,
+        "image": {
+          "@type": "ImageObject",
+          "url": spotlight.feature_image,
+          "copyrightNotice": `© ${new Date().getFullYear()} ${spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim()}. All rights reserved.`,
+          "creditText": spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim(),
+          "creator": {
+            "@type": "Organization",
+            "name": spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim()
+          },
+          "acquireLicensePage": `https://phreshphactory.com/shop/${spotlight.slug}`
+        },
         "url": `https://phreshphactory.com/shop/${spotlight.slug}`,
         "brand": {
           "@type": "Brand",
