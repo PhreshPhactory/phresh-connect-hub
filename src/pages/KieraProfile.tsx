@@ -13,7 +13,7 @@ const KieraProfile = () => {
         title="Kiera H. - Strategic Advisor & Fractional Executive | Phresh Phactory"
         description="Meet Kiera H., results-driven business strategist and Fractional Executive with 20+ years of experience helping startups and Black-owned businesses scale sustainably."
         keywords="Kiera H, Business Strategist, Fractional Executive, Operations Consulting, Remote Teams, EatOkra, Afrofiliate"
-        canonicalUrl="https://phreshphactory.co/KieraH"
+        canonicalUrl="https://phreshphactory.com/KieraH"
       />
       <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20">
         {/* Hero Section */}

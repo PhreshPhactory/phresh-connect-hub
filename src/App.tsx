@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import React, { Suspense, lazy } from "react";
@@ -102,7 +102,7 @@ const App: React.FC = () => {
                 <Route path="/packages" element={<Packages />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/shop" element={<ProductSpotlights />} />
-                <Route path="/buyblack" element={<ProductSpotlights />} />
+                <Route path="/buyblack" element={<Navigate to="/shop" replace />} />
                 <Route path="/shop/:slug" element={<ProductSpotlight />} />
                 <Route path="/compro" element={<Compro />} />
                 <Route path="/holiday-gift-guide" element={<BlackOwnedHolidayGuide />} />

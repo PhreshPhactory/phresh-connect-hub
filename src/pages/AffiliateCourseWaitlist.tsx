@@ -74,7 +74,7 @@ const AffiliateCourseWaitlist = () => {
         title="Affiliate Sales Starter Course | Waitlist"
         description="Join the waitlist for the beginner-friendly affiliate sales course by Phresh Phactory, Inc. Learn how to set up, prepare, and activate your affiliate program the right way."
         keywords="affiliate marketing course, affiliate program setup, beginner affiliate course, brand affiliate training"
-        canonicalUrl="/affiliate-starter-course-waitlist"
+        canonicalUrl="https://phreshphactory.com/affiliate-starter-course-waitlist"
       />
 
       <div className="min-h-screen bg-background">

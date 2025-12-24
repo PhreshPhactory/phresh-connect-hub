@@ -37,7 +37,7 @@ const AffiliateSalesBlueprint = () => {
         title="The Affiliate Sales Blueprint™ Bootcamp | Phresh Phactory"
         description="A 1:1 working session for brands ready to turn affiliate programs into actual revenue. Strategic guidance from Kiera H., Founder of Phresh Phactory, Inc."
         keywords="affiliate marketing, brand strategy, affiliate sales, bootcamp, affiliate program, product marketing"
-        canonicalUrl="/affiliate-sales-blueprint"
+        canonicalUrl="https://phreshphactory.com/affiliate-sales-blueprint"
       />
 
       <div className="min-h-screen bg-background">

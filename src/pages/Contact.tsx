@@ -135,7 +135,7 @@ const Contact = () => {
         title="Contact Phresh Phactory | Start Your Growth Journey"
         description="Ready to grow? Contact Phresh Phactory to discuss strategic business solutions, fractional leadership, and building your global talent team."
         keywords="Contact Phresh Phactory, Get a Consultation, Partner for Growth, Business Solutions, Speak to an Expert"
-        canonicalUrl="https://phreshphactory.co/contact"
+        canonicalUrl="https://phreshphactory.com/contact"
       />
       {/* Hero Section */}
       <section className="bg-background py-15 md:py-15">
