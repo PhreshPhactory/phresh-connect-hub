@@ -83,6 +83,7 @@ const ProductSpotlights = () => {
         .select('*')
         .eq('category', 'Product Spotlight')
         .eq('published', true)
+        .eq('language', 'en')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
