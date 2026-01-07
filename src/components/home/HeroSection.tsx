@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Star, ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
+import { Star, ArrowRight } from 'lucide-react';
 import AssessmentForm from '@/components/AssessmentForm';
 import { useState } from 'react';
 
@@ -14,81 +13,40 @@ const HeroSection = () => {
       </div>
       
       <div className="container-custom relative z-20 py-10 sm:py-24">
-        {/* Two Column Hero Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
-          {/* Left: Scale Without the Chaos */}
-          <div className="animate-on-scroll is-visible">
-            <h1 className="font-heading font-bold mb-6 leading-tight text-white text-[36px] leading-[44px] sm:text-[52px] sm:leading-tight">
-              Scale Without
-              <span className="block text-strategic-gold">the Chaos.</span>
-            </h1>
-            <p className="text-lg md:text-xl mb-6 text-white/90 leading-relaxed font-medium">
-              Strategic leadership, global talent, and operations systems for founders ready to grow.
-            </p>
-            <p className="text-base mb-8 font-medium flex items-center text-strategic-gold">
-              <Star className="text-strategic-gold w-5 h-5 mr-3 glow-tertiary flex-shrink-0" />
-              We turn your vision into action and lead the people who keep your business moving.
-            </p>
-            
-            {/* Services CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                asChild 
-                variant="outline" 
-                size="lg" 
-                className="px-8 py-4 text-lg border-2 border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 font-semibold"
-              >
-                <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">
-                  Work With Us
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
-              </Button>
-              <Button 
-                variant="ghost" 
-                size="lg" 
-                className="px-6 py-4 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
-                onClick={() => setShowForm(!showForm)}
-              >
-                {showForm ? 'Hide Form' : 'Quick Contact'}
-              </Button>
-            </div>
-          </div>
+        {/* Business Hero Content */}
+        <div className="max-w-3xl animate-on-scroll is-visible">
+          <h1 className="font-heading font-bold mb-6 leading-tight text-white text-[40px] leading-[48px] sm:text-[60px] sm:leading-tight">
+            Scale Without
+            <span className="block text-strategic-gold">the Chaos.</span>
+          </h1>
+          <p className="text-lg md:text-xl mb-6 text-white/90 leading-relaxed font-medium">
+            Strategic leadership, global talent, and operations systems for founders ready to grow.
+          </p>
+          <p className="text-base mb-8 font-medium flex items-center text-strategic-gold">
+            <Star className="text-strategic-gold w-5 h-5 mr-3 glow-tertiary flex-shrink-0" />
+            We turn your vision into action and lead the people who keep your business moving.
+          </p>
           
-          {/* Right: Shop the Diaspora */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left animate-on-scroll is-visible">
-            <div className="flex items-center gap-3 mb-4">
-              <Sparkles className="w-6 h-6 text-strategic-gold" />
-              <span className="text-sm font-semibold text-strategic-gold uppercase tracking-wide">Curated Collection</span>
-            </div>
-            <h2 className="font-heading font-bold mb-4 leading-tight text-white text-[36px] leading-[44px] sm:text-[52px] sm:leading-tight">
-              Shop the Diaspora
-            </h2>
-            <p className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed font-medium max-w-2xl">
-              Afro-Descendant Brands Curated Daily
-            </p>
-            
-            {/* Product CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-tertiary hover:bg-tertiary/90 text-primary px-10 py-6 text-xl font-bold shadow-xl transition-all duration-500 hover:scale-[1.02] hover:shadow-tertiary/30"
-              >
-                <Link to="/shop">
-                  <ShoppingBag className="mr-3 w-6 h-6" />
-                  Shop Products
-                </Link>
-              </Button>
-              <Button 
-                asChild 
-                size="lg" 
-                className="px-8 py-6 text-lg bg-white text-black hover:bg-white/90 transition-all duration-300 font-semibold"
-              >
-                <Link to="/compro">
-                  Comprar en Español
-                </Link>
-              </Button>
-            </div>
+          {/* Services CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button 
+              asChild 
+              size="lg" 
+              className="bg-tertiary hover:bg-tertiary/90 text-primary px-10 py-6 text-xl font-bold shadow-xl transition-all duration-500 hover:scale-[1.02] hover:shadow-tertiary/30"
+            >
+              <a href="http://calendly.com/PhreshPhactory" target="_blank" rel="noopener noreferrer">
+                Work With Us
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="px-8 py-6 text-lg border-2 border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 font-semibold"
+              onClick={() => setShowForm(!showForm)}
+            >
+              {showForm ? 'Hide Form' : 'Quick Contact'}
+            </Button>
           </div>
         </div>
         

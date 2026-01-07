@@ -91,7 +91,8 @@ const App: React.FC = () => {
               <Sonner />
               <Routes>
               <Route element={<Layout />}>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Navigate to="/shop" replace />} />
+                <Route path="/business" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Navigate to="/" replace />} />
                 <Route path="/services/fractional-leadership" element={<FractionalLeadership />} />
