@@ -1,11 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { Star, ArrowRight } from 'lucide-react';
-import AssessmentForm from '@/components/AssessmentForm';
-import { useState } from 'react';
+import { Star, ArrowRight, Mail } from 'lucide-react';
 
 const HeroSection = () => {
-  const [showForm, setShowForm] = useState(false);
-
   return (
     <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-gradient-hero px-6 sm:px-0">
       <div className="absolute inset-0 opacity-10">
@@ -40,31 +36,18 @@ const HeroSection = () => {
               </a>
             </Button>
             <Button 
+              asChild
               variant="outline" 
               size="lg" 
               className="px-8 py-6 text-lg border-2 border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 font-semibold"
-              onClick={() => setShowForm(!showForm)}
             >
-              {showForm ? 'Hide Form' : 'Quick Contact'}
+              <a href="mailto:info@phreshphactory.co?subject=Quick%20Contact">
+                <Mail className="mr-2 w-5 h-5" />
+                Quick Contact
+              </a>
             </Button>
           </div>
         </div>
-        
-        {/* Contact Form Section - appears directly below CTAs */}
-        {showForm && (
-          <div className="max-w-xl mt-10 animate-on-scroll">
-            <div className="bg-white/95 backdrop-blur-sm p-8 sm:p-10 rounded-xl shadow-2xl border border-strategic-gold/20 card-enhanced">
-              <h3 className="text-2xl font-heading font-bold mb-3 text-black">Want to Connect?</h3>
-              <p className="text-jet-gray mb-6 font-medium">Let's get in touch</p>
-              
-              <AssessmentForm />
-              
-              <p className="text-sm text-jet-gray mt-6 text-center">
-                No spam. We respect your privacy.
-              </p>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
