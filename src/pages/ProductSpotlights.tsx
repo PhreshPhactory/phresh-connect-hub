@@ -43,6 +43,30 @@ const ProductSpotlights = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
 
+  // Helper function to get reliable YouTube thumbnail (hqdefault always exists)
+  const getReliableThumbnail = (imageUrl: string | null, videoUrl: string | null, shortsUrl: string | null): string | null => {
+    // If we have an image that's not a YouTube thumbnail, use it
+    if (imageUrl && !imageUrl.includes('i.ytimg.com')) {
+      return imageUrl;
+    }
+    
+    // Extract video ID from shorts or video URL and use hqdefault (always available)
+    const url = shortsUrl || videoUrl;
+    if (url) {
+      const videoIdMatch = url.match(/(?:shorts\/|watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+      if (videoIdMatch) {
+        return `https://i.ytimg.com/vi/${videoIdMatch[1]}/hqdefault.jpg`;
+      }
+    }
+    
+    // Fallback: if maxresdefault fails, try hqdefault
+    if (imageUrl?.includes('maxresdefault')) {
+      return imageUrl.replace('maxresdefault', 'hqdefault');
+    }
+    
+    return imageUrl;
+  };
+
   // Helper function to extract first URL from text (content/excerpt)
   const extractFirstShopLink = (text: string | null): string | null => {
     if (!text) return null;
@@ -170,15 +194,16 @@ const ProductSpotlights = () => {
     const shopLink = getShopLink(product);
     const hasShopLink = !!shopLink;
     const hasVideo = !!(product.shorts_url || product.video_url);
+    const thumbnailUrl = getReliableThumbnail(product.feature_image, product.video_url, product.shorts_url);
 
     if (isListView) {
       return (
         <div className="group flex gap-4 p-4 bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300">
           {/* Image - links to detail page */}
           <Link to={`/shop/${product.slug}`} className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-lg overflow-hidden bg-muted relative block">
-            {product.feature_image ? (
+            {thumbnailUrl ? (
               <img
-                src={product.feature_image}
+                src={thumbnailUrl}
                 alt={product.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
@@ -240,9 +265,9 @@ const ProductSpotlights = () => {
         {/* Product Image - links to detail page */}
         <Link to={`/shop/${product.slug}`} className="block">
           <div className="aspect-square bg-muted rounded-xl overflow-hidden relative border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-xl">
-            {product.feature_image ? (
+            {thumbnailUrl ? (
               <img
-                src={product.feature_image}
+                src={thumbnailUrl}
                 alt={product.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
