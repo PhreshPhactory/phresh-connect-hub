@@ -14,8 +14,8 @@ const HeroSection = () => {
       </div>
       
       <div className="container-custom relative z-20 py-10 sm:py-24">
-        {/* Shopping First - Primary Focus */}
-        <div className="flex flex-col items-center text-center mb-16 animate-on-scroll">
+        {/* Shopping First - Primary Focus - Always visible since above the fold */}
+        <div className="flex flex-col items-center text-center mb-16 animate-on-scroll is-visible">
           <div className="flex items-center gap-3 mb-4">
             <Sparkles className="w-6 h-6 text-strategic-gold" />
             <span className="text-sm font-semibold text-strategic-gold uppercase tracking-wide">Curated Collection</span>
@@ -28,7 +28,7 @@ const HeroSection = () => {
           </p>
           
           {/* Primary Product CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 stagger-children">
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button 
               asChild 
               size="lg" 
@@ -41,9 +41,8 @@ const HeroSection = () => {
             </Button>
             <Button 
               asChild 
-              variant="outline" 
               size="lg" 
-              className="px-8 py-6 text-lg border-2 border-white/80 text-white hover:bg-white hover:text-black transition-all duration-300 font-semibold"
+              className="px-8 py-6 text-lg bg-white text-black hover:bg-white/90 transition-all duration-300 font-semibold"
             >
               <Link to="/compro">
                 Comprar en Español
