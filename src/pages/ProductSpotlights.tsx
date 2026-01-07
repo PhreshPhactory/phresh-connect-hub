@@ -46,8 +46,8 @@ const ProductSpotlights = () => {
   // Helper function to extract first URL from text (content/excerpt)
   const extractFirstShopLink = (text: string | null): string | null => {
     if (!text) return null;
-    // Match URLs that look like shopping links (tinyurl, amazon, etsy, etc.)
-    const urlRegex = /(https?:\/\/(?:tinyurl\.com|amzn\.to|bit\.ly|amazon\.com|etsy\.com|shopify\.com|gumroad\.com|[a-zA-Z0-9-]+\.myshopify\.com)[^\s<>"')\]]*)/gi;
+    // Match URLs that look like shopping links (tinyurl, amazon, etsy, etc.) - including www. prefix
+    const urlRegex = /(https?:\/\/(?:www\.)?(?:tinyurl\.com|amzn\.to|bit\.ly|amazon\.com|etsy\.com|shopify\.com|gumroad\.com|[a-zA-Z0-9-]+\.myshopify\.com)[^\s<>"')\]]*)/gi;
     const match = text.match(urlRegex);
     return match ? match[0] : null;
   };
