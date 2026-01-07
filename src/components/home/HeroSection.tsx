@@ -50,9 +50,9 @@ const HeroSection = () => {
           </div>
         </div>
         
-        {/* Contact Form Section */}
+        {/* Contact Form Section - appears directly below CTAs */}
         {showForm && (
-          <div className="max-w-xl mx-auto animate-on-scroll">
+          <div className="max-w-xl mt-10 animate-on-scroll">
             <div className="bg-white/95 backdrop-blur-sm p-8 sm:p-10 rounded-xl shadow-2xl border border-strategic-gold/20 card-enhanced">
               <h3 className="text-2xl font-heading font-bold mb-3 text-black">Want to Connect?</h3>
               <p className="text-jet-gray mb-6 font-medium">Let's get in touch</p>
