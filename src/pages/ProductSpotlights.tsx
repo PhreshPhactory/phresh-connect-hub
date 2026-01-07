@@ -320,6 +320,20 @@ const ProductSpotlights = () => {
         structuredData={itemListSchema}
       />
 
+      {/* Spanish Language Banner */}
+      <div className="bg-primary text-primary-foreground py-3">
+        <div className="container mx-auto px-4 flex items-center justify-center gap-3">
+          <span className="text-sm font-medium">¿Hablas español?</span>
+          <Link 
+            to="/compro" 
+            className="inline-flex items-center gap-2 px-4 py-1.5 bg-white text-primary text-sm font-semibold rounded-full hover:bg-white/90 transition-colors"
+          >
+            Compro en Español
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="py-12 md:py-20 bg-gradient-to-b from-primary/5 via-background to-background relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.1),transparent_50%)]" />
