@@ -17,6 +17,7 @@ import {
   X
 } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import ExitIntentPopup from '@/components/ExitIntentPopup';
 
 interface ProductSpotlight {
   id: string;
@@ -546,6 +547,9 @@ const ProductSpotlights = () => {
           </div>
         </div>
       </section>
+      
+      {/* Exit intent popup */}
+      <ExitIntentPopup />
     </div>
   );
 };

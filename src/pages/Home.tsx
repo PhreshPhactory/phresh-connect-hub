@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NewsletterForm from '@/components/NewsletterForm';
 import CallToAction from '@/components/CallToAction';
-import ExitIntentPopup from '@/components/ExitIntentPopup';
 import FeaturedBrands from '@/components/FeaturedBrands';
 
 import HeroSection from '@/components/home/HeroSection';
@@ -69,9 +68,6 @@ const Home = () => {
         dark={true}
         className="py-16"
       />
-      
-      {/* Exit intent popup */}
-      <ExitIntentPopup />
       </main>
     </>
   );
