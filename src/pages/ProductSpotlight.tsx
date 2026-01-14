@@ -40,6 +40,22 @@ const ProductSpotlight = () => {
     }
   }, [slug]);
 
+  const trackView = async (postId: string) => {
+    try {
+      // Increment view count
+      await (supabase as any).rpc('increment_view_count', { post_id: postId });
+      
+      // Track detailed analytics
+      await supabase.from('blog_analytics').insert({
+        blog_post_id: postId,
+        referrer: document.referrer || null,
+        user_agent: navigator.userAgent,
+      });
+    } catch (error) {
+      console.error('Error tracking view:', error);
+    }
+  };
+
   const fetchSpotlight = async () => {
     try {
       const { data, error } = await supabase
@@ -57,6 +73,8 @@ const ProductSpotlight = () => {
           ...data,
           products: (data.products as unknown as Product[]) || []
         });
+        // Track view after successfully loading
+        trackView(data.id);
       } else {
         setSpotlight(null);
       }
