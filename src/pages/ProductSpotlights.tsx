@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
-
+import InlineNewsletterSignup from '@/components/InlineNewsletterSignup';
 interface ProductSpotlight {
   id: string;
   title: string;
@@ -340,9 +340,9 @@ const ProductSpotlights = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Shop Black-Owned | Buy Black Christmas Gifts & Holiday Shopping 2025"
-        description="Discover and shop from curated Black-owned brands. Support Black entrepreneurs with unique products, gifts, and holiday shopping. Click to shop directly from each brand."
-        keywords="Buy Black, Black-owned businesses, Black-owned gifts, Christmas gifts Black-owned, African American businesses, shop Black-owned, support Black businesses"
+        title="Shop Black-Owned Brands | Curated Gifts, Home & Beauty Products 2025"
+        description="Discover 100+ curated Black-owned brands. Shop unique gifts, home decor, beauty products & more. Support Black entrepreneurs with every purchase. Updated daily."
+        keywords="Black-owned brands, shop Black-owned, Black-owned gifts, Black-owned products, support Black business, African American owned, Black entrepreneurs, buy Black, Black-owned home decor, Black-owned beauty, Black-owned gifts 2025"
         structuredData={itemListSchema}
       />
 
@@ -514,6 +514,13 @@ const ProductSpotlights = () => {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Newsletter Signup Section */}
+      <section className="py-12 md:py-16">
+        <div className="container mx-auto px-4">
+          <InlineNewsletterSignup variant="hero" source="shop_page_inline" />
         </div>
       </section>
 
