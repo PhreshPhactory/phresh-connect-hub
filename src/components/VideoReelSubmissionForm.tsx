@@ -66,9 +66,10 @@ const VideoReelSubmissionForm = () => {
         }
 
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}-${file.name}`;
+        // Use private bucket for security - images only accessible to content managers
         const { data, error } = await supabase.storage
-          .from('blog-images')
-          .upload(`video-reel-submissions/${fileName}`, file);
+          .from('video-reel-submissions')
+          .upload(fileName, file);
 
         if (error) {
           console.error('Upload error:', error);
@@ -80,11 +81,10 @@ const VideoReelSubmissionForm = () => {
           continue;
         }
 
-        const { data: urlData } = supabase.storage
-          .from('blog-images')
-          .getPublicUrl(`video-reel-submissions/${fileName}`);
-        
-        newUrls.push(urlData.publicUrl);
+        // Store the path (not public URL) since bucket is private
+        // Admin will use signed URLs to view
+        const storagePath = `video-reel-submissions/${fileName}`;
+        newUrls.push(storagePath);
       }
 
       setUploadedImages(prev => [...prev, ...newUrls]);

@@ -1,9 +1,5 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-};
+import { checkRateLimit, getClientIP, createCorsHeaders, rateLimitResponse, STRICT_RATE_LIMIT } from '../_shared/rate-limit.ts';
 
 const YOUTUBE_API_KEY = Deno.env.get('YOUTUBE_API_KEY');
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
@@ -85,8 +81,17 @@ async function fetchPlaylistVideos(playlistId: string, language: string): Promis
 }
 
 Deno.serve(async (req) => {
+  const corsHeaders = createCorsHeaders(req);
+
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limit to prevent abuse (2 requests per minute per IP)
+  const clientIP = getClientIP(req);
+  if (!checkRateLimit(clientIP, 'sync-youtube-playlist', STRICT_RATE_LIMIT)) {
+    console.log(`Rate limit exceeded for IP: ${clientIP}`);
+    return rateLimitResponse(corsHeaders);
   }
 
   try {

@@ -20,6 +20,71 @@ interface VideoReelSubmission {
   created_at: string;
 }
 
+// Helper to get signed URL for private bucket images
+const getSignedImageUrl = async (imagePath: string): Promise<string | null> => {
+  // Check if it's already a full URL (legacy images in public bucket)
+  if (imagePath.startsWith('http')) {
+    return imagePath;
+  }
+  
+  // Extract filename from path like "video-reel-submissions/filename.jpg"
+  const fileName = imagePath.replace('video-reel-submissions/', '');
+  
+  const { data, error } = await supabase.storage
+    .from('video-reel-submissions')
+    .createSignedUrl(fileName, 3600); // 1 hour expiry
+  
+  if (error) {
+    console.error('Error creating signed URL:', error);
+    return null;
+  }
+  
+  return data.signedUrl;
+};
+
+// Component for displaying images from private bucket with signed URLs
+const PrivateImage = ({ imagePath, alt }: { imagePath: string; alt: string }) => {
+  const [signedUrl, setSignedUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadSignedUrl = async () => {
+      const url = await getSignedImageUrl(imagePath);
+      setSignedUrl(url);
+      setLoading(false);
+    };
+    loadSignedUrl();
+  }, [imagePath]);
+
+  if (loading) {
+    return (
+      <div className="w-20 h-20 bg-muted rounded-lg border border-border animate-pulse" />
+    );
+  }
+
+  if (!signedUrl) {
+    return (
+      <div className="w-20 h-20 bg-muted rounded-lg border border-border flex items-center justify-center text-xs text-muted-foreground">
+        Error
+      </div>
+    );
+  }
+
+  return (
+    <a 
+      href={signedUrl} 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      <img 
+        src={signedUrl} 
+        alt={alt}
+        className="w-20 h-20 object-cover rounded-lg border border-border hover:border-teal transition-colors"
+      />
+    </a>
+  );
+};
+
 const VideoReelAdmin = () => {
   const { toast } = useToast();
   const [submissions, setSubmissions] = useState<VideoReelSubmission[]>([]);
@@ -208,19 +273,12 @@ const VideoReelAdmin = () => {
                     <div>
                       <span className="text-sm font-medium block mb-2">Product Images:</span>
                       <div className="flex gap-2 flex-wrap">
-                        {submission.image_urls.map((url, index) => (
-                          <a 
-                            key={index} 
-                            href={url} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                          >
-                            <img 
-                              src={url} 
-                              alt={`Product ${index + 1}`}
-                              className="w-20 h-20 object-cover rounded-lg border border-border hover:border-teal transition-colors"
-                            />
-                          </a>
+                        {submission.image_urls.map((imagePath, index) => (
+                          <PrivateImage 
+                            key={index}
+                            imagePath={imagePath}
+                            alt={`Product ${index + 1}`}
+                          />
                         ))}
                       </div>
                     </div>
