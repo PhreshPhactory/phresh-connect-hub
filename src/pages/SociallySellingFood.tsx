@@ -210,7 +210,7 @@ const SociallySellingFood = () => {
         </section>
 
         {/* The Problem */}
-        <section className="py-12 md:py-16 px-4">
+        <section className="py-8 md:py-12 px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
               Thin margins. Fixed hours. <span className="text-tertiary">No room for error.</span>
