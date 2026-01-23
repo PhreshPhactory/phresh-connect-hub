@@ -54,11 +54,12 @@ const LinkInBio = () => {
 
   const trackClick = async (linkName: string, linkUrl: string) => {
     try {
+      // Truncate values to match DB column limits
       await supabase.from('link_clicks').insert({
-        link_name: linkName,
-        link_url: linkUrl,
-        referrer: document.referrer || null,
-        user_agent: navigator.userAgent,
+        link_name: linkName.slice(0, 200),
+        link_url: linkUrl.slice(0, 1000),
+        referrer: (document.referrer || '').slice(0, 500) || null,
+        user_agent: navigator.userAgent.slice(0, 500),
       });
     } catch (error) {
       console.error('Error tracking click:', error);
