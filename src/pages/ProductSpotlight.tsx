@@ -45,11 +45,11 @@ const ProductSpotlight = () => {
       // Increment view count
       await (supabase as any).rpc('increment_view_count', { post_id: postId });
       
-      // Track detailed analytics
+      // Track detailed analytics (truncated to match DB column limits)
       await supabase.from('blog_analytics').insert({
         blog_post_id: postId,
-        referrer: document.referrer || null,
-        user_agent: navigator.userAgent,
+        referrer: (document.referrer || '').slice(0, 500) || null,
+        user_agent: navigator.userAgent.slice(0, 500),
       });
     } catch (error) {
       console.error('Error tracking view:', error);
