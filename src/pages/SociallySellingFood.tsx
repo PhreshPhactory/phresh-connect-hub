@@ -182,7 +182,7 @@ const SociallySellingFood = () => {
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-tertiary/10 via-muted/30 to-background">
+        <section className="py-12 md:py-16 px-4 bg-gradient-to-b from-tertiary/10 via-muted/30 to-background">
           <div className="max-w-4xl mx-auto text-center">
             <img 
               src={ssfLogo} 
@@ -195,7 +195,7 @@ const SociallySellingFood = () => {
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
               Food businesses should not stop making money when they close.
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
               A hands-on working lab that helps food businesses build systems to sell 24/7.
             </p>
             <Button 
@@ -210,7 +210,7 @@ const SociallySellingFood = () => {
         </section>
 
         {/* The Problem */}
-        <section className="py-16 md:py-20 px-4">
+        <section className="py-12 md:py-16 px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
               Thin margins. Fixed hours. <span className="text-tertiary">No room for error.</span>
