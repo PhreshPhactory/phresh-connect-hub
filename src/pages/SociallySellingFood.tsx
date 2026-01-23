@@ -193,17 +193,17 @@ const SociallySellingFood = () => {
         <section className="py-16 md:py-20 px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              The problem with how most food businesses operate
+              Thin margins. Fixed hours. No room for error.
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                Most restaurants, food trucks, and caterers only generate revenue during open hours. When the doors close, the register stops.
+                Food businesses operate on some of the slimmest margins in any industry. Every plate has a cost. Every ingredient cuts into profit. Every hour you're closed is revenue you'll never recover.
               </p>
               <p>
                 Meanwhile, e-commerce brands sell around the clock — while their owners sleep, travel, or focus on other things.
               </p>
               <p className="text-foreground font-medium">
-                In today's economy, limiting your sales to physical hours is leaving money on the table.
+                The math is simple: you need revenue streams that cost you zero extra dollars to deliver.
               </p>
             </div>
           </div>
@@ -213,20 +213,20 @@ const SociallySellingFood = () => {
         <section className="py-16 md:py-20 px-4 bg-muted/30">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              The shift: From open-hours only to modern commerce
+              The opportunity: Products that cost you nothing to sell.
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                Socially Selling Food teaches food businesses how to operate like e-commerce brands — generating revenue through content, platforms, and digital assets.
+                Digital products, pre-orders, affiliate partnerships, branded content — these generate revenue without additional food cost, labor, or overhead. Pure margin.
               </p>
               <p>
                 This is not a marketing class. This is not about growing followers or going viral.
               </p>
               <p className="text-foreground font-medium">
-                This is a business model upgrade.
+                This is about building revenue that doesn't eat into your already-thin margins.
               </p>
               <p>
-                You will learn to turn your menus, dishes, and experiences into sellable digital assets that work for you 24/7.
+                You will learn to turn your expertise, recipes, and reputation into sellable digital assets that work 24/7 — with zero cost of goods.
               </p>
             </div>
           </div>
