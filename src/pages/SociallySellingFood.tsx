@@ -213,7 +213,7 @@ const SociallySellingFood = () => {
         <section className="py-16 md:py-20 px-4 bg-muted/30">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              The opportunity: Products that cost you nothing to sell.
+              The opportunity: Zero-cost revenue.
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
