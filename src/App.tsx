@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "@/components/Layout";
+import LandingPageLayout from "@/components/LandingPageLayout";
 import React, { Suspense, lazy } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SecurityHeaders } from "@/components/SecurityHeaders";
@@ -130,8 +131,12 @@ const App: React.FC = () => {
                 <Route path="/holiday-sprint-payment-success" element={<HolidaySprintPaymentSuccess />} />
                 <Route path="/holiday" element={<HolidaySprint />} />
                 <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
-                <Route path="/socially-selling-food" element={<SociallySellingFood />} />
                 <Route path="*" element={<NotFound />} />
+              </Route>
+              
+              {/* Landing pages without main navigation */}
+              <Route element={<LandingPageLayout />}>
+                <Route path="/socially-selling-food" element={<SociallySellingFood />} />
               </Route>
             </Routes>
           </BrowserRouter>
