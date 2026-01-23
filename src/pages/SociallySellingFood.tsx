@@ -14,6 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowRight, Check, Calendar, Clock, MapPin, Sparkles } from 'lucide-react';
 import ssfLogo from '@/assets/socially-selling-food-logo.png';
+import kieraHeadshot from '@/assets/kiera-headshot.png';
 import {
   Form,
   FormControl,
@@ -703,8 +704,15 @@ const SociallySellingFood = () => {
 
         {/* Meet the Instructor Section */}
         <section className="py-12 px-4 bg-secondary/30">
-          <div className="max-w-4xl mx-auto text-center space-y-4">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">Meet the Instructor</h2>
+            <div className="flex justify-center">
+              <img 
+                src={kieraHeadshot} 
+                alt="Kiera H. - Strategic Advisor" 
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-primary/20 shadow-lg"
+              />
+            </div>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Learn from Kiera H., a strategic advisor with 20+ years of experience helping food businesses scale through digital transformation.
             </p>
