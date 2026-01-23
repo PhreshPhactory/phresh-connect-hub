@@ -710,7 +710,7 @@ const SociallySellingFood = () => {
               <img 
                 src={kieraHeadshot} 
                 alt="Kiera H. - Strategic Advisor" 
-                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-primary/20 shadow-lg"
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-tertiary shadow-lg shadow-tertiary/20"
               />
             </div>
             <p className="text-muted-foreground max-w-2xl mx-auto">
