@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Slider } from '@/components/ui/slider';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowRight, Check, Calendar, Clock, MapPin, Sparkles } from 'lucide-react';
@@ -22,13 +22,15 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-const PAID_SESSIONS = [
+const ALL_SESSIONS = [
+  { id: 'ai101', label: 'AI 101 (Prep Session)', date: 'Tue. Feb. 3', price: 0, priceId: null },
   { id: 'session1', label: 'Package What You Sell', date: 'Tue. Feb. 10', price: 99, priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh' },
   { id: 'session2', label: 'Conversion-Ready Video', date: 'Tue. Feb. 17', price: 99, priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl' },
   { id: 'session3', label: 'Create Timely, Sellable Drops', date: 'Tue. Feb. 24', price: 99, priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy' },
   { id: 'session4', label: 'Prepare for 24/7 Selling', date: 'Tue. Mar. 3', price: 99, priceId: 'price_1SsYReQP580MvrLEH3PchosX' },
 ];
 
+const PAID_SESSIONS = ALL_SESSIONS.filter(s => s.price > 0);
 const FULL_PROGRAM_PRICE = PAID_SESSIONS.reduce((sum, s) => sum + s.price, 0);
 
 const formSchema = z.object({
@@ -41,7 +43,7 @@ const formSchema = z.object({
     (email) => email.endsWith('@gmail.com'),
     'Must be a @gmail.com address to access Google Classroom'
   ),
-  registrationType: z.enum(['prep-only', 'full-program']),
+  selectedSessions: z.array(z.string()).min(1, 'Please select at least one session'),
   confidenceLevel: z.number().min(0).max(10),
   accommodations: z.string().optional(),
 });
@@ -66,26 +68,31 @@ const SociallySellingFood = () => {
       businessCityState: '',
       businessWebsite: '',
       googleEmail: '',
-      registrationType: 'full-program',
+      selectedSessions: ['ai101'],
       confidenceLevel: 5,
       accommodations: '',
     },
   });
 
-  const registrationType = form.watch('registrationType');
+  const selectedSessions = form.watch('selectedSessions');
 
   const calculateTotal = () => {
-    return registrationType === 'full-program' ? FULL_PROGRAM_PRICE : 0;
+    return ALL_SESSIONS.filter(
+      (s) => selectedSessions.includes(s.id) && s.price > 0
+    ).reduce((sum, s) => sum + s.price, 0);
+  };
+
+  const selectAllSessions = () => {
+    form.setValue('selectedSessions', ALL_SESSIONS.map(s => s.id));
   };
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
       const total = calculateTotal();
-      const isFullProgram = data.registrationType === 'full-program';
-      const selectedSessions = isFullProgram 
-        ? ['ai101', ...PAID_SESSIONS.map(s => s.id)]
-        : ['ai101'];
+      const paidSessionIds = PAID_SESSIONS.filter(
+        s => data.selectedSessions.includes(s.id)
+      );
 
       const { error: dbError } = await supabase
         .from('socially_selling_food_enrollments')
@@ -96,7 +103,7 @@ const SociallySellingFood = () => {
           business_city_state: data.businessCityState,
           business_website: data.businessWebsite,
           google_email: data.googleEmail,
-          selected_sessions: selectedSessions,
+          selected_sessions: data.selectedSessions,
           confidence_level: data.confidenceLevel,
           accommodations: data.accommodations || null,
           total_amount: total * 100,
@@ -106,7 +113,7 @@ const SociallySellingFood = () => {
       if (dbError) throw dbError;
 
       if (total > 0) {
-        const priceIds = PAID_SESSIONS.map((s) => s.priceId).filter(Boolean);
+        const priceIds = paidSessionIds.map((s) => s.priceId).filter(Boolean);
         
         const { data: checkoutData, error: checkoutError } = await supabase.functions.invoke(
           'create-ssf-payment',
@@ -351,9 +358,9 @@ const SociallySellingFood = () => {
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
               Who this is for
             </h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              {['Restaurants', 'Food Trucks', 'Caterers'].map((type) => (
-                <div key={type} className="px-6 py-3 bg-card border border-border rounded-full text-lg font-medium text-foreground">
+            <div className="flex flex-wrap justify-center gap-3">
+              {['Restaurants', 'Food Trucks', 'Caterers', 'Private Chefs', 'Home Chefs'].map((type) => (
+                <div key={type} className="px-5 py-2.5 bg-card border border-border rounded-full text-base font-medium text-foreground">
                   {type}
                 </div>
               ))}
@@ -416,60 +423,67 @@ const SociallySellingFood = () => {
             <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  {/* Registration Type Selection */}
+                  {/* Session Selection */}
                   <FormField
                     control={form.control}
-                    name="registrationType"
-                    render={({ field }) => (
+                    name="selectedSessions"
+                    render={() => (
                       <FormItem>
-                        <FormLabel className="text-base">Choose your registration *</FormLabel>
-                        <FormControl>
-                          <RadioGroup
-                            onValueChange={field.onChange}
-                            defaultValue={field.value}
-                            className="space-y-3 mt-2"
+                        <div className="flex items-center justify-between mb-2">
+                          <FormLabel className="text-base">Select your sessions *</FormLabel>
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm"
+                            onClick={selectAllSessions}
+                            className="text-xs"
                           >
-                            <Label
-                              htmlFor="full-program"
-                              className={`flex items-start space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-colors ${
-                                field.value === 'full-program' 
-                                  ? 'border-primary bg-primary/5' 
-                                  : 'border-border hover:border-primary/50'
-                              }`}
-                            >
-                              <RadioGroupItem value="full-program" id="full-program" className="mt-1" />
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
-                                  <span className="font-semibold text-foreground">Full Program</span>
-                                  <span className="bg-primary text-primary-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center gap-1">
-                                    <Sparkles className="h-3 w-3" /> RECOMMENDED
-                                  </span>
-                                </div>
-                                <p className="text-sm text-muted-foreground mb-2">
-                                  AI 101 prep + all 4 working sessions
-                                </p>
-                                <p className="text-lg font-semibold text-foreground">${FULL_PROGRAM_PRICE}</p>
-                              </div>
-                            </Label>
-                            <Label
-                              htmlFor="prep-only"
-                              className={`flex items-start space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-colors ${
-                                field.value === 'prep-only' 
-                                  ? 'border-primary bg-primary/5' 
-                                  : 'border-border hover:border-primary/50'
-                              }`}
-                            >
-                              <RadioGroupItem value="prep-only" id="prep-only" className="mt-1" />
-                              <div className="flex-1">
-                                <span className="font-semibold text-foreground">AI 101 Prep Session Only</span>
-                                <p className="text-sm text-muted-foreground mb-2">
-                                  Start with the free prep session to see if the full program is right for you
-                                </p>
-                                <p className="text-lg font-semibold text-foreground">Free</p>
-                              </div>
-                            </Label>
-                          </RadioGroup>
-                        </FormControl>
+                            <Sparkles className="h-3 w-3 mr-1" />
+                            Select All 5 Sessions
+                          </Button>
+                        </div>
+                        <div className="space-y-3">
+                          {ALL_SESSIONS.map((session) => (
+                            <FormField
+                              key={session.id}
+                              control={form.control}
+                              name="selectedSessions"
+                              render={({ field }) => (
+                                <FormItem 
+                                  className={`flex items-start space-x-3 space-y-0 p-4 rounded-xl border-2 transition-colors ${
+                                    field.value?.includes(session.id)
+                                      ? 'border-primary bg-primary/5'
+                                      : 'border-border hover:border-primary/50'
+                                  }`}
+                                >
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(session.id)}
+                                      onCheckedChange={(checked) => {
+                                        return checked
+                                          ? field.onChange([...field.value, session.id])
+                                          : field.onChange(
+                                              field.value?.filter((value) => value !== session.id)
+                                            );
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <div className="flex-1">
+                                    <div className="flex items-center justify-between">
+                                      <Label className="font-medium cursor-pointer">
+                                        {session.label}
+                                      </Label>
+                                      <span className={`text-sm font-semibold ${session.price === 0 ? 'text-primary' : 'text-muted-foreground'}`}>
+                                        {session.price === 0 ? 'FREE' : `$${session.price}`}
+                                      </span>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{session.date}, 2026</p>
+                                  </div>
+                                </FormItem>
+                              )}
+                            />
+                          ))}
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -635,14 +649,14 @@ const SociallySellingFood = () => {
                     {isSubmitting 
                       ? 'Registering...' 
                       : calculateTotal() > 0 
-                        ? `Register for Full Program — $${calculateTotal()}` 
+                        ? `Register — $${calculateTotal()}` 
                         : 'Register for Free AI 101 Session'
                     }
                   </Button>
 
-                  {registrationType === 'prep-only' && (
-                    <p className="text-center text-sm text-muted-foreground">
-                      After the prep session, you can upgrade to the full program at any time.
+                  {selectedSessions.length === ALL_SESSIONS.length && (
+                    <p className="text-center text-sm text-primary font-medium">
+                      You've selected the full program — all 5 sessions!
                     </p>
                   )}
                 </form>
