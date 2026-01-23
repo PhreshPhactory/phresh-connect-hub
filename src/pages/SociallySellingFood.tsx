@@ -714,7 +714,7 @@ const SociallySellingFood = () => {
               />
             </div>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Learn from Kiera H., a strategic advisor with 20+ years of experience helping businesses scale through digital transformation.
+              Learn from Kiera H., a strategic advisor with 20+ years of experience helping businesses scale through operational strategy and digital transformation.
             </p>
             <Button asChild size="lg" className="mt-4">
               <Link to="/KieraH">
