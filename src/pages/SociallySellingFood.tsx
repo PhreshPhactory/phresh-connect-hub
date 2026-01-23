@@ -173,7 +173,7 @@ const SociallySellingFood = () => {
               className="w-64 md:w-80 mx-auto mb-10"
             />
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-              Restaurants should not stop making money when they close.
+              Food businesses should not stop making money when they close.
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto">
               A hands-on working series that helps food businesses sell 24/7.
