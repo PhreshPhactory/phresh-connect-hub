@@ -277,6 +277,60 @@ export type Database = {
         }
         Relationships: []
       }
+      socially_selling_food_enrollments: {
+        Row: {
+          accommodations: string | null
+          business_city_state: string
+          business_name: string | null
+          business_website: string
+          confidence_level: number
+          created_at: string
+          email: string
+          google_email: string
+          id: string
+          name: string | null
+          payment_status: string
+          selected_sessions: string[]
+          stripe_session_id: string | null
+          total_amount: number | null
+          updated_at: string
+        }
+        Insert: {
+          accommodations?: string | null
+          business_city_state: string
+          business_name?: string | null
+          business_website: string
+          confidence_level: number
+          created_at?: string
+          email: string
+          google_email: string
+          id?: string
+          name?: string | null
+          payment_status?: string
+          selected_sessions: string[]
+          stripe_session_id?: string | null
+          total_amount?: number | null
+          updated_at?: string
+        }
+        Update: {
+          accommodations?: string | null
+          business_city_state?: string
+          business_name?: string | null
+          business_website?: string
+          confidence_level?: number
+          created_at?: string
+          email?: string
+          google_email?: string
+          id?: string
+          name?: string | null
+          payment_status?: string
+          selected_sessions?: string[]
+          stripe_session_id?: string | null
+          total_amount?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

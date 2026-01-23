@@ -14,3 +14,6 @@ verify_jwt = false
 
 [functions.create-video-reel-payment]
 verify_jwt = false
+
+[functions.create-ssf-payment]
+verify_jwt = false
