@@ -1,17 +1,74 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import {
+  checkRateLimit,
+  getClientIP,
+  createCorsHeaders,
+  rateLimitResponse,
+  RELAXED_RATE_LIMIT,
+} from "../_shared/rate-limit.ts";
+import { sanitizeText } from "../_shared/validation.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+// Chat-specific rate limit: 20 messages per minute
+const CHAT_RATE_LIMIT = {
+  windowMs: 60 * 1000,
+  maxRequests: 20,
 };
 
 serve(async (req) => {
-  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+  const corsHeaders = createCorsHeaders(req);
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limiting
+  const clientIP = getClientIP(req);
+  if (!checkRateLimit(clientIP, "chat-support", CHAT_RATE_LIMIT)) {
+    console.log(`Chat rate limit exceeded for IP: ${clientIP}`);
+    return rateLimitResponse(corsHeaders);
+  }
 
   try {
-    const { messages } = await req.json();
+    const body = await req.json();
+    const messages = body.messages;
+
+    // Validate messages array
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return new Response(
+        JSON.stringify({ error: "Invalid messages format" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Limit number of messages in history (prevent abuse)
+    if (messages.length > 50) {
+      return new Response(
+        JSON.stringify({ error: "Too many messages in history" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Sanitize and validate each message
+    const sanitizedMessages = messages.slice(-20).map((msg: { role?: string; content?: string }) => {
+      if (!msg.role || !msg.content) {
+        throw new Error("Invalid message format");
+      }
+      
+      // Only allow user/assistant roles
+      if (!['user', 'assistant'].includes(msg.role)) {
+        throw new Error("Invalid message role");
+      }
+
+      return {
+        role: msg.role,
+        content: sanitizeText(msg.content, 2000), // Max 2000 chars per message
+      };
+    });
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
+    if (!LOVABLE_API_KEY) {
+      throw new Error("LOVABLE_API_KEY is not configured");
+    }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -40,7 +97,7 @@ We run two community hubs:
 
 Keep responses professional, concise, and helpful. If someone wants to book a call or learn more about services, direct them to explore the website or book a discovery call.`
           },
-          ...messages,
+          ...sanitizedMessages,
         ],
         stream: true,
       }),

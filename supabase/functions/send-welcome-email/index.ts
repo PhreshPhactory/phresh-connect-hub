@@ -1,12 +1,15 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import {
+  checkRateLimit,
+  getClientIP,
+  createCorsHeaders,
+  rateLimitResponse,
+  STRICT_RATE_LIMIT,
+} from "../_shared/rate-limit.ts";
+import { isValidEmail, sanitizeText, escapeHtml } from "../_shared/validation.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
 
 interface WelcomeEmailRequest {
   email: string;
@@ -15,18 +18,40 @@ interface WelcomeEmailRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  const corsHeaders = createCorsHeaders(req);
+
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limiting
+  const clientIP = getClientIP(req);
+  if (!checkRateLimit(clientIP, "send-welcome-email", STRICT_RATE_LIMIT)) {
+    console.log(`Rate limit exceeded for IP: ${clientIP}`);
+    return rateLimitResponse(corsHeaders);
   }
 
   try {
     const { email, name, source }: WelcomeEmailRequest = await req.json();
 
-    console.log(`Sending welcome email to ${email} from source: ${source}`);
+    // Validate email
+    if (!email || !isValidEmail(email)) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Invalid email address" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Sanitize inputs
+    const safeEmail = sanitizeText(email, 255);
+    const safeName = sanitizeText(name, 100);
+    const safeSource = sanitizeText(source, 100);
+
+    console.log(`Sending welcome email to ${safeEmail} from source: ${safeSource}`);
 
     const emailResponse = await resend.emails.send({
       from: "Phresh Phactory <info@phreshphactory.co>",
-      to: [email],
+      to: [safeEmail],
       subject: "Welcome to Phresh Phactory's Insider List! 🎉",
       html: `
         <!DOCTYPE html>
@@ -52,7 +77,7 @@ const handler = async (req: Request): Promise<Response> => {
                     <tr>
                       <td style="padding: 40px 30px;">
                         <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px;">
-                          ${name ? `Hey ${name}!` : 'Hey there!'}
+                          ${safeName ? `Hey ${escapeHtml(safeName)}!` : 'Hey there!'}
                         </p>
                         
                         <p style="color: #374151; font-size: 16px; line-height: 1.6; margin: 0 0 20px;">
@@ -102,7 +127,7 @@ const handler = async (req: Request): Promise<Response> => {
                           You're receiving this email because you subscribed to our newsletter.
                         </p>
                         <p style="color: #6b7280; font-size: 12px; line-height: 1.6; margin: 0;">
-                          Source: ${source}
+                          Source: ${escapeHtml(safeSource)}
                         </p>
                       </td>
                     </tr>
@@ -115,7 +140,7 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Welcome email sent successfully:", emailResponse);
+    console.log("Welcome email sent successfully");
 
     return new Response(JSON.stringify({ success: true, data: emailResponse }), {
       status: 200,
@@ -124,10 +149,11 @@ const handler = async (req: Request): Promise<Response> => {
         ...corsHeaders,
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error sending welcome email:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return new Response(
-      JSON.stringify({ success: false, error: error.message }),
+      JSON.stringify({ success: false, error: errorMessage }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

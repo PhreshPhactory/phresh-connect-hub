@@ -1,39 +1,92 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.2";
+import {
+  checkRateLimit,
+  getClientIP,
+  createCorsHeaders,
+  rateLimitResponse,
+  DEFAULT_RATE_LIMIT,
+} from "../_shared/rate-limit.ts";
+import {
+  isValidEmail,
+  isValidUrl,
+  sanitizeText,
+  validateRequiredFields,
+} from "../_shared/validation.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
-
-const logStep = (step: string, details?: any) => {
+const logStep = (step: string, details?: unknown) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
   console.log(`[VIDEO-REEL-PAYMENT] ${step}${detailsStr}`);
 };
 
 serve(async (req) => {
+  const corsHeaders = createCorsHeaders(req);
+
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limiting
+  const clientIP = getClientIP(req);
+  if (!checkRateLimit(clientIP, "create-video-reel-payment", DEFAULT_RATE_LIMIT)) {
+    logStep("Rate limit exceeded", { ip: clientIP });
+    return rateLimitResponse(corsHeaders);
   }
 
   try {
     logStep("Function started");
 
-    const { 
-      productName, 
-      productDescription, 
-      productUrl, 
-      brandName, 
-      brandEmail,
-      imageUrls 
-    } = await req.json();
+    const body = await req.json();
     
-    if (!productName || !productDescription || !productUrl || !brandName || !brandEmail) {
-      throw new Error("Missing required fields");
+    // Validate required fields
+    const { valid, missing } = validateRequiredFields(body, [
+      'productName', 'productDescription', 'productUrl', 'brandName', 'brandEmail'
+    ]);
+    
+    if (!valid) {
+      return new Response(
+        JSON.stringify({ error: `Missing required fields: ${missing.join(', ')}` }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    logStep("Request received", { brandName, brandEmail, productName });
+    const { productName, productDescription, productUrl, brandName, brandEmail, imageUrls } = body;
+
+    // Validate email
+    if (!isValidEmail(brandEmail)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email address" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate URL
+    if (!isValidUrl(productUrl)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid product URL" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Sanitize inputs
+    const safeProductName = sanitizeText(productName, 200);
+    const safeProductDescription = sanitizeText(productDescription, 2000);
+    const safeProductUrl = sanitizeText(productUrl, 2000);
+    const safeBrandName = sanitizeText(brandName, 200);
+    const safeBrandEmail = sanitizeText(brandEmail, 255);
+
+    // Validate and limit image URLs
+    const safeImageUrls: string[] = [];
+    if (Array.isArray(imageUrls)) {
+      for (const url of imageUrls.slice(0, 10)) { // Max 10 images
+        if (typeof url === 'string' && isValidUrl(url)) {
+          safeImageUrls.push(sanitizeText(url, 2000));
+        }
+      }
+    }
+
+    logStep("Request validated", { safeBrandName, safeBrandEmail, safeProductName });
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
@@ -44,12 +97,12 @@ serve(async (req) => {
     const { data: submission, error: dbError } = await supabase
       .from("video_reel_submissions")
       .insert({
-        product_name: productName,
-        product_description: productDescription,
-        product_url: productUrl,
-        brand_name: brandName,
-        brand_email: brandEmail,
-        image_urls: imageUrls || [],
+        product_name: safeProductName,
+        product_description: safeProductDescription,
+        product_url: safeProductUrl,
+        brand_name: safeBrandName,
+        brand_email: safeBrandEmail,
+        image_urls: safeImageUrls,
         payment_status: "pending"
       })
       .select()
@@ -69,7 +122,7 @@ serve(async (req) => {
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
 
     // Check if customer exists
-    const customers = await stripe.customers.list({ email: brandEmail, limit: 1 });
+    const customers = await stripe.customers.list({ email: safeBrandEmail, limit: 1 });
     let customerId;
     
     if (customers.data.length > 0) {
@@ -77,14 +130,15 @@ serve(async (req) => {
       logStep("Existing customer found", { customerId });
     } else {
       const customer = await stripe.customers.create({
-        email: brandEmail,
-        name: brandName,
+        email: safeBrandEmail,
+        name: safeBrandName,
       });
       customerId = customer.id;
       logStep("New customer created", { customerId });
     }
 
     // Create checkout session with the $100 price
+    const origin = req.headers.get("origin") || "https://phresh-connect-hub.lovable.app";
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       line_items: [
@@ -94,8 +148,8 @@ serve(async (req) => {
         },
       ],
       mode: "payment",
-      success_url: `${req.headers.get("origin")}/brands?payment=success&submission=${submission.id}`,
-      cancel_url: `${req.headers.get("origin")}/brands?payment=cancelled`,
+      success_url: `${origin}/brands?payment=success&submission=${submission.id}`,
+      cancel_url: `${origin}/brands?payment=cancelled`,
       metadata: {
         submissionId: submission.id,
         productType: "video_reel",
@@ -108,7 +162,7 @@ serve(async (req) => {
       .update({ stripe_session_id: session.id })
       .eq("id", submission.id);
 
-    logStep("Checkout session created", { sessionId: session.id, url: session.url });
+    logStep("Checkout session created", { sessionId: session.id });
 
     return new Response(JSON.stringify({ url: session.url, sessionId: session.id }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

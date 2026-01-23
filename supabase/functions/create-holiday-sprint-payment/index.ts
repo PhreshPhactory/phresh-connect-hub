@@ -1,31 +1,70 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
+import {
+  checkRateLimit,
+  getClientIP,
+  createCorsHeaders,
+  rateLimitResponse,
+  DEFAULT_RATE_LIMIT,
+} from "../_shared/rate-limit.ts";
+import { isValidEmail, sanitizeText, validateRequiredFields } from "../_shared/validation.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
-
-const logStep = (step: string, details?: any) => {
+const logStep = (step: string, details?: unknown) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
   console.log(`[HOLIDAY-SPRINT-PAYMENT] ${step}${detailsStr}`);
 };
 
 serve(async (req) => {
+  const corsHeaders = createCorsHeaders(req);
+
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limiting
+  const clientIP = getClientIP(req);
+  if (!checkRateLimit(clientIP, "create-holiday-sprint-payment", DEFAULT_RATE_LIMIT)) {
+    logStep("Rate limit exceeded", { ip: clientIP });
+    return rateLimitResponse(corsHeaders);
   }
 
   try {
     logStep("Function started");
 
-    const { paymentType, customerEmail, customerName } = await req.json();
-    
-    if (!paymentType || !customerEmail) {
-      throw new Error("Missing required fields: paymentType and customerEmail");
+    const body = await req.json();
+
+    // Validate required fields
+    const { valid, missing } = validateRequiredFields(body, ['paymentType', 'customerEmail']);
+    if (!valid) {
+      return new Response(
+        JSON.stringify({ error: `Missing required fields: ${missing.join(', ')}` }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    logStep("Payment request received", { paymentType, customerEmail, customerName });
+    const { paymentType, customerEmail, customerName } = body;
+
+    // Validate email
+    if (!isValidEmail(customerEmail)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email address" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate payment type
+    if (!['full', 'monthly'].includes(paymentType)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid payment type" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Sanitize inputs
+    const safeEmail = sanitizeText(customerEmail, 255);
+    const safeName = sanitizeText(customerName, 100);
+
+    logStep("Payment request validated", { paymentType, safeEmail });
 
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) throw new Error("STRIPE_SECRET_KEY is not set");
@@ -33,7 +72,7 @@ serve(async (req) => {
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
 
     // Check if customer already exists
-    const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
+    const customers = await stripe.customers.list({ email: safeEmail, limit: 1 });
     let customerId;
     
     if (customers.data.length > 0) {
@@ -41,8 +80,8 @@ serve(async (req) => {
       logStep("Existing customer found", { customerId });
     } else {
       const customer = await stripe.customers.create({
-        email: customerEmail,
-        name: customerName,
+        email: safeEmail,
+        name: safeName,
       });
       customerId = customer.id;
       logStep("New customer created", { customerId });
@@ -57,6 +96,8 @@ serve(async (req) => {
     
     logStep("Creating checkout session", { priceId, mode });
 
+    const origin = req.headers.get("origin") || "https://phresh-connect-hub.lovable.app";
+
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
@@ -67,8 +108,8 @@ serve(async (req) => {
         },
       ],
       mode: mode,
-      success_url: `${req.headers.get("origin")}/holiday-sprint-payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get("origin")}/holiday-sprint-landing`,
+      success_url: `${origin}/holiday-sprint-payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/holiday-sprint-landing`,
       payment_method_types: ['card', 'affirm', 'afterpay_clearpay', 'klarna'],
       custom_text: {
         submit: {
@@ -92,7 +133,7 @@ serve(async (req) => {
       }),
     });
 
-    logStep("Checkout session created", { sessionId: session.id, url: session.url });
+    logStep("Checkout session created", { sessionId: session.id });
 
     return new Response(JSON.stringify({ url: session.url, sessionId: session.id }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
