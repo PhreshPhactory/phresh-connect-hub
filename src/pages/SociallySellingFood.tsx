@@ -182,7 +182,7 @@ const SociallySellingFood = () => {
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-muted/50 to-background">
+        <section className="py-16 md:py-24 px-4 bg-gradient-to-b from-tertiary/10 via-muted/30 to-background">
           <div className="max-w-4xl mx-auto text-center">
             <img 
               src={ssfLogo} 
@@ -198,7 +198,7 @@ const SociallySellingFood = () => {
             <Button 
               size="lg" 
               onClick={scrollToForm}
-              className="text-lg px-8 py-6 h-auto"
+              className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
             >
               Register for Free AI 101
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -210,7 +210,7 @@ const SociallySellingFood = () => {
         <section className="py-16 md:py-20 px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Thin margins. Fixed hours. No room for error.
+              Thin margins. Fixed hours. <span className="text-tertiary">No room for error.</span>
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
@@ -227,10 +227,10 @@ const SociallySellingFood = () => {
         </section>
 
         {/* The Shift */}
-        <section className="py-16 md:py-20 px-4 bg-muted/30">
+        <section className="py-16 md:py-20 px-4 bg-gradient-to-r from-tertiary/5 via-tertiary/10 to-tertiary/5">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              The opportunity: Zero-cost revenue.
+              The opportunity: <span className="text-tertiary">Zero-cost revenue.</span>
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
@@ -256,8 +256,8 @@ const SociallySellingFood = () => {
               How the program works
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="p-6 border border-primary/20 rounded-xl bg-primary/5">
-                <div className="inline-block bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+              <div className="p-6 border-2 border-tertiary/40 rounded-xl bg-tertiary/5">
+                <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
                   FREE PREP SESSION
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">AI 101</h3>
@@ -265,9 +265,9 @@ const SociallySellingFood = () => {
                   Get set up with the AI tools you will use throughout the full program. This session prepares you for the four working sessions ahead.
                 </p>
               </div>
-              <div className="p-6 border-2 border-primary rounded-xl bg-card relative">
+              <div className="p-6 border-2 border-tertiary rounded-xl bg-card relative shadow-lg shadow-tertiary/10">
                 <div className="absolute -top-3 right-4">
-                  <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                  <span className="bg-tertiary text-tertiary-foreground px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
                     <Sparkles className="h-3 w-3" /> RECOMMENDED
                   </span>
                 </div>
@@ -319,8 +319,8 @@ const SociallySellingFood = () => {
                   date: 'Mar. 3',
                 },
               ].map((session) => (
-                <div key={session.number} className="flex gap-4 p-6 bg-card border border-border rounded-xl">
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold">
+                <div key={session.number} className="flex gap-4 p-6 bg-card border border-border rounded-xl hover:border-tertiary/50 transition-colors">
+                  <div className="flex-shrink-0 w-10 h-10 bg-tertiary text-tertiary-foreground rounded-full flex items-center justify-center font-bold">
                     {session.number}
                   </div>
                   <div className="flex-1">
@@ -336,7 +336,7 @@ const SociallySellingFood = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-8 p-4 bg-primary/10 rounded-xl text-center">
+            <div className="mt-8 p-4 bg-tertiary/15 border border-tertiary/30 rounded-xl text-center">
               <p className="text-lg font-semibold text-foreground">
                 Full Program: ${FULL_PROGRAM_PRICE}
               </p>
@@ -360,8 +360,8 @@ const SociallySellingFood = () => {
                 'Seasonal or limited-time drops that drive urgency',
                 'Content that enables selling beyond walk-in traffic',
               ].map((item, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg">
-                  <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <div key={index} className="flex items-start gap-3 p-4 bg-tertiary/10 rounded-lg border border-tertiary/20">
+                  <Check className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
                   <span className="text-foreground">{item}</span>
                 </div>
               ))}
@@ -377,7 +377,7 @@ const SociallySellingFood = () => {
             </h2>
             <div className="flex flex-wrap justify-center gap-3">
               {['Restaurants', 'Food Trucks', 'Caterers', 'Private Chefs', 'Home Chefs'].map((type) => (
-                <div key={type} className="px-5 py-2.5 bg-card border border-border rounded-full text-base font-medium text-foreground">
+                <div key={type} className="px-5 py-2.5 bg-card border-2 border-tertiary/30 rounded-full text-base font-medium text-foreground hover:bg-tertiary/10 transition-colors">
                   {type}
                 </div>
               ))}
@@ -391,8 +391,8 @@ const SociallySellingFood = () => {
         {/* Event Details */}
         <section className="py-16 md:py-20 px-4">
           <div className="max-w-2xl mx-auto">
-            <div className="p-8 bg-card border-2 border-primary/20 rounded-2xl text-center">
-              <div className="inline-block bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+            <div className="p-8 bg-card border-2 border-tertiary/40 rounded-2xl text-center shadow-lg shadow-tertiary/10">
+              <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-6">
                 START HERE
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
@@ -418,7 +418,7 @@ const SociallySellingFood = () => {
               <Button 
                 size="lg" 
                 onClick={scrollToForm}
-                className="text-lg px-8 py-6 h-auto"
+                className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
               >
                 Register Now
                 <ArrowRight className="ml-2 h-5 w-5" />
