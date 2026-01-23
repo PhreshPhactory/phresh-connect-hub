@@ -175,9 +175,34 @@ const SociallySellingFood = () => {
   return (
     <>
       <SEOHead
-        title="Socially Selling Food | Sell 24/7 Like E-Commerce Brands"
-        description="A hands-on working series that helps restaurants, food trucks, and caterers sell 24/7 using social selling, AI-powered content, and modern commerce tools."
-        keywords="restaurant marketing, food business sales, social selling food, 24/7 sales, food truck marketing, catering business, AI for restaurants"
+        title="Socially Selling Food | Workshop for Food Businesses to Sell 24/7"
+        description="A hands-on working lab that helps restaurants, food trucks, caterers, private chefs, and home chefs build sellable offers and systems for 24/7 online revenue. Learn e-commerce distribution mechanics for food businesses."
+        keywords="food business e-commerce, restaurant online sales, food truck digital revenue, catering business systems, sell food online, 24/7 food sales, food business workshop, zero-cost revenue, sellable offers, e-commerce distribution"
+        canonicalUrl="https://phreshphactory.com/socially-selling-food"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Course",
+          "name": "Socially Selling Food",
+          "description": "A hands-on working lab that helps food businesses build systems to sell 24/7 through sellable offers and e-commerce distribution.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Phresh Phactory",
+            "sameAs": "https://phreshphactory.com"
+          },
+          "instructor": {
+            "@type": "Person",
+            "name": "Kiera H.",
+            "jobTitle": "Strategic Advisor"
+          },
+          "courseMode": "online",
+          "isAccessibleForFree": false,
+          "offers": {
+            "@type": "Offer",
+            "price": "99",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          }
+        }}
       />
 
       <div className="min-h-screen bg-background">
