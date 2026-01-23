@@ -19,7 +19,7 @@ const LandingPageLayout = () => {
             to="/KieraH" 
             className="text-brand-gold hover:text-brand-gold/80 transition-colors font-medium"
           >
-            Meet Kiera Haywood →
+            Meet Kiera H. →
           </Link>
           <p className="text-sm text-gray-400 mt-4">
             © {new Date().getFullYear()} Phresh Phactory. All rights reserved.
