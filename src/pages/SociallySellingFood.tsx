@@ -385,13 +385,13 @@ const SociallySellingFood = () => {
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                You leave each session with live, deployable assets and systems — not homework or theory. These can be distributed, shared, and sold immediately, extending revenue beyond your physical operating hours.
+                After the lab, businesses leave with real offers that can be purchased online. Once a food business creates a sellable offer with an online checkout, that offer becomes distributable.
               </p>
               <p>
-                Readiness is the qualifier — not completing every session. Whether you build through individual sessions or the full program, the goal is the same: packaged offers and sell-ready assets.
+                Affiliates, creators, educators, or partners can discover it and choose to sell it through the platform hosting the purchase. They are not owned or controlled by any platform. They choose what they sell based on what is available and compelling.
               </p>
               <p className="text-foreground font-medium">
-                Once your offers are packaged and sell-ready, EatOkra — including influencers of all sizes, affiliates, fans, and a global audience — can actively market your business, extending your reach far beyond hyper-local, walk-in traffic.
+                Without a sellable offer, there is no distribution. Having a sell-ready offer is what enables any distribution relationship to exist.
               </p>
             </div>
           </div>
