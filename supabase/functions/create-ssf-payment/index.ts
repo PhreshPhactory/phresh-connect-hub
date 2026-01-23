@@ -1,34 +1,88 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
+import {
+  checkRateLimit,
+  getClientIP,
+  createCorsHeaders,
+  rateLimitResponse,
+  DEFAULT_RATE_LIMIT,
+} from "../_shared/rate-limit.ts";
+import { isValidEmail, sanitizeText, validateRequiredFields } from "../_shared/validation.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
-
-const logStep = (step: string, details?: any) => {
+const logStep = (step: string, details?: unknown) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
   console.log(`[CREATE-SSF-PAYMENT] ${step}${detailsStr}`);
 };
 
+// Valid price IDs for SSF sessions
+const VALID_PRICE_IDS = [
+  "price_1SsYPvQP580MvrLEIEjsGjMW", // Session 1
+  "price_1SsYQIQP580MvrLElj1HBZEC", // Session 2
+  "price_1SsYQnQP580MvrLEJtY6Sny1", // Session 3
+  "price_1SsYR9QP580MvrLE3UuVPzgZ", // Session 4
+];
+
 serve(async (req) => {
+  const corsHeaders = createCorsHeaders(req);
+
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limiting
+  const clientIP = getClientIP(req);
+  if (!checkRateLimit(clientIP, "create-ssf-payment", DEFAULT_RATE_LIMIT)) {
+    logStep("Rate limit exceeded", { ip: clientIP });
+    return rateLimitResponse(corsHeaders);
   }
 
   try {
     logStep("Function started");
 
-    const { priceIds, customerEmail, customerName } = await req.json();
-    logStep("Request parsed", { priceIds, customerEmail, customerName });
+    const body = await req.json();
 
-    if (!priceIds || priceIds.length === 0) {
-      throw new Error("No price IDs provided");
+    // Validate required fields
+    const { valid, missing } = validateRequiredFields(body, ['priceIds', 'customerEmail']);
+    if (!valid) {
+      return new Response(
+        JSON.stringify({ error: `Missing required fields: ${missing.join(', ')}` }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
-    if (!customerEmail) {
-      throw new Error("Customer email is required");
+    const { priceIds, customerEmail, customerName } = body;
+
+    // Validate email
+    if (!isValidEmail(customerEmail)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email address" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
+
+    // Validate price IDs
+    if (!Array.isArray(priceIds) || priceIds.length === 0) {
+      return new Response(
+        JSON.stringify({ error: "No price IDs provided" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate each price ID is allowed
+    const invalidPriceIds = priceIds.filter((id: string) => !VALID_PRICE_IDS.includes(id));
+    if (invalidPriceIds.length > 0) {
+      logStep("Invalid price IDs detected", { invalidPriceIds });
+      return new Response(
+        JSON.stringify({ error: "Invalid price selection" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Sanitize inputs
+    const safeEmail = sanitizeText(customerEmail, 255);
+    const safeName = sanitizeText(customerName, 100);
+
+    logStep("Request validated", { priceIds, safeEmail });
 
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) {
@@ -39,7 +93,7 @@ serve(async (req) => {
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
 
     // Check if customer exists
-    const customers = await stripe.customers.list({ email: customerEmail, limit: 1 });
+    const customers = await stripe.customers.list({ email: safeEmail, limit: 1 });
     let customerId: string | undefined;
 
     if (customers.data.length > 0) {
@@ -48,8 +102,8 @@ serve(async (req) => {
     } else {
       // Create new customer
       const customer = await stripe.customers.create({
-        email: customerEmail,
-        name: customerName,
+        email: safeEmail,
+        name: safeName,
         metadata: {
           source: "socially_selling_food",
         },
@@ -76,7 +130,7 @@ serve(async (req) => {
       cancel_url: `${origin}/socially-selling-food?canceled=true`,
       metadata: {
         program: "socially_selling_food",
-        customer_email: customerEmail,
+        customer_email: safeEmail,
       },
       custom_text: {
         submit: {
@@ -85,7 +139,7 @@ serve(async (req) => {
       },
     });
 
-    logStep("Checkout session created", { sessionId: session.id, url: session.url });
+    logStep("Checkout session created", { sessionId: session.id });
 
     return new Response(
       JSON.stringify({ url: session.url, sessionId: session.id }),

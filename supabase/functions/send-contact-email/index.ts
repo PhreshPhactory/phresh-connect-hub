@@ -1,24 +1,20 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import {
+  checkRateLimit,
+  getClientIP,
+  createCorsHeaders,
+  rateLimitResponse,
+  STRICT_RATE_LIMIT,
+} from "../_shared/rate-limit.ts";
+import {
+  isValidEmail,
+  sanitizeText,
+  escapeHtml,
+  validateRequiredFields,
+} from "../_shared/validation.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-};
-
-function escapeHtml(text: string): string {
-  const map: Record<string, string> = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
-  };
-  return text.replace(/[&<>"']/g, (m) => map[m]);
-}
 
 interface ContactFormData {
   name: string;
@@ -64,25 +60,61 @@ interface BrandPartnershipData {
 type FormData = ContactFormData | NewsletterData | AssessmentData | BrandPartnershipData;
 
 const handler = async (req: Request): Promise<Response> => {
+  const corsHeaders = createCorsHeaders(req);
+
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Rate limiting
+  const clientIP = getClientIP(req);
+  if (!checkRateLimit(clientIP, "send-contact-email", STRICT_RATE_LIMIT)) {
+    console.log(`Rate limit exceeded for IP: ${clientIP}`);
+    return rateLimitResponse(corsHeaders);
+  }
+
   try {
     const data: FormData = await req.json();
-    console.log("Received form data:", data);
+    console.log("Received form submission of type:", data.formType);
+
+    // Validate email exists for all form types
+    const email = "email" in data ? data.email : undefined;
+    if (!email || !isValidEmail(email)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email address" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
 
     let emailResponse;
 
     if (data.formType === 'contact') {
       const contactData = data as ContactFormData;
       
+      // Validate required fields
+      const { valid, missing } = validateRequiredFields(contactData, ['name', 'email']);
+      if (!valid) {
+        return new Response(
+          JSON.stringify({ error: `Missing required fields: ${missing.join(', ')}` }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      // Sanitize inputs
+      const safeName = sanitizeText(contactData.name, 100);
+      const safeEmail = sanitizeText(contactData.email, 255);
+      const safeWebsite = sanitizeText(contactData.website, 500);
+      const safeCompanyStage = sanitizeText(contactData.companyStage, 100);
+      const safeChallenges = sanitizeText(contactData.challenges, 2000);
+      const safeServiceInterest = sanitizeText(contactData.serviceInterest, 200);
+      const safeMessage = sanitizeText(contactData.message, 2000);
+      
       // Send email to business
       emailResponse = await resend.emails.send({
         from: "Phresh Phactory <onboarding@resend.dev>",
         to: ["info@phreshphactory.co"],
-        subject: `New Contact Form Submission - ${contactData.serviceInterest || 'General Inquiry'}`,
+        subject: `New Contact Form Submission - ${escapeHtml(safeServiceInterest) || 'General Inquiry'}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">
@@ -91,28 +123,28 @@ const handler = async (req: Request): Promise<Response> => {
             
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Contact Information</h3>
-              <p><strong>Name:</strong> ${escapeHtml(contactData.name)}</p>
-              <p><strong>Email:</strong> ${escapeHtml(contactData.email)}</p>
-              ${contactData.website ? `<p><strong>Website:</strong> ${escapeHtml(contactData.website)}</p>` : ''}
+              <p><strong>Name:</strong> ${escapeHtml(safeName)}</p>
+              <p><strong>Email:</strong> ${escapeHtml(safeEmail)}</p>
+              ${safeWebsite ? `<p><strong>Website:</strong> ${escapeHtml(safeWebsite)}</p>` : ''}
             </div>
 
             <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Business Details</h3>
-              ${contactData.companyStage ? `<p><strong>Company Stage:</strong> ${escapeHtml(contactData.companyStage)}</p>` : ''}
-              ${contactData.serviceInterest ? `<p><strong>Service Interest:</strong> ${escapeHtml(contactData.serviceInterest)}</p>` : ''}
+              ${safeCompanyStage ? `<p><strong>Company Stage:</strong> ${escapeHtml(safeCompanyStage)}</p>` : ''}
+              ${safeServiceInterest ? `<p><strong>Service Interest:</strong> ${escapeHtml(safeServiceInterest)}</p>` : ''}
             </div>
 
-            ${contactData.challenges ? `
+            ${safeChallenges ? `
               <div style="background: #fff5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3 style="color: #555; margin-top: 0;">Challenges</h3>
-                <p>${escapeHtml(contactData.challenges)}</p>
+                <p>${escapeHtml(safeChallenges)}</p>
               </div>
             ` : ''}
 
-            ${contactData.message ? `
+            ${safeMessage ? `
               <div style="background: #f5fff5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3 style="color: #555; margin-top: 0;">Additional Message</h3>
-                <p>${escapeHtml(contactData.message)}</p>
+                <p>${escapeHtml(safeMessage)}</p>
               </div>
             ` : ''}
 
@@ -127,7 +159,7 @@ const handler = async (req: Request): Promise<Response> => {
       // Send confirmation email to submitter
       await resend.emails.send({
         from: "Phresh Phactory <onboarding@resend.dev>",
-        to: [contactData.email],
+        to: [safeEmail],
         subject: "Thank you for contacting Phresh Phactory",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -135,14 +167,14 @@ const handler = async (req: Request): Promise<Response> => {
               Thank You for Reaching Out!
             </h2>
             
-            <p>Hi ${escapeHtml(contactData.name)},</p>
+            <p>Hi ${escapeHtml(safeName)},</p>
             
             <p>We've received your message and appreciate you taking the time to contact us. Our team will review your inquiry and get back to you shortly.</p>
             
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Your Submission Summary</h3>
-              <p><strong>Service Interest:</strong> ${contactData.serviceInterest || 'General Inquiry'}</p>
-              ${contactData.companyStage ? `<p><strong>Company Stage:</strong> ${escapeHtml(contactData.companyStage)}</p>` : ''}
+              <p><strong>Service Interest:</strong> ${escapeHtml(safeServiceInterest) || 'General Inquiry'}</p>
+              ${safeCompanyStage ? `<p><strong>Company Stage:</strong> ${escapeHtml(safeCompanyStage)}</p>` : ''}
             </div>
             
             <p>In the meantime, feel free to explore our services and resources on our website.</p>
@@ -158,6 +190,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     } else if (data.formType === 'newsletter') {
       const newsletterData = data as NewsletterData;
+      const safeEmail = sanitizeText(newsletterData.email, 255);
       
       // Send newsletter signup notification to business
       emailResponse = await resend.emails.send({
@@ -167,7 +200,7 @@ const handler = async (req: Request): Promise<Response> => {
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333;">New Newsletter Subscription</h2>
-            <p><strong>Email:</strong> ${escapeHtml(newsletterData.email)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(safeEmail)}</p>
             <p><strong>Subscribed on:</strong> ${new Date().toLocaleString()}</p>
           </div>
         `,
@@ -175,6 +208,19 @@ const handler = async (req: Request): Promise<Response> => {
 
     } else if (data.formType === 'assessment') {
       const assessmentData = data as AssessmentData;
+      
+      const { valid, missing } = validateRequiredFields(assessmentData, ['name', 'email', 'type']);
+      if (!valid) {
+        return new Response(
+          JSON.stringify({ error: `Missing required fields: ${missing.join(', ')}` }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      const safeName = sanitizeText(assessmentData.name, 100);
+      const safeEmail = sanitizeText(assessmentData.email, 255);
+      const safeType = sanitizeText(assessmentData.type, 100);
+      const safeCompany = sanitizeText(assessmentData.company, 200);
       
       // Send assessment request to business
       emailResponse = await resend.emails.send({
@@ -185,10 +231,10 @@ const handler = async (req: Request): Promise<Response> => {
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333;">New Free Assessment Request</h2>
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <p><strong>Name:</strong> ${escapeHtml(assessmentData.name)}</p>
-              <p><strong>Email:</strong> ${escapeHtml(assessmentData.email)}</p>
-              <p><strong>Type:</strong> ${escapeHtml(assessmentData.type)}</p>
-              ${assessmentData.company ? `<p><strong>Company:</strong> ${escapeHtml(assessmentData.company)}</p>` : ''}
+              <p><strong>Name:</strong> ${escapeHtml(safeName)}</p>
+              <p><strong>Email:</strong> ${escapeHtml(safeEmail)}</p>
+              <p><strong>Type:</strong> ${escapeHtml(safeType)}</p>
+              ${safeCompany ? `<p><strong>Company:</strong> ${escapeHtml(safeCompany)}</p>` : ''}
             </div>
             <p><strong>Requested on:</strong> ${new Date().toLocaleString()}</p>
           </div>
@@ -197,11 +243,26 @@ const handler = async (req: Request): Promise<Response> => {
     } else if (data.formType === 'brand-partnership') {
       const brandData = data as BrandPartnershipData;
       
+      const { valid, missing } = validateRequiredFields(brandData, ['name', 'email', 'brandName', 'website']);
+      if (!valid) {
+        return new Response(
+          JSON.stringify({ error: `Missing required fields: ${missing.join(', ')}` }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      const safeName = sanitizeText(brandData.name, 100);
+      const safeEmail = sanitizeText(brandData.email, 255);
+      const safeBrandName = sanitizeText(brandData.brandName, 200);
+      const safeWebsite = sanitizeText(brandData.website, 500);
+      const safeMessage = sanitizeText(brandData.message, 2000);
+      const safeOtherServices = sanitizeText(brandData.otherServices, 500);
+      
       // Send brand partnership application to business
       emailResponse = await resend.emails.send({
         from: "Phresh Phactory <onboarding@resend.dev>",
         to: ["info@phreshphactory.co"],
-        subject: `Brand Feature Application - ${escapeHtml(brandData.brandName)}`,
+        subject: `Brand Feature Application - ${escapeHtml(safeBrandName)}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px;">
@@ -210,32 +271,32 @@ const handler = async (req: Request): Promise<Response> => {
             
             <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Contact Information</h3>
-              <p><strong>Owner Name:</strong> ${escapeHtml(brandData.name)}</p>
-              <p><strong>Email:</strong> ${escapeHtml(brandData.email)}</p>
+              <p><strong>Owner Name:</strong> ${escapeHtml(safeName)}</p>
+              <p><strong>Email:</strong> ${escapeHtml(safeEmail)}</p>
             </div>
 
             <div style="background: #f0f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Brand Information</h3>
-              <p><strong>Brand Name:</strong> ${escapeHtml(brandData.brandName)}</p>
-              <p><strong>Website:</strong> <a href="${escapeHtml(brandData.website)}">${escapeHtml(brandData.website)}</a></p>
-              <p><strong>On Afrofiliate:</strong> ${escapeHtml(brandData.hasJoinedAfrofiliate)}</p>
-              <p><strong>Budget Range:</strong> ${escapeHtml(brandData.budget)}</p>
+              <p><strong>Brand Name:</strong> ${escapeHtml(safeBrandName)}</p>
+              <p><strong>Website:</strong> <a href="${escapeHtml(safeWebsite)}">${escapeHtml(safeWebsite)}</a></p>
+              <p><strong>On Afrofiliate:</strong> ${escapeHtml(sanitizeText(brandData.hasJoinedAfrofiliate, 50))}</p>
+              <p><strong>Budget Range:</strong> ${escapeHtml(sanitizeText(brandData.budget, 100))}</p>
             </div>
 
             <div style="background: #fff5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #555; margin-top: 0;">Services Interested In</h3>
-              <p><strong>Video Feature:</strong> ${brandData.interestedInVideoFeature}</p>
-              <p><strong>Written Content:</strong> ${brandData.interestedInWrittenContent}</p>
-              <p><strong>Growth Support (Paid Service):</strong> ${brandData.interestedInGrowthSupport}</p>
-              <p><strong>UGC Creation:</strong> ${brandData.interestedInUGC}</p>
-              <p><strong>Social Media Management:</strong> ${brandData.interestedInSocialMedia}</p>
-              ${brandData.otherServices ? `<p><strong>Other Services:</strong> ${brandData.otherServices}</p>` : ''}
+              <p><strong>Video Feature:</strong> ${escapeHtml(sanitizeText(brandData.interestedInVideoFeature, 50))}</p>
+              <p><strong>Written Content:</strong> ${escapeHtml(sanitizeText(brandData.interestedInWrittenContent, 50))}</p>
+              <p><strong>Growth Support (Paid Service):</strong> ${escapeHtml(sanitizeText(brandData.interestedInGrowthSupport, 50))}</p>
+              <p><strong>UGC Creation:</strong> ${escapeHtml(sanitizeText(brandData.interestedInUGC, 50))}</p>
+              <p><strong>Social Media Management:</strong> ${escapeHtml(sanitizeText(brandData.interestedInSocialMedia, 50))}</p>
+              ${safeOtherServices ? `<p><strong>Other Services:</strong> ${escapeHtml(safeOtherServices)}</p>` : ''}
             </div>
 
-            ${brandData.message ? `
+            ${safeMessage ? `
               <div style="background: #f5fff5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <h3 style="color: #555; margin-top: 0;">About the Brand</h3>
-                <p>${escapeHtml(brandData.message)}</p>
+                <p>${escapeHtml(safeMessage)}</p>
               </div>
             ` : ''}
 
@@ -248,7 +309,7 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    console.log("Email sent successfully:", emailResponse);
+    console.log("Email sent successfully");
 
     return new Response(JSON.stringify({ success: true, data: emailResponse }), {
       status: 200,
@@ -257,10 +318,11 @@ const handler = async (req: Request): Promise<Response> => {
         ...corsHeaders,
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in send-contact-email function:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: errorMessage }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
