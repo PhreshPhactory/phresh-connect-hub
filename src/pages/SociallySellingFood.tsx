@@ -708,7 +708,7 @@ const SociallySellingFood = () => {
               to="/KieraH" 
               className="text-primary hover:text-primary/80 transition-colors font-medium inline-flex items-center gap-1"
             >
-              Meet Kiera Haywood <ArrowRight className="h-4 w-4" />
+              Meet Kiera H. <ArrowRight className="h-4 w-4" />
             </Link>
             <p className="text-sm text-muted-foreground">
               Questions? Contact <a href="mailto:kiera@eatokra.com" className="underline hover:text-foreground">kiera@eatokra.com</a>
