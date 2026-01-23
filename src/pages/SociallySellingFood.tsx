@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -702,8 +703,16 @@ const SociallySellingFood = () => {
 
         {/* Minimal Footer */}
         <footer className="py-8 px-4 border-t border-border">
-          <div className="max-w-4xl mx-auto text-center text-sm text-muted-foreground">
-            <p>Questions? Contact <a href="mailto:kiera@eatokra.com" className="underline hover:text-foreground">kiera@eatokra.com</a></p>
+          <div className="max-w-4xl mx-auto text-center space-y-3">
+            <Link 
+              to="/KieraH" 
+              className="text-primary hover:text-primary/80 transition-colors font-medium inline-flex items-center gap-1"
+            >
+              Meet Kiera Haywood <ArrowRight className="h-4 w-4" />
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              Questions? Contact <a href="mailto:kiera@eatokra.com" className="underline hover:text-foreground">kiera@eatokra.com</a>
+            </p>
           </div>
         </footer>
       </div>
