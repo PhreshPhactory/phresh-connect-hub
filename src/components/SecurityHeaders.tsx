@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { generateNonce } from '@/utils/security';
 
-export const SecurityHeaders = () => {
+export const SecurityHeaders: React.FC = () => {
   useEffect(() => {
     // Only run on client side
     if (typeof document === 'undefined') return;
