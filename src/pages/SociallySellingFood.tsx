@@ -187,13 +187,16 @@ const SociallySellingFood = () => {
             <img 
               src={ssfLogo} 
               alt="Socially Selling Food with Kiera H." 
-              className="w-64 md:w-80 mx-auto mb-10"
+              className="w-64 md:w-80 mx-auto mb-8"
             />
+            <p className="text-sm md:text-base text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Led by <span className="text-foreground font-medium">Kiera H.</span>, a strategic advisor with 20+ years helping food and consumer businesses modernize operations and build digital revenue.
+            </p>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
               Food businesses should not stop making money when they close.
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-              A hands-on working series that helps food businesses sell 24/7.
+              A hands-on working lab that helps food businesses build systems to sell 24/7.
             </p>
             <Button 
               size="lg" 
@@ -234,16 +237,16 @@ const SociallySellingFood = () => {
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                Digital products, pre-orders, affiliate partnerships, branded content — these generate revenue without additional food cost, labor, or overhead. Pure margin.
+                Digital products, pre-orders, affiliate partnerships, branded content — these generate revenue without additional food, labor, or overhead after creation. Once built, they sell on repeat. Pure margin.
               </p>
               <p>
                 This is not a marketing class. This is not about growing followers or going viral.
               </p>
               <p className="text-foreground font-medium">
-                This is about building revenue that doesn't eat into your already-thin margins.
+                This is a hands-on working lab where you build real, deployable assets — not learn theory.
               </p>
               <p>
-                You will learn to turn your expertise, recipes, and reputation into sellable digital assets that work 24/7 — with zero cost of goods.
+                You will turn your expertise, recipes, and reputation into sellable digital assets that generate revenue 24/7 — with zero cost of goods.
               </p>
             </div>
           </div>
@@ -290,7 +293,7 @@ const SociallySellingFood = () => {
               The full program: 4 working sessions
             </h2>
             <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Each session builds on the last. By the end, you will have everything you need to sell beyond your physical location.
+              Each session produces a real, deployable asset. By the end, you will have everything you need to sell beyond your physical location.
             </p>
             <div className="space-y-6">
               {[
@@ -298,24 +301,28 @@ const SociallySellingFood = () => {
                   number: 1,
                   title: 'Package What You Sell',
                   outcome: 'Turn your menu items into clear, sellable offers that work online.',
+                  deliverable: 'You leave with: Defined digital offers ready to list and sell.',
                   date: 'Feb. 10',
                 },
                 {
                   number: 2,
                   title: 'Build Conversion-Ready Video',
                   outcome: 'Create vertical video assets designed to drive sales, not just views.',
+                  deliverable: 'You leave with: Video content formatted for conversion across platforms.',
                   date: 'Feb. 17',
                 },
                 {
                   number: 3,
                   title: 'Create Timely, Sellable Drops',
                   outcome: 'Develop seasonal or limited-time offers that create urgency and revenue.',
+                  deliverable: 'You leave with: A promotional calendar with deployable offer campaigns.',
                   date: 'Feb. 24',
                 },
                 {
                   number: 4,
                   title: 'Prepare for 24/7 Selling',
                   outcome: 'Set up your systems to sell while you sleep, travel, or focus elsewhere.',
+                  deliverable: 'You leave with: Live systems that generate revenue beyond operating hours.',
                   date: 'Mar. 3',
                 },
               ].map((session) => (
@@ -329,6 +336,7 @@ const SociallySellingFood = () => {
                       <span className="text-sm text-muted-foreground">• {session.date}</span>
                     </div>
                     <p className="text-muted-foreground">{session.outcome}</p>
+                    <p className="text-sm text-tertiary font-medium mt-2">{session.deliverable}</p>
                   </div>
                   <div className="flex-shrink-0 text-right">
                     <span className="text-sm font-medium text-muted-foreground">$99</span>
@@ -355,16 +363,36 @@ const SociallySellingFood = () => {
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                'Clear, sellable offers packaged for digital platforms',
-                'Vertical video assets ready to deploy',
-                'Seasonal or limited-time drops that drive urgency',
-                'Content that enables selling beyond walk-in traffic',
+                'Defined digital offers packaged and ready to list',
+                'Conversion-ready video assets formatted for sales',
+                'Seasonal campaigns and limited-time drops that drive urgency',
+                'Live systems that generate revenue beyond your operating hours',
               ].map((item, index) => (
                 <div key={index} className="flex items-start gap-3 p-4 bg-tertiary/10 rounded-lg border border-tertiary/20">
                   <Check className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
                   <span className="text-foreground">{item}</span>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* What Happens After the Lab */}
+        <section className="py-16 md:py-20 px-4 bg-gradient-to-r from-tertiary/5 via-tertiary/10 to-tertiary/5">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
+              What Happens After the Lab
+            </h2>
+            <div className="space-y-4 text-lg text-muted-foreground">
+              <p>
+                You leave each session with live, deployable assets and systems — not homework or theory. These can be distributed, shared, and sold immediately, extending revenue beyond your physical operating hours.
+              </p>
+              <p>
+                Readiness is the qualifier — not completing every session. Whether you build through individual sessions or the full program, the goal is the same: packaged offers and sell-ready assets.
+              </p>
+              <p className="text-foreground font-medium">
+                Once your offers are packaged and sell-ready, EatOkra — including influencers of all sizes, affiliates, fans, and a global audience — can actively market your business, extending your reach far beyond hyper-local, walk-in traffic.
+              </p>
             </div>
           </div>
         </section>
@@ -383,7 +411,7 @@ const SociallySellingFood = () => {
               ))}
             </div>
             <p className="mt-8 text-muted-foreground text-lg">
-              If you sell food and want to sell more of it — beyond your physical location and operating hours — this series is for you.
+              If you sell food and want to sell more of it — beyond your physical location and operating hours — this lab is for you.
             </p>
           </div>
         </section>
@@ -430,6 +458,16 @@ const SociallySellingFood = () => {
         {/* Registration Form */}
         <section ref={formRef} className="py-16 md:py-20 px-4 bg-muted/30">
           <div className="max-w-2xl mx-auto">
+            {/* Decisive transition */}
+            <div className="text-center mb-10">
+              <p className="text-xl md:text-2xl text-foreground font-medium mb-4">
+                If your business currently only earns while the doors are open, this program is designed to change that permanently.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                This is a live, working cohort with limited capacity to ensure hands-on execution and direct feedback.
+              </p>
+            </div>
+            
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
               Register for Socially Selling Food
             </h2>
@@ -714,7 +752,7 @@ const SociallySellingFood = () => {
               />
             </div>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Learn from Kiera H., a strategic advisor with 20+ years of experience helping businesses scale through operational strategy and digital transformation.
+              Kiera H. is a strategic advisor with 20+ years of experience helping food and consumer businesses modernize operations and build sustainable digital revenue streams.
             </p>
             <Button asChild size="lg" className="mt-4">
               <Link to="/KieraH">
