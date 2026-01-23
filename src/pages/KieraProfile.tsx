@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Briefcase, GraduationCap, Award, ExternalLink } from "lucide-react";
+import { MapPin, Briefcase, GraduationCap, Award, ExternalLink, Utensils } from "lucide-react";
 import SEOHead from '@/components/SEOHead';
 import kieraProfileImage from '@/assets/kiera-profile-hero.png';
 import NewsletterForm from '@/components/NewsletterForm';
-
 const KieraProfile = () => {
   return (
     <>
@@ -256,6 +256,12 @@ const KieraProfile = () => {
                         <ExternalLink className="h-4 w-4 mr-2" />
                         LinkedIn
                       </a>
+                    </Button>
+                    <Button variant="secondary" asChild>
+                      <Link to="/socially-selling-food">
+                        <Utensils className="h-4 w-4 mr-2" />
+                        Socially Selling Food Workshop
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>

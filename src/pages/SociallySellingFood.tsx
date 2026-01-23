@@ -701,15 +701,24 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
+        {/* Meet the Instructor Section */}
+        <section className="py-12 px-4 bg-secondary/30">
+          <div className="max-w-4xl mx-auto text-center space-y-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Meet the Instructor</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Learn from Kiera H., a strategic advisor with 20+ years of experience helping food businesses scale through digital transformation.
+            </p>
+            <Button asChild size="lg" className="mt-4">
+              <Link to="/KieraH">
+                Meet Kiera H. <ArrowRight className="h-5 w-5 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </section>
+
         {/* Minimal Footer */}
         <footer className="py-8 px-4 border-t border-border">
-          <div className="max-w-4xl mx-auto text-center space-y-3">
-            <Link 
-              to="/KieraH" 
-              className="text-primary hover:text-primary/80 transition-colors font-medium inline-flex items-center gap-1"
-            >
-              Meet Kiera H. <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div className="max-w-4xl mx-auto text-center">
             <p className="text-sm text-muted-foreground">
               Questions? Contact <a href="mailto:kiera@eatokra.com" className="underline hover:text-foreground">kiera@eatokra.com</a>
             </p>
