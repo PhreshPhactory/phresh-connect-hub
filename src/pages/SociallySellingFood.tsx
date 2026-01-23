@@ -189,7 +189,7 @@ const SociallySellingFood = () => {
               alt="Socially Selling Food with Kiera H." 
               className="w-64 md:w-80 mx-auto mb-8"
             />
-            <p className="text-sm md:text-base text-muted-foreground mb-6 max-w-2xl mx-auto">
+            <p className="text-sm md:text-base text-muted-foreground mb-10 max-w-2xl mx-auto">
               Led by <span className="text-foreground font-medium">Kiera H.</span>, a strategic advisor with 20+ years helping food and consumer businesses modernize operations and build digital revenue.
             </p>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
