@@ -112,6 +112,21 @@ const SociallySellingFood = () => {
 
       if (dbError) throw dbError;
 
+      // Send notification email to admin (non-blocking)
+      supabase.functions.invoke('send-ssf-enrollment-notification', {
+        body: {
+          email: data.email,
+          name: data.name,
+          businessName: data.businessName,
+          businessCityState: data.businessCityState,
+          businessWebsite: data.businessWebsite,
+          googleEmail: data.googleEmail,
+          selectedSessions: data.selectedSessions,
+          confidenceLevel: data.confidenceLevel,
+          totalAmount: total * 100,
+        },
+      }).catch(err => console.error('Notification email failed:', err));
+
       if (total > 0) {
         const priceIds = paidSessionIds.map((s) => s.priceId).filter(Boolean);
         
