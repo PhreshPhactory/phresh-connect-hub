@@ -6,12 +6,12 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowRight, Check, Calendar, Clock, MapPin } from 'lucide-react';
+import { ArrowRight, Check, Calendar, Clock, MapPin, Sparkles } from 'lucide-react';
 import ssfLogo from '@/assets/socially-selling-food-logo.png';
 import {
   Form,
@@ -22,13 +22,14 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-const CLASS_OPTIONS = [
-  { id: 'ai101', label: 'AI 101 (Prep Session) – FREE – Tue. Feb. 3, 2026', price: 0, priceId: null },
-  { id: 'session1', label: 'Session 1: Package What You Sell – $99 – Tue. Feb. 10, 2026', price: 99, priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh' },
-  { id: 'session2', label: 'Session 2: Conversion-Ready Video – $99 – Tue. Feb. 17, 2026', price: 99, priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl' },
-  { id: 'session3', label: 'Session 3: Create Timely, Sellable Drops – $99 – Tue. Feb. 24, 2026', price: 99, priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy' },
-  { id: 'session4', label: 'Session 4: Prepare for Promotion – $99 – Tue. Mar. 3, 2026', price: 99, priceId: 'price_1SsYReQP580MvrLEH3PchosX' },
+const PAID_SESSIONS = [
+  { id: 'session1', label: 'Package What You Sell', date: 'Tue. Feb. 10', price: 99, priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh' },
+  { id: 'session2', label: 'Conversion-Ready Video', date: 'Tue. Feb. 17', price: 99, priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl' },
+  { id: 'session3', label: 'Create Timely, Sellable Drops', date: 'Tue. Feb. 24', price: 99, priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy' },
+  { id: 'session4', label: 'Prepare for 24/7 Selling', date: 'Tue. Mar. 3', price: 99, priceId: 'price_1SsYReQP580MvrLEH3PchosX' },
 ];
+
+const FULL_PROGRAM_PRICE = PAID_SESSIONS.reduce((sum, s) => sum + s.price, 0);
 
 const formSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -40,7 +41,7 @@ const formSchema = z.object({
     (email) => email.endsWith('@gmail.com'),
     'Must be a @gmail.com address to access Google Classroom'
   ),
-  selectedSessions: z.array(z.string()).min(1, 'Please select at least one session'),
+  registrationType: z.enum(['prep-only', 'full-program']),
   confidenceLevel: z.number().min(0).max(10),
   accommodations: z.string().optional(),
 });
@@ -65,27 +66,26 @@ const SociallySellingFood = () => {
       businessCityState: '',
       businessWebsite: '',
       googleEmail: '',
-      selectedSessions: ['ai101'],
+      registrationType: 'full-program',
       confidenceLevel: 5,
       accommodations: '',
     },
   });
 
-  const selectedSessions = form.watch('selectedSessions');
+  const registrationType = form.watch('registrationType');
 
   const calculateTotal = () => {
-    return CLASS_OPTIONS.filter(
-      (option) => selectedSessions.includes(option.id)
-    ).reduce((sum, option) => sum + option.price, 0);
+    return registrationType === 'full-program' ? FULL_PROGRAM_PRICE : 0;
   };
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
       const total = calculateTotal();
-      const paidSessions = CLASS_OPTIONS.filter(
-        (option) => data.selectedSessions.includes(option.id) && option.price > 0
-      );
+      const isFullProgram = data.registrationType === 'full-program';
+      const selectedSessions = isFullProgram 
+        ? ['ai101', ...PAID_SESSIONS.map(s => s.id)]
+        : ['ai101'];
 
       const { error: dbError } = await supabase
         .from('socially_selling_food_enrollments')
@@ -96,7 +96,7 @@ const SociallySellingFood = () => {
           business_city_state: data.businessCityState,
           business_website: data.businessWebsite,
           google_email: data.googleEmail,
-          selected_sessions: data.selectedSessions,
+          selected_sessions: selectedSessions,
           confidence_level: data.confidenceLevel,
           accommodations: data.accommodations || null,
           total_amount: total * 100,
@@ -106,7 +106,7 @@ const SociallySellingFood = () => {
       if (dbError) throw dbError;
 
       if (total > 0) {
-        const priceIds = paidSessions.map((s) => s.priceId).filter(Boolean);
+        const priceIds = PAID_SESSIONS.map((s) => s.priceId).filter(Boolean);
         
         const { data: checkoutData, error: checkoutError } = await supabase.functions.invoke(
           'create-ssf-payment',
@@ -131,7 +131,7 @@ const SociallySellingFood = () => {
       } else {
         toast({
           title: 'Registration confirmed',
-          description: 'You are registered for the free AI 101 session. Check your email for details.',
+          description: 'You are registered for the free AI 101 prep session. Check your email for details.',
         });
       }
 
@@ -234,20 +234,25 @@ const SociallySellingFood = () => {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-6 border border-primary/20 rounded-xl bg-primary/5">
                 <div className="inline-block bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-                  FREE
+                  FREE PREP SESSION
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">AI 101 Prep Session</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-2">AI 101</h3>
                 <p className="text-muted-foreground">
-                  Get set up with the AI tools you will use throughout the series. No prior experience required.
+                  Get set up with the AI tools you will use throughout the full program. This session prepares you for the four working sessions ahead.
                 </p>
               </div>
-              <div className="p-6 border border-border rounded-xl bg-card">
-                <div className="inline-block bg-muted text-muted-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-                  4 WORKING SESSIONS
+              <div className="p-6 border-2 border-primary rounded-xl bg-card relative">
+                <div className="absolute -top-3 right-4">
+                  <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                    <Sparkles className="h-3 w-3" /> RECOMMENDED
+                  </span>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">Build Sellable Assets</h3>
+                <div className="inline-block bg-muted text-muted-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+                  FULL PROGRAM • ${FULL_PROGRAM_PRICE}
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">4 Working Sessions</h3>
                 <p className="text-muted-foreground">
-                  Four sessions where you create real, usable assets for your business. Not lectures — working sessions.
+                  Build every asset you need to sell 24/7. Each session produces real, deployable content for your business.
                 </p>
               </div>
             </div>
@@ -257,42 +262,63 @@ const SociallySellingFood = () => {
         {/* Session Breakdown */}
         <section className="py-16 md:py-20 px-4 bg-muted/30">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-10 text-center">
-              Session breakdown
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
+              The full program: 4 working sessions
             </h2>
+            <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
+              Each session builds on the last. By the end, you will have everything you need to sell beyond your physical location.
+            </p>
             <div className="space-y-6">
               {[
                 {
                   number: 1,
                   title: 'Package What You Sell',
                   outcome: 'Turn your menu items into clear, sellable offers that work online.',
+                  date: 'Feb. 10',
                 },
                 {
                   number: 2,
                   title: 'Build Conversion-Ready Video',
                   outcome: 'Create vertical video assets designed to drive sales, not just views.',
+                  date: 'Feb. 17',
                 },
                 {
                   number: 3,
                   title: 'Create Timely, Sellable Drops',
                   outcome: 'Develop seasonal or limited-time offers that create urgency and revenue.',
+                  date: 'Feb. 24',
                 },
                 {
                   number: 4,
                   title: 'Prepare for 24/7 Selling',
                   outcome: 'Set up your systems to sell while you sleep, travel, or focus elsewhere.',
+                  date: 'Mar. 3',
                 },
               ].map((session) => (
                 <div key={session.number} className="flex gap-4 p-6 bg-card border border-border rounded-xl">
                   <div className="flex-shrink-0 w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold">
                     {session.number}
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">{session.title}</h3>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <h3 className="text-lg font-semibold text-foreground">{session.title}</h3>
+                      <span className="text-sm text-muted-foreground">• {session.date}</span>
+                    </div>
                     <p className="text-muted-foreground">{session.outcome}</p>
+                  </div>
+                  <div className="flex-shrink-0 text-right">
+                    <span className="text-sm font-medium text-muted-foreground">$99</span>
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="mt-8 p-4 bg-primary/10 rounded-xl text-center">
+              <p className="text-lg font-semibold text-foreground">
+                Full Program: ${FULL_PROGRAM_PRICE}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                AI 101 prep session included free with full program registration
+              </p>
             </div>
           </div>
         </section>
@@ -343,11 +369,14 @@ const SociallySellingFood = () => {
           <div className="max-w-2xl mx-auto">
             <div className="p-8 bg-card border-2 border-primary/20 rounded-2xl text-center">
               <div className="inline-block bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-                FREE INTRO SESSION
+                START HERE
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                 AI 101 Prep Session
               </h2>
+              <p className="text-muted-foreground mb-6">
+                This free session prepares you for the full program. Get set up with the tools and understand what's ahead.
+              </p>
               <div className="space-y-3 text-lg text-muted-foreground mb-8">
                 <div className="flex items-center justify-center gap-2">
                   <Calendar className="h-5 w-5" />
@@ -367,7 +396,7 @@ const SociallySellingFood = () => {
                 onClick={scrollToForm}
                 className="text-lg px-8 py-6 h-auto"
               >
-                Register Now — It's Free
+                Register Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
@@ -381,25 +410,86 @@ const SociallySellingFood = () => {
               Register for Socially Selling Food
             </h2>
             <p className="text-muted-foreground text-center mb-8">
-              Start with the free AI 101 session. Add paid sessions if you want the full experience.
+              Choose your registration option below.
             </p>
 
             <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  {/* Registration Type Selection */}
                   <FormField
                     control={form.control}
-                    name="email"
+                    name="registrationType"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email *</FormLabel>
+                        <FormLabel className="text-base">Choose your registration *</FormLabel>
                         <FormControl>
-                          <Input placeholder="your@email.com" {...field} />
+                          <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="space-y-3 mt-2"
+                          >
+                            <Label
+                              htmlFor="full-program"
+                              className={`flex items-start space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-colors ${
+                                field.value === 'full-program' 
+                                  ? 'border-primary bg-primary/5' 
+                                  : 'border-border hover:border-primary/50'
+                              }`}
+                            >
+                              <RadioGroupItem value="full-program" id="full-program" className="mt-1" />
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="font-semibold text-foreground">Full Program</span>
+                                  <span className="bg-primary text-primary-foreground px-2 py-0.5 rounded text-xs font-medium flex items-center gap-1">
+                                    <Sparkles className="h-3 w-3" /> RECOMMENDED
+                                  </span>
+                                </div>
+                                <p className="text-sm text-muted-foreground mb-2">
+                                  AI 101 prep + all 4 working sessions
+                                </p>
+                                <p className="text-lg font-semibold text-foreground">${FULL_PROGRAM_PRICE}</p>
+                              </div>
+                            </Label>
+                            <Label
+                              htmlFor="prep-only"
+                              className={`flex items-start space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-colors ${
+                                field.value === 'prep-only' 
+                                  ? 'border-primary bg-primary/5' 
+                                  : 'border-border hover:border-primary/50'
+                              }`}
+                            >
+                              <RadioGroupItem value="prep-only" id="prep-only" className="mt-1" />
+                              <div className="flex-1">
+                                <span className="font-semibold text-foreground">AI 101 Prep Session Only</span>
+                                <p className="text-sm text-muted-foreground mb-2">
+                                  Start with the free prep session to see if the full program is right for you
+                                </p>
+                                <p className="text-lg font-semibold text-foreground">Free</p>
+                              </div>
+                            </Label>
+                          </RadioGroup>
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
+
+                  <div className="border-t border-border pt-6">
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email *</FormLabel>
+                          <FormControl>
+                            <Input placeholder="your@email.com" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
                     <FormField
@@ -478,45 +568,6 @@ const SociallySellingFood = () => {
 
                   <FormField
                     control={form.control}
-                    name="selectedSessions"
-                    render={() => (
-                      <FormItem>
-                        <FormLabel>Select your sessions *</FormLabel>
-                        <div className="space-y-3 mt-2">
-                          {CLASS_OPTIONS.map((option) => (
-                            <FormField
-                              key={option.id}
-                              control={form.control}
-                              name="selectedSessions"
-                              render={({ field }) => (
-                                <FormItem className="flex items-start space-x-3 space-y-0 p-3 bg-muted/50 rounded-lg">
-                                  <FormControl>
-                                    <Checkbox
-                                      checked={field.value?.includes(option.id)}
-                                      onCheckedChange={(checked) => {
-                                        return checked
-                                          ? field.onChange([...field.value, option.id])
-                                          : field.onChange(
-                                              field.value?.filter((value) => value !== option.id)
-                                            );
-                                      }}
-                                    />
-                                  </FormControl>
-                                  <Label className="font-normal text-sm cursor-pointer leading-relaxed">
-                                    {option.label}
-                                  </Label>
-                                </FormItem>
-                              )}
-                            />
-                          ))}
-                        </div>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
                     name="confidenceLevel"
                     render={({ field }) => (
                       <FormItem>
@@ -581,8 +632,19 @@ const SociallySellingFood = () => {
                     className="w-full text-lg py-6 h-auto"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Registering...' : calculateTotal() > 0 ? 'Register & Continue to Payment' : 'Register for Free'}
+                    {isSubmitting 
+                      ? 'Registering...' 
+                      : calculateTotal() > 0 
+                        ? `Register for Full Program — $${calculateTotal()}` 
+                        : 'Register for Free AI 101 Session'
+                    }
                   </Button>
+
+                  {registrationType === 'prep-only' && (
+                    <p className="text-center text-sm text-muted-foreground">
+                      After the prep session, you can upgrade to the full program at any time.
+                    </p>
+                  )}
                 </form>
               </Form>
             </div>
@@ -596,14 +658,14 @@ const SociallySellingFood = () => {
               Your business can sell while you sleep.
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Join the free AI 101 session and see how Socially Selling Food can change the way your business operates.
+              Join the free AI 101 prep session and get ready to transform how your business operates.
             </p>
             <Button 
               size="lg" 
               onClick={scrollToForm}
               className="text-lg px-8 py-6 h-auto"
             >
-              Register Now — It's Free
+              Register Now
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
