@@ -124,6 +124,9 @@ serve(async (req) => {
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
+      // Explicitly set payment method types to avoid Stripe dashboard configuration mismatches
+      // that can cause: "No valid payment method types for this Checkout Session"
+      payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
       success_url: `${origin}/socially-selling-food?success=true`,
