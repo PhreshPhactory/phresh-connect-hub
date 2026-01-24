@@ -221,10 +221,10 @@ const SociallySellingFood = () => {
               E-commerce brands sell while they sleep. <span className="text-tertiary">Your food business can too.</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-              Every hour your doors are closed is revenue you'll never recover.
+              A hands-on working lab that builds sellable offers for 24/7 revenue.
             </p>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              This is not a marketing class. This is a hands-on working lab where you build real, sellable offers — pre-orders, digital products, limited-time drops — that generate revenue 24/7.
+              This is not a marketing class. You will build real offers: pre-orders, digital products, limited-time drops that generate income around the clock.
             </p>
             <Button 
               size="lg" 
@@ -245,13 +245,13 @@ const SociallySellingFood = () => {
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                Food businesses operate on some of the slimmest margins in any industry. Every plate has a cost. Every ingredient cuts into profit. Every hour you're closed is revenue you'll never recover.
+                Food businesses operate on some of the slimmest margins in any industry. Every plate has a cost. Every ingredient cuts into profit. And every hour you are closed is revenue you will never recover.
               </p>
               <p>
-                Meanwhile, e-commerce brands sell around the clock — while their owners sleep, travel, or focus on other things. The gap between how you operate and how they operate is costing you money every single day.
+                E-commerce brands operate differently. They sell around the clock while their owners sleep, travel, or focus on other things. The gap between how you operate and how they operate costs you money every day.
               </p>
               <p className="text-foreground font-medium">
-                The math is simple: you need revenue streams that cost you zero extra dollars to deliver.
+                The solution: revenue streams that cost you zero extra dollars to deliver.
               </p>
             </div>
           </div>
@@ -265,7 +265,7 @@ const SociallySellingFood = () => {
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                Zero-cost revenue means income that requires no additional food, labor, or overhead after the initial creation. Examples include:
+                Zero-cost revenue is income that requires no additional food, labor, or overhead after initial creation:
               </p>
               <ul className="list-disc list-inside pl-2 space-y-1">
                 <li>Pre-orders that capture demand before you cook</li>
@@ -276,10 +276,7 @@ const SociallySellingFood = () => {
                 Once built, these offers sell around the clock. Pure margin. No extra plates. No extra hours.
               </p>
               <p className="text-foreground font-medium">
-                This is a hands-on working lab where you build real, deployable assets — not learn theory.
-              </p>
-              <p>
-                You will turn your expertise, recipes, and reputation into sellable digital assets that generate revenue 24/7 — with zero cost of goods.
+                In this lab, you build real, deployable assets. Not theory. Real offers that go live.
               </p>
             </div>
           </div>
@@ -288,9 +285,12 @@ const SociallySellingFood = () => {
         {/* How the Program Works */}
         <section className="py-16 md:py-20 px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-10 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
               How the program works
             </h2>
+            <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
+              The full program includes 5 sessions: a free AI 101 prep session plus 4 paid working sessions.
+            </p>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-6 border-2 border-tertiary/40 rounded-xl bg-tertiary/5">
                 <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
@@ -298,7 +298,7 @@ const SociallySellingFood = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">AI 101</h3>
                 <p className="text-muted-foreground">
-                  Get set up with the AI tools you will use throughout the full program. This session prepares you for the four working sessions ahead.
+                  Get set up with the AI tools you will use throughout the program. This session prepares you for the four working sessions ahead.
                 </p>
               </div>
               <div className="p-6 border-2 border-tertiary rounded-xl bg-card relative shadow-lg shadow-tertiary/10">
@@ -310,9 +310,9 @@ const SociallySellingFood = () => {
                 <div className="inline-block bg-muted text-muted-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
                   FULL PROGRAM • ${FULL_PROGRAM_PRICE}
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">4 Working Sessions + Hands-On Support</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-2">All 5 Sessions + Hands-On Support</h3>
                 <p className="text-muted-foreground">
-                  Build every asset you need to sell 24/7. Each session produces real, deployable content — and full program participants receive direct support through offer creation and launch.
+                  Build every asset you need to sell 24/7. Full program participants receive direct support through offer creation and launch.
                 </p>
               </div>
             </div>
@@ -323,7 +323,7 @@ const SociallySellingFood = () => {
         <section className="py-16 md:py-20 px-4 bg-muted/30">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
-              The full program: 4 working sessions
+              The 4 working sessions
             </h2>
             <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
               Each session produces a real, deployable asset. By the end, you will have everything you need to sell beyond your physical location.
@@ -379,10 +379,10 @@ const SociallySellingFood = () => {
             </div>
             <div className="mt-8 p-4 bg-tertiary/15 border border-tertiary/30 rounded-xl text-center">
               <p className="text-lg font-semibold text-foreground">
-                Full Program: ${FULL_PROGRAM_PRICE}
+                Full Program (All 5 Sessions): ${FULL_PROGRAM_PRICE}
               </p>
               <p className="text-sm text-muted-foreground">
-                AI 101 prep session included free with full program registration
+                Includes free AI 101 prep session + hands-on support through launch
               </p>
             </div>
           </div>
@@ -399,7 +399,7 @@ const SociallySellingFood = () => {
               Hands-on support from offer to launch
             </h2>
             <p className="text-lg text-muted-foreground text-center mb-8">
-              When you register for all five sessions, Kiera H. works directly with you throughout the program to ensure you leave with real offers — not just ideas.
+              When you register for all 5 sessions, Kiera H. works directly with you throughout the program to ensure you leave with real offers, not just ideas.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
@@ -779,7 +779,7 @@ const SociallySellingFood = () => {
 
                   {selectedSessions.length === ALL_SESSIONS.length && (
                     <p className="text-center text-sm text-primary font-medium">
-                      You've selected the full program — all 5 sessions!
+                      You have selected the full program: all 5 sessions with hands-on support.
                     </p>
                   )}
                 </form>
@@ -795,7 +795,7 @@ const SociallySellingFood = () => {
               Your business can sell while you sleep.
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Join the free AI 101 prep session and get ready to transform how your business operates.
+              Start with the free AI 101 prep session, or register for the full program to receive hands-on support through launch.
             </p>
             <Button 
               size="lg" 
