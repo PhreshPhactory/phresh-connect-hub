@@ -133,28 +133,19 @@ const BlogPost = () => {
           dangerouslySetInnerHTML={{ __html: sanitizeHTML(post.content) }}
         />
 
-        {/* About Section */}
-        <section className="bg-accent-50 p-8 rounded-lg mb-12">
-          <h2 className="text-2xl font-bold mb-4">About Phresh Phactory, Inc.</h2>
-          <p className="text-muted-foreground mb-6">
-            We specialize in transforming businesses through strategic fractional leadership, 
-            global talent acquisition, and innovative systems design. Our mission is to help 
-            organizations build high-performance teams and sustainable growth strategies.
+        {/* Workshop CTA Section */}
+        <section className="bg-tertiary/10 border border-tertiary/30 p-8 rounded-lg mb-12 text-center">
+          <h2 className="text-2xl font-bold mb-4">Ready to Build Your 24/7 Revenue Engine?</h2>
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            Join the Socially Selling Food working lab and leave each session with functional, 
+            revenue-generating systems for your food business.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link 
-              to="/contact" 
-              className="text-primary-600 hover:text-primary-500 font-medium"
-            >
-              Get in Touch →
-            </Link>
-            <Link 
-              to="/services" 
-              className="text-primary-600 hover:text-primary-500 font-medium"
-            >
-              Our Services →
-            </Link>
-          </div>
+          <Link 
+            to="/socially-selling-food" 
+            className="inline-flex items-center justify-center bg-tertiary text-tertiary-foreground hover:bg-tertiary/90 font-semibold px-8 py-3 rounded-lg transition-colors"
+          >
+            Register for the Workshop →
+          </Link>
         </section>
 
         {/* Back to Blog */}
