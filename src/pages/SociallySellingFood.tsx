@@ -206,7 +206,7 @@ const SociallySellingFood = () => {
       />
 
       <div className="min-h-screen bg-background">
-        {/* Hero Section */}
+        {/* Hero Section - Optimized for 5-second clarity */}
         <section className="py-12 md:py-16 px-4 bg-gradient-to-b from-tertiary/10 via-muted/30 to-background">
           <div className="max-w-4xl mx-auto text-center">
             <img 
@@ -214,18 +214,16 @@ const SociallySellingFood = () => {
               alt="Socially Selling Food - Starting February 3, 2026 - Hosted by Kiera H." 
               className="w-full max-w-3xl mx-auto mb-8 rounded-lg"
             />
-            <p className="text-sm md:text-base text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Led by <span className="text-foreground font-medium">Kiera H.</span>, a strategic advisor with 20+ years helping food and consumer businesses modernize operations and build digital revenue.
-            </p>
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-6 leading-tight">
-              E-commerce brands sell while they sleep. <span className="text-tertiary">Your food business can too.</span>
+            
+            {/* Who + Outcome - Clear in 5 seconds */}
+            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
+              Sell Beyond Your Operating Hours
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-              A hands-on working lab that builds sellable offers for 24/7 revenue.
+            <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto">
+              A hands-on lab for restaurants, food trucks, caterers, and chefs to build offers that generate revenue 24/7.
             </p>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              This is not a marketing class. You will build real offers: pre-orders, digital products, limited-time drops that generate income around the clock.
-            </p>
+            
+            {/* Single Primary CTA */}
             <Button 
               size="lg" 
               onClick={scrollToForm}
@@ -234,73 +232,98 @@ const SociallySellingFood = () => {
               Register for Free AI 101
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
+            
+            {/* Trust element moved below CTA */}
+            <p className="text-sm text-muted-foreground mt-6 max-w-xl mx-auto">
+              Led by <span className="text-foreground font-medium">Kiera H.</span>, 20+ years helping food businesses modernize operations and build digital revenue.
+            </p>
           </div>
         </section>
 
-        {/* The Problem */}
-        <section className="py-8 md:py-12 px-4">
+        {/* Problem → Solution - Scannable */}
+        <section className="py-10 md:py-14 px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Thin margins. Fixed hours. <span className="text-tertiary">No room for error.</span>
+              The Problem: <span className="text-tertiary">You Only Earn When Open</span>
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                Food businesses operate on some of the slimmest margins in any industry. Every plate has a cost. Every ingredient cuts into profit. And every hour you are closed is revenue you will never recover.
+                Food businesses earn revenue only during operating hours. Every hour you are closed is income you will never recover.
               </p>
               <p>
-                E-commerce brands operate differently. They sell around the clock while their owners sleep, travel, or focus on other things. The gap between how you operate and how they operate costs you money every day.
+                E-commerce brands operate differently. They sell around the clock while their owners sleep, travel, or focus on other things.
               </p>
               <p className="text-foreground font-medium">
-                The solution: revenue streams that cost you zero extra dollars to deliver.
+                The solution: zero-cost revenue. Income streams that require no additional food, labor, or overhead.
               </p>
             </div>
           </div>
         </section>
 
-        {/* The Shift */}
-        <section className="py-16 md:py-20 px-4 bg-gradient-to-r from-tertiary/5 via-tertiary/10 to-tertiary/5">
+        {/* What Makes This Different - Moved Higher */}
+        <section className="py-10 md:py-14 px-4 bg-tertiary/5 border-y border-tertiary/20">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              The opportunity: <span className="text-tertiary">Zero-cost revenue.</span>
+              This Is Not a Marketing Class
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                Zero-cost revenue is income that requires no additional food, labor, or overhead after initial creation:
+                You will not leave with ideas. You will leave with finished, sellable assets:
               </p>
-              <ul className="list-disc list-inside pl-2 space-y-1">
-                <li>Pre-orders that capture demand before you cook</li>
-                <li>Digital or packaged offers like recipe guides, spice kits, or meal plans</li>
-                <li>Limited-time drops that create urgency and sell on repeat</li>
+              <ul className="grid sm:grid-cols-2 gap-3">
+                {[
+                  'Pre-orders that capture demand before you cook',
+                  'Digital products like recipe guides or meal plans',
+                  'Limited-time drops that create urgency',
+                  'Live systems that sell while you sleep',
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-2 p-3 bg-card rounded-lg border border-tertiary/20">
+                    <Check className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground">{item}</span>
+                  </li>
+                ))}
               </ul>
-              <p>
-                Once built, these offers sell around the clock. Pure margin. No extra plates. No extra hours.
-              </p>
-              <p className="text-foreground font-medium">
-                In this lab, you build real, deployable assets. Not theory. Real offers that go live.
-              </p>
             </div>
           </div>
         </section>
 
-        {/* How the Program Works */}
-        <section className="py-16 md:py-20 px-4">
+        {/* Program Structure - Simplified */}
+        <section className="py-12 md:py-16 px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
-              How the program works
+              Your Path to 24/7 Revenue
             </h2>
             <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-              The full program includes 5 sessions: a free AI 101 prep session plus 4 paid working sessions.
+              Choose how you want to participate.
             </p>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Start Here: Free AI 101 */}
               <div className="p-6 border-2 border-tertiary/40 rounded-xl bg-tertiary/5">
                 <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-                  FREE PREP SESSION
+                  START HERE
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">AI 101</h3>
-                <p className="text-muted-foreground">
-                  Get set up with the AI tools you will use throughout the program. This session prepares you for the four working sessions ahead.
+                <h3 className="text-xl font-semibold text-foreground mb-2">Free AI 101 Prep Session</h3>
+                <p className="text-muted-foreground mb-4">
+                  Get set up with the AI tools you will use throughout the program. Attend this session before deciding if the full program is right for you.
                 </p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Calendar className="h-4 w-4" />
+                  <span>Tuesday, February 3, 2026</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                  <Clock className="h-4 w-4" />
+                  <span>2:30 PM Eastern</span>
+                </div>
+                <Button 
+                  variant="outline"
+                  onClick={scrollToForm}
+                  className="w-full mt-6 border-tertiary/50 text-tertiary hover:bg-tertiary/10"
+                >
+                  Register for Free AI 101
+                </Button>
               </div>
+
+              {/* Continue With: Full Program */}
               <div className="p-6 border-2 border-tertiary rounded-xl bg-card relative shadow-lg shadow-tertiary/10">
                 <div className="absolute -top-3 right-4">
                   <span className="bg-tertiary text-tertiary-foreground px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
@@ -308,58 +331,75 @@ const SociallySellingFood = () => {
                   </span>
                 </div>
                 <div className="inline-block bg-muted text-muted-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-                  FULL PROGRAM • ${FULL_PROGRAM_PRICE}
+                  CONTINUE WITH
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">All 5 Sessions + Hands-On Support</h3>
-                <p className="text-muted-foreground">
-                  Build every asset you need to sell 24/7. Full program participants receive direct support through offer creation and launch.
+                <h3 className="text-xl font-semibold text-foreground mb-2">Full Program: ${FULL_PROGRAM_PRICE}</h3>
+                <p className="text-muted-foreground mb-4">
+                  All 5 sessions plus hands-on support from Kiera H. through offer creation and launch.
                 </p>
+                <ul className="space-y-2 text-sm">
+                  {[
+                    'AI 101 Prep (Free)',
+                    '4 Working Sessions ($99 each)',
+                    'Direct support through launch',
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center gap-2 text-muted-foreground">
+                      <Check className="h-4 w-4 text-tertiary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button 
+                  onClick={() => {
+                    selectAllSessions();
+                    scrollToForm();
+                  }}
+                  className="w-full mt-6 bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+                >
+                  Register for Full Program
+                </Button>
               </div>
             </div>
           </div>
         </section>
 
         {/* Session Breakdown */}
-        <section className="py-16 md:py-20 px-4 bg-muted/30">
+        <section className="py-12 md:py-16 px-4 bg-muted/30">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
-              The 4 working sessions
+              The 4 Working Sessions
             </h2>
             <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Each session produces a real, deployable asset. By the end, you will have everything you need to sell beyond your physical location.
+              Each session produces a real, deployable asset.
             </p>
-            <div className="space-y-6">
+            <div className="space-y-4">
               {[
                 {
                   number: 1,
                   title: 'Package What You Sell',
-                  outcome: 'Turn your menu items into clear, sellable offers that work online.',
-                  deliverable: 'You leave with: Defined digital offers ready to list and sell.',
+                  deliverable: 'Defined digital offers ready to list and sell.',
                   date: 'Feb. 10',
                 },
                 {
                   number: 2,
                   title: 'Build Conversion-Ready Video',
-                  outcome: 'Create vertical video assets designed to drive sales, not just views.',
-                  deliverable: 'You leave with: Video content formatted for conversion across platforms.',
+                  deliverable: 'Video content formatted for conversion across platforms.',
                   date: 'Feb. 17',
                 },
                 {
                   number: 3,
                   title: 'Create Timely, Sellable Drops',
-                  outcome: 'Develop seasonal or limited-time offers that create urgency and revenue.',
-                  deliverable: 'You leave with: A promotional calendar with deployable offer campaigns.',
+                  deliverable: 'A promotional calendar with deployable offer campaigns.',
                   date: 'Feb. 24',
                 },
                 {
                   number: 4,
                   title: 'Prepare for 24/7 Selling',
-                  outcome: 'Set up your systems to sell while you sleep, travel, or focus elsewhere.',
-                  deliverable: 'You leave with: Live systems that generate revenue beyond operating hours.',
+                  deliverable: 'Live systems that generate revenue beyond operating hours.',
                   date: 'Mar. 3',
                 },
               ].map((session) => (
-                <div key={session.number} className="flex gap-4 p-6 bg-card border border-border rounded-xl hover:border-tertiary/50 transition-colors">
+                <div key={session.number} className="flex gap-4 p-5 bg-card border border-border rounded-xl hover:border-tertiary/50 transition-colors">
                   <div className="flex-shrink-0 w-10 h-10 bg-tertiary text-tertiary-foreground rounded-full flex items-center justify-center font-bold">
                     {session.number}
                   </div>
@@ -368,8 +408,7 @@ const SociallySellingFood = () => {
                       <h3 className="text-lg font-semibold text-foreground">{session.title}</h3>
                       <span className="text-sm text-muted-foreground">• {session.date}</span>
                     </div>
-                    <p className="text-muted-foreground">{session.outcome}</p>
-                    <p className="text-sm text-tertiary font-medium mt-2">{session.deliverable}</p>
+                    <p className="text-sm text-tertiary font-medium">You leave with: {session.deliverable}</p>
                   </div>
                   <div className="flex-shrink-0 text-right">
                     <span className="text-sm font-medium text-muted-foreground">$99</span>
@@ -377,171 +416,72 @@ const SociallySellingFood = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-8 p-4 bg-tertiary/15 border border-tertiary/30 rounded-xl text-center">
-              <p className="text-lg font-semibold text-foreground">
-                Full Program (All 5 Sessions): ${FULL_PROGRAM_PRICE}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Includes free AI 101 prep session + hands-on support through launch
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Full Program Support Section */}
-        <section className="py-16 md:py-20 px-4 bg-card border-y border-tertiary/30">
-          <div className="max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <Sparkles className="h-5 w-5 text-tertiary" />
-              <span className="text-sm font-medium text-tertiary uppercase tracking-wide">Full Program Benefit</span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
-              Hands-on support from offer to launch
-            </h2>
-            <p className="text-lg text-muted-foreground text-center mb-8">
-              When you register for all 5 sessions, Kiera H. works directly with you throughout the program to ensure you leave with real offers, not just ideas.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {[
-                'Identify the right digital offers for your specific food business',
-                'Support packaging and creating those offers step-by-step',
-                'Guide launch and deployment during the program',
-                'Continued guidance as your offers go live and start selling',
-              ].map((item, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-tertiary/10 rounded-lg border border-tertiary/20">
-                  <Check className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">{item}</span>
-                </div>
-              ))}
-            </div>
-            <p className="text-center text-muted-foreground mt-6 text-sm">
-              This level of hands-on execution support is only available to full program participants.
-            </p>
-          </div>
-        </section>
-
-        {/* What You Leave With */}
-        <section className="py-16 md:py-20 px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
-              What you leave with
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {[
-                'Defined digital offers packaged and ready to list',
-                'Conversion-ready video assets formatted for sales',
-                'Seasonal campaigns and limited-time drops that drive urgency',
-                'Live systems that generate revenue beyond your operating hours',
-              ].map((item, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-tertiary/10 rounded-lg border border-tertiary/20">
-                  <Check className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* What Happens After the Lab */}
-        <section className="py-16 md:py-20 px-4 bg-gradient-to-r from-tertiary/5 via-tertiary/10 to-tertiary/5">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
-              What Happens After the Lab
-            </h2>
-            <div className="space-y-4 text-lg text-muted-foreground">
-              <p>
-                After the lab, businesses leave with real offers that can be purchased online. Once a food business creates a sellable offer with an online checkout, that offer becomes distributable.
-              </p>
-              <p>
-                Affiliates, creators, educators, or partners can discover it and choose to sell it through the platform hosting the purchase. They are not owned or controlled by any platform. They choose what they sell based on what is available and compelling.
-              </p>
-              <p className="text-foreground font-medium">
-                Without a sellable offer, there is no distribution. Having a sell-ready offer is what enables any distribution relationship to exist.
-              </p>
-            </div>
           </div>
         </section>
 
         {/* Who This Is For */}
-        <section className="py-16 md:py-20 px-4 bg-muted/30">
+        <section className="py-12 md:py-16 px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-              Who this is for
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+              Who This Is For
             </h2>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-3 mb-6">
               {['Restaurants', 'Food Trucks', 'Caterers', 'Private Chefs', 'Home Chefs'].map((type) => (
-                <div key={type} className="px-5 py-2.5 bg-card border-2 border-tertiary/30 rounded-full text-base font-medium text-foreground hover:bg-tertiary/10 transition-colors">
+                <div key={type} className="px-5 py-2.5 bg-card border-2 border-tertiary/30 rounded-full text-base font-medium text-foreground">
                   {type}
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-muted-foreground text-lg">
-              If you sell food and want to sell more of it — beyond your physical location and operating hours — this lab is for you.
+            <p className="text-muted-foreground text-lg">
+              If you sell food and want to sell more of it beyond your physical location and operating hours, this lab is for you.
             </p>
           </div>
         </section>
 
-        {/* Event Details */}
-        <section className="py-16 md:py-20 px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="p-8 bg-card border-2 border-tertiary/40 rounded-2xl text-center shadow-lg shadow-tertiary/10">
-              <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-                START HERE
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                AI 101 Prep Session
-              </h2>
-              <p className="text-muted-foreground mb-6">
-                This free session prepares you for the full program. Get set up with the tools and understand what's ahead.
-              </p>
-              <div className="space-y-3 text-lg text-muted-foreground mb-8">
-                <div className="flex items-center justify-center gap-2">
-                  <Calendar className="h-5 w-5" />
-                  <span>Tuesday, February 3, 2026</span>
+        {/* Full Program Support */}
+        <section className="py-12 md:py-16 px-4 bg-card border-y border-tertiary/30">
+          <div className="max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Sparkles className="h-5 w-5 text-tertiary" />
+              <span className="text-sm font-medium text-tertiary uppercase tracking-wide">Full Program Only</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
+              Hands-On Support Through Launch
+            </h2>
+            <p className="text-lg text-muted-foreground text-center mb-8">
+              Full program participants receive direct support from Kiera H. through offer creation and deployment.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                'Identify the right digital offers for your business',
+                'Package and create those offers step by step',
+                'Guide launch and deployment during the program',
+                'Continued guidance as your offers go live',
+              ].map((item, index) => (
+                <div key={index} className="flex items-start gap-3 p-4 bg-tertiary/10 rounded-lg border border-tertiary/20">
+                  <Check className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground">{item}</span>
                 </div>
-                <div className="flex items-center justify-center gap-2">
-                  <Clock className="h-5 w-5" />
-                  <span>2:30 PM Eastern</span>
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <MapPin className="h-5 w-5" />
-                  <span>Virtual (Google Classroom)</span>
-                </div>
-              </div>
-              <Button 
-                size="lg" 
-                onClick={scrollToForm}
-                className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
-              >
-                Register Now
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Registration Form */}
-        <section ref={formRef} className="py-16 md:py-20 px-4 bg-muted/30">
+        <section ref={formRef} className="py-12 md:py-16 px-4 bg-muted/30">
           <div className="max-w-2xl mx-auto">
-            {/* Decisive transition */}
-            <div className="text-center mb-10">
-              <p className="text-xl md:text-2xl text-foreground font-medium mb-4">
-                If your business currently only earns while the doors are open, this program is designed to change that permanently.
+            {/* Reassurance Above Form */}
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                Register Now
+              </h2>
+              <p className="text-muted-foreground mb-2">
+                Ready to build 24/7 revenue for your food business? Select your starting point below.
               </p>
-              <p className="text-sm text-muted-foreground">
-                This is a live, working cohort with limited capacity to ensure hands-on execution and direct feedback.
+              <p className="text-sm text-tertiary font-medium">
+                Selecting only the free AI 101 session is a great way to begin.
               </p>
             </div>
-            
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
-              Register for Socially Selling Food
-            </h2>
-            <p className="text-muted-foreground text-center mb-2">
-              Choose your registration option below.
-            </p>
-            <p className="text-sm text-tertiary font-medium text-center mb-8">
-              For hands-on support through offer creation and launch, register for all 5 sessions.
-            </p>
 
             <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
               <Form {...form}>
@@ -562,7 +502,7 @@ const SociallySellingFood = () => {
                             className="text-xs"
                           >
                             <Sparkles className="h-3 w-3 mr-1" />
-                            Select All 5 Sessions
+                            Select All 5
                           </Button>
                         </div>
                         <div className="space-y-3">
@@ -772,14 +712,14 @@ const SociallySellingFood = () => {
                     {isSubmitting 
                       ? 'Registering...' 
                       : calculateTotal() > 0 
-                        ? `Register — $${calculateTotal()}` 
-                        : 'Register for Free AI 101 Session'
+                        ? `Register Now`
+                        : 'Register for Free AI 101'
                     }
                   </Button>
 
                   {selectedSessions.length === ALL_SESSIONS.length && (
                     <p className="text-center text-sm text-primary font-medium">
-                      You have selected the full program: all 5 sessions with hands-on support.
+                      Full program selected: all 5 sessions with hands-on support.
                     </p>
                   )}
                 </form>
@@ -788,27 +728,27 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="py-16 md:py-20 px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Your business can sell while you sleep.
+        {/* What Happens After */}
+        <section className="py-12 md:py-16 px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
+              What Happens After the Lab
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Start with the free AI 101 prep session, or register for the full program to receive hands-on support through launch.
-            </p>
-            <Button 
-              size="lg" 
-              onClick={scrollToForm}
-              className="text-lg px-8 py-6 h-auto"
-            >
-              Register Now
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <div className="space-y-4 text-lg text-muted-foreground">
+              <p>
+                After the lab, you leave with real offers that can be purchased online. Once your food business creates a sellable offer with an online checkout, that offer becomes distributable.
+              </p>
+              <p>
+                Affiliates, creators, and partners can discover and choose to sell your offers through the platforms hosting the purchase.
+              </p>
+              <p className="text-foreground font-medium">
+                Without a sellable offer, there is no distribution. Having a sell-ready offer is what enables any distribution relationship to exist.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* Meet the Instructor Section */}
+        {/* Meet the Instructor */}
         <section className="py-12 px-4 bg-secondary/30">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">Meet the Instructor</h2>
@@ -826,6 +766,26 @@ const SociallySellingFood = () => {
               <Link to="/KieraH">
                 Meet Kiera H. <ArrowRight className="h-5 w-5 ml-2" />
               </Link>
+            </Button>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-12 md:py-16 px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Your Business Can Sell While You Sleep
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Start with the free AI 101 prep session. See if this is right for you.
+            </p>
+            <Button 
+              size="lg" 
+              onClick={scrollToForm}
+              className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+            >
+              Register for Free AI 101
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </section>
