@@ -175,15 +175,15 @@ const SociallySellingFood = () => {
   return (
     <>
       <SEOHead
-        title="Socially Selling Food | Workshop for Food Businesses to Sell 24/7"
-        description="A hands-on working lab that helps restaurants, food trucks, caterers, private chefs, and home chefs build sellable offers and systems for 24/7 online revenue. Learn e-commerce distribution mechanics for food businesses."
+        title="Socially Selling Food | Workshop for Food-Related Businesses to Sell 24/7"
+        description="A hands-on working lab that helps restaurants, food trucks, caterers, private chefs, home chefs, and food-related businesses build sellable offers and systems for 24/7 online revenue. Learn e-commerce distribution mechanics."
         keywords="food business e-commerce, restaurant online sales, food truck digital revenue, catering business systems, sell food online, 24/7 food sales, food business workshop, zero-cost revenue, sellable offers, e-commerce distribution"
         canonicalUrl="https://phreshphactory.com/socially-selling-food"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Course",
           "name": "Socially Selling Food",
-          "description": "A hands-on working lab that helps food businesses build systems to sell 24/7 through sellable offers and e-commerce distribution.",
+          "description": "A hands-on working lab that helps food-related businesses build systems to sell 24/7 through sellable offers and e-commerce distribution.",
           "provider": {
             "@type": "Organization",
             "name": "Phresh Phactory",
@@ -220,7 +220,7 @@ const SociallySellingFood = () => {
               Sell Beyond Your Operating Hours
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-2xl mx-auto">
-              A hands-on lab for restaurants, food trucks, caterers, and chefs to build offers that generate revenue 24/7.
+              A hands-on lab for restaurants, food trucks, caterers, chefs, and food-related businesses to build offers that generate revenue 24/7.
             </p>
             
             {/* Single Primary CTA */}
@@ -235,7 +235,7 @@ const SociallySellingFood = () => {
             
             {/* Trust element moved below CTA */}
             <p className="text-sm text-muted-foreground mt-6 max-w-xl mx-auto">
-              Led by <span className="text-foreground font-medium">Kiera H.</span>, 20+ years helping food businesses modernize operations and build digital revenue.
+              Led by <span className="text-foreground font-medium">Kiera H.</span>, 20+ years helping food-related businesses modernize operations and build digital revenue.
             </p>
           </div>
         </section>
@@ -248,7 +248,7 @@ const SociallySellingFood = () => {
             </h2>
             <div className="space-y-4 text-lg text-muted-foreground">
               <p>
-                Food businesses earn revenue only during operating hours. Every hour you are closed is income you will never recover.
+                Food-related businesses earn revenue only during operating hours. Every hour you are closed is income you will never recover.
               </p>
               <p>
                 E-commerce brands operate differently. They sell around the clock while their owners sleep, travel, or focus on other things.
