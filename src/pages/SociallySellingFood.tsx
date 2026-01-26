@@ -13,7 +13,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowRight, Check, Calendar, Clock, MapPin, Sparkles } from 'lucide-react';
-import ssfLogo from '@/assets/socially-selling-food-logo.png';
+import ssfHeroBanner from '@/assets/ssf-hero-banner.png';
 import kieraHeadshot from '@/assets/kiera-headshot.png';
 import {
   Form,
@@ -210,9 +210,9 @@ const SociallySellingFood = () => {
         <section className="py-12 md:py-16 px-4 bg-gradient-to-b from-tertiary/10 via-muted/30 to-background">
           <div className="max-w-4xl mx-auto text-center">
             <img 
-              src={ssfLogo} 
-              alt="Socially Selling Food with Kiera H." 
-              className="w-64 md:w-80 mx-auto mb-8"
+              src={ssfHeroBanner} 
+              alt="Socially Selling Food - Starting February 3, 2026 - Hosted by Kiera H." 
+              className="w-full max-w-3xl mx-auto mb-8 rounded-lg"
             />
             <p className="text-sm md:text-base text-muted-foreground mb-10 max-w-2xl mx-auto">
               Led by <span className="text-foreground font-medium">Kiera H.</span>, a strategic advisor with 20+ years helping food and consumer businesses modernize operations and build digital revenue.
