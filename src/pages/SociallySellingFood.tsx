@@ -281,52 +281,73 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-        {/* What Comes Next */}
+        {/* Your Starting Point - Linear Path */}
         <section className="py-12 md:py-16 px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
-              What Comes After AI 101
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+              Your Starting Point
             </h2>
-            <p className="text-lg text-muted-foreground text-center mb-8">
-              After the free AI 101 session, participants may choose to continue with the full 4-session working lab.
-            </p>
-            <div className="space-y-4">
-              {[
-                {
-                  number: 1,
-                  title: 'Package What You Sell',
-                  deliverable: 'Defined digital offers ready to list and sell.',
-                },
-                {
-                  number: 2,
-                  title: 'Build Conversion-Ready Video',
-                  deliverable: 'Video content formatted for conversion across platforms.',
-                },
-                {
-                  number: 3,
-                  title: 'Create Timely, Sellable Drops',
-                  deliverable: 'A promotional calendar with deployable offer campaigns.',
-                },
-                {
-                  number: 4,
-                  title: 'Prepare for 24/7 Selling',
-                  deliverable: 'Live systems that generate revenue beyond operating hours.',
-                },
-              ].map((session) => (
-                <div key={session.number} className="flex gap-4 p-5 bg-card border border-border rounded-xl">
-                  <div className="flex-shrink-0 w-10 h-10 bg-muted text-muted-foreground rounded-full flex items-center justify-center font-bold">
-                    {session.number}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-foreground mb-1">{session.title}</h3>
-                    <p className="text-sm text-muted-foreground">You leave with: {session.deliverable}</p>
+            
+            {/* Step 1 */}
+            <div className="relative mb-8">
+              <div className="flex gap-4 p-6 bg-tertiary/10 border-2 border-tertiary rounded-xl">
+                <div className="flex-shrink-0 w-10 h-10 bg-tertiary text-tertiary-foreground rounded-full flex items-center justify-center font-bold">
+                  1
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-foreground mb-2">Attend the Free AI 101 Prep Session</h3>
+                  <p className="text-muted-foreground">
+                    Get set up with the AI tools you will use throughout the program. This session prepares you for the hands-on work ahead and helps you decide if continuing is right for you.
+                  </p>
+                  <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="h-4 w-4 text-tertiary" />
+                      <span>Feb 3, 2026</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-tertiary" />
+                      <span>2:30 PM ET</span>
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
+              {/* Connector line */}
+              <div className="absolute left-9 top-full h-8 w-0.5 bg-border"></div>
             </div>
-            <p className="text-center text-muted-foreground mt-6">
-              Full program details and registration will be shared during the AI 101 session.
-            </p>
+
+            {/* Step 2 */}
+            <div className="flex gap-4 p-6 bg-muted/50 border border-border rounded-xl">
+              <div className="flex-shrink-0 w-10 h-10 bg-muted text-muted-foreground rounded-full flex items-center justify-center font-bold">
+                2
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-foreground mb-2">Decide Whether to Continue</h3>
+                <p className="text-muted-foreground mb-4">
+                  After AI 101, attendees will be invited to continue into a 4-session working lab focused on building and launching sellable offers.
+                </p>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  <p className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-muted-foreground" />
+                    <span>Package what you sell into digital offers</span>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-muted-foreground" />
+                    <span>Build conversion-ready video content</span>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-muted-foreground" />
+                    <span>Create timely, sellable promotional drops</span>
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-muted-foreground" />
+                    <span>Prepare systems that sell 24/7</span>
+                  </p>
+                </div>
+                <p className="text-sm text-muted-foreground mt-4 italic">
+                  Full program details shared during AI 101. No commitment required to attend the free session.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -343,6 +364,11 @@ const SociallySellingFood = () => {
             </div>
 
             <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+              {/* Framing line above form */}
+              <p className="text-sm text-center text-muted-foreground mb-6 pb-4 border-b border-border">
+                This registration is for the free AI 101 prep session only.
+              </p>
+
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                   <FormField
@@ -350,7 +376,7 @@ const SociallySellingFood = () => {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Name *</FormLabel>
+                        <FormLabel>Name</FormLabel>
                         <FormControl>
                           <Input placeholder="Your full name" {...field} />
                         </FormControl>
@@ -364,7 +390,7 @@ const SociallySellingFood = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email *</FormLabel>
+                        <FormLabel>Email</FormLabel>
                         <FormControl>
                           <Input placeholder="your@email.com" {...field} />
                         </FormControl>
@@ -378,7 +404,7 @@ const SociallySellingFood = () => {
                     name="businessName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Business Name *</FormLabel>
+                        <FormLabel>Business Name</FormLabel>
                         <FormControl>
                           <Input placeholder="Your business name" {...field} />
                         </FormControl>
@@ -392,7 +418,7 @@ const SociallySellingFood = () => {
                     name="businessWebsite"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Business Website or EatOkra Profile *</FormLabel>
+                        <FormLabel>Business Website or EatOkra Profile</FormLabel>
                         <FormControl>
                           <Input placeholder="https://..." {...field} />
                         </FormControl>
@@ -406,22 +432,17 @@ const SociallySellingFood = () => {
                     name="googleEmail"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Google Email *</FormLabel>
+                        <FormLabel>Google Email</FormLabel>
                         <FormControl>
                           <Input placeholder="your.name@gmail.com" {...field} />
                         </FormControl>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Required for Google Classroom access. Must be a @gmail.com address.
+                          For Google Classroom access. Must be a @gmail.com address.
                         </p>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-
-                  {/* Reassurance line */}
-                  <p className="text-sm text-center text-muted-foreground pt-2">
-                    This registration is for the free AI 101 prep session only.
-                  </p>
 
                   <Button
                     type="submit"
@@ -431,6 +452,11 @@ const SociallySellingFood = () => {
                   >
                     {isSubmitting ? 'Registering...' : 'Register for Free AI 101'}
                   </Button>
+
+                  {/* Reassurance line below button */}
+                  <p className="text-sm text-center text-muted-foreground pt-2">
+                    No payment required. You will decide whether to continue after the session.
+                  </p>
                 </form>
               </Form>
             </div>
