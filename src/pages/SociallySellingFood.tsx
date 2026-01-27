@@ -99,7 +99,7 @@ const SociallySellingFood = () => {
       console.error('Enrollment error:', error);
       toast({
         title: 'Registration failed',
-        description: error.message || 'Please try again or contact kiera@eatokra.com',
+        description: error.message || 'Please try again or contact info@phreshphactory.co',
         variant: 'destructive',
       });
     } finally {
@@ -525,11 +525,14 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-        {/* Minimal Footer */}
+        {/* Footer */}
         <footer className="py-8 px-4 border-t border-border">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center space-y-3">
             <p className="text-sm text-muted-foreground">
-              Questions? Contact <a href="mailto:kiera@eatokra.com" className="underline hover:text-foreground">kiera@eatokra.com</a>
+              Questions? Contact <a href="mailto:info@phreshphactory.co" className="underline hover:text-foreground">info@phreshphactory.co</a>
+            </p>
+            <p className="text-sm text-muted-foreground">
+              © 2026 Phresh Phactory. All rights reserved.
             </p>
           </div>
         </footer>
