@@ -144,11 +144,16 @@ const SociallySellingFood = () => {
         {/* Hero Section */}
         <section className="py-12 md:py-16 px-4 bg-gradient-to-b from-tertiary/10 via-muted/30 to-background">
           <div className="max-w-4xl mx-auto text-center">
-            <img 
-              src={ssfHeroBanner} 
-              alt="Socially Selling Food - Starting February 3, 2026 - Hosted by Kiera H." 
-              className="w-full max-w-3xl mx-auto mb-8 rounded-lg"
-            />
+            <button 
+              onClick={scrollToForm}
+              className="w-full max-w-3xl mx-auto mb-8 cursor-pointer transition-transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-offset-2 rounded-lg"
+            >
+              <img 
+                src={ssfHeroBanner} 
+                alt="Socially Selling Food - Starting February 3, 2026 - Hosted by Kiera H. - Click to register" 
+                className="w-full rounded-lg"
+              />
+            </button>
             
             {/* Who + Outcome */}
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
