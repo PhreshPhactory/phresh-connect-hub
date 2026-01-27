@@ -529,7 +529,7 @@ const SociallySellingFood = () => {
         <footer className="py-8 px-4 border-t border-border">
           <div className="max-w-4xl mx-auto text-center space-y-3">
             <p className="text-sm text-muted-foreground">
-              Questions about the workshop? Contact the instructor at <a href="mailto:kiera@phreshphactory.co" className="underline hover:text-foreground">kiera@phreshphactory.co</a>
+              Questions about the workshop? Contact the instructor at <a href="mailto:Kiera@PhreshPhactory.co" className="underline hover:text-foreground">Kiera@PhreshPhactory.co</a>
             </p>
             <p className="text-sm text-muted-foreground">
               © 2026 Phresh Phactory. All rights reserved.
