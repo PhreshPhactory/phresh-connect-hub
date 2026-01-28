@@ -14,47 +14,47 @@ import CacheHeaders from '@/components/CacheHeaders';
 import { useScrollAnimations } from '@/hooks/useScrollAnimations';
 import GeoBlocker from '@/components/GeoBlocker';
 
-// Import critical pages normally for faster loading
+// Import critical pages normally for faster initial load
 import Home from "@/pages/Home";
-import About from "@/pages/About";
-import Services from "@/pages/Services";
-import Contact from "@/pages/Contact";
-
-// Import all pages normally to avoid SSR hydration issues
-import Packages from "@/pages/Packages";
-import Blog from "@/pages/Blog";
-import BlogPost from "@/pages/BlogPost";
-import Admin from "@/pages/Admin";
-import Auth from "@/pages/Auth";
-import Privacy from "@/pages/Privacy";
 import NotFound from "@/pages/NotFound";
-import FractionalLeadership from "@/pages/services/FractionalLeadership";
-import GlobalTalent from "@/pages/services/GlobalTalent";
-import LegacyTransformation from "@/pages/services/LegacyTransformation";
-import SystemsDesign from "@/pages/services/SystemsDesign";
-import RemoteTeams from "@/pages/RemoteTeams";
-import KieraProfile from "@/pages/KieraProfile";
-import Products from "@/pages/Products";
-import ProductSpotlights from "@/pages/ProductSpotlights";
-import ProductSpotlight from "@/pages/ProductSpotlight";
-import Compro from "@/pages/Compro";
-import BlackOwnedHolidayGuide from "@/pages/BlackOwnedHolidayGuide";
-import BrandPartnership from "@/pages/BrandPartnership";
-import BrandLinksAdmin from "@/pages/BrandLinksAdmin";
-import LinkInBio from "@/pages/LinkInBio";
-import TV from "@/pages/TV";
-import AffiliateSalesBlueprint from "@/pages/AffiliateSalesBlueprint";
-import AffiliateCourseWaitlist from "@/pages/AffiliateCourseWaitlist";
-import HolidaySprint from "@/pages/HolidaySprint";
-import HolidaySprintLanding from "@/pages/HolidaySprintLanding";
-import HolidaySprintExplained from "@/pages/HolidaySprintExplained";
-import HolidaySprintPayment from "@/pages/HolidaySprintPayment";
-import HolidaySprintPaymentSuccess from "@/pages/HolidaySprintPaymentSuccess";
-import HolidaySprintThankYou from "@/pages/HolidaySprintThankYou";
-import NewsletterAdmin from "@/pages/NewsletterAdmin";
-import BrandContactsAdmin from "@/pages/BrandContactsAdmin";
-import VideoReelAdmin from "@/pages/VideoReelAdmin";
-import SociallySellingFood from "@/pages/SociallySellingFood";
+
+// Lazy load all other pages for faster initial bundle
+const About = lazy(() => import("@/pages/About"));
+const Services = lazy(() => import("@/pages/Services"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const Packages = lazy(() => import("@/pages/Packages"));
+const Blog = lazy(() => import("@/pages/Blog"));
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
+const Admin = lazy(() => import("@/pages/Admin"));
+const Auth = lazy(() => import("@/pages/Auth"));
+const Privacy = lazy(() => import("@/pages/Privacy"));
+const FractionalLeadership = lazy(() => import("@/pages/services/FractionalLeadership"));
+const GlobalTalent = lazy(() => import("@/pages/services/GlobalTalent"));
+const LegacyTransformation = lazy(() => import("@/pages/services/LegacyTransformation"));
+const SystemsDesign = lazy(() => import("@/pages/services/SystemsDesign"));
+const RemoteTeams = lazy(() => import("@/pages/RemoteTeams"));
+const KieraProfile = lazy(() => import("@/pages/KieraProfile"));
+const Products = lazy(() => import("@/pages/Products"));
+const ProductSpotlights = lazy(() => import("@/pages/ProductSpotlights"));
+const ProductSpotlight = lazy(() => import("@/pages/ProductSpotlight"));
+const Compro = lazy(() => import("@/pages/Compro"));
+const BlackOwnedHolidayGuide = lazy(() => import("@/pages/BlackOwnedHolidayGuide"));
+const BrandPartnership = lazy(() => import("@/pages/BrandPartnership"));
+const BrandLinksAdmin = lazy(() => import("@/pages/BrandLinksAdmin"));
+const LinkInBio = lazy(() => import("@/pages/LinkInBio"));
+const TV = lazy(() => import("@/pages/TV"));
+const AffiliateSalesBlueprint = lazy(() => import("@/pages/AffiliateSalesBlueprint"));
+const AffiliateCourseWaitlist = lazy(() => import("@/pages/AffiliateCourseWaitlist"));
+const HolidaySprint = lazy(() => import("@/pages/HolidaySprint"));
+const HolidaySprintLanding = lazy(() => import("@/pages/HolidaySprintLanding"));
+const HolidaySprintExplained = lazy(() => import("@/pages/HolidaySprintExplained"));
+const HolidaySprintPayment = lazy(() => import("@/pages/HolidaySprintPayment"));
+const HolidaySprintPaymentSuccess = lazy(() => import("@/pages/HolidaySprintPaymentSuccess"));
+const HolidaySprintThankYou = lazy(() => import("@/pages/HolidaySprintThankYou"));
+const NewsletterAdmin = lazy(() => import("@/pages/NewsletterAdmin"));
+const BrandContactsAdmin = lazy(() => import("@/pages/BrandContactsAdmin"));
+const VideoReelAdmin = lazy(() => import("@/pages/VideoReelAdmin"));
+const SociallySellingFood = lazy(() => import("@/pages/SociallySellingFood"));
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -91,6 +91,7 @@ const App: React.FC = () => {
             <BrowserRouter>
               <Toaster />
               <Sonner />
+            <Suspense fallback={<PageSkeleton />}>
               <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
@@ -139,6 +140,7 @@ const App: React.FC = () => {
                 <Route path="/socially-selling-food" element={<SociallySellingFood />} />
               </Route>
             </Routes>
+            </Suspense>
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>
