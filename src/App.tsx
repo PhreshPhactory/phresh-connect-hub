@@ -54,6 +54,7 @@ const HolidaySprintThankYou = lazy(() => import("@/pages/HolidaySprintThankYou")
 const NewsletterAdmin = lazy(() => import("@/pages/NewsletterAdmin"));
 const BrandContactsAdmin = lazy(() => import("@/pages/BrandContactsAdmin"));
 const VideoReelAdmin = lazy(() => import("@/pages/VideoReelAdmin"));
+const PressContactsAdmin = lazy(() => import("@/pages/PressContactsAdmin"));
 const SociallySellingFood = lazy(() => import("@/pages/SociallySellingFood"));
 
 // Simplified loading fallback component
@@ -120,6 +121,7 @@ const App: React.FC = () => {
                 <Route path="/admin/newsletter" element={<NewsletterAdmin />} />
                 <Route path="/admin/brand-contacts" element={<BrandContactsAdmin />} />
                 <Route path="/admin/video-reels" element={<VideoReelAdmin />} />
+                <Route path="/admin/press-contacts" element={<PressContactsAdmin />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/links" element={<LinkInBio />} />

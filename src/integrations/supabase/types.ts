@@ -277,6 +277,69 @@ export type Database = {
         }
         Relationships: []
       }
+      press_contacts: {
+        Row: {
+          categories: string[] | null
+          contact_notes: string | null
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_contacted_at: string | null
+          last_name: string
+          linkedin: string | null
+          linkedin_connected: boolean | null
+          location_string: string | null
+          phone: string | null
+          priority: string | null
+          publications: string | null
+          title: string | null
+          topics: string[] | null
+          twitter: string | null
+          updated_at: string
+        }
+        Insert: {
+          categories?: string[] | null
+          contact_notes?: string | null
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          last_contacted_at?: string | null
+          last_name: string
+          linkedin?: string | null
+          linkedin_connected?: boolean | null
+          location_string?: string | null
+          phone?: string | null
+          priority?: string | null
+          publications?: string | null
+          title?: string | null
+          topics?: string[] | null
+          twitter?: string | null
+          updated_at?: string
+        }
+        Update: {
+          categories?: string[] | null
+          contact_notes?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_contacted_at?: string | null
+          last_name?: string
+          linkedin?: string | null
+          linkedin_connected?: boolean | null
+          location_string?: string | null
+          phone?: string | null
+          priority?: string | null
+          publications?: string | null
+          title?: string | null
+          topics?: string[] | null
+          twitter?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       socially_selling_food_enrollments: {
         Row: {
           accommodations: string | null
