@@ -260,7 +260,7 @@ export default function PressContactsAdmin() {
                 className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
               >
                 <Upload className="h-4 w-4" />
-                {isUploading ? "Uploading..." : "Import CSV (up to 10 at a time)"}
+                {isUploading ? "Uploading..." : "Import CSV (up to 40 at a time)"}
               </Label>
               <Input
                 id="csv-upload"

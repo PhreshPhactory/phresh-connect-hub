@@ -79,9 +79,13 @@ const queryClient = new QueryClient({
   },
 });
 
-const App: React.FC = () => {
+// Move scroll animations to a component inside the provider tree
+const ScrollAnimationsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useScrollAnimations();
-  
+  return <>{children}</>;
+};
+
+const App: React.FC = () => {
   return (
     <HelmetProvider>
       <SecurityHeaders />
@@ -90,62 +94,64 @@ const App: React.FC = () => {
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <BrowserRouter>
-              <Toaster />
-              <Sonner />
-            <Suspense fallback={<PageSkeleton />}>
-              <Routes>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/business" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/operations" element={<Home />} />
-                <Route path="/services/fractional-leadership" element={<FractionalLeadership />} />
-                <Route path="/services/global-talent" element={<GlobalTalent />} />
-                <Route path="/services/legacy-transformation" element={<LegacyTransformation />} />
-                <Route path="/services/systems-design" element={<SystemsDesign />} />
-                <Route path="/remote-teams" element={<RemoteTeams />} />
-                <Route path="/packages" element={<Packages />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/shop" element={<ProductSpotlights />} />
-                <Route path="/buyblack" element={<Navigate to="/shop" replace />} />
-                <Route path="/shop/:slug" element={<ProductSpotlight />} />
-                <Route path="/compro" element={<Compro />} />
-                <Route path="/holiday-gift-guide" element={<BlackOwnedHolidayGuide />} />
-                <Route path="/KieraH" element={<KieraProfile />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/brands" element={<BrandPartnership />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/admin/brand-links" element={<BrandLinksAdmin />} />
-                <Route path="/admin/newsletter" element={<NewsletterAdmin />} />
-                <Route path="/admin/brand-contacts" element={<BrandContactsAdmin />} />
-                <Route path="/admin/video-reels" element={<VideoReelAdmin />} />
-                <Route path="/admin/press-contacts" element={<PressContactsAdmin />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/links" element={<LinkInBio />} />
-                <Route path="/tv" element={<TV />} />
-                <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
-                <Route path="/affiliate-starter-course-waitlist" element={<AffiliateCourseWaitlist />} />
-                <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
-                <Route path="/holiday-sprint-landing" element={<HolidaySprintLanding />} />
-                <Route path="/holiday-sprint-payment" element={<HolidaySprintPayment />} />
-                <Route path="/holiday-sprint-payment-success" element={<HolidaySprintPaymentSuccess />} />
-                <Route path="/holiday" element={<HolidaySprint />} />
-                <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
-                <Route path="*" element={<NotFound />} />
-              </Route>
-              
-              {/* Landing pages without main navigation */}
-              <Route element={<LandingPageLayout />}>
-                <Route path="/socially-selling-food" element={<SociallySellingFood />} />
-              </Route>
-            </Routes>
-            </Suspense>
-          </BrowserRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
+              <ScrollAnimationsProvider>
+                <Toaster />
+                <Sonner />
+                <Suspense fallback={<PageSkeleton />}>
+                  <Routes>
+                    <Route element={<Layout />}>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/business" element={<Home />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/operations" element={<Home />} />
+                      <Route path="/services/fractional-leadership" element={<FractionalLeadership />} />
+                      <Route path="/services/global-talent" element={<GlobalTalent />} />
+                      <Route path="/services/legacy-transformation" element={<LegacyTransformation />} />
+                      <Route path="/services/systems-design" element={<SystemsDesign />} />
+                      <Route path="/remote-teams" element={<RemoteTeams />} />
+                      <Route path="/packages" element={<Packages />} />
+                      <Route path="/products" element={<Products />} />
+                      <Route path="/shop" element={<ProductSpotlights />} />
+                      <Route path="/buyblack" element={<Navigate to="/shop" replace />} />
+                      <Route path="/shop/:slug" element={<ProductSpotlight />} />
+                      <Route path="/compro" element={<Compro />} />
+                      <Route path="/holiday-gift-guide" element={<BlackOwnedHolidayGuide />} />
+                      <Route path="/KieraH" element={<KieraProfile />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/brands" element={<BrandPartnership />} />
+                      <Route path="/blog" element={<Blog />} />
+                      <Route path="/blog/:slug" element={<BlogPost />} />
+                      <Route path="/admin" element={<Admin />} />
+                      <Route path="/admin/brand-links" element={<BrandLinksAdmin />} />
+                      <Route path="/admin/newsletter" element={<NewsletterAdmin />} />
+                      <Route path="/admin/brand-contacts" element={<BrandContactsAdmin />} />
+                      <Route path="/admin/video-reels" element={<VideoReelAdmin />} />
+                      <Route path="/admin/press-contacts" element={<PressContactsAdmin />} />
+                      <Route path="/auth" element={<Auth />} />
+                      <Route path="/privacy" element={<Privacy />} />
+                      <Route path="/links" element={<LinkInBio />} />
+                      <Route path="/tv" element={<TV />} />
+                      <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
+                      <Route path="/affiliate-starter-course-waitlist" element={<AffiliateCourseWaitlist />} />
+                      <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
+                      <Route path="/holiday-sprint-landing" element={<HolidaySprintLanding />} />
+                      <Route path="/holiday-sprint-payment" element={<HolidaySprintPayment />} />
+                      <Route path="/holiday-sprint-payment-success" element={<HolidaySprintPaymentSuccess />} />
+                      <Route path="/holiday" element={<HolidaySprint />} />
+                      <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Route>
+                    
+                    {/* Landing pages without main navigation */}
+                    <Route element={<LandingPageLayout />}>
+                      <Route path="/socially-selling-food" element={<SociallySellingFood />} />
+                    </Route>
+                  </Routes>
+                </Suspense>
+              </ScrollAnimationsProvider>
+            </BrowserRouter>
+          </TooltipProvider>
+        </QueryClientProvider>
       </GeoBlocker>
     </HelmetProvider>
   );
