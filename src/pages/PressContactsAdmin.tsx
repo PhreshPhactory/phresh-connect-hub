@@ -254,13 +254,13 @@ export default function PressContactsAdmin() {
               </p>
             </div>
             
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col items-end gap-2">
               <Label
                 htmlFor="csv-upload"
                 className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
               >
                 <Upload className="h-4 w-4" />
-                {isUploading ? "Uploading..." : "Import CSV"}
+                {isUploading ? "Uploading..." : "Import CSV (up to 10 at a time)"}
               </Label>
               <Input
                 id="csv-upload"
@@ -271,6 +271,9 @@ export default function PressContactsAdmin() {
                 disabled={isUploading}
                 className="hidden"
               />
+              <p className="text-xs text-muted-foreground">
+                Upload in batches — duplicates are automatically skipped
+              </p>
             </div>
           </div>
 
