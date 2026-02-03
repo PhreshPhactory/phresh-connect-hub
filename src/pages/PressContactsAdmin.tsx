@@ -63,7 +63,7 @@ export default function PressContactsAdmin() {
         .from("press_contacts")
         .select("*")
         .order("last_name", { ascending: true })
-        .limit(10000);
+        .limit(100000);
       
       if (error) throw error;
       return data as PressContact[];
