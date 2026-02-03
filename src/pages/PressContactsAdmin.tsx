@@ -53,7 +53,7 @@ export default function PressContactsAdmin() {
   const [linkedinFilter, setLinkedinFilter] = useState<string>("all");
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStats, setUploadStats] = useState<{ added: number; skipped: number } | null>(null);
-  
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const queryClient = useQueryClient();
 
   const { data: contacts = [], isLoading } = useQuery({
@@ -226,9 +226,35 @@ export default function PressContactsAdmin() {
     return matchesSearch && matchesPriority && matchesLinkedin;
   });
 
+  const toggleSelectAll = () => {
+    if (selectedIds.size === filteredContacts.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(filteredContacts.map((c) => c.id)));
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    const newSelected = new Set(selectedIds);
+    if (newSelected.has(id)) {
+      newSelected.delete(id);
+    } else {
+      newSelected.add(id);
+    }
+    setSelectedIds(newSelected);
+  };
+
+  const getExportData = () => {
+    if (selectedIds.size > 0) {
+      return filteredContacts.filter((c) => selectedIds.has(c.id));
+    }
+    return filteredContacts;
+  };
+
   const exportToCSV = () => {
+    const dataToExport = getExportData();
     const headers = ['First Name', 'Last Name', 'Email', 'Title', 'Publications', 'Topics', 'LinkedIn', 'Location', 'Phone', 'Priority', 'LinkedIn Connected', 'Last Contacted'];
-    const rows = filteredContacts.map((contact) => [
+    const rows = dataToExport.map((contact) => [
       contact.first_name,
       contact.last_name,
       contact.email,
@@ -260,7 +286,7 @@ export default function PressContactsAdmin() {
     link.click();
     document.body.removeChild(link);
 
-    toast.success(`Exported ${filteredContacts.length} contacts to CSV`);
+    toast.success(`Exported ${dataToExport.length} contacts to CSV`);
   };
 
   const markAsContacted = (id: string) => {
@@ -300,7 +326,7 @@ export default function PressContactsAdmin() {
                   disabled={filteredContacts.length === 0}
                 >
                   <Download className="h-4 w-4 mr-2" />
-                  Export CSV ({filteredContacts.length})
+                  {selectedIds.size > 0 ? `Export ${selectedIds.size} Selected` : `Export CSV (${filteredContacts.length})`}
                 </Button>
                 <Label
                   htmlFor="csv-upload"
@@ -395,6 +421,12 @@ export default function PressContactsAdmin() {
                   <Table>
                     <TableHeader>
                       <TableRow>
+                        <TableHead className="w-12">
+                          <Checkbox
+                            checked={filteredContacts.length > 0 && selectedIds.size === filteredContacts.length}
+                            onCheckedChange={toggleSelectAll}
+                          />
+                        </TableHead>
                         <TableHead>Name</TableHead>
                         <TableHead>Publication</TableHead>
                         <TableHead>Topics</TableHead>
@@ -407,6 +439,12 @@ export default function PressContactsAdmin() {
                     <TableBody>
                       {filteredContacts.map((contact) => (
                         <TableRow key={contact.id}>
+                          <TableCell>
+                            <Checkbox
+                              checked={selectedIds.has(contact.id)}
+                              onCheckedChange={() => toggleSelect(contact.id)}
+                            />
+                          </TableCell>
                           <TableCell>
                             <div>
                               <p className="font-medium">
