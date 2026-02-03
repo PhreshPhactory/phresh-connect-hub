@@ -49,7 +49,8 @@ export default function NewsletterAdmin() {
       const { data, error } = await supabase
         .from('newsletter_subscribers')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('created_at', { ascending: false })
+        .limit(100000);
 
       if (error) throw error;
       setSubscribers(data || []);
