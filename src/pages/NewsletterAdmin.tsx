@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from '@/hooks/use-toast';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Download, Search, Loader2, ArrowLeft } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 
@@ -27,6 +28,7 @@ export default function NewsletterAdmin() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [sourceFilter, setSourceFilter] = useState<string>('all');
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -88,9 +90,35 @@ export default function NewsletterAdmin() {
     setFilteredSubscribers(filtered);
   };
 
+  const toggleSelectAll = () => {
+    if (selectedIds.size === filteredSubscribers.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(filteredSubscribers.map((sub) => sub.id)));
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    const newSelected = new Set(selectedIds);
+    if (newSelected.has(id)) {
+      newSelected.delete(id);
+    } else {
+      newSelected.add(id);
+    }
+    setSelectedIds(newSelected);
+  };
+
+  const getExportData = () => {
+    if (selectedIds.size > 0) {
+      return filteredSubscribers.filter((sub) => selectedIds.has(sub.id));
+    }
+    return filteredSubscribers;
+  };
+
   const exportToCSV = () => {
+    const dataToExport = getExportData();
     const headers = ['Email', 'Name', 'Source', 'Subscribed At'];
-    const rows = filteredSubscribers.map((sub) => [
+    const rows = dataToExport.map((sub) => [
       sub.email,
       sub.name || '',
       sub.source,
@@ -116,7 +144,7 @@ export default function NewsletterAdmin() {
 
     toast({
       title: 'Export Complete',
-      description: `Exported ${filteredSubscribers.length} subscribers to CSV.`,
+      description: `Exported ${dataToExport.length} subscribers to CSV.`,
     });
   };
 
@@ -191,9 +219,19 @@ export default function NewsletterAdmin() {
                   className="w-full sm:w-auto"
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  Export CSV
+                  {selectedIds.size > 0 ? `Export ${selectedIds.size} Selected` : 'Export CSV'}
                 </Button>
               </div>
+
+              {/* Selection info */}
+              {selectedIds.size > 0 && (
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span>{selectedIds.size} of {filteredSubscribers.length} selected</span>
+                  <Button variant="ghost" size="sm" onClick={() => setSelectedIds(new Set())}>
+                    Clear selection
+                  </Button>
+                </div>
+              )}
 
               {/* Stats */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -223,6 +261,12 @@ export default function NewsletterAdmin() {
                   <Table>
                     <TableHeader>
                       <TableRow>
+                        <TableHead className="w-12">
+                          <Checkbox
+                            checked={filteredSubscribers.length > 0 && selectedIds.size === filteredSubscribers.length}
+                            onCheckedChange={toggleSelectAll}
+                          />
+                        </TableHead>
                         <TableHead>Email</TableHead>
                         <TableHead>Name</TableHead>
                         <TableHead>Source</TableHead>
@@ -232,13 +276,19 @@ export default function NewsletterAdmin() {
                     <TableBody>
                       {filteredSubscribers.length === 0 ? (
                         <TableRow>
-                          <TableCell colSpan={4} className="text-center py-8 text-muted-foreground">
+                          <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
                             No subscribers found
                           </TableCell>
                         </TableRow>
                       ) : (
                         filteredSubscribers.map((subscriber) => (
                           <TableRow key={subscriber.id}>
+                            <TableCell>
+                              <Checkbox
+                                checked={selectedIds.has(subscriber.id)}
+                                onCheckedChange={() => toggleSelect(subscriber.id)}
+                              />
+                            </TableCell>
                             <TableCell className="font-medium">{subscriber.email}</TableCell>
                             <TableCell>{subscriber.name || '—'}</TableCell>
                             <TableCell>
