@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Upload, Search, Linkedin, Mail, ExternalLink, Trash2 } from "lucide-react";
+import { Upload, Search, Linkedin, Mail, ExternalLink, Trash2, Download } from "lucide-react";
 import { format } from "date-fns";
 
 interface PressContact {
@@ -225,6 +225,43 @@ export default function PressContactsAdmin() {
     return matchesSearch && matchesPriority && matchesLinkedin;
   });
 
+  const exportToCSV = () => {
+    const headers = ['First Name', 'Last Name', 'Email', 'Title', 'Publications', 'Topics', 'LinkedIn', 'Location', 'Phone', 'Priority', 'LinkedIn Connected', 'Last Contacted'];
+    const rows = filteredContacts.map((contact) => [
+      contact.first_name,
+      contact.last_name,
+      contact.email,
+      contact.title || '',
+      contact.publications || '',
+      contact.topics?.join('; ') || '',
+      contact.linkedin || '',
+      contact.location_string || '',
+      contact.phone || '',
+      contact.priority,
+      contact.linkedin_connected ? 'Yes' : 'No',
+      contact.last_contacted_at ? format(new Date(contact.last_contacted_at), 'yyyy-MM-dd') : '',
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(',')),
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', `press-contacts-${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    toast.success(`Exported ${filteredContacts.length} contacts to CSV`);
+  };
+
   const markAsContacted = (id: string) => {
     updateContactMutation.mutate({
       id,
@@ -255,13 +292,23 @@ export default function PressContactsAdmin() {
             </div>
             
             <div className="flex flex-col items-end gap-2">
-              <Label
-                htmlFor="csv-upload"
-                className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
-              >
-                <Upload className="h-4 w-4" />
-                {isUploading ? "Uploading..." : "Import CSV (up to 40 at a time)"}
-              </Label>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  onClick={exportToCSV}
+                  disabled={filteredContacts.length === 0}
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Export CSV ({filteredContacts.length})
+                </Button>
+                <Label
+                  htmlFor="csv-upload"
+                  className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+                >
+                  <Upload className="h-4 w-4" />
+                  {isUploading ? "Uploading..." : "Import CSV"}
+                </Label>
+              </div>
               <Input
                 id="csv-upload"
                 type="file"
@@ -272,7 +319,7 @@ export default function PressContactsAdmin() {
                 className="hidden"
               />
               <p className="text-xs text-muted-foreground">
-                Upload in batches — duplicates are automatically skipped
+                Export filtered results or import up to 40 CSVs at a time
               </p>
             </div>
           </div>
