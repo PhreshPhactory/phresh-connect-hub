@@ -62,7 +62,8 @@ export default function PressContactsAdmin() {
       const { data, error } = await supabase
         .from("press_contacts")
         .select("*")
-        .order("last_name", { ascending: true });
+        .order("last_name", { ascending: true })
+        .limit(10000);
       
       if (error) throw error;
       return data as PressContact[];
