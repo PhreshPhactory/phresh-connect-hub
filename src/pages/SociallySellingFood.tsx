@@ -232,10 +232,10 @@ const SociallySellingFood = () => {
             </button>
             
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight">
-              From Idea to Launch on EatOkra
+              From Idea to Market: Launch and Scale
             </h1>
             <p className="text-lg text-muted-foreground mb-6 max-w-xl mx-auto">
-              Turn your offer idea into a polished, market-ready product with AI-powered tools, email copy, and product descriptions: ready to sell on EatOkra.
+              Turn your offer idea into a polished, market-ready product. Start on EatOkra, then scale everywhere.
             </p>
             
             <Button 
@@ -424,7 +424,7 @@ const SociallySellingFood = () => {
               Your Journey: Idea to Launch
             </h2>
             <p className="text-muted-foreground text-center mb-8 max-w-xl mx-auto">
-              We start with your idea and guide you through every step until your offer is live on EatOkra.
+              We start with your idea, launch on EatOkra, and give you assets to scale everywhere.
             </p>
             <div className="grid sm:grid-cols-5 gap-4">
               {[
@@ -432,7 +432,7 @@ const SociallySellingFood = () => {
                 { step: '2', title: 'Build with AI', desc: 'Use AI tools to create your offer: product pages, pricing, packaging' },
                 { step: '3', title: 'Test & Refine', desc: 'Get feedback, refine messaging, perfect your presentation' },
                 { step: '4', title: 'Marketing Ready', desc: 'AI-generated email copy, product descriptions, social content' },
-                { step: '5', title: 'Launch on EatOkra', desc: 'Go live with a polished, market-ready product on EatOkra' },
+                { step: '5', title: 'Launch & Scale', desc: 'Go live on EatOkra first, then expand to your own channels and beyond' },
               ].map((item, index) => (
                 <div key={index} className="flex flex-col items-center text-center p-4 bg-card rounded-lg border border-border relative">
                   <div className="w-8 h-8 rounded-full bg-tertiary text-tertiary-foreground font-bold flex items-center justify-center mb-3 text-sm">
@@ -467,7 +467,7 @@ const SociallySellingFood = () => {
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-tertiary flex items-center justify-center text-tertiary-foreground font-bold">2</div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">4-Session Working Lab — $299</h3>
-                  <p className="text-sm text-muted-foreground">Build your offer, create marketing assets (email copy, product descriptions, social content), and launch live on EatOkra.</p>
+                  <p className="text-sm text-muted-foreground">Build your offer, create marketing assets, launch on EatOkra, and leave with everything you need to scale beyond.</p>
                 </div>
               </div>
             </div>
@@ -500,10 +500,10 @@ const SociallySellingFood = () => {
         <section className="py-12 px-4">
           <div className="max-w-xl mx-auto text-center">
             <h2 className="text-2xl font-bold text-foreground mb-3">
-              Ready to Launch Your Offer on EatOkra?
+              Ready to Launch and Scale?
             </h2>
             <p className="text-muted-foreground mb-6">
-              Start with the free AI 101 session. Leave with everything you need to sell.
+              Start with the free AI 101 session. Leave with everything you need to sell: on EatOkra and beyond.
             </p>
             <Button 
               size="lg" 
