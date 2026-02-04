@@ -7,6 +7,7 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { ArrowRight, Check, Calendar, Clock, Sparkles } from 'lucide-react';
@@ -20,6 +21,15 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+
+// Session dates for calendar highlighting
+const SESSION_DATES = [
+  new Date(2026, 1, 3),  // AI 101 - Feb 3
+  new Date(2026, 1, 10), // Session 1 - Feb 10
+  new Date(2026, 1, 17), // Session 2 - Feb 17
+  new Date(2026, 1, 24), // Session 3 - Feb 24
+  new Date(2026, 2, 3),  // Session 4 - Mar 3
+];
 
 // Session data with Stripe price IDs
 const SESSIONS = [
@@ -566,8 +576,38 @@ const SociallySellingFood = () => {
                 The Complete Portable Offer Building Lab
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Four weekly sessions to build and launch your sellable offers. Every Tuesday from February 10 to March 3, 2026.
+                Four weekly sessions to build and launch your sellable offers. Every Tuesday, 2:30 PM to 4 PM ET.
               </p>
+            </div>
+
+            {/* Calendar View */}
+            <div className="flex flex-col items-center mb-10">
+              <div className="bg-card border border-border rounded-xl p-4 md:p-6">
+                <CalendarComponent
+                  mode="multiple"
+                  selected={SESSION_DATES}
+                  month={new Date(2026, 1, 1)}
+                  numberOfMonths={2}
+                  className="pointer-events-none"
+                  classNames={{
+                    day_selected: "bg-tertiary text-tertiary-foreground hover:bg-tertiary hover:text-tertiary-foreground focus:bg-tertiary focus:text-tertiary-foreground",
+                    day_today: "bg-accent text-accent-foreground",
+                  }}
+                  disabled={() => true}
+                />
+                <div className="flex flex-wrap justify-center gap-4 mt-4 pt-4 border-t border-border text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-tertiary"></div>
+                    <span className="text-muted-foreground">Session Days</span>
+                  </div>
+                  <div className="text-muted-foreground">
+                    <span className="font-medium text-foreground">Feb 3</span> = Free AI 101
+                  </div>
+                  <div className="text-muted-foreground">
+                    <span className="font-medium text-foreground">Feb 10, 17, 24 & Mar 3</span> = Paid Sessions
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Session Cards */}
