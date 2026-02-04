@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowRight, Check, Calendar, Clock, Users } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import ssfHeroBanner from '@/assets/ssf-hero-banner.png';
 import kieraHeadshot from '@/assets/kiera-headshot.png';
 import {
@@ -19,37 +19,17 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 
-// Session options - all available for registration
-const SESSION_OPTIONS = [
-  // February Cohort
-  { id: 'feb-ai101', label: 'AI 101 Prep — Feb 3', date: 'Feb 3', type: 'free', cohort: 'February' },
-  { id: 'feb-s1', label: 'Session 1 — Feb 10', date: 'Feb 10', type: 'single', price: 99, priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh', cohort: 'February' },
-  { id: 'feb-s2', label: 'Session 2 — Feb 17', date: 'Feb 17', type: 'single', price: 99, priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl', cohort: 'February' },
-  { id: 'feb-s3', label: 'Session 3 — Feb 24', date: 'Feb 24', type: 'single', price: 99, priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy', cohort: 'February' },
-  { id: 'feb-s4', label: 'Session 4 — Mar 3', date: 'Mar 3', type: 'single', price: 99, priceId: 'price_1SsYReQP580MvrLEH3PchosX', cohort: 'February' },
-  { id: 'feb-bundle', label: 'All 4 Sessions Bundle — Feb 10 - Mar 3', date: 'Feb 10 - Mar 3', type: 'bundle', price: 299, priceId: 'price_1Sx854QP580MvrLEZAxk6BOn', cohort: 'February' },
-  // March Cohort
-  { id: 'mar-ai101', label: 'AI 101 Prep — Mar 10', date: 'Mar 10', type: 'free', cohort: 'March' },
-  { id: 'mar-s1', label: 'Session 1 — Mar 17', date: 'Mar 17', type: 'single', price: 99, priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh', cohort: 'March' },
-  { id: 'mar-s2', label: 'Session 2 — Mar 24', date: 'Mar 24', type: 'single', price: 99, priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl', cohort: 'March' },
-  { id: 'mar-s3', label: 'Session 3 — Mar 31', date: 'Mar 31', type: 'single', price: 99, priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy', cohort: 'March' },
-  { id: 'mar-s4', label: 'Session 4 — Apr 7', date: 'Apr 7', type: 'single', price: 99, priceId: 'price_1SsYReQP580MvrLEH3PchosX', cohort: 'March' },
-  { id: 'mar-bundle', label: 'All 4 Sessions Bundle — Mar 17 - Apr 7', date: 'Mar 17 - Apr 7', type: 'bundle', price: 299, priceId: 'price_1Sx854QP580MvrLEZAxk6BOn', cohort: 'March' },
-];
+// February 4-Session Bundle - $299
+const BUNDLE_PRICE_ID = 'price_1Sx854QP580MvrLEZAxk6BOn';
+const BUNDLE_PRICE = 299;
+const DEADLINE = 'February 10th';
 
 const formSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   name: z.string().min(1, 'Name is required'),
   businessName: z.string().min(1, 'Business name is required'),
-  businessWebsite: z.string().min(1, 'Business website or EatOkra profile is required'),
+  businessWebsite: z.string().min(1, 'Business website or social profile is required'),
   googleEmail: z.string().email('Please enter a valid Gmail address').refine(
     (email) => email.endsWith('@gmail.com'),
     'Must be a @gmail.com address for Google Classroom access'
@@ -62,12 +42,7 @@ const SociallySellingFood = () => {
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedSession, setSelectedSession] = useState<string>('');
   const formRef = useRef<HTMLDivElement>(null);
-  
-  const selectedOption = SESSION_OPTIONS.find(s => s.id === selectedSession);
-  const isFreeSession = selectedOption?.type === 'free';
-  const isPaidSession = selectedOption?.type === 'single' || selectedOption?.type === 'bundle';
 
   // Check for success/cancel from Stripe
   const paymentSuccess = searchParams.get('success') === 'true';
@@ -104,102 +79,51 @@ const SociallySellingFood = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    if (!selectedSession) {
-      toast({
-        title: 'Please select a session',
-        description: 'Choose a session from the dropdown to continue.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
     setIsSubmitting(true);
     try {
-      if (isFreeSession) {
-        // Free AI 101 registration
-        const { error: dbError } = await supabase
-          .from('socially_selling_food_enrollments')
-          .insert({
-            email: data.email,
-            name: data.name,
-            business_name: data.businessName,
-            business_city_state: 'N/A',
-            business_website: data.businessWebsite,
-            google_email: data.googleEmail,
-            selected_sessions: [selectedSession],
-            confidence_level: 5,
-            accommodations: null,
-            total_amount: 0,
-            payment_status: 'free',
-          });
-
-        if (dbError) throw dbError;
-
-        supabase.functions.invoke('send-ssf-enrollment-notification', {
-          body: {
-            email: data.email,
-            name: data.name,
-            businessName: data.businessName,
-            businessCityState: 'N/A',
-            businessWebsite: data.businessWebsite,
-            googleEmail: data.googleEmail,
-            selectedSessions: [selectedSession],
-            confidenceLevel: 5,
-            totalAmount: 0,
-          },
-        }).catch(err => console.error('Notification email failed:', err));
-
-        toast({
-          title: 'Registration confirmed',
-          description: `You're registered for the ${selectedOption?.cohort} AI 101 session. Check your email for details.`,
+      // Save enrollment to database
+      const { error: dbError } = await supabase
+        .from('socially_selling_food_enrollments')
+        .insert({
+          email: data.email,
+          name: data.name,
+          business_name: data.businessName,
+          business_city_state: 'N/A',
+          business_website: data.businessWebsite,
+          google_email: data.googleEmail,
+          selected_sessions: ['feb-bundle'],
+          confidence_level: 5,
+          accommodations: null,
+          total_amount: BUNDLE_PRICE,
+          payment_status: 'pending',
         });
 
-        form.reset();
-        setSelectedSession('');
-      } else if (isPaidSession && selectedOption?.priceId) {
-        // Paid session registration
-        const { error: dbError } = await supabase
-          .from('socially_selling_food_enrollments')
-          .insert({
-            email: data.email,
-            name: data.name,
-            business_name: data.businessName,
-            business_city_state: 'N/A',
-            business_website: data.businessWebsite,
-            google_email: data.googleEmail,
-            selected_sessions: [selectedSession],
-            confidence_level: 5,
-            accommodations: null,
-            total_amount: selectedOption.price,
-            payment_status: 'pending',
-          });
+      if (dbError) throw dbError;
 
-        if (dbError) throw dbError;
-
-        const { data: checkoutData, error: checkoutError } = await supabase.functions.invoke(
-          'create-ssf-payment',
-          {
-            body: {
-              priceIds: [selectedOption.priceId],
-              customerEmail: data.email,
-              customerName: data.name,
-            },
-          }
-        );
-
-        if (checkoutError) throw checkoutError;
-
-        if (checkoutData?.url) {
-          window.location.href = checkoutData.url;
-        } else {
-          throw new Error('No checkout URL received');
+      // Create Stripe checkout session
+      const { data: checkoutData, error: checkoutError } = await supabase.functions.invoke(
+        'create-ssf-payment',
+        {
+          body: {
+            priceIds: [BUNDLE_PRICE_ID],
+            customerEmail: data.email,
+            customerName: data.name,
+          },
         }
+      );
+
+      if (checkoutError) throw checkoutError;
+
+      if (checkoutData?.url) {
+        window.location.href = checkoutData.url;
+      } else {
+        throw new Error('No checkout URL received');
       }
     } catch (error: any) {
       console.error('Enrollment error:', error);
       toast({
         title: 'Registration failed',
-        description: error.message || 'Please try again or contact info@phreshphactory.co',
+        description: error.message || 'Please try again or contact Kiera@PhreshPhactory.co',
         variant: 'destructive',
       });
     } finally {
@@ -232,23 +156,30 @@ const SociallySellingFood = () => {
             </button>
             
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight">
-              From Idea to Market: Launch and Scale
+              4-Session Working Lab: Launch Your Offer
             </h1>
             <p className="text-lg text-muted-foreground mb-6 max-w-xl mx-auto">
-              Turn your offer idea into a polished, market-ready product. Launch fast, then scale everywhere.
+              Build a market-ready product with AI tools. Leave with everything you need to sell.
             </p>
+            
+            <div className="bg-destructive/10 border border-destructive/30 rounded-lg px-4 py-2 mb-4 inline-block">
+              <p className="text-sm font-medium text-destructive flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                Register by {DEADLINE} — Sessions start Feb 10
+              </p>
+            </div>
             
             <Button 
               size="lg" 
               onClick={scrollToForm}
               className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
             >
-              Register Now — Free to Start
+              Enroll Now — $299
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
             <p className="text-sm text-muted-foreground mt-4">
-              Free AI 101 prep session · No payment required
+              4 live sessions · Tuesdays 2:30 PM ET · Feb 10 – Mar 3
             </p>
           </div>
         </section>
@@ -258,66 +189,16 @@ const SociallySellingFood = () => {
           <div className="max-w-xl mx-auto">
             <div className="bg-card border-2 border-tertiary rounded-2xl p-6 md:p-8 shadow-lg shadow-tertiary/10">
               <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-foreground mb-2">Reserve Your Spot</h2>
-                <p className="text-muted-foreground">Choose your session and complete registration</p>
+                <h2 className="text-2xl font-bold text-foreground mb-2">Enroll in the 4-Session Lab</h2>
+                <p className="text-muted-foreground">$299 — All 4 sessions, Feb 10 – Mar 3</p>
+                <p className="text-xs text-muted-foreground mt-1 flex items-center justify-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  Tuesdays, 2:30 PM – 4:00 PM ET
+                </p>
               </div>
 
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                  {/* Session Selection */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-foreground">Select Session</label>
-                    <Select value={selectedSession} onValueChange={setSelectedSession}>
-                      <SelectTrigger className="w-full h-12">
-                        <SelectValue placeholder="Choose a session..." />
-                      </SelectTrigger>
-                      <SelectContent className="max-h-80">
-                        {/* February Cohort */}
-                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground bg-muted/50">February Cohort</div>
-                        {SESSION_OPTIONS.filter(s => s.cohort === 'February').map((session) => (
-                          <SelectItem key={session.id} value={session.id} className="py-2">
-                            <div className="flex items-center gap-2">
-                              <span className={`text-xs px-2 py-0.5 rounded ${
-                                session.type === 'free' 
-                                  ? 'bg-accent text-accent-foreground' 
-                                  : session.type === 'bundle'
-                                    ? 'bg-tertiary text-tertiary-foreground'
-                                    : 'bg-primary text-primary-foreground'
-                              }`}>
-                                {session.type === 'free' ? 'FREE' : `$${session.price}`}
-                              </span>
-                              <span>{session.label}</span>
-                            </div>
-                          </SelectItem>
-                        ))}
-                        
-                        {/* March Cohort */}
-                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground bg-muted/50 mt-1">March Cohort</div>
-                        {SESSION_OPTIONS.filter(s => s.cohort === 'March').map((session) => (
-                          <SelectItem key={session.id} value={session.id} className="py-2">
-                            <div className="flex items-center gap-2">
-                              <span className={`text-xs px-2 py-0.5 rounded ${
-                                session.type === 'free' 
-                                  ? 'bg-accent text-accent-foreground' 
-                                  : session.type === 'bundle'
-                                    ? 'bg-tertiary text-tertiary-foreground'
-                                    : 'bg-primary text-primary-foreground'
-                              }`}>
-                                {session.type === 'free' ? 'FREE' : `$${session.price}`}
-                              </span>
-                              <span>{session.label}</span>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    {selectedOption && (
-                      <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-                        <Clock className="h-3 w-3" />
-                        All sessions: Tuesdays, 2:30 PM – 4:00 PM ET
-                      </p>
-                    )}
-                  </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <FormField
@@ -367,7 +248,7 @@ const SociallySellingFood = () => {
                     name="businessWebsite"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Website or EatOkra Profile</FormLabel>
+                        <FormLabel>Website or Social Profile</FormLabel>
                         <FormControl>
                           <Input placeholder="https://..." {...field} />
                         </FormControl>
@@ -395,21 +276,16 @@ const SociallySellingFood = () => {
                     type="submit"
                     size="lg"
                     className="w-full text-lg py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
-                    disabled={isSubmitting || !selectedSession}
+                    disabled={isSubmitting}
                   >
                     {isSubmitting 
                       ? 'Processing...' 
-                      : isFreeSession 
-                        ? 'Register — Free'
-                        : `Proceed to Payment — $${selectedOption?.price || 299}`
+                      : `Proceed to Payment — $${BUNDLE_PRICE}`
                     }
                   </Button>
                   
                   <p className="text-xs text-center text-muted-foreground">
-                    {isFreeSession 
-                      ? 'No payment required. You decide whether to continue after the session.'
-                      : 'Secure payment via Stripe. Access within 24 hours.'
-                    }
+                    Secure payment via Stripe. Access within 24 hours.
                   </p>
                 </form>
               </Form>
@@ -449,27 +325,29 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-        {/* Program Structure - Simple */}
+        {/* What You'll Build */}
         <section className="py-10 px-4">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
-              The Program
+              What You'll Build in 4 Sessions
             </h2>
-            <div className="space-y-4">
-              <div className="flex items-start gap-4 p-5 bg-accent/10 border border-accent/30 rounded-xl">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-bold">1</div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">AI 101 Prep Session — Free</h3>
-                  <p className="text-sm text-muted-foreground">Get set up with the AI tools you will use to build your offer. See if this approach is right for you.</p>
+            <div className="grid md:grid-cols-2 gap-4">
+              {[
+                { title: 'Session 1 — Feb 10', desc: 'Portable Offer Build Lab: Define your sellable offer and pricing' },
+                { title: 'Session 2 — Feb 17', desc: 'Offer Packaging + Content: Create AI-generated product pages and descriptions' },
+                { title: 'Session 3 — Feb 24', desc: 'Visibility + Launch Prep: Build marketing assets and email sequences' },
+                { title: 'Session 4 — Mar 3', desc: 'Launch + Amplification: Go live and set up ongoing sales systems' },
+              ].map((session, index) => (
+                <div key={index} className="flex items-start gap-3 p-4 bg-card border border-border rounded-lg">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-tertiary flex items-center justify-center text-tertiary-foreground font-bold text-sm">
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground text-sm mb-1">{session.title}</h3>
+                    <p className="text-xs text-muted-foreground">{session.desc}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start gap-4 p-5 bg-tertiary/5 border border-tertiary/30 rounded-xl">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-tertiary flex items-center justify-center text-tertiary-foreground font-bold">2</div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">4-Session Working Lab — $299</h3>
-                  <p className="text-sm text-muted-foreground">Build your offer, create marketing assets, launch to market, and leave with everything you need to scale.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -499,18 +377,24 @@ const SociallySellingFood = () => {
         {/* Final CTA */}
         <section className="py-12 px-4">
           <div className="max-w-xl mx-auto text-center">
+            <div className="bg-destructive/10 border border-destructive/30 rounded-lg px-4 py-2 mb-4 inline-block">
+              <p className="text-sm font-medium text-destructive flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                Deadline: {DEADLINE}
+              </p>
+            </div>
             <h2 className="text-2xl font-bold text-foreground mb-3">
-              Ready to Launch and Scale?
+              Ready to Build Your Offer?
             </h2>
             <p className="text-muted-foreground mb-6">
-              Start with the free AI 101 session. Leave with everything you need to sell.
+              4 sessions. $299. Leave with a launch-ready product.
             </p>
             <Button 
               size="lg" 
               onClick={scrollToForm}
               className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
             >
-              Register Now
+              Enroll Now — $299
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
