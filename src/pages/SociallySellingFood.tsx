@@ -22,13 +22,16 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-// Session dates for calendar highlighting (only paid sessions)
+// Session dates for calendar highlighting
 const SESSION_DATES = [
   new Date(2026, 1, 10), // Session 1 - Feb 10
   new Date(2026, 1, 17), // Session 2 - Feb 17
   new Date(2026, 1, 24), // Session 3 - Feb 24
   new Date(2026, 2, 3),  // Session 4 - Mar 3
 ];
+
+// Past session date (for display only)
+const AI_101_DATE = new Date(2026, 1, 3);
 
 // Session data with Stripe price IDs
 const SESSIONS = [
@@ -425,7 +428,38 @@ const SociallySellingFood = () => {
         </section>
 
 
-        {/* Who This Is For */}
+        {/* AI 101 - Completed Session */}
+        <section className="py-8 md:py-10 px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="p-6 border border-muted rounded-xl bg-muted/30 opacity-60">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="inline-block bg-muted text-muted-foreground px-3 py-1 rounded-full text-sm font-medium line-through">
+                  FREE SESSION
+                </div>
+                <div className="inline-block bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium">
+                  ✓ Completed
+                </div>
+              </div>
+              <h2 className="text-xl md:text-2xl font-bold text-muted-foreground mb-2 line-through">
+                AI 101 Prep Session
+              </h2>
+              <p className="text-muted-foreground mb-3">
+                Learn tools that speed creation and marketing.
+              </p>
+              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4" />
+                  <span className="line-through">Tuesday, February 3, 2026</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  <span className="line-through">2:30 PM Eastern</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-12 md:py-16 px-4 bg-muted/30">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
