@@ -22,25 +22,64 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-// Session dates for calendar highlighting
-const SESSION_DATES = [
-  new Date(2026, 1, 10), // Session 1 - Feb 10
-  new Date(2026, 1, 17), // Session 2 - Feb 17
-  new Date(2026, 1, 24), // Session 3 - Feb 24
-  new Date(2026, 2, 3),  // Session 4 - Mar 3
+// Cohort definitions
+const COHORTS = [
+  {
+    id: 'cohort1',
+    name: 'February Cohort',
+    status: 'in-progress', // 'upcoming', 'in-progress', 'completed'
+    ai101: {
+      date: 'Tuesday, Feb 3, 2026',
+      status: 'completed',
+    },
+    sessions: [
+      { date: 'Tuesday, Feb 10, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
+      { date: 'Tuesday, Feb 17, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
+      { date: 'Tuesday, Feb 24, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
+      { date: 'Tuesday, Mar 3, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
+    ],
+    calendarDates: [
+      new Date(2026, 1, 10),
+      new Date(2026, 1, 17),
+      new Date(2026, 1, 24),
+      new Date(2026, 2, 3),
+    ],
+  },
+  {
+    id: 'cohort2',
+    name: 'March Cohort',
+    status: 'upcoming',
+    ai101: {
+      date: 'Tuesday, Mar 10, 2026',
+      time: '2:30 PM Eastern',
+      status: 'open',
+    },
+    sessions: [
+      { date: 'Tuesday, Mar 17, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
+      { date: 'Tuesday, Mar 24, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
+      { date: 'Tuesday, Mar 31, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
+      { date: 'Tuesday, Apr 7, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
+    ],
+    calendarDates: [
+      new Date(2026, 2, 10), // Mar 10 - AI 101
+      new Date(2026, 2, 17),
+      new Date(2026, 2, 24),
+      new Date(2026, 2, 31),
+      new Date(2026, 3, 7),
+    ],
+  },
 ];
 
-// Past session date (for display only)
-const AI_101_DATE = new Date(2026, 1, 3);
+// Get next open cohort for registration
+const NEXT_COHORT = COHORTS.find(c => c.ai101.status === 'open') || COHORTS[1];
 
-// Session data with Stripe price IDs
+// Session data with Stripe price IDs (generic - applies to all cohorts)
 const SESSIONS = [
   {
     id: 'session1',
     priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh',
     name: 'Portable Offer Build Lab',
     description: 'Choose and begin building a sellable product, service, or event',
-    date: 'Tuesday, Feb 10, 2026 · 2:30 PM to 4 PM ET',
     price: 99,
   },
   {
@@ -48,7 +87,6 @@ const SESSIONS = [
     priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl',
     name: 'Offer Packaging + Content Creation Lab',
     description: 'Turn the idea into a polished, customer-ready offer',
-    date: 'Tuesday, Feb 17, 2026 · 2:30 PM to 4 PM ET',
     price: 99,
   },
   {
@@ -56,7 +94,6 @@ const SESSIONS = [
     priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy',
     name: 'Visibility + Launch Preparation Lab',
     description: 'Build marketing assets and prepare for distribution',
-    date: 'Tuesday, Feb 24, 2026 · 2:30 PM to 4 PM ET',
     price: 99,
   },
   {
@@ -64,7 +101,6 @@ const SESSIONS = [
     priceId: 'price_1SsYReQP580MvrLEH3PchosX',
     name: 'Launch + Amplification Lab',
     description: 'Go live and position the offer for EatOkra promotion',
-    date: 'Tuesday, Mar 3, 2026 · 2:30 PM to 4 PM ET',
     price: 99,
   },
 ];
@@ -427,90 +463,193 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-
-        {/* AI 101 - Completed Session */}
-        <section className="py-8 md:py-10 px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="p-6 border border-muted rounded-xl bg-muted/30 opacity-60">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="inline-block bg-muted text-muted-foreground px-3 py-1 rounded-full text-sm font-medium line-through">
-                  FREE SESSION
-                </div>
-                <div className="inline-block bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium">
-                  ✓ Completed
-                </div>
-              </div>
-              <h2 className="text-xl md:text-2xl font-bold text-muted-foreground mb-2 line-through">
-                AI 101 Prep Session
-              </h2>
-              <p className="text-muted-foreground mb-3">
-                Learn tools that speed creation and marketing.
-              </p>
-              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
-                  <span className="line-through">Tuesday, February 3, 2026</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
-                  <span className="line-through">2:30 PM Eastern</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-12 md:py-16 px-4 bg-muted/30">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Who This Is For
-            </h2>
-            <div className="flex flex-wrap justify-center gap-3 mb-6">
-              {['Restaurants', 'Food Trucks', 'Caterers', 'Private Chefs', 'Home Chefs'].map((type) => (
-                <div key={type} className="px-5 py-2.5 bg-card border-2 border-tertiary/30 rounded-full text-base font-medium text-foreground">
-                  {type}
-                </div>
-              ))}
-            </div>
-            <p className="text-muted-foreground text-lg">
-              If you sell food and want to sell more of it beyond your physical location and operating hours, this lab is for you.
-            </p>
-          </div>
-        </section>
-
-        {/* Full Program - Paid Sessions */}
+        {/* Cohort Schedule */}
         <section ref={paidFormRef} className="py-12 md:py-16 px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                The Complete Portable Offer Building Lab
-              </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Four weekly sessions to build and launch your sellable offers. Every Tuesday, 2:30 PM to 4 PM ET.
-              </p>
+            
+            {/* February Cohort - In Progress */}
+            <div className="mb-12">
+              <div className="flex items-center gap-3 mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-muted-foreground">February Cohort</h2>
+                <span className="px-3 py-1 bg-muted text-muted-foreground text-sm rounded-full">In Progress</span>
+              </div>
+              <div className="p-5 border border-muted rounded-xl bg-muted/20 opacity-60">
+                <div className="grid md:grid-cols-5 gap-4">
+                  <div className="p-3 rounded-lg bg-muted/50 text-center">
+                    <p className="text-xs text-muted-foreground mb-1 line-through">AI 101 (Free)</p>
+                    <p className="text-sm font-medium text-muted-foreground line-through">Feb 3</p>
+                    <span className="text-xs text-accent-foreground bg-accent px-2 py-0.5 rounded mt-1 inline-block">Done</span>
+                  </div>
+                  {['Feb 10', 'Feb 17', 'Feb 24', 'Mar 3'].map((date, i) => (
+                    <div key={date} className="p-3 rounded-lg bg-card border border-border text-center">
+                      <p className="text-xs text-muted-foreground mb-1">Session {i + 1}</p>
+                      <p className="text-sm font-medium text-foreground">{date}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Calendar View */}
-            <div className="flex flex-col items-center mb-10">
-              <div className="bg-card border border-border rounded-xl p-4 md:p-6">
-                <CalendarComponent
-                  mode="multiple"
-                  selected={SESSION_DATES}
-                  month={new Date(2026, 1, 1)}
-                  numberOfMonths={2}
-                  className="pointer-events-none"
-                  classNames={{
-                    day_selected: "bg-tertiary text-tertiary-foreground hover:bg-tertiary hover:text-tertiary-foreground focus:bg-tertiary focus:text-tertiary-foreground",
-                    day_today: "bg-accent text-accent-foreground",
-                  }}
-                  disabled={() => true}
-                />
-                <div className="flex justify-center mt-4 pt-4 border-t border-border text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-tertiary"></div>
-                    <span className="text-muted-foreground">Session dates: <span className="font-medium text-foreground">Feb 10, 17, 24 & Mar 3</span></span>
+            {/* March Cohort - Open for Registration */}
+            <div className="mb-10">
+              <div className="flex items-center gap-3 mb-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">March Cohort</h2>
+                <span className="px-3 py-1 bg-tertiary text-tertiary-foreground text-sm font-medium rounded-full">Open for Registration</span>
+              </div>
+              
+              {/* Calendar View */}
+              <div className="flex flex-col items-center mb-8">
+                <div className="bg-card border border-border rounded-xl p-4 md:p-6">
+                  <CalendarComponent
+                    mode="multiple"
+                    selected={NEXT_COHORT.calendarDates}
+                    month={new Date(2026, 2, 1)}
+                    numberOfMonths={2}
+                    className="pointer-events-none"
+                    classNames={{
+                      day_selected: "bg-tertiary text-tertiary-foreground hover:bg-tertiary hover:text-tertiary-foreground focus:bg-tertiary focus:text-tertiary-foreground",
+                      day_today: "bg-accent text-accent-foreground",
+                    }}
+                    disabled={() => true}
+                  />
+                  <div className="flex flex-wrap justify-center gap-4 mt-4 pt-4 border-t border-border text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-tertiary"></div>
+                      <span className="text-muted-foreground"><span className="font-medium text-foreground">Mar 10</span> = Free AI 101</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-tertiary"></div>
+                      <span className="text-muted-foreground"><span className="font-medium text-foreground">Mar 17, 24, 31 & Apr 7</span> = Paid Sessions</span>
+                    </div>
                   </div>
                 </div>
+              </div>
+
+              {/* Free AI 101 Registration */}
+              <div ref={formRef} className="p-6 md:p-8 border-2 border-tertiary rounded-xl bg-tertiary/5 mb-8">
+                <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+                  START HERE — FREE
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                  AI 101 Prep Session
+                </h3>
+                <p className="text-muted-foreground mb-4">
+                  Get set up with the AI tools you will use throughout the program. This session prepares you for the hands-on work ahead.
+                </p>
+                <div className="flex flex-wrap gap-4 mb-6">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Calendar className="h-5 w-5 text-tertiary" />
+                    <span className="font-medium text-foreground">Tuesday, March 10, 2026</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Clock className="h-5 w-5 text-tertiary" />
+                    <span>2:30 PM Eastern</span>
+                  </div>
+                </div>
+
+                {/* Free Registration Form */}
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmitFree)} className="space-y-4">
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Name</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Your full name" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                <Input placeholder="your@email.com" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="businessName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Business Name</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Your business name" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="businessWebsite"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Website / EatOkra Profile</FormLabel>
+                              <FormControl>
+                                <Input placeholder="https://..." {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      <FormField
+                        control={form.control}
+                        name="googleEmail"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Google Email (for Classroom access)</FormLabel>
+                            <FormControl>
+                              <Input placeholder="your.name@gmail.com" {...field} />
+                            </FormControl>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              Must be a @gmail.com address for Google Classroom access.
+                            </p>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="w-full text-lg py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Registering...' : 'Register for Free AI 101 — March 10'}
+                      </Button>
+                      <p className="text-sm text-center text-muted-foreground">
+                        No payment required. You will decide whether to continue after the session.
+                      </p>
+                    </form>
+                  </Form>
+                </div>
+              </div>
+
+              {/* Paid Sessions heading */}
+              <div className="text-center mb-8">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                  After AI 101: The Portable Offer Building Lab
+                </h3>
+                <p className="text-muted-foreground">
+                  Four weekly paid sessions starting March 17, 2026
+                </p>
               </div>
             </div>
 
@@ -539,7 +678,7 @@ const SociallySellingFood = () => {
                         <span className="text-xs font-medium text-tertiary bg-tertiary/20 px-2 py-0.5 rounded">
                           Session {index + 1}
                         </span>
-                        <span className="text-xs text-muted-foreground">{session.date}</span>
+                        <span className="text-xs text-muted-foreground">{NEXT_COHORT.sessions[index]?.date}</span>
                       </div>
                       <h3 className="font-semibold text-foreground mb-1">{session.name}</h3>
                       <p className="text-sm text-muted-foreground">{session.description}</p>
