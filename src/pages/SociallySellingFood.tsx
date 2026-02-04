@@ -232,10 +232,10 @@ const SociallySellingFood = () => {
             </button>
             
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 leading-tight">
-              Sell Beyond Your Operating Hours
+              From Idea to Launch on EatOkra
             </h1>
             <p className="text-lg text-muted-foreground mb-6 max-w-xl mx-auto">
-              Build offers that generate revenue 24/7 — even when your kitchen is closed.
+              Turn your offer idea into a polished, market-ready product with AI-powered tools, email copy, and product descriptions: ready to sell on EatOkra.
             </p>
             
             <Button 
@@ -417,22 +417,32 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-        {/* What You Get - Compact */}
+        {/* The Journey - Solution Based */}
         <section className="py-10 px-4 bg-muted/30">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
-              What You Will Build
+            <h2 className="text-2xl font-bold text-foreground mb-2 text-center">
+              Your Journey: Idea to Launch
             </h2>
-            <div className="grid sm:grid-cols-2 gap-3">
+            <p className="text-muted-foreground text-center mb-8 max-w-xl mx-auto">
+              We start with your idea and guide you through every step until your offer is live on EatOkra.
+            </p>
+            <div className="grid sm:grid-cols-5 gap-4">
               {[
-                'Pre-orders that capture demand before you cook',
-                'Digital products like recipe guides or meal plans',
-                'Limited-time drops that create urgency',
-                'Systems that sell while you sleep',
+                { step: '1', title: 'Your Idea', desc: 'Start with what you already know: your recipes, your expertise, your story' },
+                { step: '2', title: 'Build with AI', desc: 'Use AI tools to create your offer: product pages, pricing, packaging' },
+                { step: '3', title: 'Test & Refine', desc: 'Get feedback, refine messaging, perfect your presentation' },
+                { step: '4', title: 'Marketing Ready', desc: 'AI-generated email copy, product descriptions, social content' },
+                { step: '5', title: 'Launch on EatOkra', desc: 'Go live with a polished, market-ready product on EatOkra' },
               ].map((item, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border">
-                  <Check className="h-5 w-5 text-tertiary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">{item}</span>
+                <div key={index} className="flex flex-col items-center text-center p-4 bg-card rounded-lg border border-border relative">
+                  <div className="w-8 h-8 rounded-full bg-tertiary text-tertiary-foreground font-bold flex items-center justify-center mb-3 text-sm">
+                    {item.step}
+                  </div>
+                  <h3 className="font-semibold text-foreground text-sm mb-1">{item.title}</h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                  {index < 4 && (
+                    <ArrowRight className="hidden sm:block absolute -right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
+                  )}
                 </div>
               ))}
             </div>
@@ -450,14 +460,14 @@ const SociallySellingFood = () => {
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-bold">1</div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">AI 101 Prep Session — Free</h3>
-                  <p className="text-sm text-muted-foreground">Get set up with the AI tools you'll use throughout the program. See if this is right for you.</p>
+                  <p className="text-sm text-muted-foreground">Get set up with the AI tools you will use to build your offer. See if this approach is right for you.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 p-5 bg-tertiary/5 border border-tertiary/30 rounded-xl">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-tertiary flex items-center justify-center text-tertiary-foreground font-bold">2</div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">4-Session Working Lab — $299</h3>
-                  <p className="text-sm text-muted-foreground">Build, package, and launch your portable offer over four hands-on sessions. Leave with live, sellable assets.</p>
+                  <p className="text-sm text-muted-foreground">Build your offer, create marketing assets (email copy, product descriptions, social content), and launch live on EatOkra.</p>
                 </div>
               </div>
             </div>
@@ -490,10 +500,10 @@ const SociallySellingFood = () => {
         <section className="py-12 px-4">
           <div className="max-w-xl mx-auto text-center">
             <h2 className="text-2xl font-bold text-foreground mb-3">
-              Ready to Sell While You Sleep?
+              Ready to Launch Your Offer on EatOkra?
             </h2>
             <p className="text-muted-foreground mb-6">
-              Start with the free AI 101 session. No commitment.
+              Start with the free AI 101 session. Leave with everything you need to sell.
             </p>
             <Button 
               size="lg" 
