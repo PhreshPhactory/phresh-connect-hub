@@ -597,14 +597,12 @@ const SociallySellingFood = () => {
                 />
                 <div className="flex flex-wrap justify-center gap-4 mt-4 pt-4 border-t border-border text-sm">
                   <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-muted-foreground/50"></div>
+                    <span className="text-muted-foreground"><span className="line-through">Tue, Feb 3</span> – AI 101 (Free – Completed)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-tertiary"></div>
-                    <span className="text-muted-foreground">Session Days</span>
-                  </div>
-                  <div className="text-muted-foreground">
-                    <span className="font-medium text-foreground">Feb 3</span> = Free AI 101
-                  </div>
-                  <div className="text-muted-foreground">
-                    <span className="font-medium text-foreground">Feb 10, 17, 24 & Mar 3</span> = Paid Sessions
+                    <span className="text-muted-foreground"><span className="font-medium text-foreground">Feb 10, 17, 24 & Mar 3</span> – Paid Sessions</span>
                   </div>
                 </div>
               </div>
