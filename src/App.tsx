@@ -56,6 +56,7 @@ const BrandContactsAdmin = lazy(() => import("@/pages/BrandContactsAdmin"));
 const VideoReelAdmin = lazy(() => import("@/pages/VideoReelAdmin"));
 const PressContactsAdmin = lazy(() => import("@/pages/PressContactsAdmin"));
 const SociallySellingFood = lazy(() => import("@/pages/SociallySellingFood"));
+const SSFInvoiceAdmin = lazy(() => import("@/pages/SSFInvoiceAdmin"));
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -127,6 +128,7 @@ const App: React.FC = () => {
                       <Route path="/admin/brand-contacts" element={<BrandContactsAdmin />} />
                       <Route path="/admin/video-reels" element={<VideoReelAdmin />} />
                       <Route path="/admin/press-contacts" element={<PressContactsAdmin />} />
+                      <Route path="/admin/ssf-invoices" element={<SSFInvoiceAdmin />} />
                       <Route path="/auth" element={<Auth />} />
                       <Route path="/privacy" element={<Privacy />} />
                       <Route path="/links" element={<LinkInBio />} />
