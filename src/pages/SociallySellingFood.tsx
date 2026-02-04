@@ -453,7 +453,7 @@ const SociallySellingFood = () => {
             <div>
               <h3 className="font-semibold text-foreground mb-1">Led by Kiera H.</h3>
               <p className="text-sm text-muted-foreground mb-3">
-                20+ years helping food businesses modernize operations and build digital revenue streams.
+                20+ years helping businesses modernize operations and build digital revenue streams.
               </p>
               <Button asChild variant="outline" size="sm">
                 <Link to="/KieraH">
