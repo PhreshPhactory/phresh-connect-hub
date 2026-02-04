@@ -2,13 +2,14 @@ import React, { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { ArrowRight, Check, Calendar, Clock } from 'lucide-react';
+import { ArrowRight, Check, Calendar, Clock, Sparkles } from 'lucide-react';
 import ssfHeroBanner from '@/assets/ssf-hero-banner.png';
 import kieraHeadshot from '@/assets/kiera-headshot.png';
 import {
@@ -19,6 +20,46 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+
+// Session data with Stripe price IDs
+const SESSIONS = [
+  {
+    id: 'session1',
+    priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh',
+    name: 'Portable Offer Build Lab',
+    description: 'Choose and begin building a sellable product, service, or event',
+    date: 'Feb 10, 2026',
+    price: 99,
+  },
+  {
+    id: 'session2',
+    priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl',
+    name: 'Offer Packaging + Content Creation Lab',
+    description: 'Turn the idea into a polished, customer-ready offer',
+    date: 'Feb 17, 2026',
+    price: 99,
+  },
+  {
+    id: 'session3',
+    priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy',
+    name: 'Visibility + Launch Preparation Lab',
+    description: 'Build marketing assets and prepare for distribution',
+    date: 'Feb 24, 2026',
+    price: 99,
+  },
+  {
+    id: 'session4',
+    priceId: 'price_1SsYReQP580MvrLEH3PchosX',
+    name: 'Launch + Amplification Lab',
+    description: 'Go live and position the offer for EatOkra promotion',
+    date: 'Mar 3, 2026',
+    price: 99,
+  },
+];
+
+const BUNDLE_PRICE_ID = 'price_1Sx854QP580MvrLEZAxk6BOn';
+const BUNDLE_PRICE = 299;
+const INDIVIDUAL_TOTAL = SESSIONS.reduce((sum, s) => sum + s.price, 0); // $396
 
 const formSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -35,11 +76,38 @@ type FormValues = z.infer<typeof formSchema>;
 
 const SociallySellingFood = () => {
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedSessions, setSelectedSessions] = useState<string[]>([]);
+  const [registrationType, setRegistrationType] = useState<'free' | 'paid'>('free');
   const formRef = useRef<HTMLDivElement>(null);
+  const paidFormRef = useRef<HTMLDivElement>(null);
+
+  // Check for success/cancel from Stripe
+  const paymentSuccess = searchParams.get('success') === 'true';
+  const paymentCanceled = searchParams.get('canceled') === 'true';
+
+  React.useEffect(() => {
+    if (paymentSuccess) {
+      toast({
+        title: 'Payment successful!',
+        description: 'You are enrolled in the Socially Selling Food program. Check your email for Google Classroom access.',
+      });
+    } else if (paymentCanceled) {
+      toast({
+        title: 'Payment canceled',
+        description: 'Your payment was not completed. You can try again when ready.',
+        variant: 'destructive',
+      });
+    }
+  }, [paymentSuccess, paymentCanceled, toast]);
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const scrollToPaidForm = () => {
+    paidFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const form = useForm<FormValues>({
@@ -53,7 +121,40 @@ const SociallySellingFood = () => {
     },
   });
 
-  const onSubmit = async (data: FormValues) => {
+  const allSessionsSelected = selectedSessions.length === SESSIONS.length;
+  const someSessionsSelected = selectedSessions.length > 0;
+
+  const calculateTotal = () => {
+    if (allSessionsSelected) {
+      return BUNDLE_PRICE;
+    }
+    return selectedSessions.length * 99;
+  };
+
+  const getSavings = () => {
+    if (allSessionsSelected) {
+      return INDIVIDUAL_TOTAL - BUNDLE_PRICE;
+    }
+    return 0;
+  };
+
+  const toggleSession = (sessionId: string) => {
+    setSelectedSessions((prev) =>
+      prev.includes(sessionId)
+        ? prev.filter((id) => id !== sessionId)
+        : [...prev, sessionId]
+    );
+  };
+
+  const selectAllSessions = () => {
+    if (allSessionsSelected) {
+      setSelectedSessions([]);
+    } else {
+      setSelectedSessions(SESSIONS.map((s) => s.id));
+    }
+  };
+
+  const onSubmitFree = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
       const { error: dbError } = await supabase
@@ -107,18 +208,90 @@ const SociallySellingFood = () => {
     }
   };
 
+  const onSubmitPaid = async (data: FormValues) => {
+    if (selectedSessions.length === 0) {
+      toast({
+        title: 'No sessions selected',
+        description: 'Please select at least one session to continue.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      // Determine price IDs to send
+      let priceIds: string[];
+      if (allSessionsSelected) {
+        priceIds = [BUNDLE_PRICE_ID];
+      } else {
+        priceIds = selectedSessions.map(
+          (sessionId) => SESSIONS.find((s) => s.id === sessionId)!.priceId
+        );
+      }
+
+      // Save enrollment record first (pending payment)
+      const { error: dbError } = await supabase
+        .from('socially_selling_food_enrollments')
+        .insert({
+          email: data.email,
+          name: data.name,
+          business_name: data.businessName,
+          business_city_state: 'N/A',
+          business_website: data.businessWebsite,
+          google_email: data.googleEmail,
+          selected_sessions: allSessionsSelected ? ['bundle'] : selectedSessions,
+          confidence_level: 5,
+          accommodations: null,
+          total_amount: calculateTotal(),
+          payment_status: 'pending',
+        });
+
+      if (dbError) throw dbError;
+
+      // Create Stripe checkout session
+      const { data: checkoutData, error: checkoutError } = await supabase.functions.invoke(
+        'create-ssf-payment',
+        {
+          body: {
+            priceIds,
+            customerEmail: data.email,
+            customerName: data.name,
+          },
+        }
+      );
+
+      if (checkoutError) throw checkoutError;
+
+      if (checkoutData?.url) {
+        window.location.href = checkoutData.url;
+      } else {
+        throw new Error('No checkout URL received');
+      }
+    } catch (error: any) {
+      console.error('Payment error:', error);
+      toast({
+        title: 'Payment setup failed',
+        description: error.message || 'Please try again or contact info@phreshphactory.co',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <SEOHead
-        title="Socially Selling Food | Free AI 101 Workshop for Food-Related Businesses"
-        description="Register for the free AI 101 prep session. A hands-on working lab that helps restaurants, food trucks, caterers, private chefs, and food-related businesses learn to build sellable offers for 24/7 online revenue."
-        keywords="food business e-commerce, restaurant online sales, food truck digital revenue, catering business systems, sell food online, 24/7 food sales, food business workshop, free AI workshop, food business AI"
+        title="Socially Selling Food | AI Workshop for Food-Related Businesses"
+        description="Join the Socially Selling Food program. A hands-on working lab that helps restaurants, food trucks, caterers, private chefs, and food-related businesses learn to build sellable offers for 24/7 online revenue."
+        keywords="food business e-commerce, restaurant online sales, food truck digital revenue, catering business systems, sell food online, 24/7 food sales, food business workshop, food business AI"
         canonicalUrl="https://phreshphactory.com/socially-selling-food"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Course",
-          "name": "Socially Selling Food: AI 101 Prep Session",
-          "description": "A free hands-on prep session that introduces food-related businesses to the AI tools used in the Socially Selling Food program.",
+          "name": "Socially Selling Food: Portable Offer Building Lab",
+          "description": "A hands-on working lab that helps food-related businesses build and launch sellable offers for 24/7 online revenue.",
           "provider": {
             "@type": "Organization",
             "name": "Phresh Phactory",
@@ -130,10 +303,9 @@ const SociallySellingFood = () => {
             "jobTitle": "Strategic Advisor"
           },
           "courseMode": "online",
-          "isAccessibleForFree": true,
           "offers": {
             "@type": "Offer",
-            "price": "0",
+            "price": "99",
             "priceCurrency": "USD",
             "availability": "https://schema.org/InStock"
           }
@@ -163,15 +335,26 @@ const SociallySellingFood = () => {
               A hands-on lab for restaurants, food trucks, caterers, chefs, and food-related businesses to build offers that generate revenue 24/7.
             </p>
             
-            {/* Single Primary CTA */}
-            <Button 
-              size="lg" 
-              onClick={scrollToForm}
-              className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
-            >
-              Register for Free AI 101
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            {/* Dual CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                onClick={scrollToForm}
+                className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+              >
+                Start Free: AI 101 Prep
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                onClick={scrollToPaidForm}
+                className="text-lg px-8 py-6 h-auto border-tertiary text-tertiary hover:bg-tertiary/10"
+              >
+                View Full Program
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
             
             {/* Microcopy beneath CTA */}
             <p className="text-sm text-muted-foreground mt-4">
@@ -232,17 +415,20 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-        {/* Start Here: Free AI 101 */}
-        <section className="py-12 md:py-16 px-4">
+        {/* Free AI 101 Registration Section */}
+        <section ref={formRef} className="py-12 md:py-16 px-4">
           <div className="max-w-3xl mx-auto">
             <div className="p-6 md:p-8 border-2 border-tertiary rounded-xl bg-tertiary/5">
               <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-                START HERE
+                START HERE — FREE
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Free AI 101 Prep Session
+                AI 101 Prep Session
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-lg text-muted-foreground mb-2">
+                <span className="font-medium text-foreground">Learn tools that speed creation and marketing.</span>
+              </p>
+              <p className="text-muted-foreground mb-6">
                 Get set up with the AI tools you will use throughout the program. This session prepares you for the hands-on work ahead and helps you decide if the full program is right for you.
               </p>
               <div className="flex flex-wrap gap-4 mb-6">
@@ -255,14 +441,100 @@ const SociallySellingFood = () => {
                   <span>2:30 PM Eastern</span>
                 </div>
               </div>
-              <Button 
-                size="lg"
-                onClick={scrollToForm}
-                className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
-              >
-                Register for Free AI 101
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+
+              {/* Free Registration Form */}
+              <div className="bg-card border border-border rounded-xl p-6">
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmitFree)} className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your full name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="your@email.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="businessName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Business Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your business name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="businessWebsite"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Website / EatOkra Profile</FormLabel>
+                            <FormControl>
+                              <Input placeholder="https://..." {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="googleEmail"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Google Email (for Classroom access)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="your.name@gmail.com" {...field} />
+                          </FormControl>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Must be a @gmail.com address for Google Classroom access.
+                          </p>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full text-lg py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Registering...' : 'Register for Free AI 101'}
+                    </Button>
+                    <p className="text-sm text-center text-muted-foreground">
+                      No payment required. You will decide whether to continue after the session.
+                    </p>
+                  </form>
+                </Form>
+              </div>
             </div>
           </div>
         </section>
@@ -286,190 +558,211 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-        {/* Your Starting Point - Linear Path */}
-        <section className="py-12 md:py-16 px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
-              Your Starting Point
-            </h2>
-            
-            {/* Step 1 */}
-            <div className="relative mb-8">
-              <div className="flex gap-4 p-6 bg-tertiary/10 border-2 border-tertiary rounded-xl">
-                <div className="flex-shrink-0 w-10 h-10 bg-tertiary text-tertiary-foreground rounded-full flex items-center justify-center font-bold">
-                  1
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">Attend the Free AI 101 Prep Session</h3>
-                  <p className="text-muted-foreground">
-                    Get set up with the AI tools you will use throughout the program. This session prepares you for the hands-on work ahead and helps you decide if continuing is right for you.
-                  </p>
-                  <div className="flex flex-wrap gap-4 mt-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-tertiary" />
-                      <span>Feb 3, 2026</span>
+        {/* Full Program - Paid Sessions */}
+        <section ref={paidFormRef} className="py-12 md:py-16 px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                The Complete Portable Offer Building Lab
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Four weekly sessions to build and launch your sellable offers. Every Tuesday from February 10 to March 3, 2026.
+              </p>
+            </div>
+
+            {/* Session Cards */}
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              {SESSIONS.map((session, index) => (
+                <div
+                  key={session.id}
+                  className={`p-5 rounded-xl border-2 transition-all cursor-pointer ${
+                    selectedSessions.includes(session.id)
+                      ? 'border-tertiary bg-tertiary/10'
+                      : 'border-border hover:border-tertiary/50 bg-card'
+                  }`}
+                  onClick={() => toggleSession(session.id)}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="pt-1">
+                      <Checkbox
+                        checked={selectedSessions.includes(session.id)}
+                        onCheckedChange={() => toggleSession(session.id)}
+                        className="h-5 w-5"
+                      />
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4 text-tertiary" />
-                      <span>2:30 PM ET</span>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-xs font-medium text-tertiary bg-tertiary/20 px-2 py-0.5 rounded">
+                          Session {index + 1}
+                        </span>
+                        <span className="text-xs text-muted-foreground">{session.date}</span>
+                      </div>
+                      <h3 className="font-semibold text-foreground mb-1">{session.name}</h3>
+                      <p className="text-sm text-muted-foreground">{session.description}</p>
+                      <p className="text-sm font-medium text-foreground mt-2">${session.price}</p>
                     </div>
                   </div>
                 </div>
-              </div>
-              {/* Connector line */}
-              <div className="absolute left-9 top-full h-8 w-0.5 bg-border"></div>
+              ))}
             </div>
 
-            {/* Step 2 */}
-            <div className="flex gap-4 p-6 bg-muted/50 border border-border rounded-xl">
-              <div className="flex-shrink-0 w-10 h-10 bg-muted text-muted-foreground rounded-full flex items-center justify-center font-bold">
-                2
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-semibold text-foreground mb-2">Decide Whether to Continue</h3>
-                <p className="text-muted-foreground mb-4">
-                  After AI 101, attendees will be invited to continue into a 4-session working lab focused on building and launching sellable offers.
-                </p>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-muted-foreground" />
-                    <span>Package what you sell into digital offers</span>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-muted-foreground" />
-                    <span>Build conversion-ready video content</span>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-muted-foreground" />
-                    <span>Create timely, sellable promotional drops</span>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-muted-foreground" />
-                    <span>Prepare systems that sell 24/7</span>
+            {/* Bundle Option */}
+            <div
+              className={`p-6 rounded-xl border-2 transition-all cursor-pointer mb-8 ${
+                allSessionsSelected
+                  ? 'border-tertiary bg-tertiary/10'
+                  : 'border-tertiary/50 hover:border-tertiary bg-gradient-to-r from-tertiary/5 to-tertiary/10'
+              }`}
+              onClick={selectAllSessions}
+            >
+              <div className="flex items-center gap-4">
+                <Checkbox
+                  checked={allSessionsSelected}
+                  onCheckedChange={selectAllSessions}
+                  className="h-6 w-6"
+                />
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Sparkles className="h-5 w-5 text-tertiary" />
+                    <span className="font-semibold text-foreground">All 4 Sessions Bundle</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Complete the full journey from idea to launch
                   </p>
                 </div>
-                <p className="text-sm text-muted-foreground mt-4 italic">
-                  Full program details shared during AI 101. No commitment required to attend the free session.
-                </p>
+                <div className="text-right">
+                  <p className="text-2xl font-bold text-foreground">${BUNDLE_PRICE}</p>
+                  <p className="text-sm text-tertiary font-medium">Save ${INDIVIDUAL_TOTAL - BUNDLE_PRICE}</p>
+                  <p className="text-xs text-muted-foreground line-through">${INDIVIDUAL_TOTAL}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Registration Form */}
-        <section ref={formRef} className="py-12 md:py-16 px-4 bg-tertiary/5 border-y border-tertiary/20">
-          <div className="max-w-xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Register for Free AI 101
-              </h2>
-              <p className="text-muted-foreground">
-                Tuesday, February 3, 2026 at 2:30 PM Eastern
-              </p>
-            </div>
-
-            <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
-              {/* Framing line above form */}
-              <p className="text-sm text-center text-muted-foreground mb-6 pb-4 border-b border-border">
-                This registration is for the free AI 101 prep session only.
-              </p>
-
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Your full name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
+            {/* Pricing Summary */}
+            {someSessionsSelected && (
+              <div className="bg-card border border-border rounded-xl p-6 mb-8">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-muted-foreground">
+                    {allSessionsSelected
+                      ? 'All 4 Sessions (Bundle)'
+                      : `${selectedSessions.length} session${selectedSessions.length > 1 ? 's' : ''} selected`}
+                  </span>
+                  <div className="text-right">
+                    <span className="text-2xl font-bold text-foreground">${calculateTotal()}</span>
+                    {getSavings() > 0 && (
+                      <span className="ml-2 text-sm text-tertiary font-medium">
+                        (Save ${getSavings()})
+                      </span>
                     )}
-                  />
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4">
+                  All sessions run Tuesdays, 2:30 PM – 4:00 PM Eastern
+                </p>
+              </div>
+            )}
 
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input placeholder="your@email.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+            {/* Paid Registration Form */}
+            {someSessionsSelected && (
+              <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
+                <h3 className="text-xl font-semibold text-foreground mb-6">Complete Your Enrollment</h3>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmitPaid)} className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your full name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                              <Input placeholder="your@email.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
 
-                  <FormField
-                    control={form.control}
-                    name="businessName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Business Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Your business name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="businessName"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Business Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your business name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="businessWebsite"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Website / EatOkra Profile</FormLabel>
+                            <FormControl>
+                              <Input placeholder="https://..." {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
 
-                  <FormField
-                    control={form.control}
-                    name="businessWebsite"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Business Website or EatOkra Profile</FormLabel>
-                        <FormControl>
-                          <Input placeholder="https://..." {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="googleEmail"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Google Email (for Classroom access)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="your.name@gmail.com" {...field} />
+                          </FormControl>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Must be a @gmail.com address for Google Classroom access.
+                          </p>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="googleEmail"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Google Email</FormLabel>
-                        <FormControl>
-                          <Input placeholder="your.name@gmail.com" {...field} />
-                        </FormControl>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          For Google Classroom access. Must be a @gmail.com address.
-                        </p>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full text-lg py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? 'Registering...' : 'Register for Free AI 101'}
-                  </Button>
-
-                  {/* Reassurance line below button */}
-                  <p className="text-sm text-center text-muted-foreground pt-2">
-                    No payment required. You will decide whether to continue after the session.
-                  </p>
-                </form>
-              </Form>
-            </div>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full text-lg py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Processing...' : `Proceed to Payment — $${calculateTotal()}`}
+                    </Button>
+                    <p className="text-sm text-center text-muted-foreground">
+                      Secure payment via Stripe. You'll receive Google Classroom access within 24 hours.
+                    </p>
+                  </form>
+                </Form>
+              </div>
+            )}
           </div>
         </section>
 
         {/* What Happens After */}
-        <section className="py-12 md:py-16 px-4">
+        <section className="py-12 md:py-16 px-4 bg-muted/30">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
               What Happens After the Lab
@@ -519,14 +812,25 @@ const SociallySellingFood = () => {
             <p className="text-lg text-muted-foreground mb-8">
               Start with the free AI 101 prep session. See if this is right for you.
             </p>
-            <Button 
-              size="lg" 
-              onClick={scrollToForm}
-              className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
-            >
-              Register for Free AI 101
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                onClick={scrollToForm}
+                className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+              >
+                Register for Free AI 101
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                onClick={scrollToPaidForm}
+                className="text-lg px-8 py-6 h-auto border-tertiary text-tertiary hover:bg-tertiary/10"
+              >
+                Enroll in Full Program
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </section>
 

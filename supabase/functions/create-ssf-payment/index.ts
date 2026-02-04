@@ -16,10 +16,11 @@ const logStep = (step: string, details?: unknown) => {
 
 // Valid price IDs for SSF sessions
 const VALID_PRICE_IDS = [
-  "price_1SsYPvQP580MvrLE8Xvac2Zh", // Session 1
-  "price_1SsYQiQP580MvrLEDiRA7jXl", // Session 2
-  "price_1SsYR7QP580MvrLEBqTG3EAy", // Session 3
-  "price_1SsYReQP580MvrLEH3PchosX", // Session 4
+  "price_1SsYPvQP580MvrLE8Xvac2Zh", // Session 1: Portable Offer Build Lab
+  "price_1SsYQiQP580MvrLEDiRA7jXl", // Session 2: Offer Packaging + Content Creation
+  "price_1SsYR7QP580MvrLEBqTG3EAy", // Session 3: Visibility + Launch Preparation
+  "price_1SsYReQP580MvrLEH3PchosX", // Session 4: Launch + Amplification
+  "price_1Sx854QP580MvrLEZAxk6BOn", // Bundle: All 4 Sessions ($299)
 ];
 
 serve(async (req) => {
