@@ -22,9 +22,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-// Session dates for calendar highlighting
+// Session dates for calendar highlighting (only paid sessions)
 const SESSION_DATES = [
-  new Date(2026, 1, 3),  // AI 101 - Feb 3
   new Date(2026, 1, 10), // Session 1 - Feb 10
   new Date(2026, 1, 17), // Session 2 - Feb 17
   new Date(2026, 1, 24), // Session 3 - Feb 24
@@ -425,129 +424,6 @@ const SociallySellingFood = () => {
           </div>
         </section>
 
-        {/* Free AI 101 Registration Section */}
-        <section ref={formRef} className="py-12 md:py-16 px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="p-6 md:p-8 border-2 border-tertiary rounded-xl bg-tertiary/5">
-              <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-                START HERE — FREE
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                AI 101 Prep Session
-              </h2>
-              <p className="text-lg text-muted-foreground mb-2">
-                <span className="font-medium text-foreground">Learn tools that speed creation and marketing.</span>
-              </p>
-              <p className="text-muted-foreground mb-6">
-                Get set up with the AI tools you will use throughout the program. This session prepares you for the hands-on work ahead and helps you decide if the full program is right for you.
-              </p>
-              <div className="flex flex-wrap gap-4 mb-6">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Calendar className="h-5 w-5 text-tertiary" />
-                  <span>Tuesday, February 3, 2026</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Clock className="h-5 w-5 text-tertiary" />
-                  <span>2:30 PM Eastern</span>
-                </div>
-              </div>
-
-              {/* Free Registration Form */}
-              <div className="bg-card border border-border rounded-xl p-6">
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmitFree)} className="space-y-4">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your full name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="your@email.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="businessName"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Business Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your business name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="businessWebsite"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Website / EatOkra Profile</FormLabel>
-                            <FormControl>
-                              <Input placeholder="https://..." {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-
-                    <FormField
-                      control={form.control}
-                      name="googleEmail"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Google Email (for Classroom access)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="your.name@gmail.com" {...field} />
-                          </FormControl>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            Must be a @gmail.com address for Google Classroom access.
-                          </p>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full text-lg py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? 'Registering...' : 'Register for Free AI 101'}
-                    </Button>
-                    <p className="text-sm text-center text-muted-foreground">
-                      No payment required. You will decide whether to continue after the session.
-                    </p>
-                  </form>
-                </Form>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Who This Is For */}
         <section className="py-12 md:py-16 px-4 bg-muted/30">
@@ -595,14 +471,10 @@ const SociallySellingFood = () => {
                   }}
                   disabled={() => true}
                 />
-                <div className="flex flex-wrap justify-center gap-4 mt-4 pt-4 border-t border-border text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-muted-foreground/50"></div>
-                    <span className="text-muted-foreground"><span className="line-through">Tue, Feb 3</span> – AI 101 (Free – Completed)</span>
-                  </div>
+                <div className="flex justify-center mt-4 pt-4 border-t border-border text-sm">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-tertiary"></div>
-                    <span className="text-muted-foreground"><span className="font-medium text-foreground">Feb 10, 17, 24 & Mar 3</span> – Paid Sessions</span>
+                    <span className="text-muted-foreground">Session dates: <span className="font-medium text-foreground">Feb 10, 17, 24 & Mar 3</span></span>
                   </div>
                 </div>
               </div>
