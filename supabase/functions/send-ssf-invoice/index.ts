@@ -153,7 +153,7 @@ serve(async (req) => {
     `;
 
     const emailResponse = await resend.emails.send({
-      from: "Socially Selling Food <notifications@tx.phreshphactory.com>",
+      from: "Socially Selling Food <notifications@tx.phreshphactory.co>",
       to: [safeEmail],
       subject: "Your Socially Selling Food Payment Link — $299 Bundle",
       html: emailHtml,
