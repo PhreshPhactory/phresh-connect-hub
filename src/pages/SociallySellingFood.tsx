@@ -38,10 +38,10 @@ const ALL_SESSION_DATES = [
   { date: new Date(2026, 3, 7), cohort: 'mar', type: 'session', sessionNum: 4, label: 'Session 4', status: 'upcoming' },
 ];
 
-// Get dates that are open for registration
-const OPEN_DATES = ALL_SESSION_DATES.filter(d => d.status === 'open' || (d.cohort === 'mar' && d.status === 'upcoming'));
-const COMPLETED_DATES = ALL_SESSION_DATES.filter(d => d.status === 'completed');
-const IN_PROGRESS_DATES = ALL_SESSION_DATES.filter(d => d.cohort === 'feb' && d.status !== 'completed');
+// All dates are open for registration - ongoing enrollment
+const ALL_CLICKABLE_DATES = ALL_SESSION_DATES;
+const AI101_DATES = ALL_SESSION_DATES.filter(d => d.type === 'ai101');
+const PAID_SESSION_DATES = ALL_SESSION_DATES.filter(d => d.type === 'session');
 
 // Helper to check if a date matches
 const isSameDay = (d1: Date, d2: Date) => 
@@ -459,24 +459,30 @@ const SociallySellingFood = () => {
         <section ref={paidFormRef} className="py-12 md:py-16 px-4">
           <div className="max-w-4xl mx-auto">
             
-            {/* February Cohort - In Progress */}
+            {/* February Cohort - Clickable */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-6">
-                <h2 className="text-xl md:text-2xl font-bold text-muted-foreground">February Cohort</h2>
-                <span className="px-3 py-1 bg-muted text-muted-foreground text-sm rounded-full">In Progress</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">February Cohort</h2>
+                <span className="px-3 py-1 bg-tertiary text-tertiary-foreground text-sm font-medium rounded-full">Register Now</span>
               </div>
-              <div className="p-5 border border-muted rounded-xl bg-muted/20 opacity-60">
+              <div className="p-5 border border-tertiary/30 rounded-xl bg-card">
                 <div className="grid md:grid-cols-5 gap-4">
-                  <div className="p-3 rounded-lg bg-muted/50 text-center">
-                    <p className="text-xs text-muted-foreground mb-1 line-through">AI 101 (Free)</p>
-                    <p className="text-sm font-medium text-muted-foreground line-through">Feb 3</p>
-                    <span className="text-xs text-accent-foreground bg-accent px-2 py-0.5 rounded mt-1 inline-block">Done</span>
-                  </div>
-                  {['Feb 10', 'Feb 17', 'Feb 24', 'Mar 3'].map((date, i) => (
-                    <div key={date} className="p-3 rounded-lg bg-card border border-border text-center">
-                      <p className="text-xs text-muted-foreground mb-1">Session {i + 1}</p>
-                      <p className="text-sm font-medium text-foreground">{date}</p>
-                    </div>
+                  {ALL_SESSION_DATES.filter(s => s.cohort === 'feb').map((session) => (
+                    <button
+                      key={session.date.toISOString()}
+                      onClick={() => {
+                        setSelectedCalendarDate(session.date);
+                        setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                      }}
+                      className={`p-3 rounded-lg text-center transition-all hover:scale-105 cursor-pointer ${
+                        selectedCalendarDate && isSameDay(selectedCalendarDate, session.date)
+                          ? 'bg-tertiary text-tertiary-foreground ring-2 ring-tertiary ring-offset-2'
+                          : 'bg-tertiary/10 border border-tertiary/30 hover:bg-tertiary/20'
+                      }`}
+                    >
+                      <p className="text-xs mb-1">{session.type === 'ai101' ? 'AI 101 (Free)' : `Session ${session.sessionNum}`}</p>
+                      <p className="text-sm font-bold">{session.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -486,10 +492,31 @@ const SociallySellingFood = () => {
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-6">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground">March Cohort</h2>
-                <span className="px-3 py-1 bg-tertiary text-tertiary-foreground text-sm font-medium rounded-full">Open for Registration</span>
+                <span className="px-3 py-1 bg-tertiary text-tertiary-foreground text-sm font-medium rounded-full">Register Now</span>
+              </div>
+              <div className="p-5 border border-tertiary/30 rounded-xl bg-card mb-8">
+                <div className="grid md:grid-cols-5 gap-4">
+                  {ALL_SESSION_DATES.filter(s => s.cohort === 'mar').map((session) => (
+                    <button
+                      key={session.date.toISOString()}
+                      onClick={() => {
+                        setSelectedCalendarDate(session.date);
+                        setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+                      }}
+                      className={`p-3 rounded-lg text-center transition-all hover:scale-105 cursor-pointer ${
+                        selectedCalendarDate && isSameDay(selectedCalendarDate, session.date)
+                          ? 'bg-tertiary text-tertiary-foreground ring-2 ring-tertiary ring-offset-2'
+                          : 'bg-tertiary/10 border border-tertiary/30 hover:bg-tertiary/20'
+                      }`}
+                    >
+                      <p className="text-xs mb-1">{session.type === 'ai101' ? 'AI 101 (Free)' : `Session ${session.sessionNum}`}</p>
+                      <p className="text-sm font-bold">{session.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                    </button>
+                  ))}
+                </div>
               </div>
               
-              {/* Calendar View */}
+              {/* Calendar View - All Sessions */}
               <div className="flex flex-col items-center mb-8">
                 <div className="bg-card border border-border rounded-xl p-4 md:p-6">
                   <CalendarComponent
@@ -498,38 +525,33 @@ const SociallySellingFood = () => {
                     onSelect={(date) => {
                       if (date) {
                         const sessionInfo = getSessionForDate(date);
-                        if (sessionInfo && sessionInfo.cohort === 'mar') {
+                        if (sessionInfo) {
                           setSelectedCalendarDate(date);
-                          // Scroll to form after selection
-                          setTimeout(() => {
-                            formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                          }, 100);
+                          setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
                         }
                       }
                     }}
-                    month={new Date(2026, 2, 1)}
-                    numberOfMonths={2}
+                    month={new Date(2026, 1, 1)}
+                    numberOfMonths={3}
                     className="pointer-events-auto"
                     modifiers={{
-                      openSession: OPEN_DATES.map(d => d.date),
-                      completedSession: COMPLETED_DATES.map(d => d.date),
-                      inProgressSession: IN_PROGRESS_DATES.map(d => d.date),
+                      ai101Session: AI101_DATES.map(d => d.date),
+                      paidSession: PAID_SESSION_DATES.map(d => d.date),
                     }}
                     modifiersClassNames={{
-                      openSession: "bg-tertiary text-tertiary-foreground hover:bg-tertiary/80 cursor-pointer font-bold",
-                      completedSession: "bg-muted text-muted-foreground line-through opacity-50",
-                      inProgressSession: "bg-muted/50 text-muted-foreground opacity-60",
+                      ai101Session: "bg-accent text-accent-foreground hover:bg-accent/80 cursor-pointer font-bold",
+                      paidSession: "bg-tertiary text-tertiary-foreground hover:bg-tertiary/80 cursor-pointer font-bold",
                     }}
-                    disabled={(date) => !getSessionForDate(date) || getSessionForDate(date)?.cohort !== 'mar'}
+                    disabled={(date) => !getSessionForDate(date)}
                   />
                   <div className="flex flex-wrap justify-center gap-4 mt-4 pt-4 border-t border-border text-sm">
                     <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-tertiary"></div>
-                      <span className="text-muted-foreground">Click a gold date to register</span>
+                      <div className="w-3 h-3 rounded-full bg-accent"></div>
+                      <span className="text-muted-foreground">AI 101 (Free)</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-muted"></div>
-                      <span className="text-muted-foreground">Feb cohort (closed)</span>
+                      <div className="w-3 h-3 rounded-full bg-tertiary"></div>
+                      <span className="text-muted-foreground">Paid Sessions ($99 each)</span>
                     </div>
                   </div>
                 </div>
