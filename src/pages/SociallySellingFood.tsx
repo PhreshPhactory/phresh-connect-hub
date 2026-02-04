@@ -28,7 +28,7 @@ const SESSIONS = [
     priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh',
     name: 'Portable Offer Build Lab',
     description: 'Choose and begin building a sellable product, service, or event',
-    date: 'Feb 10, 2026',
+    date: 'Tuesday, Feb 10, 2026 · 2:30 PM to 4 PM ET',
     price: 99,
   },
   {
@@ -36,7 +36,7 @@ const SESSIONS = [
     priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl',
     name: 'Offer Packaging + Content Creation Lab',
     description: 'Turn the idea into a polished, customer-ready offer',
-    date: 'Feb 17, 2026',
+    date: 'Tuesday, Feb 17, 2026 · 2:30 PM to 4 PM ET',
     price: 99,
   },
   {
@@ -44,7 +44,7 @@ const SESSIONS = [
     priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy',
     name: 'Visibility + Launch Preparation Lab',
     description: 'Build marketing assets and prepare for distribution',
-    date: 'Feb 24, 2026',
+    date: 'Tuesday, Feb 24, 2026 · 2:30 PM to 4 PM ET',
     price: 99,
   },
   {
@@ -52,7 +52,7 @@ const SESSIONS = [
     priceId: 'price_1SsYReQP580MvrLEH3PchosX',
     name: 'Launch + Amplification Lab',
     description: 'Go live and position the offer for EatOkra promotion',
-    date: 'Mar 3, 2026',
+    date: 'Tuesday, Mar 3, 2026 · 2:30 PM to 4 PM ET',
     price: 99,
   },
 ];
