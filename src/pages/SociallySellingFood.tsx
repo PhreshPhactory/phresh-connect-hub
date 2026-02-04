@@ -27,15 +27,23 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-// Simplified session options - all available for registration
+// Session options - all available for registration
 const SESSION_OPTIONS = [
-  { id: 'feb-ai101', label: 'AI 101 Prep — Feb 3 (Free)', date: 'Feb 3, 2026', type: 'free', cohort: 'February' },
-  { id: 'feb-bundle', label: 'Full Program — Feb 10 - Mar 3 ($299)', date: 'Feb 10 - Mar 3', type: 'bundle', price: 299, cohort: 'February' },
-  { id: 'mar-ai101', label: 'AI 101 Prep — Mar 10 (Free)', date: 'Mar 10, 2026', type: 'free', cohort: 'March' },
-  { id: 'mar-bundle', label: 'Full Program — Mar 17 - Apr 7 ($299)', date: 'Mar 17 - Apr 7', type: 'bundle', price: 299, cohort: 'March' },
+  // February Cohort
+  { id: 'feb-ai101', label: 'AI 101 Prep — Feb 3', date: 'Feb 3', type: 'free', cohort: 'February' },
+  { id: 'feb-s1', label: 'Session 1 — Feb 10', date: 'Feb 10', type: 'single', price: 99, priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh', cohort: 'February' },
+  { id: 'feb-s2', label: 'Session 2 — Feb 17', date: 'Feb 17', type: 'single', price: 99, priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl', cohort: 'February' },
+  { id: 'feb-s3', label: 'Session 3 — Feb 24', date: 'Feb 24', type: 'single', price: 99, priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy', cohort: 'February' },
+  { id: 'feb-s4', label: 'Session 4 — Mar 3', date: 'Mar 3', type: 'single', price: 99, priceId: 'price_1SsYReQP580MvrLEH3PchosX', cohort: 'February' },
+  { id: 'feb-bundle', label: 'All 4 Sessions Bundle — Feb 10 - Mar 3', date: 'Feb 10 - Mar 3', type: 'bundle', price: 299, priceId: 'price_1Sx854QP580MvrLEZAxk6BOn', cohort: 'February' },
+  // March Cohort
+  { id: 'mar-ai101', label: 'AI 101 Prep — Mar 10', date: 'Mar 10', type: 'free', cohort: 'March' },
+  { id: 'mar-s1', label: 'Session 1 — Mar 17', date: 'Mar 17', type: 'single', price: 99, priceId: 'price_1SsYPvQP580MvrLE8Xvac2Zh', cohort: 'March' },
+  { id: 'mar-s2', label: 'Session 2 — Mar 24', date: 'Mar 24', type: 'single', price: 99, priceId: 'price_1SsYQiQP580MvrLEDiRA7jXl', cohort: 'March' },
+  { id: 'mar-s3', label: 'Session 3 — Mar 31', date: 'Mar 31', type: 'single', price: 99, priceId: 'price_1SsYR7QP580MvrLEBqTG3EAy', cohort: 'March' },
+  { id: 'mar-s4', label: 'Session 4 — Apr 7', date: 'Apr 7', type: 'single', price: 99, priceId: 'price_1SsYReQP580MvrLEH3PchosX', cohort: 'March' },
+  { id: 'mar-bundle', label: 'All 4 Sessions Bundle — Mar 17 - Apr 7', date: 'Mar 17 - Apr 7', type: 'bundle', price: 299, priceId: 'price_1Sx854QP580MvrLEZAxk6BOn', cohort: 'March' },
 ];
-
-const BUNDLE_PRICE_ID = 'price_1Sx854QP580MvrLEZAxk6BOn';
 
 const formSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -59,6 +67,7 @@ const SociallySellingFood = () => {
   
   const selectedOption = SESSION_OPTIONS.find(s => s.id === selectedSession);
   const isFreeSession = selectedOption?.type === 'free';
+  const isPaidSession = selectedOption?.type === 'single' || selectedOption?.type === 'bundle';
 
   // Check for success/cancel from Stripe
   const paymentSuccess = searchParams.get('success') === 'true';
@@ -147,8 +156,8 @@ const SociallySellingFood = () => {
 
         form.reset();
         setSelectedSession('');
-      } else {
-        // Paid bundle registration
+      } else if (isPaidSession && selectedOption?.priceId) {
+        // Paid session registration
         const { error: dbError } = await supabase
           .from('socially_selling_food_enrollments')
           .insert({
@@ -158,10 +167,10 @@ const SociallySellingFood = () => {
             business_city_state: 'N/A',
             business_website: data.businessWebsite,
             google_email: data.googleEmail,
-            selected_sessions: ['bundle'],
+            selected_sessions: [selectedSession],
             confidence_level: 5,
             accommodations: null,
-            total_amount: 299,
+            total_amount: selectedOption.price,
             payment_status: 'pending',
           });
 
@@ -171,7 +180,7 @@ const SociallySellingFood = () => {
           'create-ssf-payment',
           {
             body: {
-              priceIds: [BUNDLE_PRICE_ID],
+              priceIds: [selectedOption.priceId],
               customerEmail: data.email,
               customerName: data.name,
             },
@@ -262,31 +271,44 @@ const SociallySellingFood = () => {
                       <SelectTrigger className="w-full h-12">
                         <SelectValue placeholder="Choose a session..." />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="feb-ai101" className="py-3">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs bg-accent text-accent-foreground px-2 py-0.5 rounded">FREE</span>
-                            <span>AI 101 Prep — Feb 3</span>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="feb-bundle" className="py-3">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs bg-tertiary text-tertiary-foreground px-2 py-0.5 rounded">$299</span>
-                            <span>Full Program — Feb 10 - Mar 3</span>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="mar-ai101" className="py-3">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs bg-accent text-accent-foreground px-2 py-0.5 rounded">FREE</span>
-                            <span>AI 101 Prep — Mar 10</span>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="mar-bundle" className="py-3">
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs bg-tertiary text-tertiary-foreground px-2 py-0.5 rounded">$299</span>
-                            <span>Full Program — Mar 17 - Apr 7</span>
-                          </div>
-                        </SelectItem>
+                      <SelectContent className="max-h-80">
+                        {/* February Cohort */}
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground bg-muted/50">February Cohort</div>
+                        {SESSION_OPTIONS.filter(s => s.cohort === 'February').map((session) => (
+                          <SelectItem key={session.id} value={session.id} className="py-2">
+                            <div className="flex items-center gap-2">
+                              <span className={`text-xs px-2 py-0.5 rounded ${
+                                session.type === 'free' 
+                                  ? 'bg-accent text-accent-foreground' 
+                                  : session.type === 'bundle'
+                                    ? 'bg-tertiary text-tertiary-foreground'
+                                    : 'bg-primary text-primary-foreground'
+                              }`}>
+                                {session.type === 'free' ? 'FREE' : `$${session.price}`}
+                              </span>
+                              <span>{session.label}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                        
+                        {/* March Cohort */}
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground bg-muted/50 mt-1">March Cohort</div>
+                        {SESSION_OPTIONS.filter(s => s.cohort === 'March').map((session) => (
+                          <SelectItem key={session.id} value={session.id} className="py-2">
+                            <div className="flex items-center gap-2">
+                              <span className={`text-xs px-2 py-0.5 rounded ${
+                                session.type === 'free' 
+                                  ? 'bg-accent text-accent-foreground' 
+                                  : session.type === 'bundle'
+                                    ? 'bg-tertiary text-tertiary-foreground'
+                                    : 'bg-primary text-primary-foreground'
+                              }`}>
+                                {session.type === 'free' ? 'FREE' : `$${session.price}`}
+                              </span>
+                              <span>{session.label}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     {selectedOption && (
