@@ -22,56 +22,36 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-// Cohort definitions
-const COHORTS = [
-  {
-    id: 'cohort1',
-    name: 'February Cohort',
-    status: 'in-progress', // 'upcoming', 'in-progress', 'completed'
-    ai101: {
-      date: 'Tuesday, Feb 3, 2026',
-      status: 'completed',
-    },
-    sessions: [
-      { date: 'Tuesday, Feb 10, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
-      { date: 'Tuesday, Feb 17, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
-      { date: 'Tuesday, Feb 24, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
-      { date: 'Tuesday, Mar 3, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
-    ],
-    calendarDates: [
-      new Date(2026, 1, 10),
-      new Date(2026, 1, 17),
-      new Date(2026, 1, 24),
-      new Date(2026, 2, 3),
-    ],
-  },
-  {
-    id: 'cohort2',
-    name: 'March Cohort',
-    status: 'upcoming',
-    ai101: {
-      date: 'Tuesday, Mar 10, 2026',
-      time: '2:30 PM Eastern',
-      status: 'open',
-    },
-    sessions: [
-      { date: 'Tuesday, Mar 17, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
-      { date: 'Tuesday, Mar 24, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
-      { date: 'Tuesday, Mar 31, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
-      { date: 'Tuesday, Apr 7, 2026 · 2:30 PM to 4 PM ET', status: 'upcoming' },
-    ],
-    calendarDates: [
-      new Date(2026, 2, 10), // Mar 10 - AI 101
-      new Date(2026, 2, 17),
-      new Date(2026, 2, 24),
-      new Date(2026, 2, 31),
-      new Date(2026, 3, 7),
-    ],
-  },
+// All session dates across cohorts
+const ALL_SESSION_DATES = [
+  // February Cohort (past/in-progress)
+  { date: new Date(2026, 1, 3), cohort: 'feb', type: 'ai101', label: 'AI 101 (Free)', status: 'completed' },
+  { date: new Date(2026, 1, 10), cohort: 'feb', type: 'session', sessionNum: 1, label: 'Session 1', status: 'in-progress' },
+  { date: new Date(2026, 1, 17), cohort: 'feb', type: 'session', sessionNum: 2, label: 'Session 2', status: 'upcoming' },
+  { date: new Date(2026, 1, 24), cohort: 'feb', type: 'session', sessionNum: 3, label: 'Session 3', status: 'upcoming' },
+  { date: new Date(2026, 2, 3), cohort: 'feb', type: 'session', sessionNum: 4, label: 'Session 4', status: 'upcoming' },
+  // March Cohort (open for registration)
+  { date: new Date(2026, 2, 10), cohort: 'mar', type: 'ai101', label: 'AI 101 (Free)', status: 'open' },
+  { date: new Date(2026, 2, 17), cohort: 'mar', type: 'session', sessionNum: 1, label: 'Session 1', status: 'upcoming' },
+  { date: new Date(2026, 2, 24), cohort: 'mar', type: 'session', sessionNum: 2, label: 'Session 2', status: 'upcoming' },
+  { date: new Date(2026, 2, 31), cohort: 'mar', type: 'session', sessionNum: 3, label: 'Session 3', status: 'upcoming' },
+  { date: new Date(2026, 3, 7), cohort: 'mar', type: 'session', sessionNum: 4, label: 'Session 4', status: 'upcoming' },
 ];
 
-// Get next open cohort for registration
-const NEXT_COHORT = COHORTS.find(c => c.ai101.status === 'open') || COHORTS[1];
+// Get dates that are open for registration
+const OPEN_DATES = ALL_SESSION_DATES.filter(d => d.status === 'open' || (d.cohort === 'mar' && d.status === 'upcoming'));
+const COMPLETED_DATES = ALL_SESSION_DATES.filter(d => d.status === 'completed');
+const IN_PROGRESS_DATES = ALL_SESSION_DATES.filter(d => d.cohort === 'feb' && d.status !== 'completed');
+
+// Helper to check if a date matches
+const isSameDay = (d1: Date, d2: Date) => 
+  d1.getDate() === d2.getDate() && 
+  d1.getMonth() === d2.getMonth() && 
+  d1.getFullYear() === d2.getFullYear();
+
+// Find session info for a date
+const getSessionForDate = (date: Date) => 
+  ALL_SESSION_DATES.find(s => isSameDay(s.date, date));
 
 // Session data with Stripe price IDs (generic - applies to all cohorts)
 const SESSIONS = [
@@ -128,8 +108,20 @@ const SociallySellingFood = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedSessions, setSelectedSessions] = useState<string[]>([]);
   const [registrationType, setRegistrationType] = useState<'free' | 'paid'>('free');
+  const [selectedCalendarDate, setSelectedCalendarDate] = useState<Date | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const paidFormRef = useRef<HTMLDivElement>(null);
+  
+  // Get selected session info
+  const selectedSessionInfo = selectedCalendarDate ? getSessionForDate(selectedCalendarDate) : null;
+
+  // March cohort session dates for display
+  const MARCH_SESSION_DATES = [
+    'Tuesday, Mar 17, 2026 · 2:30 PM to 4 PM ET',
+    'Tuesday, Mar 24, 2026 · 2:30 PM to 4 PM ET',
+    'Tuesday, Mar 31, 2026 · 2:30 PM to 4 PM ET',
+    'Tuesday, Apr 7, 2026 · 2:30 PM to 4 PM ET',
+  ];
 
   // Check for success/cancel from Stripe
   const paymentSuccess = searchParams.get('success') === 'true';
@@ -501,156 +493,197 @@ const SociallySellingFood = () => {
               <div className="flex flex-col items-center mb-8">
                 <div className="bg-card border border-border rounded-xl p-4 md:p-6">
                   <CalendarComponent
-                    mode="multiple"
-                    selected={NEXT_COHORT.calendarDates}
+                    mode="single"
+                    selected={selectedCalendarDate || undefined}
+                    onSelect={(date) => {
+                      if (date) {
+                        const sessionInfo = getSessionForDate(date);
+                        if (sessionInfo && sessionInfo.cohort === 'mar') {
+                          setSelectedCalendarDate(date);
+                          // Scroll to form after selection
+                          setTimeout(() => {
+                            formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                          }, 100);
+                        }
+                      }
+                    }}
                     month={new Date(2026, 2, 1)}
                     numberOfMonths={2}
-                    className="pointer-events-none"
-                    classNames={{
-                      day_selected: "bg-tertiary text-tertiary-foreground hover:bg-tertiary hover:text-tertiary-foreground focus:bg-tertiary focus:text-tertiary-foreground",
-                      day_today: "bg-accent text-accent-foreground",
+                    className="pointer-events-auto"
+                    modifiers={{
+                      openSession: OPEN_DATES.map(d => d.date),
+                      completedSession: COMPLETED_DATES.map(d => d.date),
+                      inProgressSession: IN_PROGRESS_DATES.map(d => d.date),
                     }}
-                    disabled={() => true}
+                    modifiersClassNames={{
+                      openSession: "bg-tertiary text-tertiary-foreground hover:bg-tertiary/80 cursor-pointer font-bold",
+                      completedSession: "bg-muted text-muted-foreground line-through opacity-50",
+                      inProgressSession: "bg-muted/50 text-muted-foreground opacity-60",
+                    }}
+                    disabled={(date) => !getSessionForDate(date) || getSessionForDate(date)?.cohort !== 'mar'}
                   />
                   <div className="flex flex-wrap justify-center gap-4 mt-4 pt-4 border-t border-border text-sm">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full bg-tertiary"></div>
-                      <span className="text-muted-foreground"><span className="font-medium text-foreground">Mar 10</span> = Free AI 101</span>
+                      <span className="text-muted-foreground">Click a gold date to register</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-tertiary"></div>
-                      <span className="text-muted-foreground"><span className="font-medium text-foreground">Mar 17, 24, 31 & Apr 7</span> = Paid Sessions</span>
+                      <div className="w-3 h-3 rounded-full bg-muted"></div>
+                      <span className="text-muted-foreground">Feb cohort (closed)</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Free AI 101 Registration */}
-              <div ref={formRef} className="p-6 md:p-8 border-2 border-tertiary rounded-xl bg-tertiary/5 mb-8">
-                <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-                  START HERE — FREE
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                  AI 101 Prep Session
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  Get set up with the AI tools you will use throughout the program. This session prepares you for the hands-on work ahead.
-                </p>
-                <div className="flex flex-wrap gap-4 mb-6">
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <Calendar className="h-5 w-5 text-tertiary" />
-                    <span className="font-medium text-foreground">Tuesday, March 10, 2026</span>
+              {/* Dynamic Registration Form based on selected date */}
+              {selectedSessionInfo ? (
+                <div ref={formRef} className="p-6 md:p-8 border-2 border-tertiary rounded-xl bg-tertiary/5 mb-8">
+                  <div className="inline-block bg-tertiary text-tertiary-foreground px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+                    {selectedSessionInfo.type === 'ai101' ? 'START HERE — FREE' : `SESSION ${selectedSessionInfo.sessionNum} — $99`}
                   </div>
-                  <div className="flex items-center gap-2 text-muted-foreground">
-                    <Clock className="h-5 w-5 text-tertiary" />
-                    <span>2:30 PM Eastern</span>
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
+                    {selectedSessionInfo.type === 'ai101' ? 'AI 101 Prep Session' : SESSIONS[(selectedSessionInfo.sessionNum || 1) - 1]?.name}
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    {selectedSessionInfo.type === 'ai101' 
+                      ? 'Get set up with the AI tools you will use throughout the program. This session prepares you for the hands-on work ahead.'
+                      : SESSIONS[(selectedSessionInfo.sessionNum || 1) - 1]?.description
+                    }
+                  </p>
+                  <div className="flex flex-wrap gap-4 mb-6">
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Calendar className="h-5 w-5 text-tertiary" />
+                      <span className="font-medium text-foreground">
+                        {selectedSessionInfo.date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Clock className="h-5 w-5 text-tertiary" />
+                      <span>2:30 PM to 4 PM Eastern</span>
+                    </div>
+                  </div>
+
+                  {/* Registration Form */}
+                  <div className="bg-card border border-border rounded-xl p-6">
+                    <Form {...form}>
+                      <form onSubmit={form.handleSubmit(selectedSessionInfo.type === 'ai101' ? onSubmitFree : onSubmitPaid)} className="space-y-4">
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Name</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Your full name" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Email</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="your@email.com" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <FormField
+                            control={form.control}
+                            name="businessName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Business Name</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Your business name" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="businessWebsite"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Website / EatOkra Profile</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="https://..." {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <FormField
+                          control={form.control}
+                          name="googleEmail"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Google Email (for Classroom access)</FormLabel>
+                              <FormControl>
+                                <Input placeholder="your.name@gmail.com" {...field} />
+                              </FormControl>
+                              <p className="text-xs text-muted-foreground mt-1">
+                                Must be a @gmail.com address for Google Classroom access.
+                              </p>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <Button
+                          type="submit"
+                          size="lg"
+                          className="w-full text-lg py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting 
+                            ? 'Processing...' 
+                            : selectedSessionInfo.type === 'ai101' 
+                              ? `Register for Free AI 101 — ${selectedSessionInfo.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`
+                              : `Proceed to Payment — $99`
+                          }
+                        </Button>
+                        <p className="text-sm text-center text-muted-foreground">
+                          {selectedSessionInfo.type === 'ai101' 
+                            ? 'No payment required. You will decide whether to continue after the session.'
+                            : 'Secure payment via Stripe. You\'ll receive Google Classroom access within 24 hours.'
+                          }
+                        </p>
+                      </form>
+                    </Form>
                   </div>
                 </div>
-
-                {/* Free Registration Form */}
-                <div className="bg-card border border-border rounded-xl p-6">
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmitFree)} className="space-y-4">
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="name"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your full name" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email</FormLabel>
-                              <FormControl>
-                                <Input placeholder="your@email.com" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="businessName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Business Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Your business name" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="businessWebsite"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Website / EatOkra Profile</FormLabel>
-                              <FormControl>
-                                <Input placeholder="https://..." {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="googleEmail"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Google Email (for Classroom access)</FormLabel>
-                            <FormControl>
-                              <Input placeholder="your.name@gmail.com" {...field} />
-                            </FormControl>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              Must be a @gmail.com address for Google Classroom access.
-                            </p>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <Button
-                        type="submit"
-                        size="lg"
-                        className="w-full text-lg py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? 'Registering...' : 'Register for Free AI 101 — March 10'}
-                      </Button>
-                      <p className="text-sm text-center text-muted-foreground">
-                        No payment required. You will decide whether to continue after the session.
-                      </p>
-                    </form>
-                  </Form>
+              ) : (
+                <div ref={formRef} className="p-6 md:p-8 border-2 border-dashed border-tertiary/50 rounded-xl bg-tertiary/5 mb-8 text-center">
+                  <Calendar className="h-12 w-12 text-tertiary mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-foreground mb-2">Select a Date to Register</h3>
+                  <p className="text-muted-foreground">
+                    Click on any highlighted date in the calendar above to see details and register for that session.
+                  </p>
                 </div>
-              </div>
+              )}
+            </div>
 
-              {/* Paid Sessions heading */}
-              <div className="text-center mb-8">
-                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-                  After AI 101: The Portable Offer Building Lab
-                </h3>
-                <p className="text-muted-foreground">
-                  Four weekly paid sessions starting March 17, 2026
-                </p>
-              </div>
+            {/* All Sessions Overview */}
+            <div className="text-center mb-8">
+              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                March Cohort Schedule
+              </h3>
+              <p className="text-muted-foreground">
+                AI 101 (Free) → Then 4 paid sessions building your portable offers
+              </p>
             </div>
 
             {/* Session Cards */}
@@ -678,7 +711,7 @@ const SociallySellingFood = () => {
                         <span className="text-xs font-medium text-tertiary bg-tertiary/20 px-2 py-0.5 rounded">
                           Session {index + 1}
                         </span>
-                        <span className="text-xs text-muted-foreground">{NEXT_COHORT.sessions[index]?.date}</span>
+                        <span className="text-xs text-muted-foreground">{MARCH_SESSION_DATES[index]}</span>
                       </div>
                       <h3 className="font-semibold text-foreground mb-1">{session.name}</h3>
                       <p className="text-sm text-muted-foreground">{session.description}</p>
