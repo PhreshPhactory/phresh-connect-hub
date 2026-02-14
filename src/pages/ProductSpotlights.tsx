@@ -311,7 +311,7 @@ const ProductSpotlights = () => {
           </p>
           
           {/* Shop this item button */}
-          {hasShopLink && shopLink && (
+          {hasShopLink && shopLink ? (
             <a
               href={shopLink}
               target="_blank"
@@ -322,14 +322,13 @@ const ProductSpotlights = () => {
               <ShoppingBag className="w-4 h-4" />
               Shop this item
             </a>
-          )}
-          
-          {!hasShopLink && (
+          ) : (
             <Link 
               to={`/shop/${product.slug}`}
-              className="inline-flex items-center gap-1 text-xs font-medium text-primary"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-foreground text-background text-xs font-medium rounded-lg hover:bg-foreground/90 transition-colors"
             >
-              View Details <ArrowRight className="w-3 h-3" />
+              <ShoppingBag className="w-4 h-4" />
+              Shop this item
             </Link>
           )}
         </div>
