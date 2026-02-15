@@ -119,7 +119,7 @@ const AffiliateNewsletter = () => {
   return (
     <>
       <SEOHead
-        title="Become an Affiliate | Phresh Phactory"
+        title="Become an Affiliate | Phresh Phactory, Inc."
         description="Join as an affiliate to sell products you love and receive our product newsletter with the latest brands and opportunities."
       />
       <div className="min-h-screen bg-background flex items-center justify-center px-4 py-16">
@@ -253,11 +253,11 @@ const AffiliateNewsletter = () => {
                     <p>By submitting this application, you acknowledge and agree to the following:</p>
                     <ul className="list-disc pl-5 space-y-2">
                       <li>All information provided in this application is accurate and truthful. Providing false or misleading information may result in immediate removal from the program.</li>
-                      <li>As an affiliate, you will represent featured brands with integrity, professionalism, and in alignment with Phresh Phactory's standards and values.</li>
+                      <li>As an affiliate, you will represent featured brands with integrity, professionalism, and in alignment with Phresh Phactory, Inc.'s standards and values.</li>
                       <li>You consent to receive our product newsletter, which includes curated brand spotlights, new partnership opportunities, and program updates. You may unsubscribe at any time.</li>
-                      <li>Commission structures, rates, and terms will be communicated on a per-partnership basis. Phresh Phactory reserves the right to modify commission terms with prior notice.</li>
+                      <li>Commission structures, rates, and terms will be communicated on a per-partnership basis. Phresh Phactory, Inc. reserves the right to modify commission terms with prior notice.</li>
                       <li>Your personal information will be used solely for affiliate program administration and newsletter delivery. We do not sell or share your data with third parties.</li>
-                      <li>Phresh Phactory reserves the right to approve or decline any application, and to revoke affiliate status at any time for conduct that does not align with our brand standards.</li>
+                      <li>Phresh Phactory, Inc. reserves the right to approve or decline any application, and to revoke affiliate status at any time for conduct that does not align with our brand standards.</li>
                     </ul>
                   </div>
                   <div className="flex items-start gap-3 pt-2">
