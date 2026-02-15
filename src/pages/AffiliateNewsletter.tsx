@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { Check, ArrowRight } from 'lucide-react';
@@ -12,34 +13,79 @@ import { emailSchema, createRateLimiter, validateHoneypot } from '@/utils/securi
 
 const rateLimiter = createRateLimiter(5, 300000);
 
+const PRODUCT_CATEGORIES = [
+  'Food & Beverage',
+  'Beauty & Skincare',
+  'Hair Care',
+  'Health & Wellness',
+  'Fashion & Apparel',
+  'Home & Lifestyle',
+  'Kids & Baby',
+  'Art & Culture',
+  'Tech & Gadgets',
+  'Books & Education',
+  'Fitness & Sports',
+  'Jewelry & Accessories',
+];
+
 const AffiliateNewsletter = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [form, setForm] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    whatsapp: '',
+    textContact: '',
+    instagram: '',
+    tiktok: '',
+    youtube: '',
+    facebook: '',
+    twitter: '',
+  });
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [honeypot, setHoneypot] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+
+  const updateField = (field: string, value: string) => {
+    setForm(prev => ({ ...prev, [field]: value }));
+  };
+
+  const toggleCategory = (category: string) => {
+    setSelectedCategories(prev =>
+      prev.includes(category) ? prev.filter(c => c !== category) : [...prev, category]
+    );
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateHoneypot(honeypot)) return;
 
-    if (!rateLimiter(email)) {
+    if (!form.fullName.trim()) {
+      toast({ title: 'Name required', description: 'Please enter your full name.', variant: 'destructive' });
+      return;
+    }
+
+    if (!rateLimiter(form.email)) {
       toast({ title: 'Too many attempts', description: 'Please wait before submitting again.', variant: 'destructive' });
       return;
     }
 
     try {
-      emailSchema.parse(email);
+      emailSchema.parse(form.email);
     } catch {
       toast({ title: 'Invalid Email', description: 'Please enter a valid email address.', variant: 'destructive' });
       return;
     }
 
+    if (selectedCategories.length === 0) {
+      toast({ title: 'Select categories', description: 'Please select at least one product category.', variant: 'destructive' });
+      return;
+    }
+
     setLoading(true);
     try {
-      // Fetch country from free IP geolocation API
       let country = 'Unknown';
       try {
         const geoRes = await fetch('https://ipapi.co/json/');
@@ -49,22 +95,23 @@ const AffiliateNewsletter = () => {
         }
       } catch { /* ignore geo errors */ }
 
-      const { error } = await supabase.from('newsletter_subscribers').insert({
-        email: email.trim().toLowerCase(),
-        name: name.trim() || null,
-        source: 'affiliate-newsletter',
+      const { error } = await supabase.from('affiliate_signups' as any).insert({
+        full_name: form.fullName.trim(),
+        email: form.email.trim().toLowerCase(),
+        phone: form.phone.trim() || null,
+        whatsapp: form.whatsapp.trim() || null,
+        text_contact: form.textContact.trim() || null,
+        instagram: form.instagram.trim() || null,
+        tiktok: form.tiktok.trim() || null,
+        youtube: form.youtube.trim() || null,
+        facebook: form.facebook.trim() || null,
+        twitter: form.twitter.trim() || null,
+        product_categories: selectedCategories,
         country,
-      });
+        newsletter_opt_in: true,
+      } as any);
 
-      if (error) {
-        if (error.code === '23505') {
-          toast({ title: "You're already signed up!", description: 'Check your inbox for the latest updates.' });
-          setSubmitted(true);
-          return;
-        }
-        throw error;
-      }
-
+      if (error) throw error;
       setSubmitted(true);
     } catch (error) {
       console.error('Error:', error);
@@ -74,18 +121,11 @@ const AffiliateNewsletter = () => {
     }
   };
 
-  const benefits = [
-    'Early access to new brand partnerships',
-    'Exclusive commission opportunities',
-    'Weekly tips on growing affiliate income',
-    'Community of Afro-descendant brand advocates',
-  ];
-
   return (
     <>
       <SEOHead
         title="Become an Affiliate | Phresh Phactory"
-        description="Join our affiliate newsletter and get exclusive brand partnership opportunities, commission tips, and community access."
+        description="Join as an affiliate to sell products you love and receive our product newsletter with the latest brands and opportunities."
       />
       <div className="min-h-screen bg-background flex items-center justify-center px-4 py-16">
         <div className="max-w-2xl w-full">
@@ -98,67 +138,131 @@ const AffiliateNewsletter = () => {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <Check className="w-8 h-8 text-primary" />
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground">You're in!</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground">Welcome to the team!</h1>
               <p className="text-lg text-muted-foreground max-w-md mx-auto">
-                Welcome to the affiliate community. Watch your inbox for exclusive brand partnership opportunities.
+                You're now signed up as an affiliate. Watch your inbox for the latest product spotlights and partnership opportunities.
               </p>
               <Button asChild size="lg" className="mt-4">
                 <Link to="/shop">Continue Shopping</Link>
               </Button>
             </div>
           ) : (
-            <div className="space-y-10">
+            <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                  Earn while you share brands you love.
+                  Become an Affiliate
                 </h1>
                 <p className="text-lg text-muted-foreground">
-                  Sign up for our affiliate newsletter and be the first to know about partnership opportunities with Afro-descendant brands.
+                  Sign up to sell the products you love and earn commissions. As part of your membership, you'll also receive our product newsletter featuring the latest brands we're spotlighting.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {benefits.map((benefit, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-primary" />
+              <form onSubmit={handleSubmit} className="space-y-6 p-6 md:p-8 rounded-2xl border bg-card shadow-sm">
+                {/* Basic Info */}
+                <div className="space-y-4">
+                  <h2 className="text-lg font-semibold text-foreground">Your Info</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="fullName">Full Name *</Label>
+                      <Input id="fullName" required value={form.fullName} onChange={e => updateField('fullName', e.target.value)} placeholder="Your full name" maxLength={100} />
                     </div>
-                    <span className="text-sm text-foreground/80">{benefit}</span>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email *</Label>
+                      <Input id="email" type="email" required value={form.email} onChange={e => updateField('email', e.target.value)} placeholder="you@example.com" maxLength={255} />
+                    </div>
                   </div>
-                ))}
-              </div>
+                </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4 p-6 md:p-8 rounded-2xl border bg-card shadow-sm">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name (optional)</Label>
-                  <Input
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Your name"
-                    maxLength={100}
-                  />
+                {/* Contact Methods */}
+                <div className="space-y-4">
+                  <h2 className="text-lg font-semibold text-foreground">Contact Methods</h2>
+                  <p className="text-sm text-muted-foreground">How can we reach you? Fill in any that apply.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Telephone</Label>
+                      <Input id="phone" type="tel" value={form.phone} onChange={e => updateField('phone', e.target.value)} placeholder="+1 (555) 000-0000" maxLength={20} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="whatsapp">WhatsApp</Label>
+                      <Input id="whatsapp" type="tel" value={form.whatsapp} onChange={e => updateField('whatsapp', e.target.value)} placeholder="+1 (555) 000-0000" maxLength={20} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="textContact">Text / iMessage / iCloud</Label>
+                      <Input id="textContact" value={form.textContact} onChange={e => updateField('textContact', e.target.value)} placeholder="Number or iCloud email" maxLength={100} />
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    maxLength={255}
-                  />
+
+                {/* Social Handles */}
+                <div className="space-y-4">
+                  <h2 className="text-lg font-semibold text-foreground">Social Media</h2>
+                  <p className="text-sm text-muted-foreground">Share your handles so we can connect.</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="instagram">Instagram</Label>
+                      <Input id="instagram" value={form.instagram} onChange={e => updateField('instagram', e.target.value)} placeholder="@yourhandle" maxLength={100} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="tiktok">TikTok</Label>
+                      <Input id="tiktok" value={form.tiktok} onChange={e => updateField('tiktok', e.target.value)} placeholder="@yourhandle" maxLength={100} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="youtube">YouTube</Label>
+                      <Input id="youtube" value={form.youtube} onChange={e => updateField('youtube', e.target.value)} placeholder="Channel name or URL" maxLength={200} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="facebook">Facebook</Label>
+                      <Input id="facebook" value={form.facebook} onChange={e => updateField('facebook', e.target.value)} placeholder="Profile or page URL" maxLength={200} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="twitter">X (Twitter)</Label>
+                      <Input id="twitter" value={form.twitter} onChange={e => updateField('twitter', e.target.value)} placeholder="@yourhandle" maxLength={100} />
+                    </div>
+                  </div>
                 </div>
+
+                {/* Product Categories */}
+                <div className="space-y-4">
+                  <h2 className="text-lg font-semibold text-foreground">Product Categories *</h2>
+                  <p className="text-sm text-muted-foreground">What do you specialize in? Select all that apply.</p>
+                  <div className="flex flex-wrap gap-2">
+                    {PRODUCT_CATEGORIES.map(category => {
+                      const selected = selectedCategories.includes(category);
+                      return (
+                        <button
+                          key={category}
+                          type="button"
+                          onClick={() => toggleCategory(category)}
+                          className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+                            selected
+                              ? 'bg-primary text-primary-foreground border-primary'
+                              : 'bg-background text-foreground border-border hover:border-primary/50'
+                          }`}
+                        >
+                          {selected && <Check className="w-3 h-3 inline mr-1.5" />}
+                          {category}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Newsletter agreement */}
+                <div className="p-4 rounded-lg bg-muted/50 border">
+                  <p className="text-sm text-muted-foreground">
+                    By signing up as an affiliate, you agree to receive our product newsletter featuring the latest brands, spotlights, and partnership opportunities. You can unsubscribe anytime.
+                  </p>
+                </div>
+
+                {/* Honeypot */}
                 <div style={{ display: 'none' }}>
-                  <input type="text" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
+                  <input type="text" value={honeypot} onChange={e => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
                 </div>
+
                 <Button type="submit" size="lg" className="w-full" disabled={loading}>
-                  {loading ? 'Signing up...' : 'Join the Affiliate Newsletter'}
+                  {loading ? 'Signing up...' : 'Join as an Affiliate'}
                   {!loading && <ArrowRight className="w-4 h-4 ml-2" />}
                 </Button>
-                <p className="text-xs text-center text-muted-foreground">No spam. Unsubscribe anytime.</p>
               </form>
             </div>
           )}
