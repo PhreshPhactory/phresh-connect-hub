@@ -9,10 +9,7 @@ import Layout from "@/components/Layout";
 import LandingPageLayout from "@/components/LandingPageLayout";
 import { Suspense, lazy, type FC, type ReactNode } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { SecurityHeaders } from "@/components/SecurityHeaders";
-import CacheHeaders from '@/components/CacheHeaders';
 import { useScrollAnimations } from '@/hooks/useScrollAnimations';
-import GeoBlocker from '@/components/GeoBlocker';
 
 // Import critical pages normally for faster initial load
 import Home from "@/pages/Home";
@@ -90,9 +87,6 @@ const ScrollAnimationsProvider = ({ children }: { children: ReactNode }) => {
 const App = () => {
   return (
     <HelmetProvider>
-      <SecurityHeaders />
-      <CacheHeaders cacheType="html" />
-      <GeoBlocker>
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <BrowserRouter>
@@ -156,7 +150,6 @@ const App = () => {
             </BrowserRouter>
           </TooltipProvider>
         </QueryClientProvider>
-      </GeoBlocker>
     </HelmetProvider>
   );
 };
