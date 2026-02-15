@@ -371,6 +371,14 @@ const ProductSpotlights = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground tracking-tight">
               Afro-descendant brands curated daily.
             </h1>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+              <Button asChild size="lg" className="btn-primary">
+                <Link to="/brands">Feature Your Brand</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <a href="https://afrofiliate.com" target="_blank" rel="noopener noreferrer">Become an Affiliate</a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
