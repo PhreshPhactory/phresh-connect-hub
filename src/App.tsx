@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
+// import { HelmetProvider } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import LandingPageLayout from "@/components/LandingPageLayout";
 import { Suspense, lazy, type FC, type ReactNode } from "react";
@@ -86,7 +86,7 @@ const ScrollAnimationsProvider = ({ children }: { children: ReactNode }) => {
 
 const App = () => {
   return (
-    <HelmetProvider>
+    <>
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <BrowserRouter>
@@ -150,7 +150,7 @@ const App = () => {
             </BrowserRouter>
           </TooltipProvider>
         </QueryClientProvider>
-    </HelmetProvider>
+    </>
   );
 };
 

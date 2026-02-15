@@ -19,7 +19,7 @@ export default defineConfig(({ mode, command }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ['react', 'react-dom'],
+    dedupe: ['react', 'react-dom', 'react-helmet-async'],
   },
   build: {
     // Optimize for performance
@@ -52,7 +52,8 @@ export default defineConfig(({ mode, command }) => ({
       'react',
       'react-dom',
       'react-router-dom',
-      '@tanstack/react-query'
+      '@tanstack/react-query',
+      'react-helmet-async'
     ]
   }
 }));
