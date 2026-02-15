@@ -43,6 +43,7 @@ const AffiliateNewsletter = () => {
     country: '',
   });
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [agreed, setAgreed] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -246,10 +247,16 @@ const AffiliateNewsletter = () => {
                 </div>
 
                 {/* Newsletter agreement */}
-                <div className="p-4 rounded-lg bg-muted/50 border">
-                  <p className="text-sm text-muted-foreground">
-                    By signing up as an affiliate, you agree to receive our product newsletter featuring the latest brands, spotlights, and partnership opportunities. You can unsubscribe anytime.
-                  </p>
+                <div className="p-4 rounded-lg bg-muted/50 border flex items-start gap-3">
+                  <Checkbox
+                    id="agree"
+                    checked={agreed}
+                    onCheckedChange={(checked) => setAgreed(checked === true)}
+                    className="mt-0.5"
+                  />
+                  <label htmlFor="agree" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
+                    I agree to receive the product newsletter featuring the latest brands, spotlights, and partnership opportunities. You can unsubscribe anytime.
+                  </label>
                 </div>
 
                 {/* Honeypot */}
@@ -257,7 +264,7 @@ const AffiliateNewsletter = () => {
                   <input type="text" value={honeypot} onChange={e => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full" disabled={loading}>
+                <Button type="submit" size="lg" className="w-full" disabled={loading || !agreed}>
                   {loading ? 'Signing up...' : 'Join as an Affiliate'}
                   {!loading && <ArrowRight className="w-4 h-4 ml-2" />}
                 </Button>
