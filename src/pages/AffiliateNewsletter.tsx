@@ -39,10 +39,21 @@ const AffiliateNewsletter = () => {
 
     setLoading(true);
     try {
+      // Fetch country from free IP geolocation API
+      let country = 'Unknown';
+      try {
+        const geoRes = await fetch('https://ipapi.co/json/');
+        if (geoRes.ok) {
+          const geoData = await geoRes.json();
+          country = geoData.country_name || 'Unknown';
+        }
+      } catch { /* ignore geo errors */ }
+
       const { error } = await supabase.from('newsletter_subscribers').insert({
         email: email.trim().toLowerCase(),
         name: name.trim() || null,
         source: 'affiliate-newsletter',
+        country,
       });
 
       if (error) {
