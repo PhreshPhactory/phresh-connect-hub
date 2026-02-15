@@ -111,7 +111,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden border-t border-border">
+          <div className="lg:hidden border-t border-border absolute left-0 right-0 top-full bg-background shadow-lg z-50">
             <div className="py-4 space-y-4">
               <Link
                 to="/"
