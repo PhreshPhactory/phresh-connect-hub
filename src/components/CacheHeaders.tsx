@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 interface CacheHeadersProps {
   cacheType?: 'static' | 'dynamic' | 'html';
   maxAge?: number;
 }
 
-const CacheHeaders: React.FC<CacheHeadersProps> = ({ 
+const CacheHeaders = ({ 
   cacheType = 'html', 
   maxAge 
-}) => {
+}: CacheHeadersProps) => {
   useEffect(() => {
     // Set appropriate cache headers based on content type
     const setCacheHeaders = () => {
