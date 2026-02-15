@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import LandingPageLayout from "@/components/LandingPageLayout";
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy, type FC, type ReactNode } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SecurityHeaders } from "@/components/SecurityHeaders";
 import CacheHeaders from '@/components/CacheHeaders';
@@ -82,12 +82,12 @@ const queryClient = new QueryClient({
 });
 
 // Move scroll animations to a component inside the provider tree
-const ScrollAnimationsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const ScrollAnimationsProvider = ({ children }: { children: ReactNode }) => {
   useScrollAnimations();
   return <>{children}</>;
 };
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <HelmetProvider>
       <SecurityHeaders />
