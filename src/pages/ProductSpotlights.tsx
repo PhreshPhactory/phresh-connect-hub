@@ -376,7 +376,7 @@ const ProductSpotlights = () => {
                 <Link to="/brands">Feature Your Brand</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <a href="https://afrofiliate.com" target="_blank" rel="noopener noreferrer">Become an Affiliate</a>
+                <Link to="/affiliate-newsletter">Become an Affiliate</Link>
               </Button>
             </div>
           </div>

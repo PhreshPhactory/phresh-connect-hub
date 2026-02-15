@@ -57,6 +57,7 @@ const VideoReelAdmin = lazy(() => import("@/pages/VideoReelAdmin"));
 const PressContactsAdmin = lazy(() => import("@/pages/PressContactsAdmin"));
 const SociallySellingFood = lazy(() => import("@/pages/SociallySellingFood"));
 const SSFInvoiceAdmin = lazy(() => import("@/pages/SSFInvoiceAdmin"));
+const AffiliateNewsletter = lazy(() => import("@/pages/AffiliateNewsletter"));
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -135,6 +136,7 @@ const App: React.FC = () => {
                       <Route path="/tv" element={<TV />} />
                       <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
                       <Route path="/affiliate-starter-course-waitlist" element={<AffiliateCourseWaitlist />} />
+                      <Route path="/affiliate-newsletter" element={<AffiliateNewsletter />} />
                       <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
                       <Route path="/holiday-sprint-landing" element={<HolidaySprintLanding />} />
                       <Route path="/holiday-sprint-payment" element={<HolidaySprintPayment />} />
