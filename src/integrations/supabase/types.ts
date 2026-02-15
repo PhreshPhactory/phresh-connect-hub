@@ -24,6 +24,7 @@ export type Database = {
           id: string
           instagram: string | null
           newsletter_opt_in: boolean
+          paypal: string | null
           phone: string | null
           product_categories: string[]
           text_contact: string | null
@@ -41,6 +42,7 @@ export type Database = {
           id?: string
           instagram?: string | null
           newsletter_opt_in?: boolean
+          paypal?: string | null
           phone?: string | null
           product_categories?: string[]
           text_contact?: string | null
@@ -58,6 +60,7 @@ export type Database = {
           id?: string
           instagram?: string | null
           newsletter_opt_in?: boolean
+          paypal?: string | null
           phone?: string | null
           product_categories?: string[]
           text_contact?: string | null

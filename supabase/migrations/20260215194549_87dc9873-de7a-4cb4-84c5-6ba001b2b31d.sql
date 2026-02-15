@@ -1,0 +1,1 @@
+ALTER TABLE public.affiliate_signups ADD COLUMN paypal TEXT;
