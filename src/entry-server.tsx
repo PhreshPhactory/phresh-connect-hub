@@ -1,13 +1,12 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './App';
 
 export function render(url: string) {
-  // Simple SSR render without router for build compatibility
   const html = renderToString(
-    <React.StrictMode>
+    <StrictMode>
       <App />
-    </React.StrictMode>
+    </StrictMode>
   );
   return { html };
 }
