@@ -41,6 +41,7 @@ const AffiliateNewsletter = () => {
     facebook: '',
     twitter: '',
     country: '',
+    paypal: '',
   });
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [agreed, setAgreed] = useState(false);
@@ -101,6 +102,7 @@ const AffiliateNewsletter = () => {
         youtube: form.youtube.trim() || null,
         facebook: form.facebook.trim() || null,
         twitter: form.twitter.trim() || null,
+        paypal: form.paypal.trim() || null,
         product_categories: selectedCategories,
         country,
         newsletter_opt_in: true,
@@ -189,6 +191,16 @@ const AffiliateNewsletter = () => {
                       <Label htmlFor="textContact">Text / iMessage / iCloud</Label>
                       <Input id="textContact" value={form.textContact} onChange={e => updateField('textContact', e.target.value)} placeholder="Number or iCloud email" maxLength={100} />
                     </div>
+                  </div>
+                </div>
+
+                {/* Payment Info */}
+                <div className="space-y-4">
+                  <h2 className="text-lg font-semibold text-foreground">Commission Payment</h2>
+                  <p className="text-sm text-muted-foreground">Provide your PayPal ID or email address for commission payouts.</p>
+                  <div className="space-y-2">
+                    <Label htmlFor="paypal">PayPal Email or ID</Label>
+                    <Input id="paypal" value={form.paypal} onChange={e => updateField('paypal', e.target.value)} placeholder="your@paypal.com" maxLength={255} />
                   </div>
                 </div>
 
