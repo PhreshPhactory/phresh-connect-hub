@@ -40,21 +40,21 @@ const LeadingPlatformsSection = () => {
             </ul>
           </div>
 
-          {/* Afrofiliate */}
+          {/* Buy Black Directory */}
           <div className="space-y-6">
             <h3 className="text-3xl font-bold mb-4">
-              Afrofiliate
+              Buy Black Directory
               <span className="block text-lg text-muted-foreground font-normal mt-2">
-                Diaspora Affiliate Network
+                Product Features &amp; Live Shopping
               </span>
             </h3>
             
             <ul className="space-y-4">
               {[
-                'Strategic advisor to the founders',
-                'Built a two-sided training community ecosystem (Phactory + Phreelance)',
-                'Improved affiliate readiness for both brands and creators',
-                'Enhanced clarity, communication, and success across the network'
+                'Curate and feature Black-owned products daily',
+                'Host live shopping events driving real-time sales',
+                'Produce professional video reviews and brand content',
+                'Provide editorial storytelling and strategic brand positioning'
               ].map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-primary mt-1 flex-shrink-0" />

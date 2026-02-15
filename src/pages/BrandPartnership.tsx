@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -12,21 +12,16 @@ import { useToast } from '@/hooks/use-toast';
 import SEOHead from '@/components/SEOHead';
 import { emailSchema, nameSchema, urlSchema, messageSchema, createRateLimiter, validateHoneypot, sanitizeInput } from '@/utils/security';
 import NewsletterForm from '@/components/NewsletterForm';
-import VideoReelSubmissionForm from '@/components/VideoReelSubmissionForm';
+import { Video, ShoppingBag, Tv, FileText, TrendingUp, ArrowRight } from 'lucide-react';
 
 const formSchema = z.object({
   name: nameSchema,
   email: emailSchema,
   brandName: z.string().min(1, { message: 'Brand name is required.' }).max(100),
   website: urlSchema,
-  hasJoinedAfrofiliate: z.string().min(1, { message: 'Please confirm if you have joined Afrofiliate.' }),
+  productDescription: z.string().min(10, { message: 'Please describe your product(s).' }).max(2000),
+  interestedIn: z.string().min(1, { message: 'Please select what you are interested in.' }),
   budget: z.string().min(1, { message: 'Please select your budget range.' }),
-  interestedInVideoFeature: z.string().min(1, { message: 'Please indicate your interest in video feature.' }),
-  interestedInWrittenContent: z.string().min(1, { message: 'Please indicate your interest in written content.' }),
-  interestedInGrowthSupport: z.string().min(1, { message: 'Please indicate your interest in growth support.' }),
-  interestedInUGC: z.string().min(1, { message: 'Please indicate your interest in UGC.' }),
-  interestedInSocialMedia: z.string().min(1, { message: 'Please indicate your interest in social media management.' }),
-  otherServices: z.string().max(1000).optional(),
   message: messageSchema,
   honeypot: z.string().optional()
 });
@@ -40,7 +35,6 @@ const BrandPartnership = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [searchParams] = useSearchParams();
   
-  // Show toast on payment success
   useEffect(() => {
     const paymentStatus = searchParams.get('payment');
     if (paymentStatus === 'success') {
@@ -64,14 +58,9 @@ const BrandPartnership = () => {
       email: '',
       brandName: '',
       website: '',
-      hasJoinedAfrofiliate: '',
+      productDescription: '',
+      interestedIn: '',
       budget: '',
-      interestedInVideoFeature: '',
-      interestedInWrittenContent: '',
-      interestedInGrowthSupport: '',
-      interestedInUGC: '',
-      interestedInSocialMedia: '',
-      otherServices: '',
       message: '',
       honeypot: '',
     },
@@ -95,7 +84,7 @@ const BrandPartnership = () => {
       ...data,
       name: sanitizeInput(data.name),
       brandName: sanitizeInput(data.brandName),
-      otherServices: data.otherServices ? sanitizeInput(data.otherServices) : '',
+      productDescription: sanitizeInput(data.productDescription),
       message: data.message ? sanitizeInput(data.message) : ''
     };
 
@@ -126,7 +115,7 @@ const BrandPartnership = () => {
       
       toast({
         title: 'Application received!',
-        description: 'Thank you for your interest in partnering with us. We\'ll review your application and reach out within 2-3 business days.',
+        description: 'Thank you for your interest! We\'ll review your submission and reach out within 2-3 business days.',
       });
       
       form.reset();
@@ -147,180 +136,129 @@ const BrandPartnership = () => {
   return (
     <>
       <SEOHead
-        title="Brand Feature Services | Phresh Phactory Buy Black Directory"
-        description="Partner with Phresh Phactory for professional brand feature services including video reviews, written content, and business consulting."
-        keywords="Feature Black-owned brand, Black business directory, brand services, Black entrepreneurship, video reviews, content creation, Afrofiliate"
+        title="Get Your Brand Featured | Phresh Phactory Buy Black Directory"
+        description="We post your products and host live shopping events to drive sales for Black-owned brands. Apply to get featured."
+        keywords="Black-owned brand feature, live shopping, product spotlight, Buy Black, brand visibility, diaspora commerce"
         canonicalUrl="https://phreshphactory.com/brands"
       />
       
       {/* Hero Section */}
-      <section className="bg-background py-15 md:py-15">
+      <section className="bg-background py-20 md:py-24">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Brand Feature Services
+              We Post Your Products &amp; Host Live Shopping
             </h1>
             <p className="text-xl mb-8 text-muted-foreground">
-              Partner with Phresh Phactory for professional brand feature services including video reviews, 
-              written content, and business growth consulting. We work with brands through affiliate programs 
-              and through direct partnership arrangements available below.
+              Get your brand in front of a buying audience. We feature Black-owned products 
+              through curated content, video reviews, and live shopping events across our platforms.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* $100 Video Reel Section - Top Priority */}
-      <section id="video-reel-order" className="py-16 bg-muted">
-        <div className="container-custom max-w-2xl">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-              Quick Video Reel Order
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Get a professional video reel featuring your product on our social media channels. 
-              Upload your product info and images, pay $100, and we&apos;ll create your reel.
-            </p>
-          </div>
-          <VideoReelSubmissionForm />
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-12 bg-background">
-        <div className="container-custom max-w-5xl">
-          <h2 className="text-3xl font-bold text-center mb-4 text-foreground">Our Partnership Services</h2>
-          <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Select the services that align with your brand&apos;s growth goals in the application form below.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-teal text-teal-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-foreground">Video Feature</h3>
-              <p className="text-muted-foreground">Professional YouTube video review of your products shared with our engaged audience.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-teal text-teal-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-foreground">Written Content</h3>
-              <p className="text-muted-foreground">Detailed blog post spotlight with your brand story, products, and shopping links.</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-teal text-teal-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-foreground">Growth Support (Paid Service)</h3>
-              <p className="text-muted-foreground">Business consulting, operational support, and strategic guidance for scaling your brand.</p>
-            </div>
-          </div>
-          <div className="text-center mt-10">
             <Button 
               size="lg" 
+              className="px-8 py-6 text-lg"
               onClick={() => {
-                const formSection = document.getElementById('brand-inquiry-form');
+                const formSection = document.getElementById('brand-application');
                 if (formSection) {
                   formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="px-8 py-6 text-lg"
             >
-              Book Premium Content Production for Your Brand
+              Apply to Get Featured
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Premium Content Production Section */}
-      <section className="py-16 bg-muted border-t border-border">
+      {/* What We Do Section */}
+      <section className="py-16 bg-muted">
+        <div className="container-custom max-w-5xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-foreground">How We Feature Your Brand</h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Multiple touchpoints designed to drive awareness and sales for your products.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center space-y-3">
+              <div className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <ShoppingBag className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground">Product Spotlights</h3>
+              <p className="text-muted-foreground">Your products posted on our Buy Black directory with shopping links, brand story, and curated positioning.</p>
+            </div>
+            
+            <div className="text-center space-y-3">
+              <div className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <Tv className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground">Live Shopping Events</h3>
+              <p className="text-muted-foreground">We host live shopping sessions showcasing your products to an engaged, ready-to-buy audience.</p>
+            </div>
+            
+            <div className="text-center space-y-3">
+              <div className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <Video className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground">Video Reviews</h3>
+              <p className="text-muted-foreground">Professional product review videos shared across YouTube and social media channels.</p>
+            </div>
+            
+            <div className="text-center space-y-3">
+              <div className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                <FileText className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground">Written Features</h3>
+              <p className="text-muted-foreground">Blog posts and editorial content telling your brand story with embedded shopping links.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Work With Us */}
+      <section className="py-16 bg-background">
         <div className="container-custom max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-              Premium Content Production for Brands
+              Why Brands Choose Us
             </h2>
-            <div className="space-y-4 text-lg text-muted-foreground max-w-3xl mx-auto">
-              <p>
-                Phresh Phactory, Inc. produces high-quality, conversion-driven product content for brands 
-                who want editorial storytelling, cultural intelligence, and strategic positioning baked into 
-                every asset.
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-muted/50 border border-border rounded-lg p-8 space-y-4">
+              <TrendingUp className="w-8 h-8 text-primary" />
+              <h3 className="text-xl font-semibold text-foreground">Built for Diaspora Commerce</h3>
+              <p className="text-muted-foreground">
+                5+ years operating at the intersection of Black-owned brands and digital commerce. 
+                We understand the audience, the culture, and what drives purchasing decisions.
               </p>
-              <p className="font-medium text-foreground">
-                You don't need a million followers for content to drive revenue — you need the right strategy, 
-                message, and execution.
-              </p>
-              <p className="font-semibold text-foreground">
-                We handle everything end-to-end.
+            </div>
+            <div className="bg-muted/50 border border-border rounded-lg p-8 space-y-4">
+              <Video className="w-8 h-8 text-primary" />
+              <h3 className="text-xl font-semibold text-foreground">End-to-End Content Production</h3>
+              <p className="text-muted-foreground">
+                We handle everything — product photography concepts, video production, scriptwriting, 
+                editing, and distribution. You send the product, we do the rest.
               </p>
             </div>
           </div>
 
-          <div className="bg-background/50 border border-border rounded-lg p-8 mb-8">
-            <h3 className="text-xl font-semibold mb-6 text-foreground">
-              Available content services include:
-            </h3>
-            <ul className="space-y-3 text-muted-foreground">
-              <li className="flex items-start">
-                <span className="text-teal mr-3 mt-1">•</span>
-                <span>Product story videos</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-teal mr-3 mt-1">•</span>
-                <span>Seasonal and holiday campaigns</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-teal mr-3 mt-1">•</span>
-                <span>Premium UGC-style product explainers</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-teal mr-3 mt-1">•</span>
-                <span>Scriptwriting + voiceover</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-teal mr-3 mt-1">•</span>
-                <span>Video editing + packaging</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-teal mr-3 mt-1">•</span>
-                <span>Social-ready assets for your brand channels</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="text-center space-y-4">
-            <p className="text-lg text-foreground">
-              <span className="font-medium">You own the content. You post it where you want.</span>
-              <br />
-              We produce it with excellence — fast.
+          <div className="text-center mt-12">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Whether you're launching a new product or looking for ongoing brand visibility, 
+              we have packages that fit. Fill out one simple application below and we'll 
+              match you with the right option.
             </p>
           </div>
         </div>
       </section>
       
-      {/* Form Section */}
-      <section id="brand-inquiry-form" className="py-15 bg-background">
+      {/* Application Form */}
+      <section id="brand-application" className="py-16 bg-muted">
         <div className="container-custom max-w-3xl">
           <div className="animate-on-scroll">
-            <h2 className="text-3xl font-bold mb-6 text-center text-foreground">Partnership Application</h2>
-            <div className="bg-muted/50 border border-border rounded-lg p-6 mb-8">
-              <h3 className="text-lg font-semibold mb-3 text-foreground">How It Works:</h3>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4">
-                <li>
-                  <strong>Partnership Options:</strong> We work with brands through Afrofiliate&apos;s affiliate program or through direct arrangements
-                </li>
-                <li><strong>Professional Services:</strong> Our feature services are premium offerings tailored to your brand&apos;s needs</li>
-                <li><strong>Selective Process:</strong> We carefully curate partnerships to ensure the best fit and value for both our audience and your brand</li>
-                <li><strong>Next Steps:</strong> After reviewing your application, we&apos;ll reach out within 2-3 business days with pricing and partnership details if there is a fit</li>
-              </ul>
-            </div>
+            <h2 className="text-3xl font-bold mb-4 text-center text-foreground">Apply to Get Featured</h2>
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+              One application — we'll review your brand and reach out with the best options for your goals and budget.
+            </p>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -374,7 +312,7 @@ const BrandPartnership = () => {
                     name="website"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Brand Website</FormLabel>
+                        <FormLabel>Brand Website or Social Link</FormLabel>
                         <FormControl>
                           <Input placeholder="https://yourbrand.com" {...field} />
                         </FormControl>
@@ -383,13 +321,31 @@ const BrandPartnership = () => {
                     )}
                   />
                 </div>
-                
+
                 <FormField
                   control={form.control}
-                  name="hasJoinedAfrofiliate"
+                  name="productDescription"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Are you currently on Afrofiliate&apos;s platform?</FormLabel>
+                      <FormLabel>Tell Us About Your Product(s)</FormLabel>
+                      <FormControl>
+                        <Textarea 
+                          placeholder="What do you sell? What makes it special? Include any links to your product pages." 
+                          className="min-h-24"
+                          {...field} 
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="interestedIn"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>What are you most interested in?</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -397,9 +353,12 @@ const BrandPartnership = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="yes">Yes, I&apos;m already listed</SelectItem>
-                          <SelectItem value="in-progress">Application in progress</SelectItem>
-                          <SelectItem value="not-yet">No, interested in direct partnership</SelectItem>
+                          <SelectItem value="product-spotlight">Product Spotlight (directory listing)</SelectItem>
+                          <SelectItem value="live-shopping">Live Shopping Event</SelectItem>
+                          <SelectItem value="video-review">Video Review / Reel</SelectItem>
+                          <SelectItem value="written-feature">Written Feature / Blog Post</SelectItem>
+                          <SelectItem value="full-package">Full Package (all of the above)</SelectItem>
+                          <SelectItem value="not-sure">Not Sure — Help Me Decide</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -433,156 +392,15 @@ const BrandPartnership = () => {
                   )}
                 />
                 
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-foreground">Which services are you interested in?</h3>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="interestedInVideoFeature"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Video Feature</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select..." />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="yes">Yes</SelectItem>
-                              <SelectItem value="no">No</SelectItem>
-                              <SelectItem value="maybe">Maybe / Learn More</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="interestedInWrittenContent"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Written Content</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select..." />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="yes">Yes</SelectItem>
-                              <SelectItem value="no">No</SelectItem>
-                              <SelectItem value="maybe">Maybe / Learn More</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                  
-                  <FormField
-                    control={form.control}
-                    name="interestedInGrowthSupport"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Growth Support - Business Consulting</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select..." />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="yes">Yes</SelectItem>
-                            <SelectItem value="no">No</SelectItem>
-                            <SelectItem value="maybe">Maybe / Learn More</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="interestedInUGC"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>UGC (User Generated Content) Creation</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select..." />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="yes">Yes</SelectItem>
-                              <SelectItem value="no">No</SelectItem>
-                              <SelectItem value="maybe">Maybe / Learn More</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="interestedInSocialMedia"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Social Media Management</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Select..." />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="yes">Yes</SelectItem>
-                              <SelectItem value="no">No</SelectItem>
-                              <SelectItem value="maybe">Maybe / Learn More</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </div>
-                
-                <FormField
-                  control={form.control}
-                  name="otherServices"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Other services you're interested in (Optional)</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="E.g., Email marketing, influencer partnerships, brand strategy, operations consulting, etc." 
-                          className="min-h-24"
-                          {...field} 
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                
                 <FormField
                   control={form.control}
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Tell Us About Your Brand (Optional)</FormLabel>
+                      <FormLabel>Anything else we should know? (Optional)</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Share your brand story, mission, or any other details..." 
+                          placeholder="Timeline, upcoming launches, specific goals..." 
                           className="min-h-24"
                           {...field} 
                         />
@@ -611,53 +429,17 @@ const BrandPartnership = () => {
         </div>
       </section>
 
-      {/* Holiday Sprint CTA Section */}
-      <section className="py-16 px-4 bg-primary/5">
-        <div className="container-custom max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-            Need Holiday Sales Support Now?
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Get your complete holiday affiliate sales system built in 72 hours — no meetings, no overwhelm, just results.
-          </p>
-          <Button asChild size="lg" className="btn-primary">
-            <Link to="/holiday-explained">
-              Learn About The Holiday Affiliate Sales Sprint™
-            </Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* Newsletter Section for Brands */}
+      {/* Newsletter Section */}
       <NewsletterForm
         title="Brand Growth Insights for Black-Owned Businesses"
-        subtitle="Get practical strategies on brand partnerships, affiliate marketing, and scaling your Black-owned business through strategic visibility."
+        subtitle="Get practical strategies on brand partnerships, content marketing, and scaling your Black-owned business through strategic visibility."
         benefits={[
-          "Partnership opportunities & case studies",
-          "Affiliate marketing best practices",
-          "Brand visibility strategies that work",
+          "Live shopping event announcements",
+          "Brand feature opportunities",
+          "Content marketing strategies that work",
           "Exclusive invites to brand collaboration events"
         ]}
       />
-
-      {/* Join Afrofiliate Section - Bottom of Page */}
-      <section className="py-12 bg-muted border-t border-border">
-        <div className="container-custom max-w-2xl text-center">
-          <h3 className="text-2xl font-bold mb-4 text-foreground">Ready to Join Our Affiliate Network?</h3>
-          <p className="text-muted-foreground mb-6">
-            Connect with our audience through Afrofiliate&apos;s affiliate program.
-          </p>
-          <Button asChild size="lg">
-            <a 
-              href="https://members.afrofiliate.com/advertiser/signup?oid=24&affid=53" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              Join Afrofiliate Affiliate Program
-            </a>
-          </Button>
-        </div>
-      </section>
     </>
   );
 };
