@@ -376,7 +376,7 @@ const ProductSpotlights = () => {
                 <Link to="/brands">Feature Your Brand</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link to="/affiliate-newsletter">Become an Affiliate</Link>
+                <Link to="/AffiliateApplication">Become an Affiliate</Link>
               </Button>
             </div>
           </div>

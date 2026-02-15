@@ -136,7 +136,7 @@ const App: React.FC = () => {
                       <Route path="/tv" element={<TV />} />
                       <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
                       <Route path="/affiliate-starter-course-waitlist" element={<AffiliateCourseWaitlist />} />
-                      <Route path="/affiliate-newsletter" element={<AffiliateNewsletter />} />
+                      <Route path="/AffiliateApplication" element={<AffiliateNewsletter />} />
                       <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
                       <Route path="/holiday-sprint-landing" element={<HolidaySprintLanding />} />
                       <Route path="/holiday-sprint-payment" element={<HolidaySprintPayment />} />
