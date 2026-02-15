@@ -14,6 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
+      affiliate_signups: {
+        Row: {
+          country: string | null
+          created_at: string
+          email: string
+          facebook: string | null
+          full_name: string
+          id: string
+          instagram: string | null
+          newsletter_opt_in: boolean
+          phone: string | null
+          product_categories: string[]
+          text_contact: string | null
+          tiktok: string | null
+          twitter: string | null
+          whatsapp: string | null
+          youtube: string | null
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string
+          email: string
+          facebook?: string | null
+          full_name: string
+          id?: string
+          instagram?: string | null
+          newsletter_opt_in?: boolean
+          phone?: string | null
+          product_categories?: string[]
+          text_contact?: string | null
+          tiktok?: string | null
+          twitter?: string | null
+          whatsapp?: string | null
+          youtube?: string | null
+        }
+        Update: {
+          country?: string | null
+          created_at?: string
+          email?: string
+          facebook?: string | null
+          full_name?: string
+          id?: string
+          instagram?: string | null
+          newsletter_opt_in?: boolean
+          phone?: string | null
+          product_categories?: string[]
+          text_contact?: string | null
+          tiktok?: string | null
+          twitter?: string | null
+          whatsapp?: string | null
+          youtube?: string | null
+        }
+        Relationships: []
+      }
       blog_analytics: {
         Row: {
           blog_post_id: string
