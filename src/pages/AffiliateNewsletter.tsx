@@ -153,7 +153,7 @@ const AffiliateNewsletter = () => {
                   Become an Affiliate
                 </h1>
                 <p className="text-lg text-muted-foreground">
-                  Sign up to sell the products you love and earn commissions. As part of your membership, you'll also receive our product newsletter featuring the latest brands we're spotlighting.
+                  Sign up to sell the products you love and earn commissions.
                 </p>
               </div>
 
