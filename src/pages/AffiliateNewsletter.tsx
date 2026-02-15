@@ -40,6 +40,7 @@ const AffiliateNewsletter = () => {
     youtube: '',
     facebook: '',
     twitter: '',
+    country: '',
   });
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [honeypot, setHoneypot] = useState('');
@@ -86,14 +87,7 @@ const AffiliateNewsletter = () => {
 
     setLoading(true);
     try {
-      let country = 'Unknown';
-      try {
-        const geoRes = await fetch('https://ipapi.co/json/');
-        if (geoRes.ok) {
-          const geoData = await geoRes.json();
-          country = geoData.country_name || 'Unknown';
-        }
-      } catch { /* ignore geo errors */ }
+      const country = form.country.trim() || 'Unknown';
 
       const { error } = await supabase.from('affiliate_signups' as any).insert({
         full_name: form.fullName.trim(),
@@ -169,6 +163,10 @@ const AffiliateNewsletter = () => {
                     <div className="space-y-2">
                       <Label htmlFor="email">Email *</Label>
                       <Input id="email" type="email" required value={form.email} onChange={e => updateField('email', e.target.value)} placeholder="you@example.com" maxLength={255} />
+                    </div>
+                    <div className="space-y-2 sm:col-span-2">
+                      <Label htmlFor="country">Country *</Label>
+                      <Input id="country" required value={form.country} onChange={e => updateField('country', e.target.value)} placeholder="e.g. United States, Nigeria, Brazil" maxLength={100} />
                     </div>
                   </div>
                 </div>
