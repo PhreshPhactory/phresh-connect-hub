@@ -17,81 +17,84 @@ interface SEOHeadProps {
 const SEOHead: React.FC<SEOHeadProps> = ({ 
   title, 
   description, 
-  keywords = "business transformation, remote workforce, fractional leadership, global talent, legacy modernization, strategic consulting, executive leadership, systems design",
+  keywords = "operations consulting, fractional leadership, diaspora commerce, Afro-descendant brands, global talent, business transformation, systems design, affiliate marketing, EatOkra, Afrofiliate",
   canonicalUrl,
-  ogImage = "https://phreshphactory.com/og-image.jpg",
+  ogImage = "https://storage.googleapis.com/gpt-engineer-file-uploads/ezQitgdysuP0qHyBvOF4YpuyqpK2/social-images/social-1757765627192-Phresh Phactory Logo.png",
   structuredData,
   articleAuthor,
   publishDate,
   modifiedDate,
   pageType = 'website'
 }) => {
-  const fullTitle = title.includes('Phresh Phactory') ? title : `${title} | Phresh Phactory - Strategic Business Transformation`;
+  const fullTitle = title.includes('Phresh Phactory') ? title : `${title} | Phresh Phactory`;
   const fullCanonicalUrl = canonicalUrl || (typeof window !== 'undefined' ? `https://phreshphactory.com${window.location.pathname}` : 'https://phreshphactory.com');
   
-  // Enhanced structured data
   const defaultStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Phresh Phactory, Inc.",
     "alternateName": "Phresh Phactory",
-    "description": "Strategic business transformation through fractional leadership, global talent teams, and legacy system modernization.",
+    "description": "Boutique operations consultancy helping visionary founders scale through fractional leadership, global talent, systems design, and affiliate programs. Diaspora-focused, globally grounded.",
     "url": "https://phreshphactory.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://phreshphactory.com/logo.png",
+      "url": "https://phreshphactory.com/phresh-phactory-favicon.png",
       "width": 400,
       "height": 400,
-      "copyrightNotice": "© 2024 Phresh Phactory, Inc. All rights reserved.",
+      "copyrightNotice": "© 2026 Phresh Phactory, Inc. All rights reserved.",
       "creditText": "Phresh Phactory, Inc.",
       "creator": {
         "@type": "Organization",
         "name": "Phresh Phactory, Inc."
-      },
-      "acquireLicensePage": "https://phreshphactory.com/contact"
+      }
     },
     "foundingDate": "2020",
     "founder": {
       "@type": "Person",
-      "name": "Kiera Foley"
+      "name": "Kiera H.",
+      "jobTitle": "Fractional Executive and Systems Strategist"
     },
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "United States",
       "addressCountry": "US"
     },
     "contactPoint": [
       {
         "@type": "ContactPoint",
-        "telephone": "+1-555-PHRESH",
+        "email": "info@phreshphactory.com",
         "contactType": "customer service",
         "availableLanguage": "English",
-        "areaServed": "US"
-      },
-      {
-        "@type": "ContactPoint",
-        "email": "info@phreshphactory.co",
-        "contactType": "sales",
-        "availableLanguage": "English"
+        "areaServed": ["US", "Caribbean"]
       }
     ],
     "sameAs": [
-      "https://linkedin.com/company/phresh-phactory",
+      "https://www.linkedin.com/newsletters/phresh-phactory-growth-notes-7320251645966061568/",
       "https://www.youtube.com/@PhreshPhactoryTV",
-      "https://instagram.com/phreshphactory",
-      "https://twitter.com/phreshphactory"
+      "https://www.instagram.com/phreshphactorytv",
+      "https://www.tiktok.com/@phreshphactorytv"
+    ],
+    "knowsAbout": [
+      "Operations Consulting",
+      "Fractional Leadership",
+      "Diaspora Commerce",
+      "Affiliate Marketing Systems",
+      "Global Talent Management",
+      "Business Transformation",
+      "Systems Design"
     ],
     "serviceType": [
-      "Business Transformation",
-      "Fractional Leadership",
-      "Remote Team Management",
-      "Legacy System Modernization",
-      "Strategic Consulting"
+      "Fractional Executive Leadership",
+      "Global Talent Excellence",
+      "Legacy Business Transformation",
+      "High-Performance Systems Design",
+      "Affiliate Sales Blueprint Bootcamp",
+      "Socially Selling Food Workshop"
     ],
-    "areaServed": {
-      "@type": "Country",
-      "name": "United States"
-    },
+    "areaServed": [
+      { "@type": "Country", "name": "United States" },
+      { "@type": "Place", "name": "Caribbean" },
+      { "@type": "Continent", "name": "Africa" }
+    ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Business Transformation Services",
@@ -100,31 +103,42 @@ const SEOHead: React.FC<SEOHeadProps> = ({
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Fractional Leadership",
-            "description": "C-level executive leadership on a fractional basis"
+            "name": "Fractional Executive Leadership",
+            "description": "Strategic sessions, roadmapping, team structure design, and weekly guidance for growing businesses"
+          },
+          "price": "8000",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Global Talent Excellence",
+            "description": "Elite diaspora talent sourcing with full team integration and ongoing performance management"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Global Talent Teams",
-            "description": "Skilled remote teams from around the world"
+            "name": "Legacy Business Transformation",
+            "description": "Digital transformation, operational restructuring, and exit or succession planning for family businesses"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Legacy Transformation",
-            "description": "Modernization of legacy systems and processes"
-          }
+            "name": "Affiliate Sales Blueprint Bootcamp",
+            "description": "1-on-1 working session for brands to build a complete affiliate activation system"
+          },
+          "price": "1500",
+          "priceCurrency": "USD"
         }
       ]
     }
   };
 
-  // Create breadcrumb structured data
   const breadcrumbData = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -138,14 +152,13 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     ]
   };
 
-  // Add current page to breadcrumb if not home
   if (typeof window !== 'undefined' && window.location.pathname !== '/') {
     const pathSegments = window.location.pathname.split('/').filter(Boolean);
     pathSegments.forEach((segment, index) => {
       breadcrumbData.itemListElement.push({
         "@type": "ListItem",
         "position": index + 2,
-        "name": segment.charAt(0).toUpperCase() + segment.slice(1).replace('-', ' '),
+        "name": segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' '),
         "item": `https://phreshphactory.com/${pathSegments.slice(0, index + 1).join('/')}`
       });
     });
@@ -160,7 +173,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Phresh Phactory, Inc." />
       <meta name="publisher" content="Phresh Phactory, Inc." />
-      <meta name="copyright" content="© 2024 Phresh Phactory, Inc. All rights reserved." />
+      <meta name="copyright" content="© 2026 Phresh Phactory, Inc. All rights reserved." />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -208,7 +221,6 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="rating" content="general" />
       <meta name="distribution" content="global" />
       <meta name="revisit-after" content="7 days" />
-      <meta name="expires" content="never" />
       <meta name="format-detection" content="telephone=no" />
       
       {/* Structured Data - Organization */}
@@ -221,25 +233,17 @@ const SEOHead: React.FC<SEOHeadProps> = ({
         {JSON.stringify(breadcrumbData)}
       </script>
       
-      {/* Structured Data - Website */}
+      {/* Structured Data - Website with Search */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Phresh Phactory",
           "url": "https://phreshphactory.com",
-          "description": "Strategic business transformation through fractional leadership, global talent teams, and legacy system modernization.",
+          "description": "Boutique operations consultancy helping visionary founders scale through fractional leadership, global talent, and systems design.",
           "publisher": {
             "@type": "Organization",
             "name": "Phresh Phactory, Inc."
-          },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://phreshphactory.com/search?q={search_term_string}"
-            },
-            "query-input": "required name=search_term_string"
           }
         })}
       </script>
