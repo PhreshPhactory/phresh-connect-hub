@@ -163,9 +163,9 @@ const ProductSpotlight = () => {
       "uploadDate": spotlight.created_at,
       "contentUrl": spotlight.video_url
     } : undefined,
-    "category": "Afro-descendant business",
-    "additionalType": "Afro-descendant product",
-    "keywords": `Afro-descendant business, ${brandName}, Afro-descendant created brands, support Afro-descendant businesses, Christmas gifts, holiday shopping, Afro-descendant gifts`
+    "category": "Afro-descendant created brand",
+    "additionalType": "Afro-descendant created product",
+    "keywords": `Afro-descendant created brand, ${brandName}, Afro-descendant created brands and products, support Afro-descendant businesses, Christmas gifts, holiday shopping, Afro-descendant gifts`
   };
 
   return (
@@ -253,7 +253,7 @@ const ProductSpotlight = () => {
                 Shop the Episode
               </h3>
               <p className="text-muted-foreground mb-6">
-                Support these Afro-descendant businesses by purchasing directly from their stores
+                Support these Afro-descendant created brands by purchasing directly from their stores
               </p>
 
               {/* Individual Products */}
@@ -308,10 +308,10 @@ const ProductSpotlight = () => {
           {/* CTA to explore more */}
           <div className="mt-12 p-8 bg-muted rounded-lg text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">
-              Support More Afro-Descendant Brands
+              Support More Afro-Descendant Created Brands
             </h3>
             <p className="text-muted-foreground mb-6">
-              Discover other incredible Afro-descendant businesses featured in our directory
+              Discover other incredible Afro-descendant created brands featured in our directory
             </p>
             <Button asChild size="lg">
               <Link to="/shop">

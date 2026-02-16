@@ -98,7 +98,7 @@ const InlineNewsletterSignup = ({
             The Product Digest
           </h3>
           <p className="text-muted-foreground mb-6">
-            Curated Afro-descendant brands, gift ideas & hidden gems—delivered weekly.
+            Curated Afro-descendant created brands, gift ideas & hidden gems—delivered weekly.
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <Input
@@ -142,7 +142,7 @@ const InlineNewsletterSignup = ({
         <div className="flex-1">
           <h4 className="font-semibold text-foreground mb-1">Get The Product Digest</h4>
           <p className="text-sm text-muted-foreground mb-4">
-            Weekly picks of Afro-descendant brands you'll actually want to shop.
+            Weekly picks of Afro-descendant created brands you'll actually want to shop.
           </p>
           <form onSubmit={handleSubmit} className="flex gap-2">
             <Input

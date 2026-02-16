@@ -51,7 +51,7 @@ const LeadingPlatformsSection = () => {
             
             <ul className="space-y-4">
               {[
-                'Curate and feature Afro-descendant products daily',
+                'Curate and feature Afro-descendant created products daily',
                 'Host live shopping events driving real-time sales',
                 'Produce professional video reviews and brand content',
                 'Provide editorial storytelling and strategic brand positioning'

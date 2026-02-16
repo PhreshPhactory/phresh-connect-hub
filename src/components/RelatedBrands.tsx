@@ -53,7 +53,7 @@ const RelatedBrands = ({ currentSlug, limit = 3 }: RelatedBrandsProps) => {
     <section className="py-16 bg-muted mt-16">
       <div className="container-custom max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-foreground">
-          More Afro-Descendant Brands to Support
+          More Afro-Descendant Created Brands to Support
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8">
