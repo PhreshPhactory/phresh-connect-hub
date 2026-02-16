@@ -266,21 +266,13 @@ const BrandPartnership = () => {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="max-w-2xl mx-auto">
             <div className="bg-muted border border-border rounded-lg p-8 space-y-4">
               <TrendingUp className="w-8 h-8 text-primary" />
               <h3 className="text-xl font-semibold text-foreground">Built for Diaspora Commerce</h3>
               <p className="text-muted-foreground">
                 5+ years operating at the intersection of Afro-descendant created brands and digital commerce. 
                 We understand the audience, the culture, and what drives purchasing decisions.
-              </p>
-            </div>
-            <div className="bg-muted border border-border rounded-lg p-8 space-y-4">
-              <Video className="w-8 h-8 text-primary" />
-              <h3 className="text-xl font-semibold text-foreground">End-to-End Content Production</h3>
-              <p className="text-muted-foreground">
-                We handle everything — product photography concepts, video production, scriptwriting, 
-                editing, and distribution. You send the product, we do the rest.
               </p>
             </div>
           </div>
