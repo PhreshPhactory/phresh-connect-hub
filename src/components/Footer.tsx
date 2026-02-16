@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Linkedin, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,9 +8,9 @@ import { useToast } from '@/hooks/use-toast';
 
 const Footer = () => {
   const { toast } = useToast();
-  const [email, setEmail] = React.useState('');
+  const [email, setEmail] = useState('');
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = (e: FormEvent) => {
     e.preventDefault();
     if (email) {
       toast({
