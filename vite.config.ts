@@ -19,7 +19,7 @@ export default defineConfig(({ mode, command }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ['react', 'react-dom', 'react-helmet-async'],
+    dedupe: ['react', 'react-dom', 'react-helmet-async', '@radix-ui/react-tooltip'],
   },
   build: {
     // Optimize for performance
@@ -53,7 +53,8 @@ export default defineConfig(({ mode, command }) => ({
       'react-dom',
       'react-router-dom',
       '@tanstack/react-query',
-      'react-helmet-async'
+      'react-helmet-async',
+      '@radix-ui/react-tooltip'
     ]
   }
 }));
