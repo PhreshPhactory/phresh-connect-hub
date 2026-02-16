@@ -44,7 +44,7 @@ const Footer = () => {
   );
 
   const socials = [
-    { icon: Linkedin, href: 'https://linkedin.com/company/phresh-phactory', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/newsletters/phresh-phactory-growth-notes-7320251645966061568/', label: 'LinkedIn' },
     { icon: Youtube, href: 'https://www.youtube.com/@PhreshPhactoryTV', label: 'YouTube' },
     { icon: Instagram, href: 'https://www.instagram.com/phreshphactorytv', label: 'Instagram' },
     { icon: TikTokIcon, href: 'https://www.tiktok.com/@phreshphactorytv', label: 'TikTok' },
