@@ -228,13 +228,13 @@ const BrandPartnership = () => {
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
             Multiple touchpoints designed to drive awareness and sales for your products.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center space-y-3">
               <div className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto">
                 <ShoppingBag className="w-8 h-8" />
               </div>
-              <h3 className="text-xl font-semibold text-foreground">Product Spotlights</h3>
-              <p className="text-muted-foreground">Your products posted on our Afro-descendant created brands and products directory with shopping links, brand story, and curated positioning.</p>
+              <h3 className="text-xl font-semibold text-foreground">Product Directory</h3>
+              <p className="text-muted-foreground">Your products posted on our photo and video platform, shopping links, brand story, and curated positioning, as applicable.</p>
             </div>
             
             <div className="text-center space-y-3">
@@ -245,13 +245,6 @@ const BrandPartnership = () => {
               <p className="text-muted-foreground">We host live shopping sessions showcasing your products to an engaged, ready-to-buy audience.</p>
             </div>
             
-            <div className="text-center space-y-3">
-              <div className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto">
-                <Video className="w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground">Video Reviews</h3>
-              <p className="text-muted-foreground">Professional product review videos shared across YouTube and social media channels.</p>
-            </div>
             
             <div className="text-center space-y-3">
               <div className="bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mx-auto">
