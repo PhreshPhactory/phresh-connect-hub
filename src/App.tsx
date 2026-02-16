@@ -99,7 +99,7 @@ const App = () => {
                       <Route path="/" element={<Home />} />
                       <Route path="/business" element={<Home />} />
                       <Route path="/about" element={<About />} />
-                      <Route path="/operations" element={<Home />} />
+                      <Route path="/Affiliate" element={<AffiliateNewsletter />} />
                       <Route path="/services/fractional-leadership" element={<FractionalLeadership />} />
                       <Route path="/services/global-talent" element={<GlobalTalent />} />
                       <Route path="/services/legacy-transformation" element={<LegacyTransformation />} />
@@ -130,7 +130,7 @@ const App = () => {
                       <Route path="/tv" element={<TV />} />
                       <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
                       <Route path="/affiliate-starter-course-waitlist" element={<AffiliateCourseWaitlist />} />
-                      <Route path="/AffiliateApplication" element={<AffiliateNewsletter />} />
+                      <Route path="/AffiliateApplication" element={<Navigate to="/Affiliate" replace />} />
                       <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
                       <Route path="/holiday-sprint-landing" element={<HolidaySprintLanding />} />
                       <Route path="/holiday-sprint-payment" element={<HolidaySprintPayment />} />
