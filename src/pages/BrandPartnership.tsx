@@ -202,7 +202,7 @@ const BrandPartnership = () => {
             </h1>
             <p className="text-xl mb-8 text-muted-foreground">
               Get your brand in front of a buying audience. We feature Afro-descendant created brands and products 
-              through curated content, video reviews, and live shopping events across our platforms.
+              through curated content and live shopping events across our platforms.
             </p>
             <Button 
               size="lg" 
@@ -462,7 +462,6 @@ const BrandPartnership = () => {
                           <SelectItem value="product-spotlight">Product Spotlight (directory listing)</SelectItem>
                           <SelectItem value="live-shopping">Live Shopping Event</SelectItem>
                           <SelectItem value="tiktok-shop-live">TikTok Shop Hosted Live Session ($199)</SelectItem>
-                          <SelectItem value="video-review">Video Review / Reel</SelectItem>
                           <SelectItem value="written-feature">Written Feature / Blog Post</SelectItem>
                           <SelectItem value="full-package">Full Package (all of the above)</SelectItem>
                           <SelectItem value="not-sure">Not Sure: Help Me Decide</SelectItem>
