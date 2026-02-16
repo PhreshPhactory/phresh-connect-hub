@@ -27,12 +27,12 @@ const handler = async (req: Request): Promise<Response> => {
     const emailResponse = await resend.emails.send({
       from: "Phresh Phactory, Inc. <info@phreshphactory.com>",
       to: [email],
-      subject: "Intake Form Received — Your 72-Hour Sprint Is Almost Ready",
+      subject: "Intake Form Received: Your 72-Hour Sprint Is Almost Ready",
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <p style="font-size: 16px; color: #333; line-height: 1.6;">Hi there,</p>
           
-          <p style="font-size: 16px; color: #333; line-height: 1.6;">We received your Holiday Sprint intake form — thank you for submitting everything.</p>
+          <p style="font-size: 16px; color: #333; line-height: 1.6;">We received your Holiday Sprint intake form. Thank you for submitting everything.</p>
           
           <p style="font-size: 16px; color: #333; line-height: 1.6;">Your 72-hour sprint window will begin once we confirm that all required brand assets have been received.</p>
           
@@ -56,7 +56,7 @@ const handler = async (req: Request): Promise<Response> => {
           
           <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 30px;">If you have any questions before your Sprint begins, reply to Brands@PhreshPhactory.co</p>
           
-          <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 30px;">— Phresh Phactory, Inc.</p>
+          <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 30px;">Phresh Phactory, Inc.</p>
         </div>
       `,
     });

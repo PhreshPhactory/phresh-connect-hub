@@ -290,7 +290,7 @@ export default function NewsletterAdmin() {
                               />
                             </TableCell>
                             <TableCell className="font-medium">{subscriber.email}</TableCell>
-                            <TableCell>{subscriber.name || '—'}</TableCell>
+                            <TableCell>{subscriber.name || 'N/A'}</TableCell>
                             <TableCell>
                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
                                 {subscriber.source}
