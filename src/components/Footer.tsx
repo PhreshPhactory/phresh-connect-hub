@@ -58,10 +58,10 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left">
               <h3 className="text-2xl lg:text-3xl font-bold text-primary-foreground mb-2">
-                Get Ops Insights
+                Sign Up for Our Product Newsletter
               </h3>
               <p className="text-primary-foreground/70 text-base lg:text-lg">
-                Join 500+ founders getting practical ops strategies, delivered weekly.
+                Get the latest product drops, brand spotlights & exclusive deals delivered to your inbox.
               </p>
             </div>
             <form onSubmit={handleSubscribe} className="w-full max-w-md">
