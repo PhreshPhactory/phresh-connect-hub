@@ -98,31 +98,35 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground">
       {/* Newsletter CTA Band */}
-      <div className="border-b border-muted-foreground/20">
-        <div className="container-custom py-12 lg:py-16">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="text-center lg:text-left">
-              <h3 className="text-2xl lg:text-3xl font-bold text-primary-foreground mb-2">
-                The Product Digest
-              </h3>
-              <p className="text-primary-foreground/70 text-base lg:text-lg">
-                A curated selection of featured products from Phresh Phactory TV — including cards, gifts, and exceptional Afro-descendant created brands, delivered directly to your inbox.
-              </p>
-            </div>
-            <form onSubmit={handleSubscribe} className="w-full max-w-md">
-              <div className="flex gap-3">
+      <div className="border-b border-muted-foreground/20 bg-primary-foreground/5">
+        <div className="container-custom py-16 lg:py-20">
+          <div className="max-w-2xl mx-auto text-center">
+            <p className="text-tertiary font-semibold tracking-widest uppercase text-sm mb-3">
+              Free Newsletter
+            </p>
+            <h3 className="text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">
+              The Product Digest
+            </h3>
+            <p className="text-primary-foreground/80 text-lg lg:text-xl leading-relaxed mb-8">
+              Discover a curated collection of Afro-descendant created products — from cards and gifts to exceptional emerging brands — delivered directly to your inbox.
+            </p>
+            <form onSubmit={handleSubscribe} className="max-w-lg mx-auto">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Input
                   type="email"
-                  placeholder="Your email address"
+                  placeholder="Enter your email address"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  className="bg-primary-foreground/10 border-primary-foreground/20 focus:border-tertiary text-primary-foreground placeholder:text-primary-foreground/50 h-12 text-base flex-1"
+                  className="bg-primary-foreground/10 border-primary-foreground/30 focus:border-tertiary text-primary-foreground placeholder:text-primary-foreground/50 h-14 text-lg flex-1"
                 />
-                <Button type="submit" disabled={isSubmitting} className="bg-tertiary hover:bg-tertiary/90 text-primary h-12 px-6 font-medium shrink-0">
-                  <ArrowRight size={20} />
-                  <span className="sr-only">{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
+                <Button type="submit" disabled={isSubmitting} className="bg-tertiary hover:bg-tertiary/90 text-primary h-14 px-8 font-semibold text-base shrink-0">
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                  <ArrowRight size={20} className="ml-2" />
                 </Button>
               </div>
+              <p className="text-primary-foreground/50 text-sm mt-4">
+                Curated selections. No spam. Unsubscribe anytime.
+              </p>
             </form>
           </div>
         </div>
