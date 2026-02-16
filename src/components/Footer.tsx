@@ -107,22 +107,20 @@ const Footer = () => {
             <p className="text-primary-foreground/80 text-lg lg:text-xl leading-relaxed mb-8">
               A curated selection of Afro-descendant created products — delivered directly to your inbox.
             </p>
-            <form onSubmit={handleSubscribe} className="max-w-lg mx-auto">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Input
-                  type="email"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="bg-primary-foreground/10 border-primary-foreground/30 focus:border-tertiary text-primary-foreground placeholder:text-primary-foreground/50 h-14 text-lg flex-1"
-                />
-                <Button type="submit" disabled={isSubmitting} className="bg-tertiary hover:bg-tertiary/90 text-primary h-14 px-8 font-semibold text-base shrink-0">
-                  {isSubmitting ? 'Subscribing...' : "Receive Phresh Phactory TV's Culture and Commerce"}
-                  <ArrowRight size={20} className="ml-2" />
-                </Button>
-              </div>
-              <p className="text-primary-foreground/50 text-sm mt-4">
-                Curated selections. No spam. Unsubscribe anytime.
+            <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
+              <Input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className="bg-primary-foreground/10 border-primary-foreground/30 focus:border-tertiary text-primary-foreground placeholder:text-primary-foreground/50 h-14 text-lg w-full mb-4"
+              />
+              <Button type="submit" disabled={isSubmitting} className="bg-tertiary hover:bg-tertiary/90 text-primary h-14 px-8 font-semibold text-base w-full">
+                {isSubmitting ? 'Subscribing...' : "Receive Culture and Commerce"}
+                <ArrowRight size={20} className="ml-2" />
+              </Button>
+              <p className="text-primary-foreground/50 text-sm mt-4 text-center">
+                No spam. Unsubscribe anytime.
               </p>
             </form>
           </div>
