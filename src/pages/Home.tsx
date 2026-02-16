@@ -1,5 +1,5 @@
 
-import React from 'react';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import NewsletterForm from '@/components/NewsletterForm';
 import CallToAction from '@/components/CallToAction';
