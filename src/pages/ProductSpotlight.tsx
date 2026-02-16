@@ -163,17 +163,17 @@ const ProductSpotlight = () => {
       "uploadDate": spotlight.created_at,
       "contentUrl": spotlight.video_url
     } : undefined,
-    "category": "Black-owned business",
-    "additionalType": "Black-owned product",
-    "keywords": `Black-owned business, ${brandName}, Buy Black, support Black businesses, Christmas gifts, holiday shopping, Black-owned gifts`
+    "category": "Afro-descendant business",
+    "additionalType": "Afro-descendant product",
+    "keywords": `Afro-descendant business, ${brandName}, Buy Black, support Afro-descendant businesses, Christmas gifts, holiday shopping, Afro-descendant gifts`
   };
 
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title={`${spotlight.title} - Black-Owned Christmas Gifts`}
-        description={`${spotlight.excerpt} Shop Black-owned brands for Christmas. Support ${brandName} and discover unique holiday gifts from Black entrepreneurs.`}
-        keywords={`Black-owned business, ${brandName}, Buy Black, African American business, Black entrepreneur, Christmas gifts, holiday shopping, Black-owned gifts, support Black businesses, Black Friday, ${spotlight.title}`}
+        title={`${spotlight.title} - Afro-Descendant Christmas Gifts`}
+        description={`${spotlight.excerpt} Shop Afro-descendant brands for Christmas. Support ${brandName} and discover unique holiday gifts from Afro-descendant entrepreneurs.`}
+        keywords={`Afro-descendant business, ${brandName}, Buy Black, Afro-descendant entrepreneur, Christmas gifts, holiday shopping, Afro-descendant gifts, support Afro-descendant businesses, Black Friday, ${spotlight.title}`}
         ogImage={spotlight.feature_image}
         structuredData={productSchema}
         pageType="product"
@@ -253,7 +253,7 @@ const ProductSpotlight = () => {
                 Shop the Episode
               </h3>
               <p className="text-muted-foreground mb-6">
-                Support these Black-owned businesses by purchasing directly from their stores
+                Support these Afro-descendant businesses by purchasing directly from their stores
               </p>
 
               {/* Individual Products */}
@@ -308,7 +308,7 @@ const ProductSpotlight = () => {
           {/* CTA to explore more */}
           <div className="mt-12 p-8 bg-muted rounded-lg text-center">
             <h3 className="text-2xl font-bold mb-4 text-foreground">
-              Support More Black-Owned Brands
+              Support More Afro-Descendant Brands
             </h3>
             <p className="text-muted-foreground mb-6">
               Discover other incredible businesses featured in our Buy Black series

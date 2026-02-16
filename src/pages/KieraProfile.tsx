@@ -11,7 +11,7 @@ const KieraProfile = () => {
     <>
       <SEOHead
         title="Kiera H. - Strategic Advisor & Fractional Executive | Phresh Phactory"
-        description="Meet Kiera H., results-driven business strategist and Fractional Executive with 20+ years of experience helping startups and Black-owned businesses scale sustainably."
+        description="Meet Kiera H., results-driven business strategist and Fractional Executive with 20+ years of experience helping startups and Afro-descendant businesses scale sustainably."
         keywords="Kiera H, Business Strategist, Fractional Executive, Operations Consulting, Remote Teams, EatOkra, Afrofiliate"
         canonicalUrl="https://phreshphactory.com/KieraH"
       />
@@ -52,7 +52,7 @@ const KieraProfile = () => {
                   <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">Professional Background</h2>
                   <div className="space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
                     <p>
-                      Kiera H. is a results-driven business strategist, Fractional Executive, and Founder of Phresh Phactory, Inc., a global operations and systems consultancy that helps vision-led startups, Black-owned businesses, and remote-first companies streamline operations, scale sustainably, and build high-performing virtual teams.
+                      Kiera H. is a results-driven business strategist, Fractional Executive, and Founder of Phresh Phactory, Inc., a global operations and systems consultancy that helps vision-led startups, Afro-descendant businesses, and remote-first companies streamline operations, scale sustainably, and build high-performing virtual teams.
                     </p>
                     <p>
                       With over 20 years of experience spanning the U.S., the Caribbean, and Africa, Kiera is widely recognized for helping CEOs and Founders turn scattered efforts into structured, profitable operations.
@@ -72,7 +72,7 @@ const KieraProfile = () => {
                     <div>
                       <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2">Supplier Relationship Manager at EatOkra</h3>
                       <p>
-                        Supporting Black-owned food and drink brands through partnerships, visibility strategies, and technology integration. Strengthening vendor relationships, enhancing marketplace performance, and developing strategies to increase brand visibility and revenue.
+                        Supporting Afro-descendant food and drink brands through partnerships, visibility strategies, and technology integration. Strengthening vendor relationships, enhancing marketplace performance, and developing strategies to increase brand visibility and revenue.
                       </p>
                     </div>
                     <div>
@@ -101,7 +101,7 @@ const KieraProfile = () => {
                   <ul className="space-y-3 text-base md:text-lg text-muted-foreground">
                     <li className="flex items-start">
                       <span className="mr-2">•</span>
-                      <span><strong>"EatOkra for Business"</strong> – Offering practical advice and grant resources for Black-owned food and beverage brands listed on the EatOkra app.</span>
+                      <span><strong>"EatOkra for Business"</strong> – Offering practical advice and grant resources for Afro-descendant food and beverage brands listed on the EatOkra app.</span>
                     </li>
                     <li className="flex items-start">
                       <span className="mr-2">•</span>

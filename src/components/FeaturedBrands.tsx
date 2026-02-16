@@ -109,7 +109,7 @@ const FeaturedBrands = () => {
         <div className="text-center">
           <Button asChild size="lg">
             <Link to="/shop">
-              View All Black-Owned Brands
+              View All Afro-Descendant Brands
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>

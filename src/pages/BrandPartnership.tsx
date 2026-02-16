@@ -38,9 +38,9 @@ const BrandPartnership = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isBookingPayment, setIsBookingPayment] = useState(false);
-  const [bookingEmail, setBookingEmail] = useState('');
-  const [bookingBrand, setBookingBrand] = useState('');
   const [searchParams] = useSearchParams();
+  
+  const interestedInValue = useForm<FormValues>().watch ? undefined : undefined;
   
   useEffect(() => {
     const paymentStatus = searchParams.get('payment');
@@ -76,6 +76,8 @@ const BrandPartnership = () => {
       honeypot: '',
     },
   });
+
+  const watchInterestedIn = form.watch('interestedIn');
 
   const onSubmit = async (data: FormValues) => {
     if (!validateHoneypot(data.honeypot || '')) {
@@ -148,10 +150,13 @@ const BrandPartnership = () => {
   };
 
   const handleBookPayment = async () => {
-    if (!bookingEmail || !bookingBrand) {
+    const email = form.getValues('email');
+    const brandName = form.getValues('brandName');
+    
+    if (!email || !brandName) {
       toast({
         title: 'Missing info',
-        description: 'Please enter your email and brand name to proceed.',
+        description: 'Please fill in your email and brand name above first.',
         variant: 'destructive',
       });
       return;
@@ -161,7 +166,7 @@ const BrandPartnership = () => {
     try {
       const { supabase } = await import('@/integrations/supabase/client');
       const { data, error } = await supabase.functions.invoke('create-tiktok-live-payment', {
-        body: { email: bookingEmail, brandName: bookingBrand }
+        body: { email, brandName }
       });
 
       if (error) throw error;
@@ -260,102 +265,8 @@ const BrandPartnership = () => {
         </div>
       </section>
 
-      {/* TikTok Shop Hosted Live Session - Book & Pay */}
-      <section className="py-16 bg-background">
-        <div className="container-custom max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            {/* Info Side */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-                <Tv className="w-4 h-4" />
-                Ready to Go Live?
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                TikTok Shop Hosted Live Session
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Already have your TikTok Shop set up with products ready to sell? Skip the application — 
-                book a <strong>45-minute hosted live session</strong> where you showcase your own products 
-                with professional hosting and interview included.
-              </p>
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <Calendar className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                  <span>45-minute hosted session — you showcase, we host &amp; interview</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Video className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                  <span>Professional hosting to keep the energy up and drive sales</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <TrendingUp className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                  <span>Broadcast to our engaged audience ready to buy</span>
-                </li>
-              </ul>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-bold text-foreground">$199</span>
-                <span className="text-muted-foreground">per session</span>
-              </div>
-            </div>
-
-            {/* Booking Side */}
-            <div className="bg-muted border border-border rounded-xl p-8 space-y-6">
-              <h3 className="text-xl font-semibold text-foreground">Book Your Session</h3>
-              <p className="text-sm text-muted-foreground">
-                Enter your details, pick a date on the calendar, then pay to confirm your booking.
-              </p>
-              
-              <div className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium text-foreground block mb-1.5">Your Email</label>
-                  <Input 
-                    type="email" 
-                    placeholder="you@yourbrand.com" 
-                    value={bookingEmail}
-                    onChange={(e) => setBookingEmail(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-foreground block mb-1.5">Brand Name</label>
-                  <Input 
-                    placeholder="Your Brand" 
-                    value={bookingBrand}
-                    onChange={(e) => setBookingBrand(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              {/* Calendly Embed */}
-              <div className="rounded-lg overflow-hidden border border-border bg-background">
-                <iframe 
-                  src="https://calendly.com/phreshphactory/tiktok-shop-live"
-                  width="100%" 
-                  height="400" 
-                  frameBorder="0"
-                  title="Book your TikTok Shop Live Session"
-                  className="w-full"
-                />
-              </div>
-
-              <Button 
-                size="lg" 
-                className="w-full text-lg py-6" 
-                onClick={handleBookPayment}
-                disabled={isBookingPayment}
-              >
-                <DollarSign className="w-5 h-5 mr-2" />
-                {isBookingPayment ? 'Processing...' : 'Pay $199 & Confirm Booking'}
-              </Button>
-              <p className="text-xs text-center text-muted-foreground">
-                Secure payment via Stripe. You'll receive confirmation and session details by email.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Why Work With Us */}
-      <section className="py-16 bg-muted">
+      <section className="py-16 bg-background">
         <div className="container-custom max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
@@ -364,7 +275,7 @@ const BrandPartnership = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-background border border-border rounded-lg p-8 space-y-4">
+            <div className="bg-muted border border-border rounded-lg p-8 space-y-4">
               <TrendingUp className="w-8 h-8 text-primary" />
               <h3 className="text-xl font-semibold text-foreground">Built for Diaspora Commerce</h3>
               <p className="text-muted-foreground">
@@ -372,7 +283,7 @@ const BrandPartnership = () => {
                 We understand the audience, the culture, and what drives purchasing decisions.
               </p>
             </div>
-            <div className="bg-background border border-border rounded-lg p-8 space-y-4">
+            <div className="bg-muted border border-border rounded-lg p-8 space-y-4">
               <Video className="w-8 h-8 text-primary" />
               <h3 className="text-xl font-semibold text-foreground">End-to-End Content Production</h3>
               <p className="text-muted-foreground">
@@ -393,7 +304,7 @@ const BrandPartnership = () => {
       </section>
       
       {/* Application Form */}
-      <section id="brand-application" className="py-16 bg-background">
+      <section id="brand-application" className="py-16 bg-muted">
         <div className="container-custom max-w-3xl">
           <div className="animate-on-scroll">
             <h2 className="text-3xl font-bold mb-4 text-center text-foreground">Apply to Get Featured</h2>
@@ -566,6 +477,7 @@ const BrandPartnership = () => {
                         <SelectContent>
                           <SelectItem value="product-spotlight">Product Spotlight (directory listing)</SelectItem>
                           <SelectItem value="live-shopping">Live Shopping Event</SelectItem>
+                          <SelectItem value="tiktok-shop-live">TikTok Shop Hosted Live Session ($199)</SelectItem>
                           <SelectItem value="video-review">Video Review / Reel</SelectItem>
                           <SelectItem value="written-feature">Written Feature / Blog Post</SelectItem>
                           <SelectItem value="full-package">Full Package (all of the above)</SelectItem>
@@ -576,6 +488,64 @@ const BrandPartnership = () => {
                     </FormItem>
                   )}
                 />
+
+                {/* TikTok Shop Hosted Live Session - shown when selected */}
+                {watchInterestedIn === 'tiktok-shop-live' && (
+                  <div className="bg-background border border-border rounded-xl p-6 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-primary/10 text-primary p-2 rounded-lg">
+                        <Tv className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground">TikTok Shop Hosted Live Session</h3>
+                        <p className="text-sm text-muted-foreground">45-minute hosted session — you showcase, we host &amp; interview</p>
+                      </div>
+                      <span className="ml-auto text-2xl font-bold text-foreground">$199</span>
+                    </div>
+                    
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <Calendar className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                        <span>45-minute hosted session — you showcase your products, we host &amp; interview</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Video className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                        <span>Professional hosting to keep the energy up and drive sales</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <TrendingUp className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                        <span>Broadcast to our engaged audience ready to buy</span>
+                      </li>
+                    </ul>
+
+                    {/* Calendly Scheduling */}
+                    <div className="rounded-lg overflow-hidden border border-border">
+                      <iframe 
+                        src="https://calendly.com/phreshphactory/tiktok-shop-live?embed_type=Inline&embed_domain=phreshphactory.com"
+                        width="100%" 
+                        height="630" 
+                        frameBorder="0"
+                        title="Book your TikTok Shop Live Session"
+                        className="w-full"
+                        style={{ minWidth: '320px' }}
+                      />
+                    </div>
+
+                    <Button 
+                      type="button"
+                      size="lg" 
+                      className="w-full text-lg py-6" 
+                      onClick={handleBookPayment}
+                      disabled={isBookingPayment}
+                    >
+                      <DollarSign className="w-5 h-5 mr-2" />
+                      {isBookingPayment ? 'Processing...' : 'Pay $199 & Confirm Booking'}
+                    </Button>
+                    <p className="text-xs text-center text-muted-foreground">
+                      Secure payment via Stripe. Pick a date above, then pay to confirm.
+                    </p>
+                  </div>
+                )}
                 
                 <FormField
                   control={form.control}
