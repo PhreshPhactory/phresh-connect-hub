@@ -105,7 +105,7 @@ const Footer = () => {
               Culture and Commerce
             </h3>
             <p className="text-primary-foreground/80 text-lg lg:text-xl leading-relaxed mb-8">
-              A curated selection of Afro-descendant created products — delivered directly to your inbox.
+              Receive a curated selection of Afro-descendant created products, delivered directly to your inbox.
             </p>
             <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
               <Input
