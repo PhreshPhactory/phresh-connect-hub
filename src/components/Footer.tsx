@@ -46,7 +46,7 @@ const Footer = () => {
   const socials = [
     { icon: Linkedin, href: 'https://linkedin.com/company/phresh-phactory', label: 'LinkedIn' },
     { icon: Youtube, href: 'https://www.youtube.com/@PhreshPhactoryTV', label: 'YouTube' },
-    { icon: Instagram, href: 'https://instagram.com/phreshphactory', label: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/phreshphactorytv', label: 'Instagram' },
     { icon: TikTokIcon, href: 'https://www.tiktok.com/@phreshphactorytv', label: 'TikTok' },
   ];
 
