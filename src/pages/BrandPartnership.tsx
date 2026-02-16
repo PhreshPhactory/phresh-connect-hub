@@ -348,7 +348,7 @@ const BrandPartnership = () => {
                     name="website"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Brand Website or Social Link</FormLabel>
+                        <FormLabel>Brand Website</FormLabel>
                         <FormControl>
                           <Input placeholder="https://yourbrand.com" {...field} />
                         </FormControl>
