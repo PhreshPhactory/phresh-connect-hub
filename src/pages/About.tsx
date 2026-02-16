@@ -237,7 +237,7 @@ const About = () => {
               <div className="max-w-3xl">
                 <h3 className="text-2xl font-bold mb-4 text-foreground">Kiera H.</h3>
                 <p className="text-base md:text-lg text-muted-foreground mb-6">
-                  Kiera H. is a results-driven business strategist, Fractional Executive, and Founder of Phresh Phactory, Inc. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, she helps vision-led startups and Black-owned businesses streamline operations, scale sustainably, and build high-performing virtual teams.
+                  Kiera H. is a results-driven business strategist, Fractional Executive, and Founder of Phresh Phactory, Inc. With over 20 years of experience spanning the U.S., the Caribbean, and Africa, she helps vision-led startups and Afro-descendant businesses streamline operations, scale sustainably, and build high-performing virtual teams.
                 </p>
                 <Button asChild size="lg" variant="outline">
                   <Link to="/KieraH">

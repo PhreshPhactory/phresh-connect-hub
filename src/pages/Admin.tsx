@@ -740,7 +740,7 @@ const Admin = () => {
                     }
                   />
                   <p className="text-sm text-muted-foreground mt-1">
-                    This will appear as "Shop [Brand Name] Now" on the Buy Black page
+                    This will appear as "Shop [Brand Name] Now" on the Shop page
                   </p>
                 </div>
 

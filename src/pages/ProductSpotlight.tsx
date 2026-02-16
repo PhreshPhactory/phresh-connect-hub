@@ -110,7 +110,7 @@ const ProductSpotlight = () => {
           <Link to="/shop">
             <Button>
               <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Buy Black
+              Back to Shop
             </Button>
           </Link>
         </div>
@@ -165,7 +165,7 @@ const ProductSpotlight = () => {
     } : undefined,
     "category": "Afro-descendant business",
     "additionalType": "Afro-descendant product",
-    "keywords": `Afro-descendant business, ${brandName}, Buy Black, support Afro-descendant businesses, Christmas gifts, holiday shopping, Afro-descendant gifts`
+    "keywords": `Afro-descendant business, ${brandName}, Afro-descendant created brands, support Afro-descendant businesses, Christmas gifts, holiday shopping, Afro-descendant gifts`
   };
 
   return (
@@ -173,7 +173,7 @@ const ProductSpotlight = () => {
       <SEOHead 
         title={`${spotlight.title} - Afro-Descendant Christmas Gifts`}
         description={`${spotlight.excerpt} Shop Afro-descendant brands for Christmas. Support ${brandName} and discover unique holiday gifts from Afro-descendant entrepreneurs.`}
-        keywords={`Afro-descendant business, ${brandName}, Buy Black, Afro-descendant entrepreneur, Christmas gifts, holiday shopping, Afro-descendant gifts, support Afro-descendant businesses, Black Friday, ${spotlight.title}`}
+        keywords={`Afro-descendant business, ${brandName}, Afro-descendant created brands, Afro-descendant entrepreneur, Christmas gifts, holiday shopping, Afro-descendant gifts, support Afro-descendant businesses, ${spotlight.title}`}
         ogImage={spotlight.feature_image}
         structuredData={productSchema}
         pageType="product"
@@ -184,7 +184,7 @@ const ProductSpotlight = () => {
           {/* Back Button */}
           <Link to="/shop" className="inline-flex items-center text-primary hover:underline mb-8">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Buy Black
+            Back to Shop
           </Link>
 
           {/* Header */}
@@ -311,7 +311,7 @@ const ProductSpotlight = () => {
               Support More Afro-Descendant Brands
             </h3>
             <p className="text-muted-foreground mb-6">
-              Discover other incredible businesses featured in our Buy Black series
+              Discover other incredible Afro-descendant businesses featured in our directory
             </p>
             <Button asChild size="lg">
               <Link to="/shop">
