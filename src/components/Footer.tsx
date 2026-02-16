@@ -5,25 +5,70 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Logo from '@/components/Logo';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 const Footer = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubscribe = (e: FormEvent) => {
+  const handleSubscribe = async (e: FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email || !email.includes('@')) {
       toast({
-        title: "Thanks for subscribing!",
-        description: "You'll now receive our weekly ops insights."
-      });
-      setEmail('');
-    } else {
-      toast({
-        title: "Please enter your email",
+        title: "Please enter a valid email",
         description: "An email address is required to subscribe.",
         variant: "destructive"
       });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert({
+          email: email.trim().toLowerCase(),
+          source: 'footer-product-digest',
+        });
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: "Already subscribed",
+            description: "This email is already on our list!",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        try {
+          await supabase.functions.invoke('send-welcome-email', {
+            body: {
+              email: email.trim().toLowerCase(),
+              source: 'footer-product-digest',
+            },
+          });
+        } catch (emailError) {
+          console.error('Error sending welcome email:', emailError);
+        }
+
+        toast({
+          title: "You're in!",
+          description: "Welcome to The Product Digest. Check your inbox!",
+        });
+        setEmail('');
+      }
+    } catch (error) {
+      console.error('Error subscribing:', error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -58,10 +103,10 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left">
               <h3 className="text-2xl lg:text-3xl font-bold text-primary-foreground mb-2">
-                Sign Up for Our Product Newsletter
+                The Product Digest
               </h3>
               <p className="text-primary-foreground/70 text-base lg:text-lg">
-                Get the latest product drops, brand spotlights & exclusive deals delivered to your inbox.
+                A curated selection of featured products from Phresh Phactory TV — including cards, gifts, and exceptional Afro-descendant created brands, delivered directly to your inbox.
               </p>
             </div>
             <form onSubmit={handleSubscribe} className="w-full max-w-md">
@@ -73,9 +118,9 @@ const Footer = () => {
                   onChange={e => setEmail(e.target.value)}
                   className="bg-primary-foreground/10 border-primary-foreground/20 focus:border-tertiary text-primary-foreground placeholder:text-primary-foreground/50 h-12 text-base flex-1"
                 />
-                <Button type="submit" className="bg-tertiary hover:bg-tertiary/90 text-primary h-12 px-6 font-medium shrink-0">
+                <Button type="submit" disabled={isSubmitting} className="bg-tertiary hover:bg-tertiary/90 text-primary h-12 px-6 font-medium shrink-0">
                   <ArrowRight size={20} />
-                  <span className="sr-only">Subscribe</span>
+                  <span className="sr-only">{isSubmitting ? 'Subscribing...' : 'Subscribe'}</span>
                 </Button>
               </div>
             </form>
