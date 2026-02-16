@@ -74,7 +74,7 @@ const Header: React.FC = memo(() => {
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Blueprint', path: '/affiliate-sales-blueprint' },
-    { label: 'Operations', path: '/operations' },
+    { label: 'Affiliates', path: '/Affiliate' },
     { label: 'Brands', path: '/brands' }
   ];
   
