@@ -201,7 +201,7 @@ const BrandPartnership = () => {
               We Post Your Products &amp; Host Live Shopping
             </h1>
             <p className="text-xl mb-8 text-muted-foreground">
-              Get your brand in front of a buying audience. We feature Afro-descendant products 
+              Get your brand in front of a buying audience. We feature Afro-descendant created products 
               through curated content, video reviews, and live shopping events across our platforms.
             </p>
             <Button 
@@ -278,7 +278,7 @@ const BrandPartnership = () => {
               <TrendingUp className="w-8 h-8 text-primary" />
               <h3 className="text-xl font-semibold text-foreground">Built for Diaspora Commerce</h3>
               <p className="text-muted-foreground">
-                5+ years operating at the intersection of Afro-descendant brands and digital commerce. 
+                5+ years operating at the intersection of Afro-descendant created brands and digital commerce. 
                 We understand the audience, the culture, and what drives purchasing decisions.
               </p>
             </div>

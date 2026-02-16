@@ -70,8 +70,8 @@ const LinkInBio = () => {
     <>
       <SEOHead
         title="Links | Phresh Phactory, Inc."
-        description="Explore our curated collection of Afro-descendant brands and business opportunities. Shop, partner with us, or book a consultation."
-        keywords="link in bio, Afro-descendant brands, business partnerships, affiliate program, fractional COO"
+        description="Explore our curated collection of Afro-descendant created brands and products. Shop, partner with us, or book a consultation."
+        keywords="link in bio, Afro-descendant created brands, business partnerships, affiliate program, fractional COO"
       />
       
       <div 

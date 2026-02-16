@@ -154,8 +154,8 @@ const ProductSpotlights = () => {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Afro-Descendant Christmas Gifts & Product Spotlights",
-    "description": "Curated collection of Afro-descendant businesses and products for holiday shopping",
+    "name": "Afro-Descendant Created Brands Christmas Gifts & Product Spotlights",
+    "description": "Curated collection of Afro-descendant created brands and products for holiday shopping",
     "numberOfItems": allContent.length,
     "itemListElement": allContent.map((spotlight, index) => ({
       "@type": "ListItem",
@@ -229,7 +229,7 @@ const ProductSpotlights = () => {
               </h3>
             </Link>
             <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
-              {product.excerpt || "Discover this amazing Afro-descendant brand"}
+              {product.excerpt || "Discover this amazing Afro-descendant created brand"}
             </p>
             <div className="flex items-center gap-2 mt-3">
               {hasShopLink && shopLink && (
@@ -339,9 +339,9 @@ const ProductSpotlights = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Shop Afro-Descendant Brands | Curated Gifts, Home & Beauty Products 2025"
-        description="Discover 100+ curated Afro-descendant brands. Shop unique gifts, home decor, beauty products & more. Support Afro-descendant entrepreneurs with every purchase. Updated daily."
-        keywords="Afro-descendant brands, shop Afro-descendant, Afro-descendant gifts, Afro-descendant products, support Afro-descendant business, Afro-descendant entrepreneurs, Afro-descendant created brands, Afro-descendant home decor, Afro-descendant beauty, Afro-descendant gifts 2025"
+        title="Shop Afro-Descendant Created Brands | Curated Gifts, Home & Beauty Products 2025"
+        description="Discover 100+ curated Afro-descendant created brands. Shop unique gifts, home decor, beauty products & more. Support Afro-descendant created brands and products with every purchase. Updated daily."
+        keywords="Afro-descendant created brands, shop Afro-descendant, Afro-descendant gifts, Afro-descendant created products, support Afro-descendant business, Afro-descendant entrepreneurs, Afro-descendant created brands and products, Afro-descendant home decor, Afro-descendant beauty, Afro-descendant gifts 2025"
         structuredData={itemListSchema}
       />
 
@@ -369,7 +369,7 @@ const ProductSpotlights = () => {
               Curated Collection
             </Badge>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-foreground tracking-tight">
-              Afro-descendant brands curated daily.
+              Afro-descendant created brands curated daily.
             </h1>
             <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
               <Button asChild size="lg" className="btn-primary">

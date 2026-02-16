@@ -50,13 +50,13 @@ const FeaturedBrands = () => {
         <div className="text-center mb-12">
           <Badge className="mb-4">
             <ShoppingBag className="w-4 h-4 mr-2" />
-            Afro-Descendant Brands
+            Afro-Descendant Created Brands
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
             Shop the Diaspora
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Afro-Descendant Brands Curated Daily
+            Afro-Descendant Created Brands Curated Daily
           </p>
         </div>
 
@@ -109,7 +109,7 @@ const FeaturedBrands = () => {
         <div className="text-center">
           <Button asChild size="lg">
             <Link to="/shop">
-              View All Afro-Descendant Brands
+              View All Afro-Descendant Created Brands
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </Button>
