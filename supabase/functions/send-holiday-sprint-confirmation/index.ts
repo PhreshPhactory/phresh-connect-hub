@@ -78,7 +78,7 @@ const handler = async (req: Request): Promise<Response> => {
           
           <p style="font-size: 16px; color: #333; line-height: 1.6;">We're excited to create your complete Holiday Affiliate Sales System.</p>
           
-          <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 30px;">— Phresh Phactory, Inc.</p>
+          <p style="font-size: 16px; color: #333; line-height: 1.6; margin-top: 30px;">Phresh Phactory, Inc.</p>
         </div>
       `,
     });

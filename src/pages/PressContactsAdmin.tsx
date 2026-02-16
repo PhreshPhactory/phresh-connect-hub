@@ -458,7 +458,7 @@ export default function PressContactsAdmin() {
                               </p>
                             </div>
                           </TableCell>
-                          <TableCell>{contact.publications || "—"}</TableCell>
+                          <TableCell>{contact.publications || "N/A"}</TableCell>
                           <TableCell>
                             <div className="flex flex-wrap gap-1 max-w-[200px]">
                               {contact.topics?.slice(0, 3).map((topic, i) => (
