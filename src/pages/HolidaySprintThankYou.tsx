@@ -30,7 +30,7 @@ export default function HolidaySprintThankYou() {
 
               {/* Subtext */}
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Thank you — your application has been submitted.
+                Thank you. Your application has been submitted.
                 <br />
                 To secure your 72-Hour Holiday Sprint, please complete your payment below.
               </p>
@@ -42,7 +42,7 @@ export default function HolidaySprintThankYou() {
                 className="w-full md:w-auto bg-strategic-gold hover:bg-strategic-gold/90 text-background font-bold text-lg px-12 py-6 rounded-lg transition-all shadow-lg hover:shadow-xl"
               >
                 <a href={stripeCheckoutUrl} target="_blank" rel="noopener noreferrer">
-                  Complete Payment — $5,000
+                  Complete Payment: $5,000
                   <ExternalLink className="ml-2 h-5 w-5" />
                 </a>
               </Button>

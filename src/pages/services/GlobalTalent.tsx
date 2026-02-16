@@ -37,7 +37,7 @@ const GlobalTalent = () => {
               Global Talent <span className="text-tertiary-500">Excellence</span>
             </h1>
             <p className="text-xl mb-8 text-muted-foreground max-w-3xl mx-auto">
-              We source, hire, and manage top-tier talent across Africa, America and the Caribbean — not just to check a box, 
+              We source, hire, and manage top-tier talent across Africa, America and the Caribbean: not just to check a box, 
               but to raise the standard. Nearly two decades of proven excellence.
             </p>
             <Button asChild size="lg" className="bg-primary-600 hover:bg-primary-700 text-white">
@@ -152,7 +152,7 @@ const GlobalTalent = () => {
             <p className="text-muted-foreground leading-relaxed">
               Unlike typical remote hiring, we provide full team integration, cultural training, and ongoing management. 
               You get enterprise-level talent with the dedication of people who truly appreciate the opportunity. Our teams 
-              don't just execute — they think, contribute, and take ownership of outcomes.
+              don't just execute. They think, contribute, and take ownership of outcomes.
             </p>
           </div>
         </div>

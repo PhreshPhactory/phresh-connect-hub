@@ -55,7 +55,7 @@ const AffiliateSalesBlueprint = () => {
               </div>
               
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-bright-white mb-6 leading-tight">
-                Master the System That Makes Affiliate Sales Work — All Year Long.
+                Master the System That Makes Affiliate Sales Work, All Year Long.
               </h1>
               
               <p className="text-xl md:text-2xl text-bright-white/90 mb-6 max-w-3xl mx-auto leading-relaxed">
@@ -63,7 +63,7 @@ const AffiliateSalesBlueprint = () => {
               </p>
               
               <p className="text-lg md:text-xl text-bright-white/80 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Most brands don't have a sales problem — they have an affiliate preparation problem. This Bootcamp fixes that in one working session.
+                Most brands don't have a sales problem. They have an affiliate preparation problem. This Bootcamp fixes that in one working session.
               </p>
               
               <Button
@@ -114,7 +114,7 @@ const AffiliateSalesBlueprint = () => {
                   <div className="bg-teal/10 p-8 rounded-lg border-2 border-teal/30">
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-3">The Goal:</h3>
                     <p className="text-lg text-foreground/90 leading-relaxed">
-                      By the end of your session, your brand will have a complete affiliate activation system — assets, messaging, scripts, and a campaign you can run the same week.
+                      By the end of your session, your brand will have a complete affiliate activation system: assets, messaging, scripts, and a campaign you can run the same week.
                     </p>
                   </div>
                 </div>
@@ -287,7 +287,7 @@ const AffiliateSalesBlueprint = () => {
               </div>
               
               <p className="text-center text-lg text-foreground/80 italic max-w-3xl mx-auto">
-                Your brand can use any affiliate platform — the systems we build are platform-agnostic and fully adaptable.
+                Your brand can use any affiliate platform. The systems we build are platform-agnostic and fully adaptable.
               </p>
             </div>
           </div>
@@ -377,7 +377,7 @@ const AffiliateSalesBlueprint = () => {
                         72-Hour Holiday Sprint
                       </h3>
                       <p className="text-foreground/90">
-                        The Holiday Sprint is a done-for-you build with no meetings — ideal for fast Q4 execution. You submit your information, and we deliver a complete system in 72 hours.
+                        The Holiday Sprint is a done-for-you build with no meetings, ideal for fast Q4 execution. You submit your information, and we deliver a complete system in 72 hours.
                       </p>
                     </div>
                   </div>
@@ -519,7 +519,7 @@ const AffiliateSalesBlueprint = () => {
                   <CardContent className="p-8">
                     <div className="mb-6">
                       <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                        TIER 1 — Affiliate Sales Blueprint™ Bootcamp (Starter)
+                        TIER 1: Affiliate Sales Blueprint™ Bootcamp (Starter)
                       </h3>
                       <div className="flex items-baseline mb-4">
                         <span className="text-5xl font-heading font-bold text-foreground">$1,500</span>
@@ -582,7 +582,7 @@ const AffiliateSalesBlueprint = () => {
                   <CardContent className="p-8">
                     <div className="mb-6">
                       <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                        TIER 2 — Affiliate Sales Blueprint™ Working Session (Growth)
+                        TIER 2: Affiliate Sales Blueprint™ Working Session (Growth)
                       </h3>
                       <div className="flex items-baseline mb-4">
                         <span className="text-5xl font-heading font-bold text-foreground">$2,500</span>
@@ -644,7 +644,7 @@ const AffiliateSalesBlueprint = () => {
                   <CardContent className="p-8">
                     <div className="mb-6">
                       <h3 className="text-2xl font-heading font-bold text-foreground mb-2">
-                        TIER 3 — Holiday Affiliate Sales Sprint™ (Premium)
+                        TIER 3: Holiday Affiliate Sales Sprint™ (Premium)
                       </h3>
                       <div className="flex items-baseline mb-4">
                         <span className="text-5xl font-heading font-bold text-foreground">$5,000</span>
@@ -715,7 +715,7 @@ const AffiliateSalesBlueprint = () => {
                       Coming Soon: Affiliate Sales Starter Course
                     </h3>
                     <p className="text-lg text-muted-foreground mb-6">
-                      A self-paced course for founders who want to set up their affiliate programs the right way — at a beginner-friendly price.
+                      A self-paced course for founders who want to set up their affiliate programs the right way, at a beginner-friendly price.
                     </p>
                     <p className="text-foreground mb-6">
                       Join the waitlist to be notified when it launches.

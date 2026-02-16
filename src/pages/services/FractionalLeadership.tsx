@@ -37,7 +37,7 @@ const FractionalLeadership = () => {
               Fractional Executive <span className="text-tertiary-500">Leadership</span>
             </h1>
             <p className="text-xl mb-8 text-muted-foreground max-w-3xl mx-auto">
-              High-level strategy and hands-on transformation — without the full-time overhead. 
+              High-level strategy and hands-on transformation, without the full-time overhead. 
               Get strategic leadership that accelerates decision-making and drives real results.
             </p>
             <Button asChild size="lg" className="bg-primary-600 hover:bg-primary-700 text-white">
@@ -97,7 +97,7 @@ const FractionalLeadership = () => {
         <div className="container-custom">
           <SectionTitle 
             title="What You Get" 
-            subtitle="Strategic leadership that delivers measurable results — without the overhead" 
+            subtitle="Strategic leadership that delivers measurable results, without the overhead" 
             center 
           />
           

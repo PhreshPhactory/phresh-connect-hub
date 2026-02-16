@@ -92,7 +92,7 @@ const AffiliateCourseWaitlist = () => {
               </h1>
               
               <p className="text-xl md:text-2xl text-bright-white/90 mb-6 max-w-3xl mx-auto leading-relaxed">
-                Coming Soon — Join the Waitlist
+                Coming Soon: Join the Waitlist
               </p>
               
               <p className="text-lg md:text-xl text-bright-white/80 max-w-3xl mx-auto leading-relaxed">

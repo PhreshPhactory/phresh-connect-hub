@@ -14,7 +14,7 @@ const WhatWeDoSection = () => {
             Strategic Business Transformation
           </h2>
           <p className="text-xl md:text-2xl text-jet-gray font-heading font-medium mb-8 max-w-4xl mx-auto leading-relaxed">
-            Having flexible workforces aren't a fallback — they're your competitive edge. We build systems and teams that reduce pressure, and unlock long-term growth.
+            Having flexible workforces aren't a fallback. They're your competitive edge. We build systems and teams that reduce pressure, and unlock long-term growth.
           </p>
         </div>
         
@@ -23,7 +23,7 @@ const WhatWeDoSection = () => {
           <ServiceCard
             icon={<Briefcase className="w-12 h-12" />}
             title="Fractional Executive Leadership"
-            description="High-level strategy and hands-on transformation — without the full-time overhead."
+            description="High-level strategy and hands-on transformation, without the full-time overhead."
             link="/services/fractional-leadership"
             className="card-enhanced hover-lift glow-tertiary"
           />
@@ -31,7 +31,7 @@ const WhatWeDoSection = () => {
           <ServiceCard
             icon={<Building className="w-12 h-12" />}
             title="Global Talent Teams"
-            description="We source, hire, and manage top-tier talent across Africa, America and the Caribbean — not just to check a box, but to raise the standard."
+            description="We source, hire, and manage top-tier talent across Africa, America and the Caribbean: not just to check a box, but to raise the standard."
             link="/services/global-talent"
             className="card-enhanced hover-lift glow-tertiary"
           />

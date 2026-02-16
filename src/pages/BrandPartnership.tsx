@@ -293,7 +293,7 @@ const BrandPartnership = () => {
           <div className="animate-on-scroll">
             <h2 className="text-3xl font-bold mb-4 text-center text-foreground">Apply to Get Featured</h2>
             <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
-              One application — we'll review your brand and reach out with the best options for your goals and budget.
+              One application. We'll review your brand and reach out with the best options for your goals and budget.
             </p>
             
             <Form {...form}>
@@ -417,9 +417,9 @@ const BrandPartnership = () => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="yes-products-ready">Yes — products are loaded and ready to sell</SelectItem>
-                          <SelectItem value="yes-setting-up">Yes — but still setting up products</SelectItem>
-                          <SelectItem value="no-interested">No — but I'm interested in setting one up</SelectItem>
+                          <SelectItem value="yes-products-ready">Yes, products are loaded and ready to sell</SelectItem>
+                          <SelectItem value="yes-setting-up">Yes, but still setting up products</SelectItem>
+                          <SelectItem value="no-interested">No, but I'm interested in setting one up</SelectItem>
                           <SelectItem value="no">No</SelectItem>
                         </SelectContent>
                       </Select>
@@ -465,7 +465,7 @@ const BrandPartnership = () => {
                           <SelectItem value="video-review">Video Review / Reel</SelectItem>
                           <SelectItem value="written-feature">Written Feature / Blog Post</SelectItem>
                           <SelectItem value="full-package">Full Package (all of the above)</SelectItem>
-                          <SelectItem value="not-sure">Not Sure — Help Me Decide</SelectItem>
+                          <SelectItem value="not-sure">Not Sure: Help Me Decide</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -482,7 +482,7 @@ const BrandPartnership = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground">TikTok Shop Hosted Live Session</h3>
-                        <p className="text-sm text-muted-foreground">45-minute hosted session — you showcase, we host &amp; interview</p>
+                        <p className="text-sm text-muted-foreground">45-minute hosted session: you showcase, we host &amp; interview</p>
                       </div>
                       <span className="ml-auto text-2xl font-bold text-foreground">$199</span>
                     </div>
@@ -490,7 +490,7 @@ const BrandPartnership = () => {
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       <li className="flex items-start gap-2">
                         <Calendar className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                        <span>45-minute hosted session — you showcase your products, we host &amp; interview</span>
+                        <span>45-minute hosted session: you showcase your products, we host &amp; interview</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <Video className="w-4 h-4 text-primary mt-0.5 shrink-0" />

@@ -24,7 +24,7 @@ const Services = () => {
               Business Transformation Through <span className="text-tertiary">Strategic Leadership</span>
             </h1>
             <div className="text-xl mb-6 text-muted-foreground">
-              <p>Advisory services that help you move faster, not slower. We deliver strategic business transformation — helping owners digitize, streamline, and scale.</p>
+              <p>Advisory services that help you move faster, not slower. We deliver strategic business transformation: helping owners digitize, streamline, and scale.</p>
               <p className="mt-4">When you need more than consulting but can't afford full-time executive overhead, we bridge that gap with fractional leadership that delivers real results.</p>
             </div>
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
@@ -46,7 +46,7 @@ const Services = () => {
           <div className="max-w-4xl mx-auto text-center mb-12">
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Most business owners know they need help, but traditional solutions are either too expensive or too generic. 
-                We've spent nearly two decades building a different approach — one that combines strategic leadership with 
+                We've spent nearly two decades building a different approach: one that combines strategic leadership with 
                 high-performance teams that actually deliver results. Here's how we transform businesses:
               </p>
           </div>
@@ -62,7 +62,7 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-medium mb-2 text-foreground" id="fractional-leadership">Fractional Executive Leadership</h3>
               <p className="text-muted-foreground mb-3 text-sm">
-                A lot of people say they're bootstrapping and that's why they're not hiring, but the truth is they just need help — maybe not full-time employees, and definitely not at Silicon Valley prices.
+                A lot of people say they're bootstrapping and that's why they're not hiring, but the truth is they just need help. Maybe not full-time employees, and definitely not at Silicon Valley prices.
               </p>
               <div className="p-3 rounded-lg mb-3 border-l-4 border-tertiary">
                 <p className="text-xs font-medium" style={{ color: '#9c7a0a' }}>The Reality:</p>
@@ -123,7 +123,7 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-medium mb-2" id="global-talent">Global Talent Excellence</h3>
               <p className="text-muted-foreground mb-3 text-sm">
-                We hire people from the global disapora including Africa, America and across The Caribbean — not just to give opportunities, but because the results speak for themselves. Nearly two decades of proven excellence.
+                We hire people from the global disapora including Africa, America and across The Caribbean: not just to give opportunities, but because the results speak for themselves. Nearly two decades of proven excellence.
               </p>
               <div className="bg-accent-50 p-3 rounded-lg mb-3 border-l-4 border-tertiary-500">
                 <p className="text-xs font-medium text-tertiary-700">Why This Works:</p>
@@ -182,7 +182,7 @@ const Services = () => {
               </div>
               <h3 className="text-xl font-medium mb-2" id="legacy-transformation">Legacy Business Transformation</h3>
               <p className="text-muted-foreground mb-3 text-sm">
-                Some businesses are ready to grow — but the family doesn't want to take it over. We help restructure, digitize, and rebuild so the business becomes something worth continuing — or selling.
+                Some businesses are ready to grow, but the family doesn't want to take it over. We help restructure, digitize, and rebuild so the business becomes something worth continuing, or selling.
               </p>
               <div className="bg-accent-50 p-3 rounded-lg mb-3 border-l-4 border-tertiary-500">
                 <p className="text-xs font-medium text-tertiary-700">The Challenge:</p>
@@ -248,7 +248,7 @@ const Services = () => {
               <div className="bg-accent-50 p-3 rounded-lg mb-3 border-l-4 border-tertiary-500">
                 <p className="text-xs font-medium text-tertiary-700">Why Systems Matter:</p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Great people can't perform without great systems. We don't just build processes — we build intelligent systems 
+                  Great people can't perform without great systems. We don't just build processes. We build intelligent systems 
                   that make it easier to do the right thing and harder to make mistakes. Plus built-in pivots when things change.
                 </p>
               </div>
@@ -281,7 +281,7 @@ const Services = () => {
               <div className="bg-white border border-tertiary-200 p-2 rounded-lg mb-3">
                 <p className="text-xs font-medium text-tertiary-700 mb-1">What Makes Ours Different:</p>
                 <p className="text-xs text-muted-foreground">
-                  Most consultants build rigid systems that break when reality hits. We build adaptive systems with "rip cords" — 
+                  Most consultants build rigid systems that break when reality hits. We build adaptive systems with "rip cords": 
                   ways to quickly pivot when market conditions change or new opportunities emerge. Flexibility built into the foundation.
                 </p>
               </div>
@@ -315,7 +315,7 @@ const Services = () => {
             <div className="bg-white p-4 rounded-lg shadow-sm border border-tertiary-200">
               <p className="text-sm font-medium text-tertiary-700 mb-1">The Key Insight:</p>
               <p className="text-sm text-muted-foreground">
-                When you hire a team through us, you're not getting employees to manage — you're getting a complete business 
+                When you hire a team through us, you're not getting employees to manage. You're getting a complete business 
                 function that we own, optimize, and scale for you. That's the difference between success and struggle.
               </p>
             </div>

@@ -22,7 +22,7 @@ const About = () => {
     {
       icon: <Users className="h-6 w-6" />,
       title: 'Systems That Scale',
-      description: 'We bring clarity, systems, and smart support to help you lead with vision and execute with excellence—whether launching, scaling, or restructuring.'
+      description: 'We bring clarity, systems, and smart support to help you lead with vision and execute with excellence, whether launching, scaling, or restructuring.'
     }
   ];
 
@@ -68,7 +68,7 @@ const About = () => {
             </p>
             <div className="bg-card border border-border p-6 rounded-lg mb-8 max-w-2xl mx-auto">
               <p className="text-lg font-medium text-teal">
-                We don't just consult—we co-create.
+                We don't just consult. We co-create.
               </p>
             </div>
             <Button asChild size="lg">
@@ -167,7 +167,7 @@ const About = () => {
           
           <div className="max-w-4xl mx-auto">
             <p className="text-lg md:text-xl text-muted-foreground mb-12 text-center leading-relaxed">
-              To support the long-term success of diaspora-centered companies, Phresh Phactory created two online communities — one for talent and one for brands.
+              To support the long-term success of diaspora-centered companies, Phresh Phactory created two online communities: one for talent and one for brands.
             </p>
             
             <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -211,7 +211,7 @@ const About = () => {
             </div>
             
             <p className="text-lg text-center text-foreground font-medium">
-              These communities form a complete ecosystem that strengthens the companies we serve — including EatOkra and Afrofiliate.
+              These communities form a complete ecosystem that strengthens the companies we serve, including EatOkra and Afrofiliate.
             </p>
           </div>
         </div>

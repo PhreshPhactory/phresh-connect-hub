@@ -15,7 +15,7 @@ const EcosystemSection = () => {
         
         <div className="max-w-3xl mx-auto text-center mb-16">
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Phresh Phactory doesn't just advise businesses — we build the systems and communities that help them grow.
+            Phresh Phactory doesn't just advise businesses. We build the systems and communities that help them grow.
             Our two community hubs support the entire diaspora commerce ecosystem:
           </p>
         </div>
@@ -72,7 +72,7 @@ const EcosystemSection = () => {
 
         <div className="text-center">
           <p className="text-xl font-medium text-foreground">
-            Together, they create a dynamic marketplace where brands get support — and support gets brands.
+            Together, they create a dynamic marketplace where brands get support, and support gets brands.
           </p>
         </div>
       </div>

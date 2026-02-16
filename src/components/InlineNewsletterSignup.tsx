@@ -98,7 +98,7 @@ const InlineNewsletterSignup = ({
             The Product Digest
           </h3>
           <p className="text-muted-foreground mb-6">
-            Curated Afro-descendant created brands, gift ideas & hidden gems—delivered weekly.
+            Curated Afro-descendant created brands, gift ideas & hidden gems, delivered weekly.
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <Input
