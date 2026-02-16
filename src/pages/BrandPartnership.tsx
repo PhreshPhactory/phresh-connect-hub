@@ -187,8 +187,8 @@ const BrandPartnership = () => {
   return (
     <>
       <SEOHead
-        title="Get Your Brand Featured | Phresh Phactory Afro-Descendant Directory"
-        description="We post your products and host live shopping events to drive sales for Afro-descendant brands. Apply to get featured."
+        title="Get Your Brand Featured | Phresh Phactory Afro-Descendant Created Brands and Products Directory"
+        description="We post your products and host live shopping events to drive sales for Afro-descendant created brands and products. Apply to get featured."
         keywords="Afro-descendant brand feature, live shopping, product spotlight, Afro-descendant created brands, brand visibility, diaspora commerce"
         canonicalUrl="https://phreshphactory.com/brands"
       />
@@ -201,7 +201,7 @@ const BrandPartnership = () => {
               We Post Your Products &amp; Host Live Shopping
             </h1>
             <p className="text-xl mb-8 text-muted-foreground">
-              Get your brand in front of a buying audience. We feature Afro-descendant created products 
+              Get your brand in front of a buying audience. We feature Afro-descendant created brands and products 
               through curated content, video reviews, and live shopping events across our platforms.
             </p>
             <Button 
