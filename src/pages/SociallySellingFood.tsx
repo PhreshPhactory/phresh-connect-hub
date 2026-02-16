@@ -165,7 +165,7 @@ const SociallySellingFood = () => {
             <div className="bg-destructive/10 border border-destructive/30 rounded-lg px-4 py-2 mb-4 inline-block">
               <p className="text-sm font-medium text-destructive flex items-center gap-2">
                 <Clock className="h-4 w-4" />
-                Register by {DEADLINE} — Sessions start Feb 10
+                Register by {DEADLINE}. Sessions start Feb 10
               </p>
             </div>
             
@@ -174,7 +174,7 @@ const SociallySellingFood = () => {
               onClick={scrollToForm}
               className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
             >
-              Enroll Now — $299
+              Enroll Now: $299
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
@@ -190,7 +190,7 @@ const SociallySellingFood = () => {
             <div className="bg-card border-2 border-tertiary rounded-2xl p-6 md:p-8 shadow-lg shadow-tertiary/10">
               <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold text-foreground mb-2">Enroll in the 4-Session Lab</h2>
-                <p className="text-muted-foreground">$299 — All 4 sessions, Feb 10 – Mar 3</p>
+                <p className="text-muted-foreground">$299: All 4 sessions, Feb 10 – Mar 3</p>
                 <p className="text-xs text-muted-foreground mt-1 flex items-center justify-center gap-1">
                   <Clock className="h-3 w-3" />
                   Tuesdays, 2:30 PM – 4:00 PM ET
@@ -280,7 +280,7 @@ const SociallySellingFood = () => {
                   >
                     {isSubmitting 
                       ? 'Processing...' 
-                      : `Proceed to Payment — $${BUNDLE_PRICE}`
+                      : `Proceed to Payment: $${BUNDLE_PRICE}`
                     }
                   </Button>
                   
@@ -333,10 +333,10 @@ const SociallySellingFood = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               {[
-                { title: 'Session 1 — Feb 10', desc: 'Portable Offer Build Lab: Define your sellable offer and pricing' },
-                { title: 'Session 2 — Feb 17', desc: 'Offer Packaging + Content: Create AI-generated product pages and descriptions' },
-                { title: 'Session 3 — Feb 24', desc: 'Visibility + Launch Prep: Build marketing assets and email sequences' },
-                { title: 'Session 4 — Mar 3', desc: 'Launch + Amplification: Go live and set up ongoing sales systems' },
+                { title: 'Session 1: Feb 10', desc: 'Portable Offer Build Lab: Define your sellable offer and pricing' },
+                { title: 'Session 2: Feb 17', desc: 'Offer Packaging + Content: Create AI-generated product pages and descriptions' },
+                { title: 'Session 3: Feb 24', desc: 'Visibility + Launch Prep: Build marketing assets and email sequences' },
+                { title: 'Session 4: Mar 3', desc: 'Launch + Amplification: Go live and set up ongoing sales systems' },
               ].map((session, index) => (
                 <div key={index} className="flex items-start gap-3 p-4 bg-card border border-border rounded-lg">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-tertiary flex items-center justify-center text-tertiary-foreground font-bold text-sm">
@@ -394,7 +394,7 @@ const SociallySellingFood = () => {
               onClick={scrollToForm}
               className="text-lg px-8 py-6 h-auto bg-tertiary text-tertiary-foreground hover:bg-tertiary/90"
             >
-              Enroll Now — $299
+              Enroll Now: $299
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>

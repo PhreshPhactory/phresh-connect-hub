@@ -66,7 +66,7 @@ export default function HolidaySprintLanding() {
               
               <div className="space-y-6 text-lg text-foreground leading-relaxed">
                 <p>
-                  Affiliates want to sell your products. They're ready. But most brands give them nothing to work with—no assets, no scripts, no clear direction. So affiliates promote the brands who make it easy.
+                  Affiliates want to sell your products. They're ready. But most brands give them nothing to work with: no assets, no scripts, no clear direction. So affiliates promote the brands who make it easy.
                 </p>
                 
                 <p>
@@ -95,7 +95,7 @@ export default function HolidaySprintLanding() {
                         <div>
                           <h3 className="font-bold text-xl mb-2">The Solution</h3>
                           <p className="text-muted-foreground">
-                            This sprint is designed to fix that in 14 days—giving you everything affiliates need to start promoting immediately.
+                            This sprint is designed to fix that in 14 days, giving you everything affiliates need to start promoting immediately.
                           </p>
                         </div>
                       </div>
@@ -104,7 +104,7 @@ export default function HolidaySprintLanding() {
                 </div>
                 
                 <p className="font-semibold text-xl text-center">
-                  Affiliates promote the brands who are prepared. This sprint gets you prepared—fast.
+                  Affiliates promote the brands who are prepared. This sprint gets you prepared, fast.
                 </p>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function HolidaySprintLanding() {
                   {
                     icon: Target,
                     title: "Done-For-You Affiliate Sales Kit",
-                    description: "Complete package of materials your affiliates can use immediately—no extra work required from your team."
+                    description: "Complete package of materials your affiliates can use immediately. No extra work required from your team."
                   },
                   {
                     icon: Users,
@@ -230,7 +230,7 @@ export default function HolidaySprintLanding() {
                   {
                     days: "Day 7–10",
                     title: "Affiliate Onboarding & Content Strategy",
-                    description: "We create your affiliate onboarding guide and holiday content calendar—giving affiliates a clear roadmap for promoting your products throughout Q4."
+                    description: "We create your affiliate onboarding guide and holiday content calendar, giving affiliates a clear roadmap for promoting your products throughout Q4."
                   },
                   {
                     days: "Day 11–14",
@@ -259,7 +259,7 @@ export default function HolidaySprintLanding() {
               
               <div className="mt-10 text-center">
                 <p className="text-lg font-semibold text-foreground mb-6">
-                  This process is fast, clear, and achievable—designed specifically for busy founders who need results now.
+                  This process is fast, clear, and achievable. Designed specifically for busy founders who need results now.
                 </p>
                 <Button
                   asChild
@@ -327,7 +327,7 @@ export default function HolidaySprintLanding() {
                   },
                   {
                     title: "Built for Speed",
-                    description: "Designed specifically for brands who need quick wins during the limited Q4 holiday window—no wasted time or unnecessary complexity."
+                    description: "Designed specifically for brands who need quick wins during the limited Q4 holiday window. No wasted time or unnecessary complexity."
                   },
                   {
                     title: "Affiliate-Tested",
@@ -351,7 +351,7 @@ export default function HolidaySprintLanding() {
                 <Card className="border-2 border-strategic-gold/20 bg-strategic-gold/5">
                   <CardContent className="p-8 text-center">
                     <p className="text-lg font-semibold text-foreground">
-                      The bottom line: This gives affiliates everything they need to start selling your products immediately—which means more revenue for your brand during the most important sales period of the year.
+                      The bottom line: This gives affiliates everything they need to start selling your products immediately, which means more revenue for your brand during the most important sales period of the year.
                     </p>
                   </CardContent>
                 </Card>
@@ -446,7 +446,7 @@ export default function HolidaySprintLanding() {
                     What if I don't have affiliates yet?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">
-                    Perfect—that means you'll have professional, compelling materials ready when you start recruiting affiliates. Having these assets prepared makes it significantly easier to attract quality affiliates because you're showing them exactly what they'll get and how easy it will be to promote your products.
+                    Perfect. That means you'll have professional, compelling materials ready when you start recruiting affiliates. Having these assets prepared makes it significantly easier to attract quality affiliates because you're showing them exactly what they'll get and how easy it will be to promote your products.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -464,7 +464,7 @@ export default function HolidaySprintLanding() {
                     What if my team isn't ready to implement this right now?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">
-                    The materials we create are designed to be "shelf-ready"—meaning they can be used immediately or saved for when you're ready to activate. Everything is documented clearly so anyone on your team (or freelancers you hire) can implement without extensive training. The holiday window won't wait, but these assets will be ready when you are.
+                    The materials we create are designed to be "shelf-ready," meaning they can be used immediately or saved for when you're ready to activate. Everything is documented clearly so anyone on your team (or freelancers you hire) can implement without extensive training. The holiday window won't wait, but these assets will be ready when you are.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -473,7 +473,7 @@ export default function HolidaySprintLanding() {
                     Can freelancers or team members use these materials?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">
-                    Absolutely. All materials are created with clear documentation and usage guidelines, making it simple for anyone on your team—or external contractors—to understand and implement. The goal is to make affiliate promotion as turnkey as possible for everyone involved.
+                    Absolutely. All materials are created with clear documentation and usage guidelines, making it simple for anyone on your team, or external contractors, to understand and implement. The goal is to make affiliate promotion as turnkey as possible for everyone involved.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -482,7 +482,7 @@ export default function HolidaySprintLanding() {
                     What if my products aren't specifically holiday-themed?
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">
-                    That's completely fine. The holiday season is about gift-giving, treating yourself, and taking advantage of promotions—not just holiday-specific products. We'll position your products in a way that makes them relevant and appealing for Q4 buyers, regardless of whether they're seasonal items.
+                    That's completely fine. The holiday season is about gift-giving, treating yourself, and taking advantage of promotions, not just holiday-specific products. We'll position your products in a way that makes them relevant and appealing for Q4 buyers, regardless of whether they're seasonal items.
                   </AccordionContent>
                 </AccordionItem>
 

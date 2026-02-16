@@ -62,7 +62,7 @@ const Packages = () => {
       title: 'Ops Metrics Kit',
       price: '$497',
       period: 'one-time',
-      description: 'A plug-and-play dashboard to give you visibility into your operations—before you hire, scale, or make your next big move.',
+      description: 'A plug-and-play dashboard to give you visibility into your operations: before you hire, scale, or make your next big move.',
       features: [
         { text: 'Plug-and-play dashboard (Google Sheets or Notion)' },
         { text: 'Weekly productivity + deliverables tracker' },
@@ -161,7 +161,7 @@ const Packages = () => {
               title="Ops Metrics Kit"
               price="$497"
               period="one-time"
-              description="A plug-and-play dashboard to give you visibility into your operations—before you hire, scale, or make your next big move."
+              description="A plug-and-play dashboard to give you visibility into your operations: before you hire, scale, or make your next big move."
               features={[
                 { text: 'Plug-and-play dashboard (Google Sheets or Notion)' },
                 { text: 'Weekly productivity + deliverables tracker' },

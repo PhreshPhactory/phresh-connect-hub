@@ -102,7 +102,7 @@ const HolidaySprintExplained = () => {
         <section className="py-20 px-4 bg-muted/30">
           <div className="container max-w-5xl mx-auto">
             <p className="text-xl md:text-2xl text-center text-foreground/90 max-w-4xl mx-auto mb-12">
-              Most holiday affiliate programs fail not because of the affiliates — but because brands don't have a system designed for seasonal selling.
+              Most holiday affiliate programs fail not because of the affiliates, but because brands don't have a system designed for seasonal selling.
             </p>
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-semibold mb-12 text-center">
@@ -340,7 +340,7 @@ const HolidaySprintExplained = () => {
               </div>
               
               <p className="text-center text-lg text-foreground/80 italic">
-                Your brand can use any affiliate platform — the systems we build are platform-agnostic and fully adaptable.
+                Your brand can use any affiliate platform. The systems we build are platform-agnostic and fully adaptable.
               </p>
             </div>
           </div>
@@ -386,7 +386,7 @@ const HolidaySprintExplained = () => {
               </ul>
               
               <p className="text-lg md:text-xl text-foreground/90 mt-8 italic text-center">
-                If this sounds like you, the Holiday Sprint replaces confusion with clarity — in 72 hours.
+                If this sounds like you, the Holiday Sprint replaces confusion with clarity, in 72 hours.
               </p>
             </div>
           </div>
@@ -407,7 +407,7 @@ const HolidaySprintExplained = () => {
                     <span className="text-2xl font-bold text-primary">0</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading font-bold mb-3">Day 0 — You Submit the Intake Form</h3>
+                    <h3 className="text-2xl font-heading font-bold mb-3">Day 0: You Submit the Intake Form</h3>
                     <p className="text-foreground/90 text-lg">
                       You share brand details, product links, your affiliate platform, margins, and any product assets.
                     </p>
@@ -422,7 +422,7 @@ const HolidaySprintExplained = () => {
                     <span className="text-2xl font-bold text-tertiary">1</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading font-bold mb-3">Day 1 — Strategy & Product Focus</h3>
+                    <h3 className="text-2xl font-heading font-bold mb-3">Day 1: Strategy & Product Focus</h3>
                     <p className="text-foreground/90 text-lg">
                       We select your 3 high-earning holiday hero products and define the angles your creators will use to sell them.
                     </p>
@@ -437,7 +437,7 @@ const HolidaySprintExplained = () => {
                     <span className="text-2xl font-bold text-teal">2</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading font-bold mb-3">Day 2 — Asset Build</h3>
+                    <h3 className="text-2xl font-heading font-bold mb-3">Day 2: Asset Build</h3>
                     <p className="text-foreground/90 text-lg">
                       We create your creator brief, holiday talking points, content kit, B-roll guidance, and your affiliate link map.
                     </p>
@@ -452,7 +452,7 @@ const HolidaySprintExplained = () => {
                     <span className="text-2xl font-bold text-rust">3</span>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading font-bold mb-3">Day 3 — Delivery</h3>
+                    <h3 className="text-2xl font-heading font-bold mb-3">Day 3: Delivery</h3>
                     <p className="text-foreground/90 text-lg mb-3">
                       You receive your full Holiday Affiliate Sales System PDF package, plus all assets ready to send to your affiliates immediately.
                     </p>
@@ -599,7 +599,7 @@ const HolidaySprintExplained = () => {
                   The Holiday Affiliate Sales Sprint™
                 </p>
                 <p className="text-lg text-foreground/90 leading-relaxed">
-                  The fastest, clearest way to prepare your brand for holiday selling — with a complete affiliate sales system delivered in 72 hours.
+                  The fastest, clearest way to prepare your brand for holiday selling, with a complete affiliate sales system delivered in 72 hours.
                 </p>
               </div>
               
@@ -667,7 +667,7 @@ const HolidaySprintExplained = () => {
                   This Sprint replaces 30+ days of lost sales, disorganized creator outreach, and unclear messaging with a done-for-you system your affiliates can use immediately.
                 </p>
                 <p className="text-foreground/90 leading-relaxed">
-                  A single affiliate campaign — with direction — can cover your investment. Most brands lose far more than $5,000 every holiday season due to unclear systems.
+                  A single affiliate campaign, with direction, can cover your investment. Most brands lose far more than $5,000 every holiday season due to unclear systems.
                 </p>
               </div>
               
@@ -926,7 +926,7 @@ const HolidaySprintExplained = () => {
               Affiliates can only sell what they clearly understand.
             </p>
             <p className="text-xl md:text-2xl text-foreground/90 leading-relaxed max-w-3xl mx-auto mt-4">
-              This system gives them simple talking points, clean assets, organized links, and ready-to-use content so they can start promoting immediately — without asking you questions.
+              This system gives them simple talking points, clean assets, organized links, and ready-to-use content so they can start promoting immediately, without asking you questions.
             </p>
           </div>
         </section>
@@ -985,7 +985,7 @@ const HolidaySprintExplained = () => {
                   Do I need to get on a meeting?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground/90 text-base">
-                  No. Everything is done without calls. You submit your intake form, and we build your complete system — no meetings required.
+                  No. Everything is done without calls. You submit your intake form, and we build your complete system. No meetings required.
                 </AccordionContent>
               </AccordionItem>
 
@@ -1012,7 +1012,7 @@ const HolidaySprintExplained = () => {
                   Will I need to create content?
                 </AccordionTrigger>
                 <AccordionContent className="text-foreground/90 text-base">
-                  No, we handle the structure and creator assets. You provide product information and brand details — we build everything your affiliates need to create content and drive sales.
+                  No, we handle the structure and creator assets. You provide product information and brand details. We build everything your affiliates need to create content and drive sales.
                 </AccordionContent>
               </AccordionItem>
 
@@ -1090,7 +1090,7 @@ const HolidaySprintExplained = () => {
         <section className="py-20 md:py-32 px-4 bg-gradient-to-br from-tertiary/10 via-background to-teal/10">
           <div className="container max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight">
-              If you want your affiliates selling for you this holiday season — this is the system they need.
+              If you want your affiliates selling for you this holiday season, this is the system they need.
             </h2>
             
             <p className="text-xl md:text-2xl text-foreground/90 font-light">

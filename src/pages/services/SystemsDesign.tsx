@@ -54,7 +54,7 @@ const SystemsDesign = () => {
             <div className="bg-accent-50 p-8 rounded-lg border-l-4 border-tertiary-500 mb-12">
               <h2 className="text-2xl font-bold text-tertiary-700 mb-4">Why Systems Matter</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Great people can't perform without great systems. We don't just build processes — we build intelligent systems 
+                Great people can't perform without great systems. We don't just build processes. We build intelligent systems 
                 that make it easier to do the right thing and harder to make mistakes. Plus built-in pivots when things change.
               </p>
             </div>
@@ -150,7 +150,7 @@ const SystemsDesign = () => {
           <div className="bg-white border border-tertiary-200 p-8 rounded-lg mt-8">
             <h3 className="text-xl font-semibold text-tertiary-700 mb-4">What Makes Ours Different:</h3>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Most consultants build rigid systems that break when reality hits. We build adaptive systems with "rip cords" — 
+              Most consultants build rigid systems that break when reality hits. We build adaptive systems with "rip cords": 
               ways to quickly pivot when market conditions change or new opportunities emerge. Flexibility built into the foundation.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
