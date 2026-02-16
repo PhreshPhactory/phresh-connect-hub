@@ -20,3 +20,6 @@ verify_jwt = false
 
 [functions.send-ssf-invoice]
 verify_jwt = false
+
+[functions.create-tiktok-live-payment]
+verify_jwt = false
