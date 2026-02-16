@@ -341,7 +341,7 @@ const ProductSpotlights = () => {
       <SEOHead 
         title="Shop Afro-Descendant Brands | Curated Gifts, Home & Beauty Products 2025"
         description="Discover 100+ curated Afro-descendant brands. Shop unique gifts, home decor, beauty products & more. Support Afro-descendant entrepreneurs with every purchase. Updated daily."
-        keywords="Afro-descendant brands, shop Afro-descendant, Afro-descendant gifts, Afro-descendant products, support Afro-descendant business, Afro-descendant entrepreneurs, buy Black, Afro-descendant home decor, Afro-descendant beauty, Afro-descendant gifts 2025"
+        keywords="Afro-descendant brands, shop Afro-descendant, Afro-descendant gifts, Afro-descendant products, support Afro-descendant business, Afro-descendant entrepreneurs, Afro-descendant created brands, Afro-descendant home decor, Afro-descendant beauty, Afro-descendant gifts 2025"
         structuredData={itemListSchema}
       />
 

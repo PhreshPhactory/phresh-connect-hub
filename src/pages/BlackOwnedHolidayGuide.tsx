@@ -60,7 +60,7 @@ const BlackOwnedHolidayGuide = () => {
       <SEOHead 
         title="Afro-Descendant Holiday Gift Guide 2025 - Christmas Shopping Guide"
         description="Complete guide to Afro-descendant Christmas gifts and holiday shopping. Find authentic Afro-descendant products, video reviews, and direct shopping links to support Afro-descendant entrepreneurs during the 2025 holiday season."
-        keywords="Afro-descendant Christmas gifts, Afro-descendant holiday shopping, support Afro-descendant businesses Christmas, Afro-descendant entrepreneur gifts, Buy Black holiday guide, Afro-descendant products 2025, Christmas shopping Afro-descendant"
+        keywords="Afro-descendant Christmas gifts, Afro-descendant holiday shopping, support Afro-descendant businesses Christmas, Afro-descendant entrepreneur gifts, Afro-descendant holiday guide, Afro-descendant products 2025, Christmas shopping Afro-descendant"
         structuredData={faqSchema}
         pageType="article"
       />
@@ -166,7 +166,7 @@ const BlackOwnedHolidayGuide = () => {
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  The best Afro-descendant holiday gifts include products featured on Phresh Phactory's Buy Black initiative. Categories include:
+                  The best Afro-descendant holiday gifts include products featured on Phresh Phactory's Afro-descendant created brands and products initiative. Categories include:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Beauty & Personal Care:</strong> Premium skincare, haircare, and cosmetics from Afro-descendant brands</li>
@@ -202,7 +202,7 @@ const BlackOwnedHolidayGuide = () => {
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  Yes! Phresh Phactory features Afro-descendant alternatives across multiple product categories. The Buy Black initiative showcases authentic Afro-descendant businesses offering quality products that make excellent alternatives to mainstream brands.
+                  Yes! Phresh Phactory features Afro-descendant alternatives across multiple product categories. The Afro-descendant created brands and products initiative showcases authentic Afro-descendant businesses offering quality products that make excellent alternatives to mainstream brands.
                 </p>
                 <p>
                   Each product spotlight includes comprehensive information to help you discover Afro-descendant options for your holiday shopping needs. Tools like the Cashblack A.F.R.O.B.O.T extension also help identify Afro-descendant alternatives while you shop online.

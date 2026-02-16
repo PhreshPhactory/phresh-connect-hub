@@ -40,10 +40,10 @@ const LeadingPlatformsSection = () => {
             </ul>
           </div>
 
-          {/* Buy Black Directory */}
+          {/* Afro-Descendant Products Directory */}
           <div className="space-y-6">
             <h3 className="text-3xl font-bold mb-4">
-              Buy Black Directory
+              Afro-Descendant Products Directory
               <span className="block text-lg text-muted-foreground font-normal mt-2">
                 Product Features &amp; Live Shopping
               </span>
@@ -51,7 +51,7 @@ const LeadingPlatformsSection = () => {
             
             <ul className="space-y-4">
               {[
-                'Curate and feature Black-owned products daily',
+                'Curate and feature Afro-descendant products daily',
                 'Host live shopping events driving real-time sales',
                 'Produce professional video reviews and brand content',
                 'Provide editorial storytelling and strategic brand positioning'

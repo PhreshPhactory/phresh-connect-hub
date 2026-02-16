@@ -50,7 +50,7 @@ const FeaturedBrands = () => {
         <div className="text-center mb-12">
           <Badge className="mb-4">
             <ShoppingBag className="w-4 h-4 mr-2" />
-            Buy Black
+            Afro-Descendant Brands
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
             Shop the Diaspora
