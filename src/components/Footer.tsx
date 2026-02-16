@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Instagram, Linkedin, Youtube, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Logo from '@/components/Logo';
@@ -27,104 +27,105 @@ const Footer = () => {
     }
   };
 
+  const navLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Brands', path: '/brands' },
+    { label: 'Affiliates', path: '/Affiliate' },
+    { label: 'Blueprint', path: '/affiliate-sales-blueprint' },
+    { label: 'Blog', path: '/blog' },
+    { label: 'Contact', path: '/contact' },
+  ];
+
+  const socials = [
+    { icon: Linkedin, href: 'https://linkedin.com/company/phresh-phactory', label: 'LinkedIn' },
+    { icon: Youtube, href: 'https://www.youtube.com/@PhreshPhactoryTV', label: 'YouTube' },
+    { icon: Instagram, href: 'https://instagram.com/phreshphactory', label: 'Instagram' },
+  ];
+
   return (
-    <footer className="bg-primary text-primary-foreground pt-16 sm:pt-20 pb-8">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 lg:mb-16">
-          {/* Column 1: Logo and about */}
-          <div className="lg:col-span-1">
-            <div className="hover:opacity-80 transition-opacity duration-300 mb-6 lg:mb-8">
-              <Logo className="max-w-[125px] h-auto" textColor="white" />
+    <footer className="bg-primary text-primary-foreground">
+      {/* Newsletter CTA Band */}
+      <div className="border-b border-muted-foreground/20">
+        <div className="container-custom py-12 lg:py-16">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="text-center lg:text-left">
+              <h3 className="text-2xl lg:text-3xl font-bold text-primary-foreground mb-2">
+                Get Ops Insights
+              </h3>
+              <p className="text-primary-foreground/70 text-base lg:text-lg">
+                Join 500+ founders getting practical ops strategies, delivered weekly.
+              </p>
             </div>
-            <p className="text-white mb-6 lg:mb-8 text-base lg:text-lg leading-relaxed">
+            <form onSubmit={handleSubscribe} className="w-full max-w-md">
+              <div className="flex gap-3">
+                <Input
+                  type="email"
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="bg-primary-foreground/10 border-primary-foreground/20 focus:border-tertiary text-primary-foreground placeholder:text-primary-foreground/50 h-12 text-base flex-1"
+                />
+                <Button type="submit" className="bg-tertiary hover:bg-tertiary/90 text-primary h-12 px-6 font-medium shrink-0">
+                  <ArrowRight size={20} />
+                  <span className="sr-only">Subscribe</span>
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer */}
+      <div className="container-custom py-12 lg:py-16">
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-16">
+          {/* Brand */}
+          <div className="lg:max-w-xs">
+            <div className="mb-5">
+              <Logo className="max-w-[120px] h-auto" textColor="white" />
+            </div>
+            <p className="text-primary-foreground/70 text-base leading-relaxed mb-6">
               Your startup's secret weapon for scaling without chaos.
             </p>
-            <div className="flex space-x-4 lg:space-x-6">
-              <a href="https://linkedin.com/company/phresh-phactory" target="_blank" rel="noopener noreferrer" className="hover:text-tertiary transition-all duration-300 hover:scale-110 p-2">
-                <Linkedin size={24} />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-              <a href="https://www.youtube.com/@PhreshPhactoryTV" target="_blank" rel="noopener noreferrer" className="hover:text-tertiary transition-all duration-300 hover:scale-110 p-2">
-                <Youtube size={24} />
-                <span className="sr-only">YouTube</span>
-              </a>
-              <a href="https://instagram.com/phreshphactory" target="_blank" rel="noopener noreferrer" className="hover:text-tertiary transition-all duration-300 hover:scale-110 p-2">
-                <Instagram size={24} />
-                <span className="sr-only">Instagram</span>
-              </a>
+            <div className="flex gap-4">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-foreground/60 hover:text-tertiary transition-colors duration-300 p-1.5"
+                >
+                  <Icon size={22} />
+                  <span className="sr-only">{label}</span>
+                </a>
+              ))}
             </div>
           </div>
-          
-          {/* Column 2: Company Links */}
-          <div className="lg:col-span-1">
-            <h3 className="font-medium text-lg lg:text-xl mb-4 lg:mb-6 text-white">Company</h3>
-            <ul className="space-y-3 lg:space-y-4">
-              <li>
-                <Link to="/" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Home</Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">About</Link>
-              </li>
-              <li>
-                <Link to="/packages" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Packages</Link>
-              </li>
-              <li>
-                <Link to="/blog" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Blog</Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Contact</Link>
-              </li>
-            </ul>
-          </div>
-          
-          {/* Column 3: Resources */}
-          <div className="lg:col-span-1">
-            <h3 className="font-medium text-lg lg:text-xl mb-4 lg:mb-6 text-white">Resources</h3>
-            <ul className="space-y-3 lg:space-y-4">
-              <li>
-                <Link to="/remote-teams" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Remote Teams</Link>
-              </li>
-            </ul>
-          </div>
+
+          {/* Navigation */}
+          <nav className="flex flex-wrap gap-x-8 gap-y-3 lg:gap-x-10">
+            {navLinks.map(({ label, path }) => (
+              <Link
+                key={path}
+                to={path}
+                className="text-primary-foreground/70 hover:text-tertiary transition-colors duration-300 text-base py-1"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
         </div>
-        
-        {/* Newsletter Section moved to full-width below the columns */}
-        <div className="mt-12 pt-12 border-t border-muted max-w-md mx-auto">
-          <h3 className="font-medium text-lg lg:text-xl mb-4 lg:mb-6 text-white text-center">Get Ops Insights</h3>
-          <p className="text-white mb-4 lg:mb-6 text-base lg:text-lg text-center">
-            Join 500+ founders getting practical ops strategies, delivered weekly.
-          </p>
-          <form onSubmit={handleSubscribe} className="space-y-4">
-            <div className="flex flex-col gap-3">
-              <Input 
-                type="email" 
-                placeholder="Your email address" 
-                value={email} 
-                onChange={e => setEmail(e.target.value)} 
-                className="bg-secondary border-secondary focus:border-tertiary text-primary-foreground placeholder:text-muted-foreground h-12 text-base" 
-              />
-              <Button type="submit" className="bg-tertiary hover:bg-tertiary/90 text-primary transition-all duration-300 hover:scale-105 h-12 text-base font-medium">
-                Subscribe
-              </Button>
-            </div>
-          </form>
-        </div>
-        
-        {/* Bottom Bar */}
-        <div className="pt-6 lg:pt-8 border-t border-muted mt-8">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
-            <p className="text-white text-base lg:text-lg text-center lg:text-left">
-              © {new Date().getFullYear()} Phresh Phactory, Inc. All rights reserved.
-            </p>
-            <div>
-              <ul className="flex flex-col sm:flex-row gap-4 lg:gap-8 text-base lg:text-lg">
-                <li>
-                  <Link to="/privacy" className="text-white hover:text-tertiary transition-colors duration-300 block py-1">
-                    Privacy Policy
-                  </Link>
-                </li>
-              </ul>
-            </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-muted-foreground/20">
+        <div className="container-custom py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/50">
+            <p>© {new Date().getFullYear()} Phresh Phactory, Inc. All rights reserved.</p>
+            <Link to="/privacy" className="hover:text-tertiary transition-colors duration-300">
+              Privacy Policy
+            </Link>
           </div>
         </div>
       </div>
