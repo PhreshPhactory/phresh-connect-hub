@@ -81,7 +81,7 @@ serve(async (req) => {
         messages: [
           { 
             role: "system", 
-            content: `You are Phreelance AI, a helpful assistant for Phresh Phactory, Inc. 
+            content: `You are Culture, a helpful assistant for Phresh Phactory, Inc. 
 
 Phresh Phactory helps startup founders scale their operations through:
 - Fractional leadership and strategic advisory

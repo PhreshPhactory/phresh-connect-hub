@@ -55,7 +55,7 @@ const TextChatWidget = () => {
     if (isOpen && messages.length === 0) {
       setMessages([{
         role: "assistant",
-        content: "Hi! I'm Phreelance AI, your assistant for all things Phresh Phactory. How can I help you today?"
+        content: "Hi! I'm Culture, your assistant for all things Phresh Phactory, Inc. How can I help you today?"
       }]);
     }
   }, [isOpen]);
