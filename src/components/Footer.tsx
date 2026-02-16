@@ -66,9 +66,6 @@ const Footer = () => {
                 <Link to="/about" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">About</Link>
               </li>
               <li>
-                <Link to="/services" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Services</Link>
-              </li>
-              <li>
                 <Link to="/packages" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Packages</Link>
               </li>
               <li>
@@ -86,26 +83,6 @@ const Footer = () => {
             <ul className="space-y-3 lg:space-y-4">
               <li>
                 <Link to="/remote-teams" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Remote Teams</Link>
-              </li>
-              <li>
-                <Link to="/blog" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">Hiring Tips</Link>
-              </li>
-            </ul>
-          </div>
-          
-          {/* Column 4: Communities */}
-          <div className="lg:col-span-1">
-            <h3 className="font-medium text-lg lg:text-xl mb-4 lg:mb-6 text-white">Communities</h3>
-            <ul className="space-y-3 lg:space-y-4">
-              <li>
-                <a href="https://tinyurl.com/Phactory-Owners" target="_blank" rel="noopener noreferrer" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">
-                  Phactory (Brands)
-                </a>
-              </li>
-              <li>
-                <a href="https://tinyurl.com/Phreelance-Affiliate" target="_blank" rel="noopener noreferrer" className="text-white hover:text-tertiary transition-colors duration-300 text-base lg:text-lg block py-1">
-                  Phreelance (Affiliates)
-                </a>
               </li>
             </ul>
           </div>
