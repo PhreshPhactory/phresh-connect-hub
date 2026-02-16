@@ -166,7 +166,7 @@ const TextChatWidget = () => {
   return (
     <Card className="fixed bottom-6 right-6 w-96 h-[600px] shadow-2xl z-50 flex flex-col animate-fade-in">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b">
-        <CardTitle className="text-lg">Chat with Phreelance AI</CardTitle>
+        <CardTitle className="text-lg">Chat with Phresh Phactory, Inc.</CardTitle>
         <div className="flex gap-2">
           <Button
             variant="ghost"
