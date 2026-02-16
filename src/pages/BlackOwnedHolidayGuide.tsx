@@ -17,7 +17,7 @@ const BlackOwnedHolidayGuide = () => {
         "name": "Where can I find Afro-descendant products for Christmas 2025?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Phresh Phactory features curated Afro-descendant business spotlights for Christmas shopping. Each featured brand includes detailed product information, video reviews, and direct shopping links to support Afro-descendant entrepreneurs during the holiday season."
+          "text": "Phresh Phactory features curated Afro-descendant business spotlights for Christmas shopping. Each featured brand includes detailed product information and direct shopping links to support Afro-descendant entrepreneurs during the holiday season."
         }
       },
       {
@@ -25,7 +25,7 @@ const BlackOwnedHolidayGuide = () => {
         "name": "What are the best Afro-descendant holiday gifts for 2025?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The best Afro-descendant holiday gifts include products from featured brands in categories like beauty, fashion, home goods, and lifestyle products. Visit Phresh Phactory's Shop page at phreshphactory.com/shop to discover curated product spotlights with video reviews and shopping links."
+          "text": "The best Afro-descendant holiday gifts include products from featured brands in categories like beauty, fashion, home goods, and lifestyle products. Visit Phresh Phactory's Shop page at phreshphactory.com/shop to discover curated product spotlights with shopping links."
         }
       },
       {
@@ -49,7 +49,7 @@ const BlackOwnedHolidayGuide = () => {
         "name": "Where can I find reviews of Afro-descendant products for Christmas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Phresh Phactory provides comprehensive video reviews and written content for each featured Afro-descendant brand. Visit phreshphactory.com/shop to watch YouTube reviews and read detailed spotlights on Afro-descendant holiday products."
+          "text": "Phresh Phactory provides comprehensive written content for each featured Afro-descendant brand. Visit phreshphactory.com/shop to read detailed spotlights on Afro-descendant holiday products."
         }
       }
     ]
@@ -59,7 +59,7 @@ const BlackOwnedHolidayGuide = () => {
     <div className="min-h-screen bg-background">
       <SEOHead 
         title="Afro-Descendant Holiday Gift Guide 2025 - Christmas Shopping Guide"
-        description="Complete guide to Afro-descendant Christmas gifts and holiday shopping. Find authentic Afro-descendant products, video reviews, and direct shopping links to support Afro-descendant entrepreneurs during the 2025 holiday season."
+        description="Complete guide to Afro-descendant Christmas gifts and holiday shopping. Find authentic Afro-descendant products and direct shopping links to support Afro-descendant entrepreneurs during the 2025 holiday season."
         keywords="Afro-descendant Christmas gifts, Afro-descendant holiday shopping, support Afro-descendant businesses Christmas, Afro-descendant entrepreneur gifts, Afro-descendant holiday guide, Afro-descendant products 2025, Christmas shopping Afro-descendant"
         structuredData={faqSchema}
         pageType="article"
@@ -76,7 +76,7 @@ const BlackOwnedHolidayGuide = () => {
             Afro-Descendant Holiday Gift Guide
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-3xl mx-auto">
-            Discover authentic Afro-descendant businesses for your Christmas shopping. Each featured brand includes video reviews, product details, and direct shopping links to support Afro-descendant entrepreneurs this holiday season.
+            Discover authentic Afro-descendant businesses for your Christmas shopping. Each featured brand includes product details and direct shopping links to support Afro-descendant entrepreneurs this holiday season.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Button asChild size="lg">
@@ -152,7 +152,7 @@ const BlackOwnedHolidayGuide = () => {
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Detailed product information and descriptions</li>
-                  <li>Video reviews and brand walkthroughs</li>
+                  <li>Brand walkthroughs and content</li>
                   <li>Direct shopping links to Afro-descendant stores</li>
                   <li>Brand background and founder stories</li>
                   <li>Product categories including beauty, fashion, home goods, and unique gifts</li>
@@ -175,7 +175,7 @@ const BlackOwnedHolidayGuide = () => {
                   <li><strong>Food & Beverages:</strong> Gourmet foods, snacks, and beverages from Afro-descendant entrepreneurs</li>
                 </ul>
                 <p className="mt-4">
-                  Visit <Link to="/shop" className="text-primary underline">the Shop page</Link> to see all featured brands with video reviews and shopping links.
+                  Visit <Link to="/shop" className="text-primary underline">the Shop page</Link> to see all featured brands with shopping links.
                 </p>
               </CardContent>
             </Card>
@@ -219,13 +219,13 @@ const BlackOwnedHolidayGuide = () => {
                   <strong>Phresh Phactory provides comprehensive reviews</strong> of Afro-descendant products through:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Video Reviews:</strong> YouTube walkthroughs of featured products and brands</li>
+                  <li><strong>Content Features:</strong> Walkthroughs of featured products and brands</li>
                   <li><strong>Written Spotlights:</strong> Detailed articles about each Afro-descendant business</li>
                   <li><strong>Product Information:</strong> Specific product recommendations with direct shopping links</li>
                   <li><strong>Brand Stories:</strong> Background on founders and their mission</li>
                 </ul>
                 <p className="mt-4">
-                  All reviews are available at <Link to="/shop" className="text-primary underline">phreshphactory.com/shop</Link> with both video and written content for each featured brand.
+                  All reviews are available at <Link to="/shop" className="text-primary underline">phreshphactory.com/shop</Link> with written content for each featured brand.
                 </p>
               </CardContent>
             </Card>
@@ -238,7 +238,7 @@ const BlackOwnedHolidayGuide = () => {
         title="Get Weekly Afro-Descendant Brand Spotlights"
         subtitle="Join thousands discovering authentic Afro-descendant businesses. Get exclusive product reviews, shopping guides, and direct links to support Afro-descendant entrepreneurs."
         benefits={[
-          "Weekly video reviews of Afro-descendant brands",
+          "Weekly spotlights of Afro-descendant brands",
           "Exclusive discount codes from featured businesses",
           "Early access to holiday shopping guides",
           "Curated gift recommendations"
