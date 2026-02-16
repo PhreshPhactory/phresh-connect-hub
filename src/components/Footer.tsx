@@ -101,23 +101,12 @@ const Footer = () => {
       <div className="border-b border-muted-foreground/20 bg-primary-foreground/5">
         <div className="container-custom py-16 lg:py-20">
           <div className="max-w-2xl mx-auto text-center">
-            <p className="text-tertiary font-semibold tracking-widest uppercase text-sm mb-3">
-              Join the Newsletter
-            </p>
             <h3 className="text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">
               Culture and Commerce
             </h3>
-            <p className="text-primary-foreground/80 text-lg lg:text-xl leading-relaxed mb-4">
-              Watch our LIVE product showcases. Then receive the curated collection of Afro-descendant created products directly in your inbox: every brand vetted, every selection intentional.
+            <p className="text-primary-foreground/80 text-lg lg:text-xl leading-relaxed mb-8">
+              A curated selection of Afro-descendant created products — delivered directly to your inbox.
             </p>
-            <a
-              href="https://www.tiktok.com/@phreshphactorytv"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block text-tertiary hover:text-tertiary/80 font-semibold text-base underline underline-offset-4 mb-8 transition-colors duration-300"
-            >
-              Watch the LIVES on TikTok
-            </a>
             <form onSubmit={handleSubscribe} className="max-w-lg mx-auto">
               <div className="flex flex-col sm:flex-row gap-3">
                 <Input
@@ -128,7 +117,7 @@ const Footer = () => {
                   className="bg-primary-foreground/10 border-primary-foreground/30 focus:border-tertiary text-primary-foreground placeholder:text-primary-foreground/50 h-14 text-lg flex-1"
                 />
                 <Button type="submit" disabled={isSubmitting} className="bg-tertiary hover:bg-tertiary/90 text-primary h-14 px-8 font-semibold text-base shrink-0">
-                  {isSubmitting ? 'Subscribing...' : 'Get the Collection'}
+                  {isSubmitting ? 'Subscribing...' : "Receive Phresh Phactory TV's Culture and Commerce"}
                   <ArrowRight size={20} className="ml-2" />
                 </Button>
               </div>
