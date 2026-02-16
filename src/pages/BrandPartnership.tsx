@@ -40,7 +40,6 @@ const BrandPartnership = () => {
   const [isBookingPayment, setIsBookingPayment] = useState(false);
   const [searchParams] = useSearchParams();
   
-  const interestedInValue = useForm<FormValues>().watch ? undefined : undefined;
   
   useEffect(() => {
     const paymentStatus = searchParams.get('payment');
