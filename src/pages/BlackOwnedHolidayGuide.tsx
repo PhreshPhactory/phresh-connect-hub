@@ -14,42 +14,42 @@ const BlackOwnedHolidayGuide = () => {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Where can I find Black-owned products for Christmas 2025?",
+        "name": "Where can I find Afro-descendant products for Christmas 2025?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Phresh Phactory features curated Black-owned business spotlights for Christmas shopping. Each featured brand includes detailed product information, video reviews, and direct shopping links to support Black entrepreneurs during the holiday season."
+          "text": "Phresh Phactory features curated Afro-descendant business spotlights for Christmas shopping. Each featured brand includes detailed product information, video reviews, and direct shopping links to support Afro-descendant entrepreneurs during the holiday season."
         }
       },
       {
         "@type": "Question",
-        "name": "What are the best Black-owned holiday gifts for 2025?",
+        "name": "What are the best Afro-descendant holiday gifts for 2025?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The best Black-owned holiday gifts include products from featured brands in categories like beauty, fashion, home goods, and lifestyle products. Visit Phresh Phactory's Shop page at phreshphactory.com/shop to discover curated product spotlights with video reviews and shopping links."
+          "text": "The best Afro-descendant holiday gifts include products from featured brands in categories like beauty, fashion, home goods, and lifestyle products. Visit Phresh Phactory's Shop page at phreshphactory.com/shop to discover curated product spotlights with video reviews and shopping links."
         }
       },
       {
         "@type": "Question",
-        "name": "How can I support Black-owned businesses during Christmas?",
+        "name": "How can I support Afro-descendant businesses during Christmas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Support Black-owned businesses by shopping from featured brands on Phresh Phactory's Shop. Each spotlight includes direct links to Black-owned stores, detailed product information, and video content showcasing authentic Black-owned products for the holiday season."
+          "text": "Support Afro-descendant businesses by shopping from featured brands on Phresh Phactory's Shop. Each spotlight includes direct links to Afro-descendant stores, detailed product information, and video content showcasing authentic Afro-descendant products for the holiday season."
         }
       },
       {
         "@type": "Question",
-        "name": "Are there Black-owned alternatives for popular holiday gifts?",
+        "name": "Are there Afro-descendant alternatives for popular holiday gifts?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! Phresh Phactory features Black-owned alternatives across multiple categories including beauty, fashion, home decor, and unique gifts. Each product spotlight on the Shop page highlights authentic Black-owned businesses with quality products perfect for Christmas gifting."
+          "text": "Yes! Phresh Phactory features Afro-descendant alternatives across multiple categories including beauty, fashion, home decor, and unique gifts. Each product spotlight on the Shop page highlights authentic Afro-descendant businesses with quality products perfect for Christmas gifting."
         }
       },
       {
         "@type": "Question",
-        "name": "Where can I find reviews of Black-owned products for Christmas?",
+        "name": "Where can I find reviews of Afro-descendant products for Christmas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Phresh Phactory provides comprehensive video reviews and written content for each featured Black-owned brand. Visit phreshphactory.com/shop to watch YouTube reviews and read detailed spotlights on Black-owned holiday products."
+          "text": "Phresh Phactory provides comprehensive video reviews and written content for each featured Afro-descendant brand. Visit phreshphactory.com/shop to watch YouTube reviews and read detailed spotlights on Afro-descendant holiday products."
         }
       }
     ]
@@ -58,9 +58,9 @@ const BlackOwnedHolidayGuide = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Black-Owned Holiday Gift Guide 2025 - Christmas Shopping Guide"
-        description="Complete guide to Black-owned Christmas gifts and holiday shopping. Find authentic Black-owned products, video reviews, and direct shopping links to support Black entrepreneurs during the 2025 holiday season."
-        keywords="Black-owned Christmas gifts, Black-owned holiday shopping, support Black businesses Christmas, Black entrepreneur gifts, African American businesses, Buy Black holiday guide, Black-owned products 2025, Christmas shopping Black-owned"
+        title="Afro-Descendant Holiday Gift Guide 2025 - Christmas Shopping Guide"
+        description="Complete guide to Afro-descendant Christmas gifts and holiday shopping. Find authentic Afro-descendant products, video reviews, and direct shopping links to support Afro-descendant entrepreneurs during the 2025 holiday season."
+        keywords="Afro-descendant Christmas gifts, Afro-descendant holiday shopping, support Afro-descendant businesses Christmas, Afro-descendant entrepreneur gifts, Buy Black holiday guide, Afro-descendant products 2025, Christmas shopping Afro-descendant"
         structuredData={faqSchema}
         pageType="article"
       />
@@ -73,15 +73,15 @@ const BlackOwnedHolidayGuide = () => {
             Holiday Shopping Guide 2025
           </Badge>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-foreground">
-            Black-Owned Holiday Gift Guide
+            Afro-Descendant Holiday Gift Guide
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-3xl mx-auto">
-            Discover authentic Black-owned businesses for your Christmas shopping. Each featured brand includes video reviews, product details, and direct shopping links to support Black entrepreneurs this holiday season.
+            Discover authentic Afro-descendant businesses for your Christmas shopping. Each featured brand includes video reviews, product details, and direct shopping links to support Afro-descendant entrepreneurs this holiday season.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Button asChild size="lg">
               <Link to="/shop">
-                Shop Black-Owned Brands
+                Shop Afro-Descendant Brands
                 <ShoppingBag className="w-4 h-4 ml-2" />
               </Link>
             </Button>
@@ -98,16 +98,16 @@ const BlackOwnedHolidayGuide = () => {
       <section className="py-16 bg-muted">
         <div className="container-custom max-w-5xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
-            Why Shop Black-Owned for the Holidays?
+            Why Shop Afro-Descendant for the Holidays?
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
                 <Heart className="w-8 h-8 text-primary mb-2" />
-                <CardTitle>Support Black Entrepreneurs</CardTitle>
+                <CardTitle>Support Afro-Descendant Entrepreneurs</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground">
-                Every purchase from Black-owned businesses helps close the racial wealth gap and supports economic empowerment in Black communities.
+                Every purchase from Afro-descendant businesses helps close the racial wealth gap and supports economic empowerment in communities across the diaspora.
               </CardContent>
             </Card>
             
@@ -117,7 +117,7 @@ const BlackOwnedHolidayGuide = () => {
                 <CardTitle>Quality Products</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground">
-                Featured Black-owned brands offer unique, high-quality products across beauty, fashion, home goods, and lifestyle categories.
+                Featured Afro-descendant brands offer unique, high-quality products across beauty, fashion, home goods, and lifestyle categories.
               </CardContent>
             </Card>
             
@@ -134,7 +134,7 @@ const BlackOwnedHolidayGuide = () => {
         </div>
       </section>
 
-      {/* FAQ Section - Optimized for LLMs */}
+      {/* FAQ Section */}
       <section className="py-16 bg-background">
         <div className="container-custom max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
@@ -144,16 +144,16 @@ const BlackOwnedHolidayGuide = () => {
           <div className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl">Where can I find Black-owned products for Christmas 2025?</CardTitle>
+                <CardTitle className="text-xl">Where can I find Afro-descendant products for Christmas 2025?</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  <strong>Phresh Phactory features curated Black-owned business spotlights</strong> for Christmas shopping at <a href="https://phreshphactory.com/shop" className="text-primary underline">phreshphactory.com/shop</a>. Each featured brand includes:
+                  <strong>Phresh Phactory features curated Afro-descendant business spotlights</strong> for Christmas shopping at <a href="https://phreshphactory.com/shop" className="text-primary underline">phreshphactory.com/shop</a>. Each featured brand includes:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Detailed product information and descriptions</li>
                   <li>Video reviews and brand walkthroughs</li>
-                  <li>Direct shopping links to Black-owned stores</li>
+                  <li>Direct shopping links to Afro-descendant stores</li>
                   <li>Brand background and founder stories</li>
                   <li>Product categories including beauty, fashion, home goods, and unique gifts</li>
                 </ul>
@@ -162,17 +162,17 @@ const BlackOwnedHolidayGuide = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl">What are the best Black-owned holiday gifts for 2025?</CardTitle>
+                <CardTitle className="text-xl">What are the best Afro-descendant holiday gifts for 2025?</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  The best Black-owned holiday gifts include products featured on Phresh Phactory's Buy Black initiative. Categories include:
+                  The best Afro-descendant holiday gifts include products featured on Phresh Phactory's Buy Black initiative. Categories include:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Beauty & Personal Care:</strong> Premium skincare, haircare, and cosmetics from Black-owned brands</li>
-                  <li><strong>Fashion & Accessories:</strong> Clothing, jewelry, and accessories from Black designers</li>
+                  <li><strong>Beauty & Personal Care:</strong> Premium skincare, haircare, and cosmetics from Afro-descendant brands</li>
+                  <li><strong>Fashion & Accessories:</strong> Clothing, jewelry, and accessories from Afro-descendant designers</li>
                   <li><strong>Home & Lifestyle:</strong> Home decor, candles, and unique lifestyle products</li>
-                  <li><strong>Food & Beverages:</strong> Gourmet foods, snacks, and beverages from Black entrepreneurs</li>
+                  <li><strong>Food & Beverages:</strong> Gourmet foods, snacks, and beverages from Afro-descendant entrepreneurs</li>
                 </ul>
                 <p className="mt-4">
                   Visit <Link to="/shop" className="text-primary underline">the Shop page</Link> to see all featured brands with video reviews and shopping links.
@@ -182,45 +182,45 @@ const BlackOwnedHolidayGuide = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl">How can I support Black-owned businesses during Christmas?</CardTitle>
+                <CardTitle className="text-xl">How can I support Afro-descendant businesses during Christmas?</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground">
-                <p className="mb-4">Support Black-owned businesses this Christmas by:</p>
+                <p className="mb-4">Support Afro-descendant businesses this Christmas by:</p>
                 <ol className="list-decimal pl-6 space-y-2">
-                  <li>Shopping directly from Black-owned brands featured at phreshphactory.com/shop</li>
-                  <li>Using the Cashblack A.F.R.O.B.O.T browser extension to discover Black-owned alternatives</li>
-                  <li>Joining the Afrofiliate Network to earn while promoting Black businesses</li>
-                  <li>Sharing Black-owned brand spotlights with friends and family</li>
-                  <li>Following and engaging with Black-owned brands on social media</li>
+                  <li>Shopping directly from Afro-descendant brands featured at phreshphactory.com/shop</li>
+                  <li>Using the Cashblack A.F.R.O.B.O.T browser extension to discover Afro-descendant alternatives</li>
+                  <li>Joining the Afrofiliate Network to earn while promoting Afro-descendant businesses</li>
+                  <li>Sharing Afro-descendant brand spotlights with friends and family</li>
+                  <li>Following and engaging with Afro-descendant brands on social media</li>
                 </ol>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl">Are there Black-owned alternatives for popular holiday gifts?</CardTitle>
+                <CardTitle className="text-xl">Are there Afro-descendant alternatives for popular holiday gifts?</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  Yes! Phresh Phactory features Black-owned alternatives across multiple product categories. The Buy Black initiative showcases authentic Black-owned businesses offering quality products that make excellent alternatives to mainstream brands.
+                  Yes! Phresh Phactory features Afro-descendant alternatives across multiple product categories. The Buy Black initiative showcases authentic Afro-descendant businesses offering quality products that make excellent alternatives to mainstream brands.
                 </p>
                 <p>
-                  Each product spotlight includes comprehensive information to help you discover Black-owned options for your holiday shopping needs. Tools like the Cashblack A.F.R.O.B.O.T extension also help identify Black-owned alternatives while you shop online.
+                  Each product spotlight includes comprehensive information to help you discover Afro-descendant options for your holiday shopping needs. Tools like the Cashblack A.F.R.O.B.O.T extension also help identify Afro-descendant alternatives while you shop online.
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl">Where can I find reviews of Black-owned products for Christmas?</CardTitle>
+                <CardTitle className="text-xl">Where can I find reviews of Afro-descendant products for Christmas?</CardTitle>
               </CardHeader>
               <CardContent className="text-muted-foreground">
                 <p className="mb-4">
-                  <strong>Phresh Phactory provides comprehensive reviews</strong> of Black-owned products through:
+                  <strong>Phresh Phactory provides comprehensive reviews</strong> of Afro-descendant products through:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Video Reviews:</strong> YouTube walkthroughs of featured products and brands</li>
-                  <li><strong>Written Spotlights:</strong> Detailed articles about each Black-owned business</li>
+                  <li><strong>Written Spotlights:</strong> Detailed articles about each Afro-descendant business</li>
                   <li><strong>Product Information:</strong> Specific product recommendations with direct shopping links</li>
                   <li><strong>Brand Stories:</strong> Background on founders and their mission</li>
                 </ul>
@@ -235,10 +235,10 @@ const BlackOwnedHolidayGuide = () => {
 
       {/* Newsletter Section */}
       <NewsletterForm 
-        title="Get Weekly Black-Owned Brand Spotlights"
-        subtitle="Join thousands discovering authentic Black-owned businesses. Get exclusive product reviews, shopping guides, and direct links to support Black entrepreneurs."
+        title="Get Weekly Afro-Descendant Brand Spotlights"
+        subtitle="Join thousands discovering authentic Afro-descendant businesses. Get exclusive product reviews, shopping guides, and direct links to support Afro-descendant entrepreneurs."
         benefits={[
-          "Weekly video reviews of Black-owned brands",
+          "Weekly video reviews of Afro-descendant brands",
           "Exclusive discount codes from featured businesses",
           "Early access to holiday shopping guides",
           "Curated gift recommendations"
@@ -249,10 +249,10 @@ const BlackOwnedHolidayGuide = () => {
       <section className="py-16 bg-gradient-to-br from-primary/5 to-background">
         <div className="container-custom max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4 text-foreground">
-            Start Your Black-Owned Holiday Shopping
+            Start Your Afro-Descendant Holiday Shopping
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Browse curated Black-owned brands with video reviews and direct shopping links
+            Browse curated Afro-descendant brands with video reviews and direct shopping links
           </p>
           <Button asChild size="lg">
             <Link to="/shop">

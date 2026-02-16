@@ -56,7 +56,7 @@ const ShortsGallery: React.FC<ShortsGalleryProps> = ({ shorts }) => {
             Shoppable Shorts
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Quick highlights of amazing Black-owned brands. Watch and shop in seconds.
+            Quick highlights of amazing Afro-descendant brands. Watch and shop in seconds.
           </p>
         </div>
 

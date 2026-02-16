@@ -91,7 +91,7 @@ const ExitIntentPopup = () => {
       } else {
         toast({
           title: "Welcome to the Digest! 🎉",
-          description: "You'll get curated Black-owned brand picks in your inbox.",
+          description: "You'll get curated Afro-descendant brand picks in your inbox.",
         });
       }
       
@@ -129,7 +129,7 @@ const ExitIntentPopup = () => {
           </div>
           <CardTitle className="text-2xl font-bold">The Product Digest</CardTitle>
           <CardDescription className="text-base">
-            Get curated Black-owned brands, gifts & hidden gems delivered weekly. No spam, just products worth knowing about.
+            Get curated Afro-descendant brands, gifts & hidden gems delivered weekly. No spam, just products worth knowing about.
           </CardDescription>
         </CardHeader>
         
@@ -159,7 +159,7 @@ const ExitIntentPopup = () => {
               )}
             </Button>
             <p className="text-xs text-muted-foreground text-center">
-              Join 100+ shoppers discovering Black-owned brands weekly.
+              Join 100+ shoppers discovering Afro-descendant brands weekly.
             </p>
           </form>
         </CardContent>
