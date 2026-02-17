@@ -122,6 +122,7 @@ const App = () => {
                       <Route path="/tv" element={<TV />} />
                       <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
                       <Route path="/affiliate-starter-course-waitlist" element={<AffiliateCourseWaitlist />} />
+                      <Route path="/Affiliate" element={<AffiliateNewsletter />} />
                       <Route path="/AffiliateApplication" element={<Navigate to="/Affiliate" replace />} />
                       <Route path="/holiday-explained" element={<HolidaySprintExplained />} />
                       <Route path="/holiday-sprint-landing" element={<HolidaySprintLanding />} />
