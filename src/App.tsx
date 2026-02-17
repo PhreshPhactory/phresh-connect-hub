@@ -96,18 +96,9 @@ const App = () => {
                 <Suspense fallback={<PageSkeleton />}>
                   <Routes>
                     <Route element={<Layout />}>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/business" element={<Home />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/Affiliate" element={<AffiliateNewsletter />} />
-                      <Route path="/services/fractional-leadership" element={<FractionalLeadership />} />
-                      <Route path="/services/global-talent" element={<GlobalTalent />} />
-                      <Route path="/services/legacy-transformation" element={<LegacyTransformation />} />
-                      <Route path="/services/systems-design" element={<SystemsDesign />} />
-                      <Route path="/remote-teams" element={<RemoteTeams />} />
-                      <Route path="/packages" element={<Packages />} />
-                      <Route path="/products" element={<Products />} />
-                      <Route path="/shop" element={<ProductSpotlights />} />
+                    <Route path="/" element={<ProductSpotlights />} />
+                      <Route path="/business" element={<Navigate to="/" replace />} />
+                      <Route path="/shop" element={<Navigate to="/" replace />} />
                       <Route path="/buyblack" element={<Navigate to="/shop" replace />} />
                       <Route path="/shop/:slug" element={<ProductSpotlight />} />
                       <Route path="/compro" element={<Compro />} />
