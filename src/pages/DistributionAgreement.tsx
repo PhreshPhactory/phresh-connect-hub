@@ -20,8 +20,11 @@ const DistributionAgreement = () => {
     contact_name: "",
     email: "",
     region: "",
-    hosting_role: "",
     tiktok_shop: "",
+    willing_to_start_tiktok_shop: "",
+    tiktok_handle: "",
+    tiktok_live_handle: "",
+    youtube_live_handle: "",
     affiliate_split: "",
     brand_fee: "",
     sponsored_split: "",
@@ -44,7 +47,7 @@ const DistributionAgreement = () => {
       return;
     }
 
-    if (!form.legal_name || !form.contact_name || !form.email || !form.region || !form.hosting_role || !form.brand_routing || !form.ownership_acknowledgement || !form.non_replication) {
+    if (!form.legal_name || !form.contact_name || !form.email || !form.region || !form.tiktok_shop || !form.tiktok_live_handle || !form.youtube_live_handle || !form.brand_routing || !form.ownership_acknowledgement || !form.non_replication) {
       toast({ title: "Please fill in all required fields", variant: "destructive" });
       return;
     }
@@ -129,24 +132,12 @@ const DistributionAgreement = () => {
 
           <Separator />
 
-          {/* 2. Hosting Structure */}
+          {/* 2. Hosting Structure & Live Platforms */}
           <section className="space-y-4">
-            <h3 className="text-xl font-semibold text-foreground">2. Hosting Structure</h3>
+            <h3 className="text-xl font-semibold text-foreground">2. Hosting Structure & Live Platforms</h3>
 
             <div className="space-y-1">
-              <label className="text-sm font-medium text-foreground">Hosting Role <span className="text-destructive">*</span></label>
-              <Select value={form.hosting_role} onValueChange={(v) => updateField("hosting_role", v)}>
-                <SelectTrigger><SelectValue placeholder="Select Role" /></SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Co-Host (Simultaneous Broadcast)">Co-Host (Simultaneous Broadcast)</SelectItem>
-                  <SelectItem value="Regional Host (Independent Broadcast)">Regional Host (Independent Broadcast)</SelectItem>
-                  <SelectItem value="Distribution Only (Rebroadcast)">Distribution Only (Rebroadcast)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-foreground">Will you operate a TikTok Shop in your region?</label>
+              <label className="text-sm font-medium text-foreground">Do you currently have a TikTok Shop? <span className="text-destructive">*</span></label>
               <Select value={form.tiktok_shop} onValueChange={(v) => updateField("tiktok_shop", v)}>
                 <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
                 <SelectContent>
@@ -154,6 +145,39 @@ const DistributionAgreement = () => {
                   <SelectItem value="No">No</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+
+            {form.tiktok_shop === "No" && (
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-foreground">Are you willing to start one?</label>
+                <Select value={form.willing_to_start_tiktok_shop} onValueChange={(v) => updateField("willing_to_start_tiktok_shop", v)}>
+                  <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Yes">Yes</SelectItem>
+                    <SelectItem value="No">No</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-foreground">What is your TikTok @ handle?</label>
+              <Input value={form.tiktok_handle} onChange={(e) => updateField("tiktok_handle", e.target.value)} placeholder="@yourhandle" />
+            </div>
+
+            <Separator className="my-2" />
+
+            <p className="text-sm font-medium text-foreground">Approved GO LIVE Handles</p>
+            <p className="text-sm text-muted-foreground">Please provide the TikTok and YouTube handles you are approved to GO LIVE on.</p>
+
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-foreground">TikTok GO LIVE Handle <span className="text-destructive">*</span></label>
+              <Input value={form.tiktok_live_handle} onChange={(e) => updateField("tiktok_live_handle", e.target.value)} placeholder="@yourlivehandle" />
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-sm font-medium text-foreground">YouTube GO LIVE Handle <span className="text-destructive">*</span></label>
+              <Input value={form.youtube_live_handle} onChange={(e) => updateField("youtube_live_handle", e.target.value)} placeholder="@youryoutubehandle" />
             </div>
           </section>
 
