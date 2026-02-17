@@ -55,6 +55,7 @@ export default defineConfig(({ mode, command }) => ({
       '@tanstack/react-query',
       'react-helmet-async',
       '@radix-ui/react-tooltip'
-    ]
+    ],
+    force: true
   }
 }));
