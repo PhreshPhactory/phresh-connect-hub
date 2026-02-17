@@ -593,6 +593,22 @@ const BrandPartnership = () => {
         </div>
       </section>
 
+      {/* Affiliate Sales Blueprint CTA */}
+      <section className="py-16 bg-background">
+        <div className="container-custom max-w-3xl text-center">
+          <h2 className="text-3xl font-bold mb-4 text-foreground">Want to Sell Through Affiliates?</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+            The Affiliate Sales Blueprint™ is a 1-on-1 bootcamp that helps brands build, launch, and scale an affiliate sales program from scratch — with hands-on strategy and execution support.
+          </p>
+          <Button asChild size="lg" className="px-8 py-6 text-lg">
+            <a href="/affiliate-sales-blueprint">
+              Learn About the Blueprint
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </a>
+          </Button>
+        </div>
+      </section>
+
       {/* Newsletter Section */}
       <NewsletterForm
         title="Brand Growth Insights for Afro-Descendant Businesses"

@@ -180,14 +180,9 @@ const About = () => {
                 <p className="text-base text-muted-foreground mb-4 leading-relaxed">
                   Affiliate + Freelancer Community
                 </p>
-                <p className="text-base text-foreground mb-8 leading-relaxed">
+                <p className="text-base text-foreground leading-relaxed">
                   A training community for freelancers, creators, and affiliates looking to support brands and create income through digital partnerships.
                 </p>
-                <Button asChild variant="outline" className="w-full">
-                  <a href="https://tinyurl.com/Phreelance-Affiliate" target="_blank" rel="noopener noreferrer">
-                    Join Phreelance
-                  </a>
-                </Button>
               </div>
 
               {/* Phactory */}
@@ -199,14 +194,9 @@ const About = () => {
                 <p className="text-base text-muted-foreground mb-4 leading-relaxed">
                   Brand Owner Community
                 </p>
-                <p className="text-base text-foreground mb-8 leading-relaxed">
+                <p className="text-base text-foreground leading-relaxed">
                   A training community for founders and product-based businesses learning to prepare for affiliate partnerships and digital growth.
                 </p>
-                <Button asChild variant="outline" className="w-full">
-                  <a href="https://tinyurl.com/Phactory-Owners" target="_blank" rel="noopener noreferrer">
-                    Join Phactory
-                  </a>
-                </Button>
               </div>
             </div>
             
