@@ -55,14 +55,7 @@ const Navigation = () => {
             >
               Sprint
             </Link>
-            <Link
-              to="/affiliate-sales-blueprint"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive('/affiliate-sales-blueprint') ? 'text-primary' : 'text-muted-foreground'
-              }`}
-            >
-              Blueprint
-            </Link>
+            
             <Link
               to="/blog"
               className={`text-sm font-medium transition-colors hover:text-primary ${
@@ -128,13 +121,7 @@ const Navigation = () => {
               >
                 Sprint
               </Link>
-              <Link
-                to="/affiliate-sales-blueprint"
-                className="block text-sm font-medium text-muted-foreground hover:text-primary"
-                onClick={() => setIsOpen(false)}
-              >
-                Blueprint
-              </Link>
+              
               <Link
                 to="/blog"
                 className="block text-sm font-medium text-muted-foreground hover:text-primary"
