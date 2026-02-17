@@ -162,21 +162,34 @@ const DistributionAgreement = () => {
           {/* 3. Revenue Structure */}
           <section className="space-y-4">
             <h3 className="text-xl font-semibold text-foreground">3. Revenue Structure</h3>
-            <p className="text-sm text-muted-foreground">All revenue terms must be defined prior to broadcast.</p>
+            <p className="text-sm text-muted-foreground">All revenue terms are fixed as follows and must be agreed upon prior to broadcast.</p>
 
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-foreground">Affiliate Commission Split (Regional Tagged Sales)</label>
-              <Input value={form.affiliate_split} onChange={(e) => updateField("affiliate_split", e.target.value)} placeholder="Example: 70% Regional Partner / 30% Show Owner" />
+            <div className="space-y-3 rounded-md border border-border bg-muted/50 p-4">
+              <div>
+                <p className="text-sm font-medium text-foreground">Affiliate Commission Split (Regional Tagged Sales)</p>
+                <p className="text-sm text-muted-foreground">70% Regional Partner / 30% Show Owner</p>
+              </div>
+              <Separator />
+              <div>
+                <p className="text-sm font-medium text-foreground">Brand Placement Fee</p>
+                <p className="text-sm text-muted-foreground">£500 per feature</p>
+              </div>
+              <Separator />
+              <div>
+                <p className="text-sm font-medium text-foreground">Revenue Share on Sponsored Broadcasts</p>
+                <p className="text-sm text-muted-foreground">50/50 split</p>
+              </div>
             </div>
 
             <div className="space-y-1">
-              <label className="text-sm font-medium text-foreground">Brand Placement Fee (if applicable)</label>
-              <Input value={form.brand_fee} onChange={(e) => updateField("brand_fee", e.target.value)} placeholder="Example: £500 per feature or N/A" />
-            </div>
-
-            <div className="space-y-1">
-              <label className="text-sm font-medium text-foreground">Revenue Share on Sponsored Broadcasts (if applicable)</label>
-              <Input value={form.sponsored_split} onChange={(e) => updateField("sponsored_split", e.target.value)} placeholder="Example: 50/50 split or N/A" />
+              <label className="text-sm font-medium text-foreground">Do you agree to the revenue terms outlined above? <span className="text-destructive">*</span></label>
+              <Select value={form.affiliate_split} onValueChange={(v) => updateField("affiliate_split", v)}>
+                <SelectTrigger><SelectValue placeholder="Select" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Yes">Yes</SelectItem>
+                  <SelectItem value="No">No</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </section>
 
