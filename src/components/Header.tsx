@@ -75,7 +75,7 @@ const Header: React.FC = memo(() => {
     { label: 'Home', path: '/' },
     { label: 'Brands', path: '/brands' },
     { label: 'Affiliates', path: '/Affiliate' },
-    { label: 'Blueprint', path: '/affiliate-sales-blueprint' }
+    { label: 'Startups', path: '/startups' }
   ];
   
   const isActive = (path: string) => {
