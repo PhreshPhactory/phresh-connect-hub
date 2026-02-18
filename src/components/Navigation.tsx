@@ -48,12 +48,12 @@ const Navigation = () => {
               Brands
             </Link>
             <Link
-              to="/holiday-explained"
+              to="/startups"
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive('/holiday-explained') ? 'text-primary' : 'text-muted-foreground'
+                isActive('/startups') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              Sprint
+              Startups
             </Link>
             
             <Link
@@ -115,11 +115,11 @@ const Navigation = () => {
                 Brands
               </Link>
               <Link
-                to="/holiday-explained"
+                to="/startups"
                 className="block text-sm font-medium text-muted-foreground hover:text-primary"
                 onClick={() => setIsOpen(false)}
               >
-                Sprint
+                Startups
               </Link>
               
               <Link
