@@ -12,7 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useScrollAnimations } from '@/hooks/useScrollAnimations';
 
 // Import critical pages normally for faster initial load
-import Home from "@/pages/Home";
+const BusinessHome = lazy(() => import("@/pages/BusinessHome"));
 import NotFound from "@/pages/NotFound";
 
 // Lazy load all other pages for faster initial bundle
@@ -99,7 +99,7 @@ const App = () => {
                     <Route element={<Layout />}>
                     <Route path="/" element={<ProductSpotlights />} />
                       <Route path="/about" element={<About />} />
-                      <Route path="/business" element={<Navigate to="/" replace />} />
+                      <Route path="/business" element={<BusinessHome />} />
                       <Route path="/shop" element={<Navigate to="/" replace />} />
                       <Route path="/buyblack" element={<Navigate to="/shop" replace />} />
                       <Route path="/shop/:slug" element={<ProductSpotlight />} />
