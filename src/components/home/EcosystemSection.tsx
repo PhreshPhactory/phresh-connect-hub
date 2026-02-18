@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Users, Briefcase, ArrowRight } from 'lucide-react';
+import { Users, Briefcase } from 'lucide-react';
 import SectionTitle from '@/components/SectionTitle';
 
 const EcosystemSection = () => {
@@ -38,11 +37,6 @@ const EcosystemSection = () => {
               A training community that equips talent to support mission-driven brands and create reliable income streams.
             </p>
             
-            <Button asChild className="w-full">
-              <a href="https://tinyurl.com/Phreelance-Affiliate" target="_blank" rel="noopener noreferrer">
-                Join Phreelance <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
           </div>
 
           {/* Phactory Community */}
@@ -62,11 +56,6 @@ const EcosystemSection = () => {
               A training community that helps brands get "affiliate-ready," strengthen their digital systems, and make it easier for affiliates to sell their products.
             </p>
             
-            <Button asChild className="w-full">
-              <a href="https://tinyurl.com/Phactory-Owners" target="_blank" rel="noopener noreferrer">
-                Join Phactory <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
           </div>
         </div>
 
