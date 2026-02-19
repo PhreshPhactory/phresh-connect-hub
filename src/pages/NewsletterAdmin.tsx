@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
@@ -12,7 +12,6 @@ import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Download, Search, Loader2, ArrowLeft, Send, Users, ChevronDown, ChevronUp } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
-import EmailEditor, { EditorRef, EmailEditorProps } from 'react-email-editor';
 
 interface NewsletterSubscriber {
   id: string;
@@ -22,10 +21,23 @@ interface NewsletterSubscriber {
   created_at: string;
 }
 
+// Unlayer editor loaded via script tag — avoids duplicate React bundling issues
+declare global {
+  interface Window {
+    unlayer: {
+      init: (options: Record<string, unknown>) => void;
+      exportHtml: (callback: (data: { html: string; design: object }) => void) => void;
+      loadDesign: (design: object) => void;
+    };
+  }
+}
+
 export default function NewsletterAdmin() {
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
-  const emailEditorRef = useRef<EditorRef>(null);
+  const editorContainerRef = useRef<HTMLDivElement>(null);
+  const scriptLoadedRef = useRef(false);
+  const editorInitRef = useRef(false);
 
   const [subscribers, setSubscribers] = useState<NewsletterSubscriber[]>([]);
   const [filteredSubscribers, setFilteredSubscribers] = useState<NewsletterSubscriber[]>([]);
@@ -50,6 +62,40 @@ export default function NewsletterAdmin() {
   useEffect(() => {
     filterSubscribers();
   }, [searchQuery, sourceFilter, subscribers]);
+
+  // Load Unlayer script and init editor
+  useEffect(() => {
+    if (scriptLoadedRef.current) return;
+    scriptLoadedRef.current = true;
+
+    const script = document.createElement('script');
+    script.src = 'https://editor.unlayer.com/embed.js';
+    script.async = true;
+    script.onload = () => {
+      if (editorInitRef.current) return;
+      editorInitRef.current = true;
+
+      window.unlayer.init({
+        id: 'unlayer-editor',
+        displayMode: 'email',
+        appearance: {
+          theme: 'modern_light',
+        },
+        features: {
+          preview: true,
+          imageEditor: true,
+          undoRedo: true,
+        },
+      });
+
+      setEditorReady(true);
+    };
+    document.head.appendChild(script);
+
+    return () => {
+      // script stays in head intentionally — removing causes issues on re-mount
+    };
+  }, []);
 
   const fetchSubscribers = async () => {
     try {
@@ -105,25 +151,17 @@ export default function NewsletterAdmin() {
     toast({ title: 'Export Complete', description: `Exported ${data.length} subscribers.` });
   };
 
-  const onEditorReady: EmailEditorProps['onReady'] = useCallback(() => {
-    setEditorReady(true);
-  }, []);
-
-  const sendBroadcast = async () => {
+  const sendBroadcast = () => {
     if (!broadcastSubject.trim()) {
       toast({ title: 'Missing subject', description: 'Please enter a subject line.', variant: 'destructive' });
       return;
     }
-
-    if (!emailEditorRef.current) {
+    if (!window.unlayer) {
       toast({ title: 'Editor not ready', description: 'Please wait for the editor to load.', variant: 'destructive' });
       return;
     }
 
-    // Export HTML from Unlayer editor
-    emailEditorRef.current.editor?.exportHtml(async (data) => {
-      const { html } = data;
-
+    window.unlayer.exportHtml(async ({ html }) => {
       const targetSubscribers = selectedIds.size > 0
         ? subscribers.filter((s) => selectedIds.has(s.id))
         : subscribers;
@@ -134,7 +172,7 @@ export default function NewsletterAdmin() {
         return;
       }
 
-      if (!confirm(`Send this newsletter to ${recipients.length} ${selectedIds.size > 0 ? 'selected' : ''} subscriber${recipients.length !== 1 ? 's' : ''}?`)) return;
+      if (!confirm(`Send this newsletter to ${recipients.length}${selectedIds.size > 0 ? ' selected' : ''} subscriber${recipients.length !== 1 ? 's' : ''}?`)) return;
 
       setIsSending(true);
       try {
@@ -165,17 +203,16 @@ export default function NewsletterAdmin() {
     <>
       <SEOHead title="Newsletter Studio | Phresh Phactory" description="Design and send newsletters" />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background flex flex-col">
         {/* Top bar */}
-        <div className="border-b bg-card px-6 py-4 flex items-center gap-4 sticky top-0 z-20">
+        <div className="border-b bg-card px-6 py-3 flex items-center gap-4 sticky top-0 z-20 shrink-0">
           <Button variant="ghost" size="sm" onClick={() => navigate('/admin')}>
             <ArrowLeft className="w-4 h-4 mr-2" /> Admin
           </Button>
           <div className="h-5 w-px bg-border" />
-          <h1 className="text-lg font-semibold flex-1">Newsletter Studio</h1>
+          <h1 className="text-base font-semibold">Newsletter Studio</h1>
 
-          {/* Subject */}
-          <div className="flex items-center gap-2 flex-1 max-w-sm">
+          <div className="flex items-center gap-2 flex-1 max-w-sm ml-auto">
             <Label htmlFor="subject" className="text-sm whitespace-nowrap text-muted-foreground">Subject:</Label>
             <Input
               id="subject"
@@ -186,71 +223,43 @@ export default function NewsletterAdmin() {
             />
           </div>
 
-          {/* Recipient info */}
           <span className="text-sm text-muted-foreground whitespace-nowrap">
-            {selectedIds.size > 0
-              ? `${selectedIds.size} selected`
-              : `${subscribers.length} subscribers`}
+            {selectedIds.size > 0 ? `${selectedIds.size} selected` : `${subscribers.length} subscribers`}
           </span>
 
-          <Button
-            onClick={sendBroadcast}
-            disabled={isSending || !editorReady}
-            size="sm"
-          >
+          <Button onClick={sendBroadcast} disabled={isSending || !editorReady} size="sm">
             {isSending
               ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</>
-              : <><Send className="w-4 h-4 mr-2" />
-                  {selectedIds.size > 0 ? `Send to ${selectedIds.size} Selected` : 'Send to All'}
-                </>}
+              : <><Send className="w-4 h-4 mr-2" />{selectedIds.size > 0 ? `Send to ${selectedIds.size} Selected` : 'Send to All'}</>}
           </Button>
         </div>
 
-        {/* Unlayer Editor — full height */}
-        <div className="relative" style={{ height: 'calc(100vh - 65px)' }}>
+        {/* Unlayer editor container — editor embeds itself here via window.unlayer.init({ id }) */}
+        <div className="flex-1 relative">
           {!editorReady && (
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-background z-10 gap-3">
               <Loader2 className="w-8 h-8 animate-spin text-primary" />
               <p className="text-muted-foreground text-sm">Loading email editor…</p>
             </div>
           )}
-          <EmailEditor
-            ref={emailEditorRef}
-            onReady={onEditorReady}
-            minHeight="100%"
-            options={{
-              displayMode: 'email',
-              fonts: {
-                showDefaultFonts: true,
-              },
-              appearance: {
-                theme: 'modern_light',
-                panels: {
-                  tools: {
-                    dock: 'left',
-                  },
-                },
-              },
-              features: {
-                preview: true,
-                imageEditor: true,
-                undoRedo: true,
-              },
-            }}
+          <div
+            id="unlayer-editor"
+            ref={editorContainerRef}
+            style={{ height: 'calc(100vh - 57px)', minHeight: 600 }}
           />
         </div>
 
         {/* Subscribers collapsible panel */}
-        <div className="border-t bg-card">
+        <div className="border-t bg-card shrink-0">
           <button
             className="w-full flex items-center justify-between px-6 py-4 hover:bg-muted/30 transition-colors text-left"
             onClick={() => setSubscribersOpen(!subscribersOpen)}
           >
-            <div className="flex items-center gap-2 font-semibold">
-              <Users className="w-5 h-5" />
+            <div className="flex items-center gap-2 font-semibold text-sm">
+              <Users className="w-4 h-4" />
               Subscribers ({subscribers.length})
               {selectedIds.size > 0 && (
-                <span className="text-xs bg-primary text-primary-foreground px-2 py-0.5 rounded-full">
+                <span className="text-xs bg-primary text-primary-foreground px-2 py-0.5 rounded-full ml-1">
                   {selectedIds.size} selected
                 </span>
               )}
@@ -261,10 +270,9 @@ export default function NewsletterAdmin() {
           {subscribersOpen && (
             <div className="px-6 pb-6 space-y-4">
               <p className="text-sm text-muted-foreground">
-                Select specific subscribers to target, or leave all unchecked to send to everyone.
+                Check specific subscribers to target, or leave all unchecked to send to everyone.
               </p>
 
-              {/* Filters */}
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1 relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -290,29 +298,27 @@ export default function NewsletterAdmin() {
                 </Button>
                 {selectedIds.size > 0 && (
                   <Button variant="ghost" size="sm" onClick={() => setSelectedIds(new Set())}>
-                    Clear selection
+                    Clear
                   </Button>
                 )}
               </div>
 
-              {/* Stats */}
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: 'Total Subscribers', value: subscribers.length },
-                  { label: 'Filtered Results', value: filteredSubscribers.length },
+                  { label: 'Total', value: subscribers.length },
+                  { label: 'Filtered', value: filteredSubscribers.length },
                   { label: 'Selected', value: selectedIds.size },
                 ].map(({ label, value }) => (
                   <Card key={label}>
-                    <CardContent className="pt-4 pb-4">
-                      <div className="text-2xl font-bold">{value}</div>
+                    <CardContent className="py-3 px-4">
+                      <div className="text-xl font-bold">{value}</div>
                       <p className="text-xs text-muted-foreground">{label}</p>
                     </CardContent>
                   </Card>
                 ))}
               </div>
 
-              {/* Table */}
-              <div className="border rounded-lg overflow-hidden max-h-80 overflow-y-auto">
+              <div className="border rounded-lg overflow-hidden max-h-72 overflow-y-auto">
                 <Table>
                   <TableHeader className="sticky top-0 bg-card z-10">
                     <TableRow>
@@ -325,7 +331,7 @@ export default function NewsletterAdmin() {
                       <TableHead>Email</TableHead>
                       <TableHead>Name</TableHead>
                       <TableHead>Source</TableHead>
-                      <TableHead>Subscribed At</TableHead>
+                      <TableHead>Date</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -339,9 +345,8 @@ export default function NewsletterAdmin() {
                       filteredSubscribers.map((subscriber) => (
                         <TableRow
                           key={subscriber.id}
-                          className={selectedIds.has(subscriber.id) ? 'bg-primary/5' : ''}
+                          className={`cursor-pointer ${selectedIds.has(subscriber.id) ? 'bg-primary/5' : ''}`}
                           onClick={() => toggleSelect(subscriber.id)}
-                          style={{ cursor: 'pointer' }}
                         >
                           <TableCell onClick={(e) => e.stopPropagation()}>
                             <Checkbox
