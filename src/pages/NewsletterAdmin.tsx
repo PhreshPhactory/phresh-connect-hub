@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Download, Search, Loader2, ArrowLeft, Send, Code, Eye, Users } from 'lucide-react';
@@ -78,7 +78,6 @@ export default function NewsletterAdmin() {
   const [broadcastSubject, setBroadcastSubject] = useState('');
   const [htmlCode, setHtmlCode] = useState(DEFAULT_HTML);
   const [isSending, setIsSending] = useState(false);
-  const [activeTab, setActiveTab] = useState<'code' | 'preview'>('code');
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -95,9 +94,9 @@ export default function NewsletterAdmin() {
     filterSubscribers();
   }, [searchQuery, sourceFilter, subscribers]);
 
-  // Update iframe preview whenever html changes or tab switches to preview
+  // Update iframe preview whenever html changes
   useEffect(() => {
-    if (activeTab === 'preview' && iframeRef.current) {
+    if (iframeRef.current) {
       const doc = iframeRef.current.contentDocument;
       if (doc) {
         doc.open();
@@ -105,7 +104,7 @@ export default function NewsletterAdmin() {
         doc.close();
       }
     }
-  }, [activeTab, htmlCode]);
+  }, [htmlCode]);
 
   const fetchSubscribers = async () => {
     try {
@@ -242,52 +241,38 @@ export default function NewsletterAdmin() {
             </CardHeader>
 
             <CardContent className="p-0">
-              <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as 'code' | 'preview')}>
-                <div className="border-b px-6">
-                  <TabsList className="h-10 bg-transparent border-0 p-0 gap-0">
-                    <TabsTrigger
-                      value="code"
-                      className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4"
-                    >
-                      <Code className="w-4 h-4 mr-2" /> HTML Code
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="preview"
-                      className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4"
-                    >
-                      <Eye className="w-4 h-4 mr-2" /> Preview
-                    </TabsTrigger>
-                  </TabsList>
+              {/* Labels row */}
+              <div className="grid grid-cols-2 border-b">
+                <div className="flex items-center gap-2 px-6 py-3 border-r bg-[#1e1e1e] text-[#d4d4d4] text-sm font-medium">
+                  <Code className="w-4 h-4" /> HTML Code
                 </div>
+                <div className="flex items-center gap-2 px-6 py-3 bg-muted/30 text-muted-foreground text-sm font-medium">
+                  <Eye className="w-4 h-4" /> Live Preview
+                </div>
+              </div>
 
-                <TabsContent value="code" className="m-0">
-                  <textarea
-                    value={htmlCode}
-                    onChange={(e) => setHtmlCode(e.target.value)}
-                    spellCheck={false}
-                    className="w-full h-[600px] font-mono text-sm p-6 bg-[#1e1e1e] text-[#d4d4d4] resize-none outline-none border-0 focus:ring-0"
-                    placeholder="Paste or write your newsletter HTML here..."
+              {/* Split pane */}
+              <div className="grid grid-cols-2" style={{ height: 640 }}>
+                {/* Code editor */}
+                <textarea
+                  value={htmlCode}
+                  onChange={(e) => setHtmlCode(e.target.value)}
+                  spellCheck={false}
+                  className="h-full w-full font-mono text-sm p-6 bg-[#1e1e1e] text-[#d4d4d4] resize-none outline-none border-0 border-r focus:ring-0"
+                  placeholder="Paste or write your newsletter HTML here..."
+                />
+
+                {/* Preview pane */}
+                <div className="bg-muted/20 overflow-auto">
+                  <iframe
+                    ref={iframeRef}
+                    title="Newsletter Preview"
+                    sandbox="allow-same-origin"
+                    className="w-full border-0"
+                    style={{ height: '100%', minHeight: 640 }}
                   />
-                </TabsContent>
-
-                <TabsContent value="preview" className="m-0">
-                  <div className="bg-muted/30 p-4">
-                    <div className="flex items-center justify-center gap-2 mb-4 text-sm text-muted-foreground">
-                      <Eye className="w-4 h-4" />
-                      Live preview — exactly how your email will look
-                    </div>
-                    <div className="bg-white rounded-lg overflow-hidden shadow-lg mx-auto" style={{ maxWidth: 640 }}>
-                      <iframe
-                        ref={iframeRef}
-                        title="Newsletter Preview"
-                        sandbox="allow-same-origin"
-                        className="w-full border-0"
-                        style={{ height: 600 }}
-                      />
-                    </div>
-                  </div>
-                </TabsContent>
-              </Tabs>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
