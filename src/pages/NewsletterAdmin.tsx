@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
@@ -8,11 +8,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
-
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Download, Search, Loader2, ArrowLeft, Send, Code, Eye, Users } from 'lucide-react';
+import { Download, Search, Loader2, ArrowLeft, Send, Users, ChevronDown, ChevronUp } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import EmailEditor, { EditorRef, EmailEditorProps } from 'react-email-editor';
 
 interface NewsletterSubscriber {
   id: string;
@@ -22,68 +22,25 @@ interface NewsletterSubscriber {
   created_at: string;
 }
 
-const DEFAULT_HTML = `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <style>
-    body { margin: 0; font-family: Georgia, serif; background: #f4f4f4; }
-    .wrapper { max-width: 600px; margin: 0 auto; background: #fff; }
-    .header { background: #1a1a1a; padding: 32px 40px; text-align: center; }
-    .header h1 { color: #d4a853; margin: 0; font-size: 28px; letter-spacing: 2px; }
-    .header p { color: #999; margin: 8px 0 0; font-size: 14px; }
-    .body { padding: 40px; }
-    .body h2 { color: #1a1a1a; font-size: 22px; margin-top: 0; }
-    .body p { color: #444; line-height: 1.7; }
-    .cta { text-align: center; margin: 32px 0; }
-    .cta a { background: #d4a853; color: #fff; padding: 14px 32px; text-decoration: none; border-radius: 4px; font-weight: bold; }
-    .footer { background: #f9f9f9; padding: 24px 40px; text-align: center; border-top: 1px solid #eee; }
-    .footer p { color: #999; font-size: 12px; margin: 0; }
-  </style>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="header">
-      <h1>Culture &amp; Commerce</h1>
-      <p>Phresh Phactory &bull; Weekly Edition</p>
-    </div>
-    <div class="body">
-      <h2>Hello, Community 👋</h2>
-      <p>Welcome to this week's edition of Culture &amp; Commerce. Here's what we've been curating for you...</p>
-      <p>Add your newsletter body here. You can use full HTML to style it however you'd like.</p>
-      <div class="cta">
-        <a href="https://phreshphactory.com">Shop Now →</a>
-      </div>
-    </div>
-    <div class="footer">
-      <p>Phresh Phactory Inc &bull; phreshphactory.com</p>
-      <p style="margin-top:8px;">You received this because you subscribed. <a href="#" style="color:#999;">Unsubscribe</a></p>
-    </div>
-  </div>
-</body>
-</html>`;
-
 export default function NewsletterAdmin() {
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
+  const emailEditorRef = useRef<EditorRef>(null);
+
   const [subscribers, setSubscribers] = useState<NewsletterSubscriber[]>([]);
   const [filteredSubscribers, setFilteredSubscribers] = useState<NewsletterSubscriber[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [sourceFilter, setSourceFilter] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [subscribersOpen, setSubscribersOpen] = useState(false);
 
-  // Broadcast state
   const [broadcastSubject, setBroadcastSubject] = useState('');
-  const [htmlCode, setHtmlCode] = useState(DEFAULT_HTML);
   const [isSending, setIsSending] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [editorReady, setEditorReady] = useState(false);
 
   useEffect(() => {
-    if (!authLoading && !user) {
-      navigate('/auth');
-    }
+    if (!authLoading && !user) navigate('/auth');
   }, [user, authLoading, navigate]);
 
   useEffect(() => {
@@ -93,18 +50,6 @@ export default function NewsletterAdmin() {
   useEffect(() => {
     filterSubscribers();
   }, [searchQuery, sourceFilter, subscribers]);
-
-  // Update iframe preview whenever html changes
-  useEffect(() => {
-    if (iframeRef.current) {
-      const doc = iframeRef.current.contentDocument;
-      if (doc) {
-        doc.open();
-        doc.write(htmlCode);
-        doc.close();
-      }
-    }
-  }, [htmlCode]);
 
   const fetchSubscribers = async () => {
     try {
@@ -160,38 +105,50 @@ export default function NewsletterAdmin() {
     toast({ title: 'Export Complete', description: `Exported ${data.length} subscribers.` });
   };
 
+  const onEditorReady: EmailEditorProps['onReady'] = useCallback(() => {
+    setEditorReady(true);
+  }, []);
+
   const sendBroadcast = async () => {
     if (!broadcastSubject.trim()) {
       toast({ title: 'Missing subject', description: 'Please enter a subject line.', variant: 'destructive' });
       return;
     }
-    if (!htmlCode.trim()) {
-      toast({ title: 'Empty newsletter', description: 'Please add some content.', variant: 'destructive' });
-      return;
-    }
-    // Use selected subscribers if any are checked, otherwise send to all
-    const targetSubscribers = selectedIds.size > 0
-      ? subscribers.filter((s) => selectedIds.has(s.id))
-      : subscribers;
-    const recipients = targetSubscribers.map((s) => s.email);
-    if (recipients.length === 0) {
-      toast({ title: 'No subscribers', description: 'There are no subscribers to send to.', variant: 'destructive' });
-      return;
-    }
-    if (!confirm(`Send this newsletter to ${recipients.length} ${selectedIds.size > 0 ? 'selected' : ''} subscriber${recipients.length !== 1 ? 's' : ''}?`)) return;
 
-    setIsSending(true);
-    try {
-      const { error } = await supabase.functions.invoke('send-newsletter', {
-        body: { to: recipients, subject: broadcastSubject, html: htmlCode },
-      });
-      if (error) throw error;
-      toast({ title: '✅ Newsletter sent!', description: `Delivered to ${recipients.length} subscribers.` });
-    } catch (err: any) {
-      toast({ title: 'Send failed', description: err.message || 'Unknown error', variant: 'destructive' });
-    } finally {
-      setIsSending(false);
+    if (!emailEditorRef.current) {
+      toast({ title: 'Editor not ready', description: 'Please wait for the editor to load.', variant: 'destructive' });
+      return;
     }
+
+    // Export HTML from Unlayer editor
+    emailEditorRef.current.editor?.exportHtml(async (data) => {
+      const { html } = data;
+
+      const targetSubscribers = selectedIds.size > 0
+        ? subscribers.filter((s) => selectedIds.has(s.id))
+        : subscribers;
+      const recipients = targetSubscribers.map((s) => s.email);
+
+      if (recipients.length === 0) {
+        toast({ title: 'No subscribers', description: 'There are no subscribers to send to.', variant: 'destructive' });
+        return;
+      }
+
+      if (!confirm(`Send this newsletter to ${recipients.length} ${selectedIds.size > 0 ? 'selected' : ''} subscriber${recipients.length !== 1 ? 's' : ''}?`)) return;
+
+      setIsSending(true);
+      try {
+        const { error } = await supabase.functions.invoke('send-newsletter', {
+          body: { to: recipients, subject: broadcastSubject, html },
+        });
+        if (error) throw error;
+        toast({ title: '✅ Newsletter sent!', description: `Delivered to ${recipients.length} subscribers.` });
+      } catch (err: any) {
+        toast({ title: 'Send failed', description: err.message || 'Unknown error', variant: 'destructive' });
+      } finally {
+        setIsSending(false);
+      }
+    });
   };
 
   const uniqueSources = Array.from(new Set(subscribers.map((s) => s.source)));
@@ -206,94 +163,109 @@ export default function NewsletterAdmin() {
 
   return (
     <>
-      <SEOHead title="Newsletter Admin | Phresh Phactory" description="Send and manage newsletters" />
+      <SEOHead title="Newsletter Studio | Phresh Phactory" description="Design and send newsletters" />
 
-      <div className="min-h-screen bg-background py-8">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <Button variant="ghost" onClick={() => navigate('/admin')} className="mb-6">
-            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Admin
+      <div className="min-h-screen bg-background">
+        {/* Top bar */}
+        <div className="border-b bg-card px-6 py-4 flex items-center gap-4 sticky top-0 z-20">
+          <Button variant="ghost" size="sm" onClick={() => navigate('/admin')}>
+            <ArrowLeft className="w-4 h-4 mr-2" /> Admin
           </Button>
+          <div className="h-5 w-px bg-border" />
+          <h1 className="text-lg font-semibold flex-1">Newsletter Studio</h1>
 
-          <h1 className="text-3xl font-bold mb-2">Newsletter Studio</h1>
-          <p className="text-muted-foreground mb-8">Compose, preview, and broadcast your newsletter</p>
+          {/* Subject */}
+          <div className="flex items-center gap-2 flex-1 max-w-sm">
+            <Label htmlFor="subject" className="text-sm whitespace-nowrap text-muted-foreground">Subject:</Label>
+            <Input
+              id="subject"
+              placeholder="Your email subject line..."
+              value={broadcastSubject}
+              onChange={(e) => setBroadcastSubject(e.target.value)}
+              className="h-9"
+            />
+          </div>
 
-          {/* Composer */}
-          <Card className="mb-8">
-            <CardHeader>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <div className="flex-1">
-                  <Label htmlFor="subject" className="text-base font-semibold">Subject Line</Label>
-                  <Input
-                    id="subject"
-                    placeholder="e.g. This Week in Culture & Commerce 🖤"
-                    value={broadcastSubject}
-                    onChange={(e) => setBroadcastSubject(e.target.value)}
-                    className="mt-1 text-base"
-                  />
-                </div>
-                <Button
-                  onClick={sendBroadcast}
-                  disabled={isSending}
-                  size="lg"
-                  className="shrink-0"
-                >
-                  {isSending
-                    ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</>
-                    : <><Send className="w-4 h-4 mr-2" />
-                        {selectedIds.size > 0
-                          ? `Send to ${selectedIds.size} Selected`
-                          : `Send to All (${subscribers.length})`}
-                      </>}
-                </Button>
-              </div>
-            </CardHeader>
+          {/* Recipient info */}
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
+            {selectedIds.size > 0
+              ? `${selectedIds.size} selected`
+              : `${subscribers.length} subscribers`}
+          </span>
 
-            <CardContent className="p-0">
-              {/* Labels row */}
-              <div className="grid grid-cols-2 border-b">
-                <div className="flex items-center gap-2 px-6 py-3 border-r bg-[#1e1e1e] text-[#d4d4d4] text-sm font-medium">
-                  <Code className="w-4 h-4" /> HTML Code
-                </div>
-                <div className="flex items-center gap-2 px-6 py-3 bg-muted/30 text-muted-foreground text-sm font-medium">
-                  <Eye className="w-4 h-4" /> Live Preview
-                </div>
-              </div>
+          <Button
+            onClick={sendBroadcast}
+            disabled={isSending || !editorReady}
+            size="sm"
+          >
+            {isSending
+              ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</>
+              : <><Send className="w-4 h-4 mr-2" />
+                  {selectedIds.size > 0 ? `Send to ${selectedIds.size} Selected` : 'Send to All'}
+                </>}
+          </Button>
+        </div>
 
-              {/* Split pane */}
-              <div className="grid grid-cols-2" style={{ height: 640 }}>
-                {/* Code editor */}
-                <textarea
-                  value={htmlCode}
-                  onChange={(e) => setHtmlCode(e.target.value)}
-                  spellCheck={false}
-                  className="h-full w-full font-mono text-sm p-6 bg-[#1e1e1e] text-[#d4d4d4] resize-none outline-none border-0 border-r focus:ring-0"
-                  placeholder="Paste or write your newsletter HTML here..."
-                />
+        {/* Unlayer Editor — full height */}
+        <div className="relative" style={{ height: 'calc(100vh - 65px)' }}>
+          {!editorReady && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-background z-10 gap-3">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+              <p className="text-muted-foreground text-sm">Loading email editor…</p>
+            </div>
+          )}
+          <EmailEditor
+            ref={emailEditorRef}
+            onReady={onEditorReady}
+            minHeight="100%"
+            options={{
+              displayMode: 'email',
+              fonts: {
+                showDefaultFonts: true,
+              },
+              appearance: {
+                theme: 'modern_light',
+                panels: {
+                  tools: {
+                    dock: 'left',
+                  },
+                },
+              },
+              features: {
+                preview: true,
+                imageEditor: true,
+                undoRedo: true,
+              },
+            }}
+          />
+        </div>
 
-                {/* Preview pane */}
-                <div className="bg-muted/20 overflow-auto">
-                  <iframe
-                    ref={iframeRef}
-                    title="Newsletter Preview"
-                    sandbox="allow-same-origin"
-                    className="w-full border-0"
-                    style={{ height: '100%', minHeight: 640 }}
-                  />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+        {/* Subscribers collapsible panel */}
+        <div className="border-t bg-card">
+          <button
+            className="w-full flex items-center justify-between px-6 py-4 hover:bg-muted/30 transition-colors text-left"
+            onClick={() => setSubscribersOpen(!subscribersOpen)}
+          >
+            <div className="flex items-center gap-2 font-semibold">
+              <Users className="w-5 h-5" />
+              Subscribers ({subscribers.length})
+              {selectedIds.size > 0 && (
+                <span className="text-xs bg-primary text-primary-foreground px-2 py-0.5 rounded-full">
+                  {selectedIds.size} selected
+                </span>
+              )}
+            </div>
+            {subscribersOpen ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+          </button>
 
-          {/* Subscribers */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Users className="w-5 h-5" /> Subscribers ({subscribers.length})
-              </CardTitle>
-              <CardDescription>View, filter, and export your list</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex flex-col sm:flex-row gap-4">
+          {subscribersOpen && (
+            <div className="px-6 pb-6 space-y-4">
+              <p className="text-sm text-muted-foreground">
+                Select specific subscribers to target, or leave all unchecked to send to everyone.
+              </p>
+
+              {/* Filters */}
+              <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1 relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
@@ -312,87 +284,89 @@ export default function NewsletterAdmin() {
                     {uniqueSources.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
                   </SelectContent>
                 </Select>
-                <Button onClick={exportToCSV} disabled={filteredSubscribers.length === 0} className="w-full sm:w-auto">
+                <Button variant="outline" onClick={exportToCSV} disabled={filteredSubscribers.length === 0} className="shrink-0">
                   <Download className="w-4 h-4 mr-2" />
-                  {selectedIds.size > 0 ? `Export ${selectedIds.size} Selected` : 'Export CSV'}
+                  {selectedIds.size > 0 ? `Export ${selectedIds.size}` : 'Export CSV'}
                 </Button>
+                {selectedIds.size > 0 && (
+                  <Button variant="ghost" size="sm" onClick={() => setSelectedIds(new Set())}>
+                    Clear selection
+                  </Button>
+                )}
               </div>
 
-              {selectedIds.size > 0 && (
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span>{selectedIds.size} of {filteredSubscribers.length} selected</span>
-                  <Button variant="ghost" size="sm" onClick={() => setSelectedIds(new Set())}>Clear</Button>
-                </div>
-              )}
-
-              <div className="grid grid-cols-3 gap-4">
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-3">
                 {[
                   { label: 'Total Subscribers', value: subscribers.length },
                   { label: 'Filtered Results', value: filteredSubscribers.length },
-                  { label: 'Unique Sources', value: uniqueSources.length },
+                  { label: 'Selected', value: selectedIds.size },
                 ].map(({ label, value }) => (
                   <Card key={label}>
-                    <CardContent className="pt-6">
+                    <CardContent className="pt-4 pb-4">
                       <div className="text-2xl font-bold">{value}</div>
-                      <p className="text-sm text-muted-foreground">{label}</p>
+                      <p className="text-xs text-muted-foreground">{label}</p>
                     </CardContent>
                   </Card>
                 ))}
               </div>
 
-              <div className="border rounded-lg overflow-hidden">
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
+              {/* Table */}
+              <div className="border rounded-lg overflow-hidden max-h-80 overflow-y-auto">
+                <Table>
+                  <TableHeader className="sticky top-0 bg-card z-10">
+                    <TableRow>
+                      <TableHead className="w-12">
+                        <Checkbox
+                          checked={filteredSubscribers.length > 0 && selectedIds.size === filteredSubscribers.length}
+                          onCheckedChange={toggleSelectAll}
+                        />
+                      </TableHead>
+                      <TableHead>Email</TableHead>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Source</TableHead>
+                      <TableHead>Subscribed At</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredSubscribers.length === 0 ? (
                       <TableRow>
-                        <TableHead className="w-12">
-                          <Checkbox
-                            checked={filteredSubscribers.length > 0 && selectedIds.size === filteredSubscribers.length}
-                            onCheckedChange={toggleSelectAll}
-                          />
-                        </TableHead>
-                        <TableHead>Email</TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Source</TableHead>
-                        <TableHead>Subscribed At</TableHead>
+                        <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                          No subscribers found
+                        </TableCell>
                       </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {filteredSubscribers.length === 0 ? (
-                        <TableRow>
-                          <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
-                            No subscribers found
+                    ) : (
+                      filteredSubscribers.map((subscriber) => (
+                        <TableRow
+                          key={subscriber.id}
+                          className={selectedIds.has(subscriber.id) ? 'bg-primary/5' : ''}
+                          onClick={() => toggleSelect(subscriber.id)}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <TableCell onClick={(e) => e.stopPropagation()}>
+                            <Checkbox
+                              checked={selectedIds.has(subscriber.id)}
+                              onCheckedChange={() => toggleSelect(subscriber.id)}
+                            />
+                          </TableCell>
+                          <TableCell className="font-medium">{subscriber.email}</TableCell>
+                          <TableCell>{subscriber.name || 'N/A'}</TableCell>
+                          <TableCell>
+                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                              {subscriber.source}
+                            </span>
+                          </TableCell>
+                          <TableCell className="text-muted-foreground text-sm">
+                            {new Date(subscriber.created_at).toLocaleDateString()}
                           </TableCell>
                         </TableRow>
-                      ) : (
-                        filteredSubscribers.map((subscriber) => (
-                          <TableRow key={subscriber.id}>
-                            <TableCell>
-                              <Checkbox
-                                checked={selectedIds.has(subscriber.id)}
-                                onCheckedChange={() => toggleSelect(subscriber.id)}
-                              />
-                            </TableCell>
-                            <TableCell className="font-medium">{subscriber.email}</TableCell>
-                            <TableCell>{subscriber.name || 'N/A'}</TableCell>
-                            <TableCell>
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
-                                {subscriber.source}
-                              </span>
-                            </TableCell>
-                            <TableCell className="text-muted-foreground">
-                              {new Date(subscriber.created_at).toLocaleDateString()}{' '}
-                              {new Date(subscriber.created_at).toLocaleTimeString()}
-                            </TableCell>
-                          </TableRow>
-                        ))
-                      )}
-                    </TableBody>
-                  </Table>
-                </div>
+                      ))
+                    )}
+                  </TableBody>
+                </Table>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          )}
         </div>
       </div>
     </>
