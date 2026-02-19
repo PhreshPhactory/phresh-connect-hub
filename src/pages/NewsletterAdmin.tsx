@@ -4,12 +4,14 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Download, Search, Loader2, ArrowLeft } from 'lucide-react';
+import { Download, Search, Loader2, ArrowLeft, Send } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 
 interface NewsletterSubscriber {
@@ -29,6 +31,11 @@ export default function NewsletterAdmin() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sourceFilter, setSourceFilter] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+
+  // Broadcast state
+  const [broadcastSubject, setBroadcastSubject] = useState('');
+  const [broadcastBody, setBroadcastBody] = useState('');
+  const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -108,6 +115,40 @@ export default function NewsletterAdmin() {
     setSelectedIds(newSelected);
   };
 
+  const sendBroadcast = async () => {
+    if (!broadcastSubject.trim() || !broadcastBody.trim()) {
+      toast({ title: 'Missing fields', description: 'Please enter a subject and body.', variant: 'destructive' });
+      return;
+    }
+    const recipients = subscribers.map((s) => s.email);
+    if (recipients.length === 0) {
+      toast({ title: 'No subscribers', description: 'There are no subscribers to send to.', variant: 'destructive' });
+      return;
+    }
+    if (!confirm(`Send this newsletter to ${recipients.length} subscribers?`)) return;
+
+    setIsSending(true);
+    try {
+      const html = `<div style="font-family:sans-serif;max-width:600px;margin:auto;">${broadcastBody.replace(/\n/g, '<br/>')}</div>
+        <hr style="margin-top:40px;border:none;border-top:1px solid #eee;"/>
+        <p style="font-size:12px;color:#999;text-align:center;">You received this because you subscribed at phreshphactory.com. <a href="#">Unsubscribe</a></p>`;
+
+      const { error } = await supabase.functions.invoke('send-newsletter', {
+        body: { to: recipients, subject: broadcastSubject, html },
+      });
+
+      if (error) throw error;
+
+      toast({ title: '✅ Newsletter sent!', description: `Delivered to ${recipients.length} subscribers.` });
+      setBroadcastSubject('');
+      setBroadcastBody('');
+    } catch (err: any) {
+      toast({ title: 'Send failed', description: err.message || 'Unknown error', variant: 'destructive' });
+    } finally {
+      setIsSending(false);
+    }
+  };
+
   const getExportData = () => {
     if (selectedIds.size > 0) {
       return filteredSubscribers.filter((sub) => selectedIds.has(sub.id));
@@ -177,6 +218,38 @@ export default function NewsletterAdmin() {
               Back to Admin
             </Button>
           </div>
+
+          <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><Send className="w-5 h-5" /> Send Newsletter Broadcast</CardTitle>
+              <CardDescription>Compose and send an email to all {subscribers.length} subscribers</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="subject">Subject Line</Label>
+                <Input
+                  id="subject"
+                  placeholder="e.g. This Week in Culture & Commerce 🖤"
+                  value={broadcastSubject}
+                  onChange={(e) => setBroadcastSubject(e.target.value)}
+                />
+              </div>
+              <div>
+                <Label htmlFor="body">Email Body</Label>
+                <Textarea
+                  id="body"
+                  placeholder="Write your newsletter content here..."
+                  value={broadcastBody}
+                  onChange={(e) => setBroadcastBody(e.target.value)}
+                  rows={10}
+                />
+              </div>
+              <Button onClick={sendBroadcast} disabled={isSending} className="w-full sm:w-auto">
+                {isSending ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</> : <><Send className="w-4 h-4 mr-2" /> Send to {subscribers.length} Subscribers</>}
+              </Button>
+            </CardContent>
+          </Card>
 
           <Card>
             <CardHeader>
@@ -308,6 +381,7 @@ export default function NewsletterAdmin() {
               </div>
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
     </>
