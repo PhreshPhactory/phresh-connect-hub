@@ -549,15 +549,15 @@ const Admin = () => {
             <Card className="border-2 border-teal">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <span>📧</span> Newsletter Subscribers
+                  <span>📧</span> Newsletter
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
-                  View, filter, and export your newsletter subscriber list
+                  Send broadcasts and manage your newsletter subscriber list
                 </p>
                 <Button variant="default" className="w-full bg-gradient-to-r from-teal to-primary" asChild>
-                  <Link to="/admin/newsletter">View Subscribers</Link>
+                  <Link to="/admin/newsletter">Send Newsletter</Link>
                 </Button>
               </CardContent>
             </Card>
