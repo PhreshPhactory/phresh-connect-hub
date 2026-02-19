@@ -169,12 +169,16 @@ export default function NewsletterAdmin() {
       toast({ title: 'Empty newsletter', description: 'Please add some content.', variant: 'destructive' });
       return;
     }
-    const recipients = subscribers.map((s) => s.email);
+    // Use selected subscribers if any are checked, otherwise send to all
+    const targetSubscribers = selectedIds.size > 0
+      ? subscribers.filter((s) => selectedIds.has(s.id))
+      : subscribers;
+    const recipients = targetSubscribers.map((s) => s.email);
     if (recipients.length === 0) {
       toast({ title: 'No subscribers', description: 'There are no subscribers to send to.', variant: 'destructive' });
       return;
     }
-    if (!confirm(`Send this newsletter to ${recipients.length} subscribers?`)) return;
+    if (!confirm(`Send this newsletter to ${recipients.length} ${selectedIds.size > 0 ? 'selected' : ''} subscriber${recipients.length !== 1 ? 's' : ''}?`)) return;
 
     setIsSending(true);
     try {
@@ -235,7 +239,11 @@ export default function NewsletterAdmin() {
                 >
                   {isSending
                     ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending...</>
-                    : <><Send className="w-4 h-4 mr-2" /> Send to {subscribers.length} Subscribers</>}
+                    : <><Send className="w-4 h-4 mr-2" />
+                        {selectedIds.size > 0
+                          ? `Send to ${selectedIds.size} Selected`
+                          : `Send to All (${subscribers.length})`}
+                      </>}
                 </Button>
               </div>
             </CardHeader>
