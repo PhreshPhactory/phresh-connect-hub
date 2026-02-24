@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Search, Loader2, ArrowLeft, ArrowRight, Send, Users, Mail, RefreshCw, Eye, Edit3, Check, TestTube } from 'lucide-react';
+import { Search, Loader2, ArrowLeft, ArrowRight, Send, Users, Mail, RefreshCw, Eye, Edit3, Check, TestTube, Filter } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 
 interface PressContact {
@@ -21,7 +21,16 @@ interface PressContact {
   email: string;
   publications: string | null;
   categories: string[] | null;
+  topics: string[] | null;
   priority: string | null;
+  title: string | null;
+  phone: string | null;
+  linkedin: string | null;
+  linkedin_connected: boolean | null;
+  twitter: string | null;
+  location_string: string | null;
+  contact_notes: string | null;
+  last_contacted_at: string | null;
 }
 
 interface ResendTemplate {
@@ -49,6 +58,9 @@ export default function NewsletterAdmin() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [priorityFilter, setPriorityFilter] = useState<string>('all');
+  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [topicFilter, setTopicFilter] = useState<string>('all');
+  const [linkedinFilter, setLinkedinFilter] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
   // Step 2: Templates
@@ -79,13 +91,13 @@ export default function NewsletterAdmin() {
 
   useEffect(() => {
     filterContacts();
-  }, [searchQuery, priorityFilter, contacts]);
+  }, [searchQuery, priorityFilter, categoryFilter, topicFilter, linkedinFilter, contacts]);
 
   const fetchContacts = async () => {
     try {
       const { data, error } = await (supabase as any)
         .from('press_contacts')
-        .select('id, first_name, last_name, email, publications, categories, priority')
+        .select('*')
         .order('last_name', { ascending: true })
         .limit(100000);
       if (error) throw error;
@@ -139,10 +151,20 @@ export default function NewsletterAdmin() {
           c.email.toLowerCase().includes(q) ||
           c.first_name.toLowerCase().includes(q) ||
           c.last_name.toLowerCase().includes(q) ||
-          c.publications?.toLowerCase().includes(q)
+          c.publications?.toLowerCase().includes(q) ||
+          c.title?.toLowerCase().includes(q) ||
+          c.location_string?.toLowerCase().includes(q) ||
+          c.categories?.some(cat => cat.toLowerCase().includes(q)) ||
+          c.topics?.some(t => t.toLowerCase().includes(q))
       );
     }
     if (priorityFilter !== 'all') filtered = filtered.filter((c) => c.priority === priorityFilter);
+    if (categoryFilter !== 'all') filtered = filtered.filter((c) => c.categories?.includes(categoryFilter));
+    if (topicFilter !== 'all') filtered = filtered.filter((c) => c.topics?.includes(topicFilter));
+    if (linkedinFilter !== 'all') {
+      if (linkedinFilter === 'connected') filtered = filtered.filter((c) => c.linkedin_connected === true);
+      else if (linkedinFilter === 'not_connected') filtered = filtered.filter((c) => !c.linkedin_connected);
+    }
     setFilteredContacts(filtered);
   };
 
@@ -226,6 +248,8 @@ export default function NewsletterAdmin() {
   };
 
   const uniquePriorities = Array.from(new Set(contacts.map((c) => c.priority).filter(Boolean))) as string[];
+  const uniqueCategories = Array.from(new Set(contacts.flatMap((c) => c.categories || []).filter(Boolean))) as string[];
+  const uniqueTopics = Array.from(new Set(contacts.flatMap((c) => c.topics || []).filter(Boolean))) as string[];
   const selectedTemplate = templates.find((t) => t.id === selectedTemplateId);
 
   if (authLoading || isLoading) {
@@ -289,30 +313,65 @@ export default function NewsletterAdmin() {
                 </span>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search by name, email, or publication..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
-                  />
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex-1 relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                      placeholder="Search name, email, publication, title, location, category, topic..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                  {selectedIds.size > 0 && (
+                    <Button variant="ghost" size="sm" onClick={() => setSelectedIds(new Set())}>
+                      Clear ({selectedIds.size})
+                    </Button>
+                  )}
                 </div>
-                <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-                  <SelectTrigger className="w-full sm:w-[200px]">
-                    <SelectValue placeholder="Filter by priority" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All Priorities</SelectItem>
-                    {uniquePriorities.map((p) => <SelectItem key={p} value={p}>{p}</SelectItem>)}
-                  </SelectContent>
-                </Select>
-                {selectedIds.size > 0 && (
-                  <Button variant="ghost" size="sm" onClick={() => setSelectedIds(new Set())}>
-                    Clear
+                <div className="flex flex-wrap gap-2">
+                  <Select value={priorityFilter} onValueChange={setPriorityFilter}>
+                    <SelectTrigger className="w-[160px]">
+                      <SelectValue placeholder="Priority" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Priorities</SelectItem>
+                      {uniquePriorities.map((p) => <SelectItem key={p} value={p}>{p}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Categories</SelectItem>
+                      {uniqueCategories.sort().map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <Select value={topicFilter} onValueChange={setTopicFilter}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Topic" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Topics</SelectItem>
+                      {uniqueTopics.sort().map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                  <Select value={linkedinFilter} onValueChange={setLinkedinFilter}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="LinkedIn" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All LinkedIn</SelectItem>
+                      <SelectItem value="connected">Connected</SelectItem>
+                      <SelectItem value="not_connected">Not Connected</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Button variant="ghost" size="sm" onClick={() => { setPriorityFilter('all'); setCategoryFilter('all'); setTopicFilter('all'); setLinkedinFilter('all'); setSearchQuery(''); }}>
+                    <Filter className="w-3 h-3 mr-1" /> Reset
                   </Button>
-                )}
+                </div>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
@@ -342,14 +401,19 @@ export default function NewsletterAdmin() {
                       </TableHead>
                       <TableHead>Name</TableHead>
                       <TableHead>Email</TableHead>
+                      <TableHead>Title</TableHead>
                       <TableHead>Publication</TableHead>
+                      <TableHead>Categories</TableHead>
+                      <TableHead>Topics</TableHead>
+                      <TableHead>Location</TableHead>
+                      <TableHead>LinkedIn</TableHead>
                       <TableHead>Priority</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {filteredContacts.length === 0 ? (
                       <TableRow>
-                        <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                        <TableCell colSpan={10} className="text-center py-8 text-muted-foreground">
                           No contacts found
                         </TableCell>
                       </TableRow>
@@ -366,9 +430,32 @@ export default function NewsletterAdmin() {
                               onCheckedChange={() => toggleSelect(contact.id)}
                             />
                           </TableCell>
-                          <TableCell className="font-medium">{contact.first_name} {contact.last_name}</TableCell>
-                          <TableCell>{contact.email}</TableCell>
-                          <TableCell className="text-muted-foreground">{contact.publications || '—'}</TableCell>
+                          <TableCell className="font-medium whitespace-nowrap">{contact.first_name} {contact.last_name}</TableCell>
+                          <TableCell className="text-xs">{contact.email}</TableCell>
+                          <TableCell className="text-xs text-muted-foreground">{contact.title || '—'}</TableCell>
+                          <TableCell className="text-xs text-muted-foreground">{contact.publications || '—'}</TableCell>
+                          <TableCell>
+                            <div className="flex flex-wrap gap-1">
+                              {contact.categories?.map((cat) => (
+                                <span key={cat} className="inline-flex px-1.5 py-0.5 rounded text-[10px] font-medium bg-accent text-accent-foreground">{cat}</span>
+                              ))}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex flex-wrap gap-1">
+                              {contact.topics?.map((t) => (
+                                <span key={t} className="inline-flex px-1.5 py-0.5 rounded text-[10px] font-medium bg-secondary text-secondary-foreground">{t}</span>
+                              ))}
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-xs text-muted-foreground whitespace-nowrap">{contact.location_string || '—'}</TableCell>
+                          <TableCell>
+                            {contact.linkedin_connected ? (
+                              <span className="text-[10px] font-medium text-primary">Connected</span>
+                            ) : contact.linkedin ? (
+                              <span className="text-[10px] text-muted-foreground">Has profile</span>
+                            ) : '—'}
+                          </TableCell>
                           <TableCell>
                             {contact.priority && (
                               <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
