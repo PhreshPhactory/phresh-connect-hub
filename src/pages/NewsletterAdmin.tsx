@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Search, Loader2, ArrowLeft, ArrowRight, Send, Users, Mail, RefreshCw, Eye, Edit3, Check, TestTube, Filter } from 'lucide-react';
+import { Search, Loader2, ArrowLeft, ArrowRight, Send, Users, Mail, RefreshCw, Eye, Edit3, Check, TestTube, Filter, Plus, X, ChevronDown, ChevronUp } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 
 interface PressContact {
@@ -62,6 +62,7 @@ export default function NewsletterAdmin() {
   const [topicFilter, setTopicFilter] = useState<string>('all');
   const [linkedinFilter, setLinkedinFilter] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [showSendList, setShowSendList] = useState(false);
 
   // Step 2: Templates
   const [templates, setTemplates] = useState<ResendTemplate[]>([]);
