@@ -184,8 +184,15 @@ export default function NewsletterAdmin() {
   };
 
   const toggleSelectAll = () => {
-    if (selectedIds.size === filteredContacts.length) setSelectedIds(new Set());
-    else setSelectedIds(new Set(filteredContacts.map((c) => c.id)));
+    const filteredIds = new Set(filteredContacts.map((c) => c.id));
+    const allFilteredSelected = filteredContacts.length > 0 && filteredContacts.every((c) => selectedIds.has(c.id));
+    const next = new Set(selectedIds);
+    if (allFilteredSelected) {
+      filteredIds.forEach((id) => next.delete(id));
+    } else {
+      filteredIds.forEach((id) => next.add(id));
+    }
+    setSelectedIds(next);
   };
 
   const toggleSelect = (id: string) => {
@@ -470,7 +477,7 @@ export default function NewsletterAdmin() {
                     <TableRow>
                       <TableHead className="w-12">
                         <Checkbox
-                          checked={filteredContacts.length > 0 && selectedIds.size === filteredContacts.length}
+                          checked={filteredContacts.length > 0 && filteredContacts.every((c) => selectedIds.has(c.id))}
                           onCheckedChange={toggleSelectAll}
                         />
                       </TableHead>
