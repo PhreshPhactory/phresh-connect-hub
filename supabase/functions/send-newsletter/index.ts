@@ -34,41 +34,63 @@ serve(async (req) => {
 
     const recipients = Array.isArray(to) ? to : [to];
 
-    const emailPayload: Record<string, unknown> = {
-      from: 'Phresh Phactory <notifications@phreshphactory.co>',
-      to: recipients,
-      subject,
-    };
-
+    // Resolve HTML content (from template or direct)
+    let resolvedHtml = html;
     if (template_id) {
-      // Use Resend template — first fetch the rendered HTML
       const tplRes = await fetch(`https://api.resend.com/templates/${template_id}`, {
         headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
       });
       const tplData = await tplRes.json();
       if (!tplRes.ok) throw new Error(`Template fetch error: ${JSON.stringify(tplData)}`);
-      emailPayload.html = tplData.html_content || tplData.html || '';
-    } else {
-      emailPayload.html = html;
+      resolvedHtml = tplData.html_content || tplData.html || '';
     }
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailPayload),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(`Resend API error [${res.status}]: ${JSON.stringify(data)}`);
+    // Batch recipients into groups of 49 (Resend max is 50)
+    const BATCH_SIZE = 49;
+    const batches: string[][] = [];
+    for (let i = 0; i < recipients.length; i += BATCH_SIZE) {
+      batches.push(recipients.slice(i, i + BATCH_SIZE));
     }
 
-    return new Response(JSON.stringify({ success: true, data }), {
-      status: 200,
+    const results = [];
+    const errors = [];
+
+    for (const batch of batches) {
+      try {
+        const res = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: 'Phresh Phactory <notifications@phreshphactory.co>',
+            to: batch,
+            subject,
+            html: resolvedHtml,
+          }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          errors.push({ batch: batch.length, error: data });
+        } else {
+          results.push(data);
+        }
+      } catch (err) {
+        errors.push({ batch: batch.length, error: String(err) });
+      }
+    }
+
+    return new Response(JSON.stringify({
+      success: errors.length === 0,
+      total_recipients: recipients.length,
+      batches_sent: results.length,
+      batches_failed: errors.length,
+      results,
+      errors: errors.length > 0 ? errors : undefined,
+    }), {
+      status: errors.length === 0 ? 200 : 207,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
