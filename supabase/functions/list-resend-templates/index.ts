@@ -14,8 +14,16 @@ serve(async (req) => {
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
     if (!RESEND_API_KEY) throw new Error('RESEND_API_KEY is not configured');
 
-    const url = new URL(req.url);
-    const templateId = url.searchParams.get('id');
+    // Check for templateId in body (POST) or query param (GET)
+    let templateId: string | null = null;
+
+    if (req.method === 'POST') {
+      const body = await req.json().catch(() => ({}));
+      templateId = body.templateId || null;
+    } else {
+      const url = new URL(req.url);
+      templateId = url.searchParams.get('id');
+    }
 
     if (templateId) {
       // Get a single template's full details (includes HTML)
