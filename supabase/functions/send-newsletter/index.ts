@@ -16,10 +16,17 @@ serve(async (req) => {
       throw new Error('RESEND_API_KEY is not configured');
     }
 
-    const { to, subject, html } = await req.json();
+    const { to, subject, html, template_id } = await req.json();
 
-    if (!to || !subject || !html) {
-      return new Response(JSON.stringify({ error: 'Missing required fields: to, subject, html' }), {
+    if (!to || !subject) {
+      return new Response(JSON.stringify({ error: 'Missing required fields: to, subject' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (!html && !template_id) {
+      return new Response(JSON.stringify({ error: 'Must provide either html or template_id' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -27,18 +34,31 @@ serve(async (req) => {
 
     const recipients = Array.isArray(to) ? to : [to];
 
+    const emailPayload: Record<string, unknown> = {
+      from: 'Phresh Phactory <notifications@phreshphactory.co>',
+      to: recipients,
+      subject,
+    };
+
+    if (template_id) {
+      // Use Resend template — first fetch the rendered HTML
+      const tplRes = await fetch(`https://api.resend.com/templates/${template_id}`, {
+        headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      });
+      const tplData = await tplRes.json();
+      if (!tplRes.ok) throw new Error(`Template fetch error: ${JSON.stringify(tplData)}`);
+      emailPayload.html = tplData.html_content || tplData.html || '';
+    } else {
+      emailPayload.html = html;
+    }
+
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        from: 'Phresh Phactory <notifications@phreshphactory.co>',
-        to: recipients,
-        subject,
-        html,
-      }),
+      body: JSON.stringify(emailPayload),
     });
 
     const data = await res.json();
