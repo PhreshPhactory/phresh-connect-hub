@@ -323,10 +323,54 @@ export default function NewsletterAdmin() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Select Contacts ({contacts.length} total)</h2>
-                <span className="text-sm text-muted-foreground font-medium">
-                  {selectedIds.size} selected
-                </span>
+                <div className="flex items-center gap-3">
+                  {selectedIds.size > 0 && (
+                    <span className="text-sm font-semibold text-primary">{selectedIds.size} in send list</span>
+                  )}
+                </div>
               </div>
+
+              {/* Send List Panel */}
+              {selectedIds.size > 0 && (
+                <Card className="border-primary/30 bg-primary/5">
+                  <CardContent className="py-3 px-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Send className="w-4 h-4 text-primary" />
+                        <span className="font-semibold text-sm">{selectedIds.size} contacts in send list</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="sm" onClick={() => setShowSendList(!showSendList)}>
+                          {showSendList ? <ChevronUp className="w-4 h-4 mr-1" /> : <ChevronDown className="w-4 h-4 mr-1" />}
+                          {showSendList ? 'Hide' : 'Show'}
+                        </Button>
+                        <Button variant="ghost" size="sm" className="text-destructive hover:text-destructive" onClick={() => { if (confirm('Clear the entire send list?')) setSelectedIds(new Set()); }}>
+                          Clear All
+                        </Button>
+                      </div>
+                    </div>
+                    {showSendList && (
+                      <div className="mt-3 max-h-[200px] overflow-y-auto space-y-1">
+                        {contacts.filter((c) => selectedIds.has(c.id)).map((c) => (
+                          <div key={c.id} className="flex items-center justify-between text-xs py-1 px-2 rounded hover:bg-background/50 group">
+                            <span>
+                              <span className="font-medium">{c.first_name} {c.last_name}</span>
+                              <span className="text-muted-foreground ml-2">{c.email}</span>
+                              {c.publications && <span className="text-muted-foreground ml-2">· {c.publications}</span>}
+                            </span>
+                            <button
+                              onClick={() => { const next = new Set(selectedIds); next.delete(c.id); setSelectedIds(next); }}
+                              className="opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <X className="w-3 h-3 text-muted-foreground hover:text-destructive" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              )}
 
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col sm:flex-row gap-3">
@@ -389,19 +433,34 @@ export default function NewsletterAdmin() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { label: 'Total', value: contacts.length },
-                  { label: 'Filtered', value: filteredContacts.length },
-                  { label: 'Selected', value: selectedIds.size },
-                ].map(({ label, value }) => (
-                  <Card key={label}>
-                    <CardContent className="py-3 px-4">
-                      <div className="text-xl font-bold">{value.toLocaleString()}</div>
-                      <p className="text-xs text-muted-foreground">{label}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+              {/* Add to send list button */}
+              <div className="flex items-center justify-between">
+                <div className="grid grid-cols-3 gap-3 flex-1 mr-4">
+                  {[
+                    { label: 'Total', value: contacts.length },
+                    { label: 'Filtered', value: filteredContacts.length },
+                    { label: 'In Send List', value: selectedIds.size },
+                  ].map(({ label, value }) => (
+                    <Card key={label}>
+                      <CardContent className="py-3 px-4">
+                        <div className="text-xl font-bold">{value.toLocaleString()}</div>
+                        <p className="text-xs text-muted-foreground">{label}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+                <Button
+                  onClick={() => {
+                    const newIds = new Set(selectedIds);
+                    filteredContacts.forEach((c) => newIds.add(c.id));
+                    setSelectedIds(newIds);
+                    toast({ title: `Added ${filteredContacts.length} contacts`, description: `Send list now has ${newIds.size} total contacts.` });
+                  }}
+                  disabled={filteredContacts.length === 0}
+                  className="whitespace-nowrap"
+                >
+                  <Plus className="w-4 h-4 mr-2" /> Add all {filteredContacts.length} to send list
+                </Button>
               </div>
 
               <div className="border rounded-lg overflow-hidden max-h-[500px] overflow-y-auto">
