@@ -96,13 +96,27 @@ export default function NewsletterAdmin() {
 
   const fetchContacts = async () => {
     try {
-      const { data, error } = await (supabase as any)
-        .from('press_contacts')
-        .select('*')
-        .order('last_name', { ascending: true })
-        .limit(100000);
-      if (error) throw error;
-      setContacts(data || []);
+      const PAGE_SIZE = 1000;
+      let allContacts: PressContact[] = [];
+      let from = 0;
+      let keepFetching = true;
+
+      while (keepFetching) {
+        const { data, error } = await (supabase as any)
+          .from('press_contacts')
+          .select('*')
+          .order('last_name', { ascending: true })
+          .range(from, from + PAGE_SIZE - 1);
+        if (error) throw error;
+        allContacts = [...allContacts, ...(data || [])];
+        if (!data || data.length < PAGE_SIZE) {
+          keepFetching = false;
+        } else {
+          from += PAGE_SIZE;
+        }
+      }
+
+      setContacts(allContacts);
     } catch (error) {
       console.error('Error fetching contacts:', error);
       toast({ title: 'Error', description: 'Failed to load press contacts.', variant: 'destructive' });
