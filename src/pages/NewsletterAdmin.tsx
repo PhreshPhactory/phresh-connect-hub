@@ -208,11 +208,12 @@ export default function NewsletterAdmin() {
     }
     setIsSendingTest(true);
     try {
+      const testRecipient = 'Kiera@PhreshPhactory.co';
       const { error } = await supabase.functions.invoke('send-newsletter', {
-        body: { to: [user?.email], subject: `[TEST] ${broadcastSubject}`, html: templateHtml },
+        body: { to: [testRecipient], subject: `[TEST] ${broadcastSubject}`, html: templateHtml },
       });
       if (error) throw error;
-      toast({ title: '✅ Test sent!', description: `Test email sent to ${user?.email}` });
+      toast({ title: '✅ Test sent!', description: `Test email sent to ${testRecipient}` });
     } catch (err: any) {
       toast({ title: 'Test send failed', description: err.message || 'Unknown error', variant: 'destructive' });
     } finally {
@@ -712,7 +713,7 @@ export default function NewsletterAdmin() {
                 >
                   {isSendingTest
                     ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Sending test...</>
-                    : <><TestTube className="w-4 h-4 mr-2" /> Send Test to {user?.email}</>}
+                    : <><TestTube className="w-4 h-4 mr-2" /> Send Test to Kiera@PhreshPhactory.co</>}
                 </Button>
                 <Button
                   onClick={sendBroadcast}
