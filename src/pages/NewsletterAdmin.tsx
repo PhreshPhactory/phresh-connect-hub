@@ -63,39 +63,38 @@ export default function NewsletterAdmin() {
     filterSubscribers();
   }, [searchQuery, sourceFilter, subscribers]);
 
-  // Load Unlayer script and init editor
+  // Load Unlayer script and init editor only after auth is confirmed
   useEffect(() => {
-    if (scriptLoadedRef.current) return;
+    if (!user || authLoading) return;
+    if (editorInitRef.current) return;
+
+    const initEditor = () => {
+      if (editorInitRef.current) return;
+      const el = document.getElementById('unlayer-editor');
+      if (!el) return;
+      editorInitRef.current = true;
+      window.unlayer.init({
+        id: 'unlayer-editor',
+        displayMode: 'email',
+        appearance: { theme: 'modern_light' },
+        features: { preview: true, imageEditor: true, undoRedo: true },
+      });
+      setEditorReady(true);
+    };
+
+    if (scriptLoadedRef.current) {
+      // Script already loaded, just init
+      if (window.unlayer) initEditor();
+      return;
+    }
     scriptLoadedRef.current = true;
 
     const script = document.createElement('script');
     script.src = 'https://editor.unlayer.com/embed.js';
     script.async = true;
-    script.onload = () => {
-      if (editorInitRef.current) return;
-      editorInitRef.current = true;
-
-      window.unlayer.init({
-        id: 'unlayer-editor',
-        displayMode: 'email',
-        appearance: {
-          theme: 'modern_light',
-        },
-        features: {
-          preview: true,
-          imageEditor: true,
-          undoRedo: true,
-        },
-      });
-
-      setEditorReady(true);
-    };
+    script.onload = initEditor;
     document.head.appendChild(script);
-
-    return () => {
-      // script stays in head intentionally — removing causes issues on re-mount
-    };
-  }, []);
+  }, [user, authLoading]);
 
   const fetchSubscribers = async () => {
     try {
