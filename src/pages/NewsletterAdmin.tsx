@@ -78,6 +78,7 @@ export default function NewsletterAdmin() {
   const [broadcastSubject, setBroadcastSubject] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [isSendingTest, setIsSendingTest] = useState(false);
+  const [sendStatus, setSendStatus] = useState<'ready' | 'sending' | 'sent' | 'failed'>('ready');
 
   useEffect(() => {
     if (!authLoading && !user) navigate('/auth');
@@ -241,13 +242,16 @@ export default function NewsletterAdmin() {
     if (!confirm(`Send "${broadcastSubject}" to ${recipients.length} contact${recipients.length !== 1 ? 's' : ''}?`)) return;
 
     setIsSending(true);
+    setSendStatus('sending');
     try {
       const { error } = await supabase.functions.invoke('send-newsletter', {
         body: { to: recipients, subject: broadcastSubject, html: templateHtml },
       });
       if (error) throw error;
+      setSendStatus('sent');
       toast({ title: '✅ Newsletter sent!', description: `Delivered to ${recipients.length} contacts.` });
     } catch (err: any) {
+      setSendStatus('failed');
       toast({ title: 'Send failed', description: err.message || 'Unknown error', variant: 'destructive' });
     } finally {
       setIsSending(false);
@@ -694,7 +698,17 @@ export default function NewsletterAdmin() {
                 <Card>
                   <CardContent className="py-4 px-5">
                     <div className="text-sm text-muted-foreground">Status</div>
-                    <div className="text-base font-semibold mt-1 text-primary">Ready to send</div>
+                    <div className={`text-base font-semibold mt-1 ${
+                      sendStatus === 'sent' ? 'text-green-600' :
+                      sendStatus === 'failed' ? 'text-destructive' :
+                      sendStatus === 'sending' ? 'text-yellow-600' :
+                      'text-primary'
+                    }`}>
+                      {sendStatus === 'sent' ? '✅ Sent!' :
+                       sendStatus === 'failed' ? '❌ Failed' :
+                       sendStatus === 'sending' ? '⏳ Sending...' :
+                       'Ready to send'}
+                    </div>
                   </CardContent>
                 </Card>
               </div>
