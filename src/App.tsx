@@ -57,6 +57,7 @@ const SSFInvoiceAdmin = lazy(() => import("@/pages/SSFInvoiceAdmin"));
 const AffiliateNewsletter = lazy(() => import("@/pages/AffiliateNewsletter"));
 const DistributionAgreement = lazy(() => import("@/pages/DistributionAgreement"));
 const Unsubscribe = lazy(() => import("@/pages/Unsubscribe"));
+const NewsletterEditions = lazy(() => import("@/pages/NewsletterEditions"));
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -135,6 +136,7 @@ const App = () => {
                       <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
                       <Route path="/DistributionAgreement" element={<DistributionAgreement />} />
                       <Route path="/unsubscribe" element={<Unsubscribe />} />
+                      <Route path="/newsletter" element={<NewsletterEditions />} />
                       <Route path="*" element={<NotFound />} />
                     </Route>
                     
