@@ -55,9 +55,9 @@ const NewsletterEditionPage = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Edition Not Found</h1>
-          <p className="text-muted-foreground mb-8">This newsletter edition doesn't exist or hasn't been published yet.</p>
-          <Link to="/newsletter" className="text-primary font-medium hover:underline">← Back to All Editions</Link>
+          <h1 className="text-4xl font-bold mb-4">Not Found</h1>
+          <p className="text-muted-foreground mb-8">This newsletter hasn't been published yet.</p>
+          <Link to="/newsletter" className="text-primary font-medium hover:underline">← Back to Culture & Commerce</Link>
         </div>
       </div>
     );
@@ -71,7 +71,7 @@ const NewsletterEditionPage = () => {
     <>
       <SEOHead
         title={`${edition.title} | Culture & Commerce`}
-        description={edition.subtitle || `Read the ${edition.title} edition of Culture & Commerce by Phresh Phactory, Inc.`}
+        description={edition.subtitle || `Read about ${edition.title} on Culture & Commerce by Phresh Phactory, Inc.`}
         ogImage={edition.cover_image || undefined}
       />
 
@@ -129,7 +129,7 @@ const NewsletterEditionPage = () => {
               className="inline-flex items-center gap-2 text-[#d8b35c] hover:text-[#f1e1b0] font-medium transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              All Editions
+              Culture & Commerce
             </Link>
           </div>
         </article>

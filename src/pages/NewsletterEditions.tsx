@@ -16,13 +16,13 @@ interface Edition {
   featured_creator: string | null;
 }
 
-// Fallback for the initial Club 7 card if not yet in DB
+// Fallback for the initial Club Seven card if not yet in DB
 const FALLBACK_EDITIONS: Edition[] = [
   {
-    id: 'club7-menswear-fallback',
-    title: 'Club 7 Menswear',
-    subtitle: 'Afro-descendant created UK menswear brand ♥ underwear, loungewear & swimwear.',
-    slug: 'club7-menswear',
+    id: 'club-seven-menswear-fallback',
+    title: 'Club Seven Menswear',
+    subtitle: 'What happened when I hosted Club Seven Menswear on Phresh Phactory TV.',
+    slug: 'club-seven-menswear',
     cover_image: club7Cover,
     published_at: '2026-02-24T00:00:00Z',
     featured_creator: 'Alex Gede ♥ Club Seven Menswear',
@@ -170,8 +170,8 @@ const NewsletterEditions = () => {
   return (
     <>
       <SEOHead
-        title="Culture & Commerce Editions | Phresh Phactory, Inc."
-        description="Browse every edition of Culture & Commerce — our curated newsletter showcasing Afro-descendant created brands, products, and stories."
+        title="Culture & Commerce | Phresh Phactory, Inc."
+        description="Celebrating modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know."
       />
       <div className="min-h-screen bg-background relative overflow-hidden">
         {/* Animated background */}
