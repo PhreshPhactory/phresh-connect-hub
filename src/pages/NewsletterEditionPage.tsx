@@ -88,25 +88,20 @@ const NewsletterEditionPage = () => {
             </div>
           )}
 
-          <div className="max-w-3xl mx-auto px-4 py-10 text-center">
-            {publishDate && (
-              <p className="text-white/70 text-sm mb-4">{publishDate}</p>
-            )}
-            {edition.subtitle && (
-              <p className="text-white/80 text-lg max-w-xl mx-auto">{edition.subtitle}</p>
-            )}
-            {edition.featured_creator && (
-              <p className="text-[#f1e1b0] text-sm mt-4 font-medium">
+          {edition.featured_creator && (
+            <div className="max-w-3xl mx-auto px-4 py-6 text-center">
+              <p className="text-[#f1e1b0] text-sm font-medium">
                 Featuring: {edition.featured_creator}
               </p>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Content */}
         <article className="max-w-3xl mx-auto px-4 pb-20">
           <div
             className="max-w-none text-lg leading-relaxed
+              [&>h2:first-child]:hidden
               [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:text-white [&_h1]:mt-10 [&_h1]:mb-4
               [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:mt-10 [&_h2]:mb-4
               [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-white [&_h3]:mt-8 [&_h3]:mb-3
