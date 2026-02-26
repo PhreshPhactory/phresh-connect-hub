@@ -1,0 +1,1 @@
+UPDATE public.newsletter_editions SET title = 'Meet the Visionary Behind Club Seven Menswear' WHERE slug = 'club-seven-menswear';
