@@ -88,13 +88,14 @@ const NewsletterEditionPage = () => {
             </div>
           )}
 
-          {edition.featured_creator && (
-            <div className="max-w-3xl mx-auto px-4 py-6 text-center">
-              <p className="text-[#f1e1b0] text-sm font-medium">
+          <div className="max-w-3xl mx-auto px-4 py-8 text-center">
+            <h1 className="text-3xl md:text-4xl font-bold text-white">{edition.title}</h1>
+            {edition.featured_creator && (
+              <p className="text-[#f1e1b0] text-sm font-medium mt-4">
                 Featuring: {edition.featured_creator}
               </p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         {/* Content */}
