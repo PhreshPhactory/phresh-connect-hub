@@ -149,9 +149,6 @@ const NewsletterEditions = () => {
       <div className="min-h-screen bg-background relative overflow-hidden">
         {/* Animated background — modern Afro-descendant created brands */}
         <div className="absolute inset-0 z-0 flex flex-col justify-center gap-6 pointer-events-none">
-          <p className="text-center text-sm md:text-base tracking-[0.3em] uppercase text-foreground/40 font-semibold mb-4">
-            Modern Afro-descendant created brands & their visionaries
-          </p>
           <ScrollingRow names={row1} direction="left" speed={60} />
           <ScrollingRow names={row2} direction="right" speed={75} />
           <ScrollingRow names={row3} direction="left" speed={50} />
@@ -178,7 +175,7 @@ const NewsletterEditions = () => {
             transition={{ duration: 0.4, delay: 0.15 }}
             className="text-lg text-muted-foreground mt-6 max-w-xl mx-auto"
           >
-            Curated Afro-descendant created brands delivered to your inbox.
+            Modern Afro-descendant created brands and their visionaries, delivered to your inbox.
           </motion.p>
         </section>
 
