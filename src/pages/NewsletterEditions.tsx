@@ -24,16 +24,19 @@ const EDITIONS: Edition[] = [
   },
 ];
 
-// Scrolling names of modern Black creators, designers, entrepreneurs
+// Modern Afro-descendant creators and their brands
 const CREATORS = [
-  'Virgil Abloh', 'Aurora James', 'Theophilio', 'Kerby Jean-Raymond', 'Tracy Reese',
-  'Dapper Dan', 'Ozwald Boateng', 'LaQuan Smith', 'Telfar Clemens', 'Christopher John Rogers',
-  'Fe Noel', 'Hanifa (Anifa Mvuemba)', 'Jerry Lorenzo', 'Undra Celeste', 'Stella Jean',
-  'Maki Oh', 'Brandon Blackwood', 'Victor Glemaud', 'Carly Cushnie', 'Rihanna (Fenty)',
-  'Tyler Mitchell', 'Mickalene Thomas', 'Kehinde Wiley', 'Issa Rae', 'Nipsey Hussle',
-  'Pharrell Williams', 'Sean Combs (Sean John)', 'Bethann Hardison', 'Edward Enninful', 'Pat McGrath',
-  'André Leon Talley', 'Willi Smith', 'Stephen Burrows', 'Misa Hylton', 'June Ambrose',
-  'Shayne Oliver', 'Sergio Hudson', 'Balmain (Olivier Rousteing)', 'Aminah Abdul Jillil', 'Mattiel',
+  'Virgil Abloh — Off-White', 'Aurora James — Brother Vellies', 'Edvin Thompson — Theophilio',
+  'Kerby Jean-Raymond — Pyer Moss', 'Tracy Reese — Hope for Flowers', 'Dapper Dan — Dapper Dan of Harlem',
+  'Ozwald Boateng — Ozwald Boateng', 'LaQuan Smith — LaQuan Smith', 'Telfar Clemens — Telfar',
+  'Christopher John Rogers — CJR', 'Fe Noel — Fe Noel', 'Anifa Mvuemba — Hanifa',
+  'Jerry Lorenzo — Fear of God', 'Undra Duncan — Undra Celeste', 'Stella Jean — Stella Jean',
+  'Amaka Osakwe — Maki Oh', 'Brandon Blackwood — Brandon Blackwood', 'Victor Glemaud — Victor Glemaud',
+  'Carly Cushnie — Cushnie', 'Rihanna — Fenty / Savage X Fenty', 'Pat McGrath — Pat McGrath Labs',
+  'Pharrell Williams — Humanrace', 'Bethann Hardison — Advocate & Icon', 'Edward Enninful — British Vogue',
+  'André Leon Talley — Fashion Legacy', 'Sergio Hudson — Sergio Hudson', 'Shayne Oliver — Hood By Air',
+  'Olivier Rousteing — Balmain', 'Aminah Abdul Jillil — Aminah Abdul Jillil', 'June Ambrose — Slash',
+  'Misa Hylton — MCM x Misa Hylton', 'Stephen Burrows — Stephen Burrows', 'Willi Smith — WilliWear',
 ];
 
 const ScrollingRow: React.FC<{ names: string[]; direction: 'left' | 'right'; speed: number }> = ({
@@ -133,8 +136,11 @@ const NewsletterEditions = () => {
         description="Browse every edition of Culture & Commerce — our curated newsletter showcasing Afro-descendant created brands, products, and stories."
       />
       <div className="min-h-screen bg-background relative overflow-hidden">
-        {/* Animated background — scrolling creator names */}
-        <div className="absolute inset-0 z-0 flex flex-col justify-center gap-6 opacity-60 pointer-events-none">
+        {/* Animated background — modern Afro-descendant created brands */}
+        <div className="absolute inset-0 z-0 flex flex-col justify-center gap-6 pointer-events-none">
+          <p className="text-center text-xs tracking-[0.3em] uppercase text-muted-foreground/30 mb-2">
+            Modern Afro-descendant created brands & their visionaries
+          </p>
           <ScrollingRow names={row1} direction="left" speed={60} />
           <ScrollingRow names={row2} direction="right" speed={75} />
           <ScrollingRow names={row3} direction="left" speed={50} />
