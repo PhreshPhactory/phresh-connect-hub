@@ -17,7 +17,7 @@ const EDITIONS: Edition[] = [
   {
     id: 'club7-menswear',
     title: 'Club 7 Menswear',
-    subtitle: 'Afro-descendant created UK menswear brand — underwear, loungewear & swimwear.',
+    subtitle: 'Afro-descendant created UK menswear brand ♥ underwear, loungewear & swimwear.',
     coverImage: club7Cover,
     date: 'February 24, 2026',
     link: '#',
@@ -26,17 +26,17 @@ const EDITIONS: Edition[] = [
 
 // Modern Afro-descendant creators and their brands
 const CREATORS = [
-  'Virgil Abloh — Off-White', 'Aurora James — Brother Vellies', 'Edvin Thompson — Theophilio',
-  'Kerby Jean-Raymond — Pyer Moss', 'Tracy Reese — Hope for Flowers', 'Dapper Dan — Dapper Dan of Harlem',
-  'Ozwald Boateng — Ozwald Boateng', 'LaQuan Smith — LaQuan Smith', 'Telfar Clemens — Telfar',
-  'Christopher John Rogers — CJR', 'Fe Noel — Fe Noel', 'Anifa Mvuemba — Hanifa',
-  'Jerry Lorenzo — Fear of God', 'Undra Duncan — Undra Celeste', 'Stella Jean — Stella Jean',
-  'Amaka Osakwe — Maki Oh', 'Brandon Blackwood — Brandon Blackwood', 'Victor Glemaud — Victor Glemaud',
-  'Carly Cushnie — Cushnie', 'Rihanna — Fenty / Savage X Fenty', 'Pat McGrath — Pat McGrath Labs',
-  'Pharrell Williams — Humanrace', 'Bethann Hardison — Advocate & Icon', 'Edward Enninful — British Vogue',
-  'André Leon Talley — Fashion Legacy', 'Sergio Hudson — Sergio Hudson', 'Shayne Oliver — Hood By Air',
-  'Olivier Rousteing — Balmain', 'Aminah Abdul Jillil — Aminah Abdul Jillil', 'June Ambrose — Slash',
-  'Misa Hylton — MCM x Misa Hylton', 'Stephen Burrows — Stephen Burrows', 'Willi Smith — WilliWear',
+  'Virgil Abloh ♥ Off-White', 'Aurora James ♥ Brother Vellies', 'Edvin Thompson ♥ Theophilio',
+  'Kerby Jean-Raymond ♥ Pyer Moss', 'Tracy Reese ♥ Hope for Flowers', 'Dapper Dan ♥ Dapper Dan of Harlem',
+  'Ozwald Boateng ♥ Ozwald Boateng', 'LaQuan Smith ♥ LaQuan Smith', 'Telfar Clemens ♥ Telfar',
+  'Christopher John Rogers ♥ CJR', 'Fe Noel ♥ Fe Noel', 'Anifa Mvuemba ♥ Hanifa',
+  'Jerry Lorenzo ♥ Fear of God', 'Undra Duncan ♥ Undra Celeste', 'Stella Jean ♥ Stella Jean',
+  'Amaka Osakwe ♥ Maki Oh', 'Brandon Blackwood ♥ Brandon Blackwood', 'Victor Glemaud ♥ Victor Glemaud',
+  'Carly Cushnie ♥ Cushnie', 'Rihanna ♥ Fenty / Savage X Fenty', 'Pat McGrath ♥ Pat McGrath Labs',
+  'Pharrell Williams ♥ Humanrace', 'Bethann Hardison ♥ Advocate & Icon', 'Edward Enninful ♥ British Vogue',
+  'André Leon Talley ♥ Fashion Legacy', 'Sergio Hudson ♥ Sergio Hudson', 'Shayne Oliver ♥ Hood By Air',
+  'Olivier Rousteing ♥ Balmain', 'Aminah Abdul Jillil ♥ Aminah Abdul Jillil', 'June Ambrose ♥ Slash',
+  'Misa Hylton ♥ MCM x Misa Hylton', 'Stephen Burrows ♥ Stephen Burrows', 'Willi Smith ♥ WilliWear',
 ];
 
 const ScrollingRow: React.FC<{ names: string[]; direction: 'left' | 'right'; speed: number }> = ({
