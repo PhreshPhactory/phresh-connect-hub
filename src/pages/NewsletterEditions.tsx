@@ -37,7 +37,7 @@ const CREATORS = [
   'Edward Enninful ♥ British Vogue', 'André Leon Talley ♥ Fashion Legacy', 'Sergio Hudson ♥ Sergio Hudson',
   'Shayne Oliver ♥ Hood By Air', 'Olivier Rousteing ♥ Balmain', 'Aminah Abdul Jillil ♥ Aminah Abdul Jillil',
   'June Ambrose ♥ Slash', 'Misa Hylton ♥ MCM x Misa Hylton', 'Stephen Burrows ♥ Stephen Burrows',
-  'Willi Smith ♥ WilliWear',
+  'Willi Smith ♥ WilliWear', 'Kanye West ♥ Yeezy',
 ];
 
 const FEATURED = 'Alex Gede ♥ Club Seven Menswear';
