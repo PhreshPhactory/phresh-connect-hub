@@ -168,6 +168,7 @@ const NewsletterEditions = () => {
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] max-w-4xl mx-auto"
           >
             Culture & Commerce
+            <span className="block text-base md:text-xl font-medium text-muted-foreground mt-2">by Phresh Phactory, Inc.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
