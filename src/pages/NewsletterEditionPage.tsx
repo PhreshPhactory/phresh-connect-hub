@@ -89,15 +89,9 @@ const NewsletterEditionPage = () => {
           )}
 
           <div className="max-w-3xl mx-auto px-4 py-10 text-center">
-            <p className="text-[#d8b35c] text-sm font-medium tracking-widest uppercase mb-3">
-              Culture & Commerce
-            </p>
             {publishDate && (
               <p className="text-white/70 text-sm mb-4">{publishDate}</p>
             )}
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
-              {edition.title}
-            </h1>
             {edition.subtitle && (
               <p className="text-white/80 text-lg max-w-xl mx-auto">{edition.subtitle}</p>
             )}
