@@ -1,0 +1,1 @@
+UPDATE newsletter_editions SET title = 'What Happened When @PhreshPhactoryTV Hosted a LIVE Selling Event with Club Seven Menswear' WHERE slug = 'club-seven-menswear';
