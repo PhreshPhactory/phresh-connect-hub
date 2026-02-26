@@ -39,6 +39,8 @@ const CREATORS = [
   'Misa Hylton ♥ MCM x Misa Hylton', 'Stephen Burrows ♥ Stephen Burrows', 'Willi Smith ♥ WilliWear',
 ];
 
+const FEATURED_CREATOR = { name: 'Alex Gede', brand: 'Club Seven Menswear' };
+
 const ScrollingRow: React.FC<{ names: string[]; direction: 'left' | 'right'; speed: number }> = ({
   names,
   direction,
@@ -144,6 +146,10 @@ const NewsletterEditions = () => {
           <ScrollingRow names={row1} direction="left" speed={60} />
           <ScrollingRow names={row2} direction="right" speed={75} />
           <ScrollingRow names={row3} direction="left" speed={50} />
+          {/* Featured creator — larger, colored */}
+          <p className="text-center text-lg md:text-2xl font-bold text-primary select-none py-2">
+            {FEATURED_CREATOR.name} <span className="text-accent">♥</span> {FEATURED_CREATOR.brand}
+          </p>
           <ScrollingRow names={row1} direction="right" speed={65} />
           <ScrollingRow names={row2} direction="left" speed={55} />
           <ScrollingRow names={row3} direction="right" speed={70} />
