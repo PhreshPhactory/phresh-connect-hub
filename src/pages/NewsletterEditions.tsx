@@ -157,7 +157,15 @@ const NewsletterEditions = () => {
         .order('published_at', { ascending: false });
 
       if (data && data.length > 0) {
-        setEditions(data);
+        // Merge cover images from fallbacks when DB entry has none
+        const merged = data.map((d: Edition) => {
+          if (!d.cover_image) {
+            const fallback = FALLBACK_EDITIONS.find(f => f.slug === d.slug);
+            if (fallback?.cover_image) return { ...d, cover_image: fallback.cover_image };
+          }
+          return d;
+        });
+        setEditions(merged);
       }
     };
     fetchEditions();
