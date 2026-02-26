@@ -17,7 +17,7 @@ const EDITIONS: Edition[] = [
   {
     id: 'club7-menswear',
     title: 'Club 7 Menswear',
-    subtitle: 'Black-owned UK menswear brand — underwear, loungewear & swimwear.',
+    subtitle: 'Afro-descendant created UK menswear brand — underwear, loungewear & swimwear.',
     coverImage: club7Cover,
     date: 'February 24, 2026',
     link: '#',
@@ -80,7 +80,7 @@ const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
     >
       <div
         className={cn(
-          "relative aspect-[3/4] rounded-sm overflow-hidden transition-all duration-500 ease-out",
+          "relative aspect-[9/16] rounded-sm overflow-hidden transition-all duration-500 ease-out",
           "shadow-[0_4px_20px_rgba(0,0,0,0.15)]",
           hovered && "shadow-[0_12px_40px_rgba(0,0,0,0.3)] -translate-y-3 scale-[1.02]"
         )}
@@ -138,7 +138,7 @@ const NewsletterEditions = () => {
       <div className="min-h-screen bg-background relative overflow-hidden">
         {/* Animated background — modern Afro-descendant created brands */}
         <div className="absolute inset-0 z-0 flex flex-col justify-center gap-6 pointer-events-none">
-          <p className="text-center text-xs tracking-[0.3em] uppercase text-muted-foreground/30 mb-2">
+          <p className="text-center text-sm md:text-base tracking-[0.3em] uppercase text-foreground/40 font-semibold mb-4">
             Modern Afro-descendant created brands & their visionaries
           </p>
           <ScrollingRow names={row1} direction="left" speed={60} />
@@ -153,31 +153,21 @@ const NewsletterEditions = () => {
 
         {/* Hero */}
         <section className="relative z-10 pt-24 pb-12 md:pt-32 md:pb-16 text-center px-4">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-sm tracking-[0.25em] uppercase text-muted-foreground mb-4"
-          >
-            Culture & Commerce
-          </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] max-w-4xl mx-auto"
           >
-            Every edition.
-            <br />
-            Every story.
+            Culture & Commerce
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
             className="text-lg text-muted-foreground mt-6 max-w-xl mx-auto"
           >
-            Curated Afro-descendant brands delivered to your inbox.
+            Curated Afro-descendant created brands delivered to your inbox.
           </motion.p>
         </section>
 
