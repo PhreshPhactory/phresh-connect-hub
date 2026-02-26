@@ -1,26 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 import club7Cover from '@/assets/club7-cover.png';
 
 interface Edition {
   id: string;
   title: string;
-  subtitle: string;
-  coverImage: string;
-  date: string;
-  link?: string;
+  subtitle: string | null;
+  slug: string;
+  cover_image: string | null;
+  published_at: string | null;
+  featured_creator: string | null;
 }
 
-const EDITIONS: Edition[] = [
+// Fallback for the initial Club 7 card if not yet in DB
+const FALLBACK_EDITIONS: Edition[] = [
   {
-    id: 'club7-menswear',
+    id: 'club7-menswear-fallback',
     title: 'Club 7 Menswear',
     subtitle: 'Afro-descendant created UK menswear brand ♥ underwear, loungewear & swimwear.',
-    coverImage: club7Cover,
-    date: 'February 24, 2026',
-    link: '#',
+    slug: 'club7-menswear',
+    cover_image: club7Cover,
+    published_at: '2026-02-24T00:00:00Z',
+    featured_creator: 'Alex Gede ♥ Club Seven Menswear',
   },
 ];
 
@@ -78,48 +83,53 @@ const ScrollingRow: React.FC<{ names: string[]; direction: 'left' | 'right'; spe
 
 const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
   const [hovered, setHovered] = useState(false);
+  const displayDate = edition.published_at
+    ? new Date(edition.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    : '';
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="group relative cursor-pointer mx-auto"
-      style={{ maxWidth: 380 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div
-        className={cn(
-          "relative aspect-[9/16] rounded-sm overflow-hidden transition-all duration-500 ease-out",
-          "shadow-[0_4px_20px_rgba(0,0,0,0.15)]",
-          hovered && "shadow-[0_12px_40px_rgba(0,0,0,0.3)] -translate-y-3 scale-[1.02]"
-        )}
+    <Link to={`/newsletter/${edition.slug}`}>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="group relative cursor-pointer mx-auto"
+        style={{ maxWidth: 380 }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
-        <img
-          src={edition.coverImage}
-          alt={edition.title}
-          className="w-full h-full object-cover"
-        />
         <div
           className={cn(
-            "absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent",
-            "flex flex-col justify-end p-5 transition-opacity duration-300",
-            hovered ? "opacity-100" : "opacity-0"
+            "relative aspect-[9/16] rounded-sm overflow-hidden transition-all duration-500 ease-out",
+            "shadow-[0_4px_20px_rgba(0,0,0,0.15)]",
+            hovered && "shadow-[0_12px_40px_rgba(0,0,0,0.3)] -translate-y-3 scale-[1.02]"
           )}
         >
-          <p className="text-white/80 text-sm font-medium tracking-wide uppercase">
-            {edition.date}
-          </p>
-          <h3 className="text-white text-xl md:text-2xl font-bold leading-tight mt-1">
-            {edition.title}
-          </h3>
-          <p className="text-white/70 text-sm mt-1 line-clamp-2">
-            {edition.subtitle}
-          </p>
+          <img
+            src={edition.cover_image || '/placeholder.svg'}
+            alt={edition.title}
+            className="w-full h-full object-cover"
+          />
+          <div
+            className={cn(
+              "absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent",
+              "flex flex-col justify-end p-5 transition-opacity duration-300",
+              hovered ? "opacity-100" : "opacity-0"
+            )}
+          >
+            <p className="text-white/80 text-sm font-medium tracking-wide uppercase">
+              {displayDate}
+            </p>
+            <h3 className="text-white text-xl md:text-2xl font-bold leading-tight mt-1">
+              {edition.title}
+            </h3>
+            <p className="text-white/70 text-sm mt-1 line-clamp-2">
+              {edition.subtitle}
+            </p>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 };
 
@@ -136,6 +146,23 @@ const Shelf: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const NewsletterEditions = () => {
+  const [editions, setEditions] = useState<Edition[]>(FALLBACK_EDITIONS);
+
+  useEffect(() => {
+    const fetchEditions = async () => {
+      const { data } = await (supabase as any)
+        .from('newsletter_editions')
+        .select('id, title, subtitle, slug, cover_image, published_at, featured_creator')
+        .eq('published', true)
+        .order('published_at', { ascending: false });
+
+      if (data && data.length > 0) {
+        setEditions(data);
+      }
+    };
+    fetchEditions();
+  }, []);
+
   const row1 = CREATORS.slice(0, 14);
   const row2 = CREATORS.slice(14, 28);
   const row3 = CREATORS.slice(28);
@@ -147,7 +174,7 @@ const NewsletterEditions = () => {
         description="Browse every edition of Culture & Commerce — our curated newsletter showcasing Afro-descendant created brands, products, and stories."
       />
       <div className="min-h-screen bg-background relative overflow-hidden">
-        {/* Animated background — modern Afro-descendant created brands */}
+        {/* Animated background */}
         <div className="absolute inset-0 z-0 flex flex-col justify-center gap-6 pointer-events-none">
           <ScrollingRow names={row1} direction="left" speed={60} />
           <ScrollingRow names={row2} direction="right" speed={75} />
@@ -183,7 +210,7 @@ const NewsletterEditions = () => {
         {/* Shelf */}
         <section className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 pb-20">
           <Shelf>
-            {EDITIONS.map((edition) => (
+            {editions.map((edition) => (
               <EditionCard key={edition.id} edition={edition} />
             ))}
           </Shelf>
