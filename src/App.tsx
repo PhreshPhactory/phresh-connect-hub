@@ -117,7 +117,7 @@ const App = () => {
                       <Route path="/blog/:slug" element={<BlogPost />} />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="/admin/brand-links" element={<BrandLinksAdmin />} />
-                      <Route path="/admin/newsletter" element={<NewsletterAdmin />} />
+                      <Route path="/admin/press" element={<NewsletterAdmin />} />
                       <Route path="/admin/brand-contacts" element={<BrandContactsAdmin />} />
                       <Route path="/admin/video-reels" element={<VideoReelAdmin />} />
                       <Route path="/admin/press-contacts" element={<PressContactsAdmin />} />
@@ -140,7 +140,7 @@ const App = () => {
                       <Route path="/unsubscribe" element={<Unsubscribe />} />
                       <Route path="/newsletter" element={<NewsletterEditions />} />
                       <Route path="/newsletter/:slug" element={<NewsletterEditionPage />} />
-                      <Route path="/admin/newsletter-editions" element={<NewsletterEditionAdmin />} />
+                      <Route path="/admin/newsletter" element={<NewsletterEditionAdmin />} />
                       <Route path="*" element={<NotFound />} />
                     </Route>
                     
