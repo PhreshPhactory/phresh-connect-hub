@@ -57,7 +57,7 @@ const NewsletterEditionPage = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Not Found</h1>
           <p className="text-muted-foreground mb-8">This newsletter hasn't been published yet.</p>
-          <Link to="/newsletter" className="text-primary font-medium hover:underline">← Back to Culture & Commerce</Link>
+          <Link to="/cultureandcommerce" className="text-primary font-medium hover:underline">← Back to Culture & Commerce</Link>
         </div>
       </div>
     );
@@ -120,12 +120,13 @@ const NewsletterEditionPage = () => {
           {/* Back link */}
           <div className="mt-16 pt-8 border-t border-white/10 text-center">
             <Link
-              to="/newsletter"
+              to="/cultureandcommerce"
               className="inline-flex items-center gap-2 text-[#d8b35c] hover:text-[#f1e1b0] font-medium transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Culture & Commerce
             </Link>
+
           </div>
         </article>
       </div>

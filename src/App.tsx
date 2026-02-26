@@ -3,7 +3,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+
+const NavigateWithSlug = () => {
+  const { slug } = useParams();
+  return <Navigate to={`/cultureandcommerce/${slug}`} replace />;
+};
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import LandingPageLayout from "@/components/LandingPageLayout";
@@ -138,8 +143,10 @@ const App = () => {
                       <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
                       <Route path="/DistributionAgreement" element={<DistributionAgreement />} />
                       <Route path="/unsubscribe" element={<Unsubscribe />} />
-                      <Route path="/newsletter" element={<NewsletterEditions />} />
-                      <Route path="/newsletter/:slug" element={<NewsletterEditionPage />} />
+                      <Route path="/cultureandcommerce" element={<NewsletterEditions />} />
+                      <Route path="/cultureandcommerce/:slug" element={<NewsletterEditionPage />} />
+                      <Route path="/newsletter" element={<Navigate to="/cultureandcommerce" replace />} />
+                      <Route path="/newsletter/:slug" element={<NavigateWithSlug />} />
                       <Route path="/admin/newsletter" element={<NewsletterEditionAdmin />} />
                       <Route path="*" element={<NotFound />} />
                     </Route>

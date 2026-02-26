@@ -88,7 +88,7 @@ const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
     : '';
 
   return (
-    <Link to={`/newsletter/${edition.slug}`}>
+    <Link to={`/cultureandcommerce/${edition.slug}`}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
