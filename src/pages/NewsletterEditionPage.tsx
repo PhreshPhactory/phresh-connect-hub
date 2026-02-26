@@ -89,7 +89,7 @@ const NewsletterEditionPage = () => {
           )}
 
           <div className="max-w-3xl mx-auto px-4 py-8 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ lineHeight: '0.75' }}>{edition.title}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white leading-none">{edition.title}</h1>
             {edition.featured_creator && (
               <p className="text-[#f1e1b0] text-sm font-medium mt-4">
                 Featuring: {edition.featured_creator}
