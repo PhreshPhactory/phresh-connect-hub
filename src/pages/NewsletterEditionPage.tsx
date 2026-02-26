@@ -113,11 +113,12 @@ const NewsletterEditionPage = () => {
         <article className="max-w-3xl mx-auto px-4 pb-20">
           <div
             className="prose prose-invert prose-lg max-w-none
-              prose-headings:font-bold prose-headings:text-[#f1e1b0]
-              prose-a:text-[#d8b35c] prose-a:underline
-              prose-strong:text-white
-              prose-p:text-white/80 prose-p:leading-relaxed
-              prose-li:text-white/80
+              prose-headings:font-bold prose-headings:text-white
+              prose-a:text-[#d8b35c] prose-a:underline prose-a:font-semibold
+              prose-strong:text-white prose-strong:font-bold
+              prose-p:text-white prose-p:leading-relaxed
+              prose-li:text-white
+              prose-hr:border-white/20
               prose-img:rounded-lg prose-img:shadow-lg"
             dangerouslySetInnerHTML={{ __html: sanitizeHTML(edition.content) }}
           />
