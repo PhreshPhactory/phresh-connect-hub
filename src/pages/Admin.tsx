@@ -557,7 +557,7 @@ const Admin = () => {
                   Send broadcasts and manage your newsletter subscriber list
                 </p>
                 <Button variant="default" className="w-full bg-gradient-to-r from-teal to-primary" asChild>
-                  <Link to="/admin/newsletter">Send Newsletter</Link>
+                  <Link to="/admin/press">Send Newsletter</Link>
                 </Button>
               </CardContent>
             </Card>
