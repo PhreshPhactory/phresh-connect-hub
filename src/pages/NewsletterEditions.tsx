@@ -180,6 +180,39 @@ const NewsletterEditions = () => {
       <SEOHead
         title="Culture & Commerce | Phresh Phactory, Inc."
         description="Celebrating modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know."
+        keywords="Afro-descendant brands, Black-owned fashion, culture and commerce, visionary designers, diaspora commerce, Phresh Phactory"
+        canonicalUrl="https://phreshphactory.com/cultureandcommerce"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Culture & Commerce",
+          "description": "Celebrating modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know.",
+          "url": "https://phreshphactory.com/cultureandcommerce",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Phresh Phactory, Inc.",
+            "url": "https://phreshphactory.com"
+          },
+          "about": {
+            "@type": "Thing",
+            "name": "Afro-descendant created brands and visionary founders"
+          },
+          "hasPart": editions.map(e => ({
+            "@type": "Article",
+            "headline": e.title,
+            "url": `https://phreshphactory.com/cultureandcommerce/${e.slug}`,
+            ...(e.cover_image ? { "image": e.cover_image } : {}),
+            ...(e.published_at ? { "datePublished": e.published_at } : {})
+          })),
+          "mentions": CREATORS.map(c => {
+            const [person, brand] = c.split(' ♥ ');
+            return {
+              "@type": "Person",
+              "name": person.trim(),
+              "brand": { "@type": "Brand", "name": brand.trim() }
+            };
+          })
+        }}
       />
       <div className="min-h-screen bg-background relative overflow-hidden">
         {/* Animated background */}
@@ -222,6 +255,17 @@ const NewsletterEditions = () => {
               <EditionCard key={edition.id} edition={edition} />
             ))}
           </Shelf>
+        </section>
+
+        {/* SEO-visible visionary list (hidden visually, readable by crawlers) */}
+        <section className="sr-only" aria-label="Featured visionaries and brands">
+          <h2>Visionaries & Brands Featured in Culture & Commerce</h2>
+          <ul>
+            {CREATORS.map((creator, i) => {
+              const [person, brand] = creator.split(' ♥ ');
+              return <li key={i}>{person.trim()} — {brand.trim()}</li>;
+            })}
+          </ul>
         </section>
       </div>
     </>
