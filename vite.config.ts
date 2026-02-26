@@ -19,7 +19,7 @@ export default defineConfig(({ mode, command }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ['react', 'react-dom', 'react-helmet-async', '@radix-ui/react-tooltip'],
+    dedupe: ['react', 'react-dom', 'react/jsx-runtime', 'react-helmet-async', '@radix-ui/react-tooltip', '@tanstack/react-query', 'framer-motion'],
   },
   build: {
     // Optimize for performance
