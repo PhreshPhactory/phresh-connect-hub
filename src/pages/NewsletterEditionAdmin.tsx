@@ -208,7 +208,7 @@ const NewsletterEditionAdmin = () => {
             <Link to="/admin" className="text-muted-foreground hover:text-foreground">
               <ArrowLeft className="w-5 h-5" />
             </Link>
-            <h1 className="text-3xl font-bold">Newsletter Editions</h1>
+            <h1 className="text-3xl font-bold">Culture & Commerce</h1>
           </div>
           <Link to="/newsletter" target="_blank">
             <Button variant="outline" size="sm"><Eye className="w-4 h-4 mr-2" /> View Public Page</Button>
@@ -220,7 +220,7 @@ const NewsletterEditionAdmin = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               {editing ? <Pencil className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-              {editing ? 'Edit Edition' : 'Create New Edition'}
+              {editing ? 'Edit Newsletter' : 'Create New Newsletter'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -232,7 +232,7 @@ const NewsletterEditionAdmin = () => {
                     id="title"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    placeholder="e.g. Club 7 Menswear"
+                    placeholder="e.g. Club Seven Menswear"
                     required
                   />
                 </div>
@@ -288,7 +288,7 @@ const NewsletterEditionAdmin = () => {
 
               <div className="flex gap-3">
                 <Button type="submit" disabled={loading}>
-                  {editing ? 'Update Edition' : 'Create Edition'}
+                  {editing ? 'Update' : 'Create'}
                 </Button>
                 {editing && (
                   <Button type="button" variant="outline" onClick={resetForm}>
@@ -301,7 +301,7 @@ const NewsletterEditionAdmin = () => {
         </Card>
 
         {/* Editions List */}
-        <h2 className="text-xl font-semibold mb-4">All Editions ({editions.length})</h2>
+        <h2 className="text-xl font-semibold mb-4">All Newsletters ({editions.length})</h2>
         <div className="space-y-3">
           {editions.map((edition) => (
             <Card key={edition.id}>
@@ -337,7 +337,7 @@ const NewsletterEditionAdmin = () => {
             </Card>
           ))}
           {editions.length === 0 && (
-            <p className="text-muted-foreground text-center py-8">No editions yet. Create your first one above!</p>
+            <p className="text-muted-foreground text-center py-8">No newsletters yet. Create your first one above!</p>
           )}
         </div>
       </div>
