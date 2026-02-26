@@ -58,6 +58,8 @@ const AffiliateNewsletter = lazy(() => import("@/pages/AffiliateNewsletter"));
 const DistributionAgreement = lazy(() => import("@/pages/DistributionAgreement"));
 const Unsubscribe = lazy(() => import("@/pages/Unsubscribe"));
 const NewsletterEditions = lazy(() => import("@/pages/NewsletterEditions"));
+const NewsletterEditionPage = lazy(() => import("@/pages/NewsletterEditionPage"));
+const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin"));
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -137,6 +139,8 @@ const App = () => {
                       <Route path="/DistributionAgreement" element={<DistributionAgreement />} />
                       <Route path="/unsubscribe" element={<Unsubscribe />} />
                       <Route path="/newsletter" element={<NewsletterEditions />} />
+                      <Route path="/newsletter/:slug" element={<NewsletterEditionPage />} />
+                      <Route path="/admin/newsletter-editions" element={<NewsletterEditionAdmin />} />
                       <Route path="*" element={<NotFound />} />
                     </Route>
                     
