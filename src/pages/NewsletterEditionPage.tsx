@@ -93,13 +93,13 @@ const NewsletterEditionPage = () => {
               Culture & Commerce
             </p>
             {publishDate && (
-              <p className="text-white/50 text-sm mb-4">{publishDate}</p>
+              <p className="text-white/70 text-sm mb-4">{publishDate}</p>
             )}
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4 text-white" style={{ fontFamily: "'Playfair Display', serif" }}>
               {edition.title}
             </h1>
             {edition.subtitle && (
-              <p className="text-white/60 text-lg max-w-xl mx-auto">{edition.subtitle}</p>
+              <p className="text-white/80 text-lg max-w-xl mx-auto">{edition.subtitle}</p>
             )}
             {edition.featured_creator && (
               <p className="text-[#f1e1b0] text-sm mt-4 font-medium">
@@ -112,14 +112,18 @@ const NewsletterEditionPage = () => {
         {/* Content */}
         <article className="max-w-3xl mx-auto px-4 pb-20">
           <div
-            className="prose prose-invert prose-lg max-w-none
-              prose-headings:font-bold prose-headings:text-white
-              prose-a:text-[#d8b35c] prose-a:underline prose-a:font-semibold
-              prose-strong:text-white prose-strong:font-bold
-              prose-p:text-white prose-p:leading-relaxed
-              prose-li:text-white
-              prose-hr:border-white/20
-              prose-img:rounded-lg prose-img:shadow-lg"
+            className="max-w-none text-lg leading-relaxed
+              [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:text-white [&_h1]:mt-10 [&_h1]:mb-4
+              [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:mt-10 [&_h2]:mb-4
+              [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-white [&_h3]:mt-8 [&_h3]:mb-3
+              [&_p]:text-white [&_p]:mb-5 [&_p]:leading-relaxed
+              [&_strong]:text-white [&_strong]:font-bold
+              [&_a]:text-[#d8b35c] [&_a]:underline [&_a]:font-semibold hover:[&_a]:text-[#f1e1b0]
+              [&_ul]:text-white [&_ul]:mb-5 [&_ul]:pl-6 [&_ul]:list-disc
+              [&_ol]:text-white [&_ol]:mb-5 [&_ol]:pl-6 [&_ol]:list-decimal
+              [&_li]:text-white [&_li]:mb-2
+              [&_hr]:border-white/20 [&_hr]:my-10
+              [&_img]:rounded-lg [&_img]:shadow-lg [&_img]:my-6"
             dangerouslySetInnerHTML={{ __html: sanitizeHTML(edition.content) }}
           />
 
