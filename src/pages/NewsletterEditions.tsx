@@ -175,7 +175,7 @@ const NewsletterEditions = () => {
             transition={{ duration: 0.4, delay: 0.15 }}
             className="text-lg text-muted-foreground mt-6 max-w-xl mx-auto"
           >
-            Paying homage to modern Afro-descendant created brands and their visionaries, one brand at a time.
+            Celebrating modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know.
           </motion.p>
         </section>
 
