@@ -310,6 +310,48 @@ export type Database = {
         }
         Relationships: []
       }
+      newsletter_editions: {
+        Row: {
+          content: string
+          cover_image: string | null
+          created_at: string
+          featured_creator: string | null
+          id: string
+          published: boolean
+          published_at: string | null
+          slug: string
+          subtitle: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          featured_creator?: string | null
+          id?: string
+          published?: boolean
+          published_at?: string | null
+          slug: string
+          subtitle?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          featured_creator?: string | null
+          id?: string
+          published?: boolean
+          published_at?: string | null
+          slug?: string
+          subtitle?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string
