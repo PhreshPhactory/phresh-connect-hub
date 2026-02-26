@@ -27,19 +27,20 @@ const EDITIONS: Edition[] = [
 // Modern Afro-descendant creators and their brands
 const CREATORS = [
   'Virgil Abloh ♥ Off-White', 'Aurora James ♥ Brother Vellies', 'Edvin Thompson ♥ Theophilio',
-  'Kerby Jean-Raymond ♥ Pyer Moss', 'Tracy Reese ♥ Hope for Flowers', 'Dapper Dan ♥ Dapper Dan of Harlem',
-  'Ozwald Boateng ♥ Ozwald Boateng', 'LaQuan Smith ♥ LaQuan Smith', 'Telfar Clemens ♥ Telfar',
-  'Christopher John Rogers ♥ CJR', 'Fe Noel ♥ Fe Noel', 'Anifa Mvuemba ♥ Hanifa',
-  'Jerry Lorenzo ♥ Fear of God', 'Undra Duncan ♥ Undra Celeste', 'Stella Jean ♥ Stella Jean',
-  'Amaka Osakwe ♥ Maki Oh', 'Brandon Blackwood ♥ Brandon Blackwood', 'Victor Glemaud ♥ Victor Glemaud',
-  'Carly Cushnie ♥ Cushnie', 'Rihanna ♥ Fenty / Savage X Fenty', 'Pat McGrath ♥ Pat McGrath Labs',
-  'Pharrell Williams ♥ Humanrace', 'Bethann Hardison ♥ Advocate & Icon', 'Edward Enninful ♥ British Vogue',
-  'André Leon Talley ♥ Fashion Legacy', 'Sergio Hudson ♥ Sergio Hudson', 'Shayne Oliver ♥ Hood By Air',
-  'Olivier Rousteing ♥ Balmain', 'Aminah Abdul Jillil ♥ Aminah Abdul Jillil', 'June Ambrose ♥ Slash',
-  'Misa Hylton ♥ MCM x Misa Hylton', 'Stephen Burrows ♥ Stephen Burrows', 'Willi Smith ♥ WilliWear',
+  'Kerby Jean-Raymond ♥ Pyer Moss', 'Tracy Reese ♥ Hope for Flowers', 'Alex Gede ♥ Club Seven Menswear',
+  'Dapper Dan ♥ Dapper Dan of Harlem', 'Ozwald Boateng ♥ Ozwald Boateng', 'LaQuan Smith ♥ LaQuan Smith',
+  'Telfar Clemens ♥ Telfar', 'Christopher John Rogers ♥ CJR', 'Fe Noel ♥ Fe Noel',
+  'Anifa Mvuemba ♥ Hanifa', 'Jerry Lorenzo ♥ Fear of God', 'Undra Duncan ♥ Undra Celeste',
+  'Stella Jean ♥ Stella Jean', 'Amaka Osakwe ♥ Maki Oh', 'Brandon Blackwood ♥ Brandon Blackwood',
+  'Victor Glemaud ♥ Victor Glemaud', 'Carly Cushnie ♥ Cushnie', 'Rihanna ♥ Fenty / Savage X Fenty',
+  'Pat McGrath ♥ Pat McGrath Labs', 'Pharrell Williams ♥ Humanrace', 'Bethann Hardison ♥ Advocate & Icon',
+  'Edward Enninful ♥ British Vogue', 'André Leon Talley ♥ Fashion Legacy', 'Sergio Hudson ♥ Sergio Hudson',
+  'Shayne Oliver ♥ Hood By Air', 'Olivier Rousteing ♥ Balmain', 'Aminah Abdul Jillil ♥ Aminah Abdul Jillil',
+  'June Ambrose ♥ Slash', 'Misa Hylton ♥ MCM x Misa Hylton', 'Stephen Burrows ♥ Stephen Burrows',
+  'Willi Smith ♥ WilliWear',
 ];
 
-const FEATURED_CREATOR = { name: 'Alex Gede', brand: 'Club Seven Menswear' };
+const FEATURED = 'Alex Gede ♥ Club Seven Menswear';
 
 const ScrollingRow: React.FC<{ names: string[]; direction: 'left' | 'right'; speed: number }> = ({
   names,
@@ -54,14 +55,22 @@ const ScrollingRow: React.FC<{ names: string[]; direction: 'left' | 'right'; spe
         animate={{ x: direction === 'left' ? ['0%', '-50%'] : ['-50%', '0%'] }}
         transition={{ duration: speed, ease: 'linear', repeat: Infinity }}
       >
-        {doubled.map((name, i) => (
-          <span
-            key={i}
-            className="inline-block mx-4 text-sm md:text-base font-medium text-foreground/10 select-none"
-          >
-            {name}
-          </span>
-        ))}
+        {doubled.map((name, i) => {
+          const isFeatured = name === FEATURED;
+          return (
+            <span
+              key={i}
+              className={cn(
+                "inline-block mx-4 select-none",
+                isFeatured
+                  ? "text-base md:text-xl font-bold text-primary"
+                  : "text-sm md:text-base font-medium text-foreground/10"
+              )}
+            >
+              {name}
+            </span>
+          );
+        })}
       </motion.div>
     </div>
   );
@@ -146,10 +155,6 @@ const NewsletterEditions = () => {
           <ScrollingRow names={row1} direction="left" speed={60} />
           <ScrollingRow names={row2} direction="right" speed={75} />
           <ScrollingRow names={row3} direction="left" speed={50} />
-          {/* Featured creator — larger, colored */}
-          <p className="text-center text-lg md:text-2xl font-bold text-primary select-none py-2">
-            {FEATURED_CREATOR.name} <span className="text-accent">♥</span> {FEATURED_CREATOR.brand}
-          </p>
           <ScrollingRow names={row1} direction="right" speed={65} />
           <ScrollingRow names={row2} direction="left" speed={55} />
           <ScrollingRow names={row3} direction="right" speed={70} />
