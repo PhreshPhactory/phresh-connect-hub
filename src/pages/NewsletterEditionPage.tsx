@@ -73,6 +73,38 @@ const NewsletterEditionPage = () => {
         title={`${edition.title} | Culture & Commerce`}
         description={edition.subtitle || `Read about ${edition.title} on Culture & Commerce by Phresh Phactory, Inc.`}
         ogImage={edition.cover_image || undefined}
+        keywords={`${edition.title}, ${edition.featured_creator || ''}, Afro-descendant brands, culture and commerce, Phresh Phactory`}
+        canonicalUrl={`https://phreshphactory.com/cultureandcommerce/${edition.slug}`}
+        pageType="article"
+        articleAuthor="Phresh Phactory, Inc."
+        publishDate={edition.published_at || undefined}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": edition.title,
+          "description": edition.subtitle || `Read about ${edition.title} on Culture & Commerce by Phresh Phactory, Inc.`,
+          "url": `https://phreshphactory.com/cultureandcommerce/${edition.slug}`,
+          ...(edition.cover_image ? { "image": edition.cover_image } : {}),
+          ...(edition.published_at ? { "datePublished": edition.published_at } : {}),
+          "author": { "@type": "Organization", "name": "Phresh Phactory, Inc." },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Phresh Phactory, Inc.",
+            "url": "https://phreshphactory.com"
+          },
+          "isPartOf": {
+            "@type": "CollectionPage",
+            "name": "Culture & Commerce",
+            "url": "https://phreshphactory.com/cultureandcommerce"
+          },
+          ...(edition.featured_creator ? {
+            "about": {
+              "@type": "Person",
+              "name": edition.featured_creator.split('♥')[0]?.trim(),
+              "brand": { "@type": "Brand", "name": edition.featured_creator.split('♥')[1]?.trim() }
+            }
+          } : {})
+        }}
       />
 
       <div className="min-h-screen bg-[#0b0b0d] text-white">
