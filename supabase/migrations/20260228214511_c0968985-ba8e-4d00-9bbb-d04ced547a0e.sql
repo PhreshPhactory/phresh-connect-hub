@@ -1,0 +1,1 @@
+UPDATE newsletter_editions SET slug = 'giving-the-boys-some-room' WHERE id = '7eae1de7-8c55-42bd-8480-2ae3921ce784';
