@@ -562,6 +562,22 @@ const Admin = () => {
               </CardContent>
             </Card>
 
+            <Card className="border-2 border-primary">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span>📰</span> Culture & Commerce
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Create and edit Culture & Commerce brand editions
+                </p>
+                <Button variant="default" className="w-full bg-gradient-to-r from-primary to-teal" asChild>
+                  <Link to="/admin/newsletter">Manage Editions</Link>
+                </Button>
+              </CardContent>
+            </Card>
+
             <Card className="border-2 border-purple-500">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
