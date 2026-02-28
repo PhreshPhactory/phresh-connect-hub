@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
 import { supabase } from '@/integrations/supabase/client';
-
+import { sanitizeHTML } from '@/utils/security';
 import { ArrowLeft } from 'lucide-react';
 
 interface Edition {
@@ -131,16 +131,36 @@ const NewsletterEditionPage = () => {
           </div>
         </div>
 
-        {/* Back link */}
-        <div className="max-w-3xl mx-auto px-4 py-12 text-center">
-          <Link
-            to="/cultureandcommerce"
-            className="inline-flex items-center gap-2 text-[#d8b35c] hover:text-[#f1e1b0] font-medium transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Culture & Commerce
-          </Link>
-        </div>
+        {/* Content */}
+        <article className="max-w-3xl mx-auto px-4 pb-20">
+          <div
+            className="max-w-none text-lg leading-relaxed
+              [&>h2:first-child]:hidden
+              [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:text-white [&_h1]:mt-10 [&_h1]:mb-4
+              [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:mt-10 [&_h2]:mb-4
+              [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-white [&_h3]:mt-8 [&_h3]:mb-3
+              [&_p]:text-white [&_p]:mb-5 [&_p]:leading-relaxed
+              [&_strong]:text-white [&_strong]:font-bold
+              [&_a]:text-[#d8b35c] [&_a]:underline [&_a]:font-semibold hover:[&_a]:text-[#f1e1b0]
+              [&_ul]:text-white [&_ul]:mb-5 [&_ul]:pl-6 [&_ul]:list-disc
+              [&_ol]:text-white [&_ol]:mb-5 [&_ol]:pl-6 [&_ol]:list-decimal
+              [&_li]:text-white [&_li]:mb-2
+              [&_hr]:border-white/20 [&_hr]:my-10
+              [&_img]:rounded-lg [&_img]:shadow-lg [&_img]:my-6"
+            dangerouslySetInnerHTML={{ __html: sanitizeHTML(edition.content) }}
+          />
+
+          {/* Back link */}
+          <div className="mt-16 pt-8 border-t border-white/10 text-center">
+            <Link
+              to="/cultureandcommerce"
+              className="inline-flex items-center gap-2 text-[#d8b35c] hover:text-[#f1e1b0] font-medium transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Culture & Commerce
+            </Link>
+          </div>
+        </article>
       </div>
     </>
   );
