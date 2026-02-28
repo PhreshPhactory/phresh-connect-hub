@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
+import SocialShareButtons from '@/components/SocialShareButtons';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -242,6 +243,9 @@ const NewsletterEditions = () => {
           >
             Celebrating modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know.
           </motion.p>
+          <div className="mt-6 flex justify-center">
+            <SocialShareButtons url="https://phreshphactory.com/cultureandcommerce" title="Culture & Commerce by Phresh Phactory" />
+          </div>
         </section>
 
         {/* Shelf */}

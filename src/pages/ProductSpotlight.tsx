@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Calendar, Youtube, ExternalLink } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import SocialShareButtons from '@/components/SocialShareButtons';
 import RelatedBrands from '@/components/RelatedBrands';
 import { sanitizeHTML } from '@/utils/security';
 
@@ -203,6 +204,9 @@ const ProductSpotlight = () => {
                 })}
               </time>
             </div>
+            <div className="mt-4">
+              <SocialShareButtons url={`https://phreshphactory.com/shop/${spotlight.slug}`} title={spotlight.title} />
+            </div>
           </header>
 
           {/* YouTube Video */}
@@ -304,6 +308,12 @@ const ProductSpotlight = () => {
               prose-ol:text-muted-foreground"
             dangerouslySetInnerHTML={{ __html: sanitizeHTML(spotlight.content) }}
           />
+
+          {/* Share */}
+          <div className="mt-12 flex flex-col items-center gap-4">
+            <p className="text-sm text-muted-foreground uppercase tracking-widest">Share this brand</p>
+            <SocialShareButtons url={`https://phreshphactory.com/shop/${spotlight.slug}`} title={spotlight.title} />
+          </div>
 
           {/* CTA to explore more */}
           <div className="mt-12 p-8 bg-muted rounded-lg text-center">
