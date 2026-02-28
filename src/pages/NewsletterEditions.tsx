@@ -109,7 +109,7 @@ const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
           <img
             src={edition.cover_image || '/placeholder.svg'}
             alt={edition.title}
-            className="w-full h-full object-cover opacity-[0.08]"
+            className="w-full h-full object-cover"
           />
           {/* Always-visible content overlay */}
           <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
