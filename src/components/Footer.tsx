@@ -78,7 +78,7 @@ const Footer = () => {
     { label: 'Brands', path: '/brands' },
     { label: 'Affiliates', path: '/Affiliate' },
     { label: 'Blueprint', path: '/affiliate-sales-blueprint' },
-    { label: 'Blog', path: '/blog' },
+    { label: 'Growth Notes', path: '/growthnotes' },
     { label: 'Contact', path: '/contact' },
   ];
 

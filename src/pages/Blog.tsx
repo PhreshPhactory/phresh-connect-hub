@@ -76,7 +76,7 @@ const Blog = () => {
         title="Blog | Insights on Business Transformation & Leadership"
         description="Explore the Phresh Phactory blog for expert insights on business transformation, leadership, talent management, and industry trends shaping the future."
         keywords="Business Transformation Blog, Leadership Insights, Talent Management, Industry Analysis, Expert Articles"
-        canonicalUrl="https://phreshphactory.com/blog"
+        canonicalUrl="https://phreshphactory.com/growthnotes"
       />
       {/* Hero Section */}
       <section className="bg-background py-15 md:py-15">
