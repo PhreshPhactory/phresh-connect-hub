@@ -108,33 +108,23 @@ const NewsletterEditionPage = () => {
       />
 
       <div className="min-h-screen bg-[#0b0b0d] text-white">
-        {/* Hero */}
-        <div className="relative">
+        {/* Hero with full-bleed background */}
+        <div className="relative min-h-[60vh] flex items-center justify-center">
           {edition.cover_image && (
-            <div className="w-full max-w-md mx-auto pt-10 px-4">
-              <img
-                src={edition.cover_image}
-                alt={edition.title}
-                className="w-full aspect-[9/16] object-cover rounded-sm shadow-[0_8px_30px_rgba(216,179,92,0.15)]"
-              />
-            </div>
+            <img
+              src={edition.cover_image}
+              alt={edition.title}
+              className="absolute inset-0 w-full h-full object-cover opacity-25"
+            />
           )}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b0b0d]/40 via-transparent to-[#0b0b0d]" />
 
-          <div className="max-w-3xl mx-auto px-4 py-8 text-center">
-            {edition.title.includes('\n\n') ? (
-              <>
-                <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ lineHeight: '0.85' }}>
-                  {edition.title.split('\n\n')[0]}
-                </h1>
-                <p className="text-lg md:text-xl text-white/80 mt-4 max-w-2xl mx-auto leading-snug">
-                  {edition.title.split('\n\n')[1]}
-                </p>
-              </>
-            ) : (
-              <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ lineHeight: '0.85' }}>{edition.title}</h1>
-            )}
+          <div className="relative z-10 max-w-3xl mx-auto px-4 py-20 text-center">
+            <h1 className="text-3xl md:text-5xl font-bold text-white" style={{ lineHeight: '0.85' }}>
+              {edition.title.split(/\s+/).slice(0, 5).join(' ')}
+            </h1>
             {edition.featured_creator && (
-              <p className="text-[#f1e1b0] text-sm font-medium mt-4">
+              <p className="text-[#f1e1b0] text-sm font-medium mt-6">
                 Featuring: {edition.featured_creator}
               </p>
             )}
