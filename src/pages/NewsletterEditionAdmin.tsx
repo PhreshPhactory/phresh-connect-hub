@@ -41,14 +41,18 @@ const NewsletterEditionAdmin = () => {
     published: false,
   });
   const [coverFile, setCoverFile] = useState<File | null>(null);
+  const canManage = isContentManager();
 
   useEffect(() => {
-    if (user && isContentManager()) {
+    if (authLoading) return;
+
+    if (user && canManage) {
       fetchEditions();
-    } else if (!authLoading) {
-      setLoading(false);
+      return;
     }
-  }, [user, authLoading]);
+
+    setLoading(false);
+  }, [user, authLoading, canManage]);
 
   const fetchEditions = async () => {
     try {
