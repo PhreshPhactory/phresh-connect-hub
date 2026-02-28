@@ -112,20 +112,25 @@ const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
           />
           <div
             className={cn(
-              "absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent",
+              "absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent",
               "flex flex-col justify-end p-5 transition-opacity duration-300",
               hovered ? "opacity-100" : "opacity-0"
             )}
           >
-            <p className="text-white/80 text-sm font-medium tracking-wide uppercase">
+            <p className="text-white/80 text-xs font-medium tracking-widest uppercase">
               {displayDate}
             </p>
             <h3 className="text-white text-xl md:text-2xl font-bold leading-tight mt-1">
               {edition.title}
             </h3>
-            <p className="text-white/70 text-sm mt-1 line-clamp-2">
-              {edition.subtitle}
-            </p>
+            {edition.subtitle && (
+              <p className="text-white/70 text-sm mt-1 line-clamp-2">
+                {edition.subtitle}
+              </p>
+            )}
+            <span className="inline-block mt-3 text-sm font-semibold text-primary tracking-wide uppercase">
+              Click Here to Read →
+            </span>
           </div>
         </div>
       </motion.div>
