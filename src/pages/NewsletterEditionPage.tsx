@@ -121,7 +121,7 @@ const NewsletterEditionPage = () => {
 
           <div className="relative z-10 max-w-3xl mx-auto px-4 py-20 text-center">
             <h1 className="text-3xl md:text-5xl font-bold text-white" style={{ lineHeight: '0.85' }}>
-              {edition.title.split(/\s+/).slice(0, 5).join(' ')}
+              {edition.title}
             </h1>
             {edition.featured_creator && (
               <p className="text-[#f1e1b0] text-sm font-medium mt-6">
