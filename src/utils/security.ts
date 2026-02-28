@@ -19,9 +19,8 @@ export const sanitizeHTML = (html: string): string => {
     ],
     ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
     ADD_ATTR: ['target'],
-    ADD_TAGS: ['iframe'],
     FORBID_ATTR: ['style', 'onload', 'onerror', 'onclick', 'onmouseover'],
-    FORBID_TAGS: ['script', 'object', 'embed', 'form', 'input', 'textarea', 'select', 'button']
+    FORBID_TAGS: ['script', 'object', 'embed', 'form', 'input', 'textarea', 'select', 'button', 'iframe']
   });
 };
 
