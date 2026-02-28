@@ -111,25 +111,15 @@ const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
             alt={edition.title}
             className="w-full h-full object-cover"
           />
-          {/* Always-visible content overlay */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-            <p className="text-foreground/40 text-xs font-medium tracking-widest uppercase">
-              {displayDate}
-            </p>
-            <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mt-2">
-              {edition.title}
-            </h3>
-            {edition.subtitle && (
-              <p className="text-muted-foreground text-sm mt-2 line-clamp-3 max-w-[280px]">
-                {edition.subtitle}
-              </p>
+          {/* Hover overlay with CTA */}
+          <div
+            className={cn(
+              "absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent",
+              "flex flex-col justify-end items-center text-center p-6 transition-opacity duration-300",
+              hovered ? "opacity-100" : "opacity-0"
             )}
-            <span
-              className={cn(
-                "inline-block mt-4 text-sm font-semibold text-primary tracking-wide uppercase transition-opacity duration-300",
-                hovered ? "opacity-100" : "opacity-0"
-              )}
-            >
+          >
+            <span className="text-sm font-semibold text-primary tracking-wide uppercase">
               Click Here to Read →
             </span>
           </div>
