@@ -109,7 +109,7 @@ const NewsletterEditionPage = () => {
 
       <div className="min-h-screen bg-[#0b0b0d] text-white">
         {/* Hero with full-bleed background */}
-        <div className="relative min-h-[60vh] flex items-center justify-center">
+        <div className="relative min-h-[60vh] flex items-end justify-center pt-32">
           {edition.cover_image && (
             <img
               src={edition.cover_image}
