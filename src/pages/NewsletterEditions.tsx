@@ -119,7 +119,7 @@ const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
               hovered ? "opacity-100" : "opacity-0"
             )}
           >
-            <span className="text-sm font-semibold text-primary tracking-wide uppercase">
+            <span className="text-lg font-bold text-white tracking-wide uppercase">
               Click Here to Read →
             </span>
           </div>
