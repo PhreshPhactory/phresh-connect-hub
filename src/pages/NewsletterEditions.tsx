@@ -105,30 +105,31 @@ const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
             hovered && "shadow-[0_12px_40px_rgba(0,0,0,0.3)] -translate-y-3 scale-[1.02]"
           )}
         >
+          {/* Pale background cover image */}
           <img
             src={edition.cover_image || '/placeholder.svg'}
             alt={edition.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-[0.08]"
           />
-          <div
-            className={cn(
-              "absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent",
-              "flex flex-col justify-end p-5 transition-opacity duration-300",
-              hovered ? "opacity-100" : "opacity-0"
-            )}
-          >
-            <p className="text-white/80 text-xs font-medium tracking-widest uppercase">
+          {/* Always-visible content overlay */}
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+            <p className="text-foreground/40 text-xs font-medium tracking-widest uppercase">
               {displayDate}
             </p>
-            <h3 className="text-white text-xl md:text-2xl font-bold leading-tight mt-1">
+            <h3 className="text-foreground text-xl md:text-2xl font-bold leading-tight mt-2">
               {edition.title}
             </h3>
             {edition.subtitle && (
-              <p className="text-white/70 text-sm mt-1 line-clamp-2">
+              <p className="text-muted-foreground text-sm mt-2 line-clamp-3 max-w-[280px]">
                 {edition.subtitle}
               </p>
             )}
-            <span className="inline-block mt-3 text-sm font-semibold text-primary tracking-wide uppercase">
+            <span
+              className={cn(
+                "inline-block mt-4 text-sm font-semibold text-primary tracking-wide uppercase transition-opacity duration-300",
+                hovered ? "opacity-100" : "opacity-0"
+              )}
+            >
               Click Here to Read →
             </span>
           </div>
