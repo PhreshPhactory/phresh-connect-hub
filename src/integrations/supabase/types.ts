@@ -569,6 +569,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_view_count: { Args: { post_id: string }; Returns: undefined }
       is_content_manager: { Args: { _user_id: string }; Returns: boolean }
       make_user_admin: { Args: { _user_email: string }; Returns: undefined }
       make_user_editor: { Args: { _user_email: string }; Returns: undefined }
