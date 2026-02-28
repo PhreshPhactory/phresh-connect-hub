@@ -109,25 +109,26 @@ const NewsletterEditionPage = () => {
 
       <div className="min-h-screen bg-[#0b0b0d] text-white">
         {/* Hero with full-bleed background */}
-        {edition.cover_image && (
-          <div className="w-full">
+        <div className="relative min-h-[60vh] flex items-center justify-center">
+          {edition.cover_image && (
             <img
               src={edition.cover_image}
               alt={edition.title}
-              className="w-full h-auto object-cover"
+              className="absolute inset-0 w-full h-full object-cover opacity-25"
             />
-          </div>
-        )}
-
-        <div className="max-w-3xl mx-auto px-4 py-12 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-white" style={{ lineHeight: '0.85' }}>
-            {edition.title}
-          </h1>
-          {edition.featured_creator && (
-            <p className="text-[#f1e1b0] text-sm font-medium mt-6">
-              Featuring: {edition.featured_creator}
-            </p>
           )}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b0b0d]/40 via-transparent to-[#0b0b0d]" />
+
+          <div className="relative z-10 max-w-3xl mx-auto px-4 py-20 text-center">
+            <h1 className="text-3xl md:text-5xl font-bold text-white" style={{ lineHeight: '0.85' }}>
+              {edition.title}
+            </h1>
+            {edition.featured_creator && (
+              <p className="text-[#f1e1b0] text-sm font-medium mt-6">
+                Featuring: {edition.featured_creator}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Content */}
