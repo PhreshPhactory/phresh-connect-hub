@@ -118,8 +118,10 @@ const App = () => {
                       <Route path="/KieraH" element={<KieraProfile />} />
                       <Route path="/contact" element={<Contact />} />
                       <Route path="/brands" element={<BrandPartnership />} />
-                      <Route path="/blog" element={<Blog />} />
-                      <Route path="/blog/:slug" element={<BlogPost />} />
+                      <Route path="/growthnotes" element={<Blog />} />
+                      <Route path="/growthnotes/:slug" element={<BlogPost />} />
+                      <Route path="/blog" element={<Navigate to="/growthnotes" replace />} />
+                      <Route path="/blog/:slug" element={<Navigate to="/growthnotes" replace />} />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="/admin/brand-links" element={<BrandLinksAdmin />} />
                       <Route path="/admin/press" element={<NewsletterAdmin />} />

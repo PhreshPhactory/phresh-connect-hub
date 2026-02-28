@@ -94,10 +94,10 @@ const BlogPost = () => {
             The blog post you're looking for doesn't exist.
           </p>
           <Link 
-            to="/blog" 
+            to="/growthnotes" 
             className="text-primary-600 hover:text-primary-500 font-medium"
           >
-            ← Back to Blog
+            ← Back to Growth Notes
           </Link>
         </div>
       </div>
@@ -151,10 +151,10 @@ const BlogPost = () => {
         {/* Back to Blog */}
         <div className="text-center">
           <Link 
-            to="/blog" 
+            to="/growthnotes" 
             className="inline-flex items-center text-primary-600 hover:text-primary-500 font-medium"
           >
-            ← Back to Blog
+            ← Back to Growth Notes
           </Link>
         </div>
       </article>

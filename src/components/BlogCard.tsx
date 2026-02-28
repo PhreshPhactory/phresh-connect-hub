@@ -22,7 +22,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
 }) => {
   return (
     <article className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-border hover-lift animate-fade-in">
-      <Link to={`/blog/${slug}`} className="block">
+      <Link to={`/growthnotes/${slug}`} className="block">
         <div className="relative w-full h-[240px] overflow-hidden bg-muted/50">
           <img
             src={image}
@@ -52,12 +52,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
             {category}
           </span>
         </div>
-        <Link to={`/blog/${slug}`} className="hover:text-primary transition-colors">
+        <Link to={`/growthnotes/${slug}`} className="hover:text-primary transition-colors">
           <h3 className="text-xl font-semibold mb-3 text-foreground font-serif">{title}</h3>
         </Link>
         <p className="text-muted-foreground mb-4 leading-relaxed">{excerpt}</p>
         <Link
-          to={`/blog/${slug}`}
+          to={`/growthnotes/${slug}`}
           className="text-primary font-medium hover:text-primary/80 transition-colors inline-flex items-center group"
         >
           Read More
