@@ -39,16 +39,9 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     const absoluteValue = toAbsoluteUrl(value);
 
     try {
-      const parsed = new URL(absoluteValue);
-      const objectPrefix = '/storage/v1/object/public/';
-      const objectIndex = parsed.pathname.indexOf(objectPrefix);
-
-      if (objectIndex === -1) return absoluteValue;
-
-      const bucketAndPath = parsed.pathname.slice(objectIndex + objectPrefix.length);
-      if (!bucketAndPath) return absoluteValue;
-
-      return `${parsed.origin}/storage/v1/render/image/public/${bucketAndPath}?width=1200&height=630&resize=cover&quality=90`;
+      // Keep original public image URL for social crawlers.
+      // Supabase render/image is not enabled in this project and can return 403.
+      return encodeURI(absoluteValue);
     } catch {
       return absoluteValue;
     }
