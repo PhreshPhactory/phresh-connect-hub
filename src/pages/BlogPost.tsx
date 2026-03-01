@@ -106,7 +106,8 @@ const BlogPost = () => {
     );
   }
 
-  const articleUrl = `https://phreshphactory.com/growthnotes/${post.slug}`;
+  const siteOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://phreshphactory.com';
+  const articleUrl = `${siteOrigin}/growthnotes/${post.slug}`;
 
   return (
     <>

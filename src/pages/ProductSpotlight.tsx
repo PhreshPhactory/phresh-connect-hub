@@ -120,6 +120,8 @@ const ProductSpotlight = () => {
   }
 
   const embedUrl = getYouTubeEmbedUrl(spotlight.video_url);
+  const siteOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://phreshphactory.com';
+  const spotlightUrl = `${siteOrigin}/shop/${spotlight.slug}`;
   
   // Extract brand name for SEO
   const brandName = spotlight.brand_name || spotlight.title.split(/[-:]/)[0].trim();
@@ -139,7 +141,7 @@ const ProductSpotlight = () => {
         "@type": "Organization",
         "name": brandName
       },
-      "acquireLicensePage": spotlight.shopping_link || `https://phreshphactory.com/shop/${spotlight.slug}`
+      "acquireLicensePage": spotlight.shopping_link || spotlightUrl
     },
     "brand": {
       "@type": "Brand",
@@ -147,7 +149,7 @@ const ProductSpotlight = () => {
     },
     "offers": {
       "@type": "Offer",
-      "url": spotlight.shopping_link || `https://phreshphactory.com/shop/${spotlight.slug}`,
+      "url": spotlight.shopping_link || spotlightUrl,
       "availability": "https://schema.org/InStock",
       "priceCurrency": "USD",
       "price": "0",
@@ -175,7 +177,7 @@ const ProductSpotlight = () => {
         title={`${spotlight.title} - Afro-Descendant Christmas Gifts`}
         description={`${spotlight.excerpt} Shop Afro-descendant brands for Christmas. Support ${brandName} and discover unique holiday gifts from Afro-descendant entrepreneurs.`}
         keywords={`Afro-descendant business, ${brandName}, Afro-descendant created brands, Afro-descendant entrepreneur, Christmas gifts, holiday shopping, Afro-descendant gifts, support Afro-descendant businesses, ${spotlight.title}`}
-        canonicalUrl={`https://phreshphactory.com/shop/${spotlight.slug}`}
+        canonicalUrl={spotlightUrl}
         ogImage={spotlight.feature_image}
         structuredData={productSchema}
         pageType="product"

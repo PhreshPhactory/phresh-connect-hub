@@ -22,6 +22,8 @@ interface ProductSpotlight {
 const Compro = () => {
   const [products, setProducts] = useState<ProductSpotlight[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const siteOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://phreshphactory.com';
+  const comproOgImage = products.find((item) => item.feature_image)?.feature_image || undefined;
 
   const extractFirstShopLink = (content: string): string | null => {
     const shopPatterns = [
@@ -92,6 +94,8 @@ const Compro = () => {
         title="Compro | Tienda de Marcas Afrodescendientes | Compras Navideñas 2025"
         description="Descubre y compra productos únicos de marcas afrodescendientes. Apoya a emprendedores negros con regalos navideños, decoración y más. Compras en español."
         keywords="comprar negro, marcas afrodescendientes, tienda afrolatina, regalos navideños, compras navideñas 2025, productos afrodescendientes, negocios negros, apoyar negocios negros, tienda latina, compras en español, regalos afrolatinos"
+        canonicalUrl={`${siteOrigin}/compro`}
+        ogImage={comproOgImage}
       />
 
       <div className="min-h-screen bg-background py-8">
