@@ -1,0 +1,1 @@
+UPDATE newsletter_editions SET cover_image = 'https://phreshphactory.com/social-images/giving-the-boys-some-room-cover.png' WHERE slug = 'giving-the-boys-some-room';
