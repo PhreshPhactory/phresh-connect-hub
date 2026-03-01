@@ -1,5 +1,5 @@
 // Service Worker for caching and performance optimization
-const CACHE_VERSION = '2.0.1';
+const CACHE_VERSION = '2.1.0';
 const CACHE_NAME = `phresh-phactory-v${CACHE_VERSION}`;
 const STATIC_CACHE_NAME = `phresh-phactory-static-v${CACHE_VERSION}`;
 const DYNAMIC_CACHE_NAME = `phresh-phactory-dynamic-v${CACHE_VERSION}`;
@@ -17,10 +17,7 @@ const STATIC_CACHE_URLS = [
 const DYNAMIC_CACHE_PATTERNS = [
   /^https:\/\/fonts\.googleapis\.com/,
   /^https:\/\/fonts\.gstatic\.com/,
-  /\.(?:png|jpg|jpeg|svg|gif|webp|avif|ico)$/,
-  /^\/lovable-uploads\//,
-  /\.(?:css|js)$/,
-  /^\/src\//
+  /^\/lovable-uploads\//
 ];
 
 // HTML pages - cache for 1 hour
@@ -105,8 +102,11 @@ self.addEventListener('fetch', (event) => {
   if (request.destination === 'image' || request.url.match(/\.(png|jpg|jpeg|svg|gif|webp|avif|ico)$/)) {
     // Images: cache first strategy with long-term caching
     event.respondWith(cacheFirstWithHeaders(request, STATIC_CACHE_NAME, CACHE_DURATIONS.STATIC));
+  } else if (request.destination === 'script' || request.destination === 'style' || request.url.match(/\.(?:css|js)(?:\?.*)?$/)) {
+    // JS/CSS: network first so deployments get fresh code immediately
+    event.respondWith(networkFirstWithCache(request, DYNAMIC_CACHE_NAME, CACHE_DURATIONS.API));
   } else if (DYNAMIC_CACHE_PATTERNS.some(pattern => pattern.test(request.url))) {
-    // Fonts, CSS, JS: cache first strategy
+    // Fonts and stable assets: cache first strategy
     event.respondWith(cacheFirstWithHeaders(request, STATIC_CACHE_NAME, CACHE_DURATIONS.STATIC));
   } else if (request.destination === 'document' || HTML_CACHE_PATTERNS.some(pattern => pattern.test(url.pathname))) {
     // HTML pages: stale while revalidate strategy
