@@ -43,6 +43,9 @@ const ProductSpotlights = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const siteOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://phreshphactory.com';
+  const shopCanonicalUrl = `${siteOrigin}/shop`;
+  const shopOgImage = allContent.find((item) => item.feature_image)?.feature_image || undefined;
 
   // Helper function to get reliable YouTube thumbnail (hqdefault always exists)
   const getReliableThumbnail = (imageUrl: string | null, videoUrl: string | null, shortsUrl: string | null): string | null => {
@@ -343,6 +346,8 @@ const ProductSpotlights = () => {
         description="Discover 100+ curated Afro-descendant created brands. Shop unique gifts, home decor, beauty products & more. Support Afro-descendant created brands and products with every purchase. Updated daily."
         keywords="Afro-descendant created brands, shop Afro-descendant, Afro-descendant gifts, Afro-descendant created products, support Afro-descendant business, Afro-descendant entrepreneurs, Afro-descendant created brands and products, Afro-descendant home decor, Afro-descendant beauty, Afro-descendant gifts 2025"
         structuredData={itemListSchema}
+        canonicalUrl={shopCanonicalUrl}
+        ogImage={shopOgImage}
       />
 
       {/* Spanish Language Banner */}
