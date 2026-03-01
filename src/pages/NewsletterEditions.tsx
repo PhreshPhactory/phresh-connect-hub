@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import SocialShareButtons from '@/components/SocialShareButtons';
 import club7Cover from '@/assets/club7-cover.png';
 
 interface Edition {
@@ -85,48 +84,44 @@ const ScrollingRow: React.FC<{ names: string[]; direction: 'left' | 'right'; spe
 
 const EditionCard: React.FC<{ edition: Edition }> = ({ edition }) => {
   const [hovered, setHovered] = useState(false);
-  const articleUrl = `https://phreshphactory.com/cultureandcommerce/${edition.slug}`;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="group relative cursor-pointer mx-auto"
-      style={{ maxWidth: 380 }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div
-        className={cn(
-          "relative aspect-[9/16] rounded-sm overflow-hidden transition-all duration-500 ease-out",
-          "shadow-[0_4px_20px_rgba(0,0,0,0.15)]",
-          hovered && "shadow-[0_12px_40px_rgba(0,0,0,0.3)] -translate-y-3 scale-[1.02]"
-        )}
+    <Link to={`/cultureandcommerce/${edition.slug}`}>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className="group relative cursor-pointer mx-auto"
+        style={{ maxWidth: 380 }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
-        <img
-          src={edition.cover_image || '/placeholder.svg'}
-          alt={edition.title}
-          className="w-full h-full object-cover"
-        />
-        {/* Hover overlay with Read + Share */}
         <div
           className={cn(
-            "absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent",
-            "flex flex-col justify-end items-center text-center p-6 gap-3 transition-opacity duration-300",
-            hovered ? "opacity-100" : "opacity-0"
+            "relative aspect-[9/16] rounded-sm overflow-hidden transition-all duration-500 ease-out",
+            "shadow-[0_4px_20px_rgba(0,0,0,0.15)]",
+            hovered && "shadow-[0_12px_40px_rgba(0,0,0,0.3)] -translate-y-3 scale-[1.02]"
           )}
         >
-          <Link
-            to={`/cultureandcommerce/${edition.slug}`}
-            className="w-full py-3 bg-white text-black font-bold text-base tracking-wide uppercase rounded-sm hover:bg-white/90 transition-colors text-center"
+          <img
+            src={edition.cover_image || '/placeholder.svg'}
+            alt={edition.title}
+            className="w-full h-full object-cover"
+          />
+          <div
+            className={cn(
+              "absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent",
+              "flex flex-col justify-end items-center text-center p-6 transition-opacity duration-300",
+              hovered ? "opacity-100" : "opacity-0"
+            )}
           >
-            Read →
-          </Link>
-          <SocialShareButtons url={articleUrl} title={edition.title} className="text-white" />
+            <span className="text-lg font-bold text-white tracking-wide uppercase">
+              Click Here to Read →
+            </span>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </Link>
   );
 };
 
