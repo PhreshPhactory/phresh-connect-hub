@@ -175,6 +175,7 @@ const ProductSpotlight = () => {
         title={`${spotlight.title} - Afro-Descendant Christmas Gifts`}
         description={`${spotlight.excerpt} Shop Afro-descendant brands for Christmas. Support ${brandName} and discover unique holiday gifts from Afro-descendant entrepreneurs.`}
         keywords={`Afro-descendant business, ${brandName}, Afro-descendant created brands, Afro-descendant entrepreneur, Christmas gifts, holiday shopping, Afro-descendant gifts, support Afro-descendant businesses, ${spotlight.title}`}
+        canonicalUrl={`https://phreshphactory.com/shop/${spotlight.slug}`}
         ogImage={spotlight.feature_image}
         structuredData={productSchema}
         pageType="product"
