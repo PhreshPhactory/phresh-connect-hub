@@ -141,7 +141,8 @@ const Layout = () => {
   }, []);
 
   const sharePath = location.pathname === '/' ? '/cultureandcommerce' : location.pathname;
-  const currentUrl = `https://phreshphactory.com${sharePath}`;
+  const siteOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://phreshphactory.com';
+  const currentUrl = `${siteOrigin}${sharePath}`;
   const pageTitle = sharePath === '/cultureandcommerce'
     ? 'Culture & Commerce | Phresh Phactory, Inc.'
     : (document.title || 'Phresh Phactory');
