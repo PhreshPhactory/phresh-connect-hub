@@ -4,7 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Calendar, Youtube, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Youtube, ExternalLink } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 
 import RelatedBrands from '@/components/RelatedBrands';
@@ -197,16 +197,6 @@ const ProductSpotlight = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
               {spotlight.title}
             </h1>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Calendar className="w-4 h-4" />
-              <time dateTime={spotlight.created_at}>
-                {new Date(spotlight.created_at).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </time>
-            </div>
           </header>
 
           {/* YouTube Video */}
