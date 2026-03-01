@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import ChatWidget from '@/components/ChatWidget';
 import AnimationFallback from '@/components/AnimationFallback';
+import SocialShareButtons from '@/components/SocialShareButtons';
 
 const Layout = () => {
   const location = useLocation();
@@ -139,6 +140,9 @@ const Layout = () => {
 
   }, []);
 
+  const currentUrl = `https://phreshphactory.com${location.pathname}`;
+  const pageTitle = document.title || 'Phresh Phactory';
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <ScrollToTop />
@@ -146,6 +150,10 @@ const Layout = () => {
       <main className="pt-20 md:pt-24 min-h-screen bg-background text-foreground">
         <Outlet />
       </main>
+      <div className="flex items-center justify-center gap-3 py-6 border-t border-border bg-muted/30">
+        <span className="text-sm text-muted-foreground uppercase tracking-widest">Share this page</span>
+        <SocialShareButtons url={currentUrl} title={pageTitle} />
+      </div>
       <Footer />
       <ChatWidget />
       <AnimationFallback />

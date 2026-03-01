@@ -102,7 +102,9 @@ const Footer = () => {
         <div className="container-custom py-16 lg:py-20">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">
-              Culture and Commerce
+              <Link to="/cultureandcommerce" className="hover:text-tertiary transition-colors duration-300">
+                Culture and Commerce
+              </Link>
             </h3>
             <p className="text-primary-foreground/80 text-lg lg:text-xl leading-relaxed mb-8">
               Receive a curated selection of Afro-descendant created products, delivered directly to your inbox.
