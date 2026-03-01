@@ -9,21 +9,21 @@ interface SocialShareButtonsProps {
 }
 
 const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({ url, title, className = '' }) => {
-  const canonicalHref = typeof document !== 'undefined'
-    ? document.querySelector('link[rel="canonical"]')?.getAttribute('href')
-    : null;
+  const browserOrigin = typeof window !== 'undefined' ? window.location.origin : 'https://phreshphactory.com';
+  const browserPath = typeof window !== 'undefined' ? window.location.pathname : '';
 
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
-  const fallbackPath = currentPath === '/' ? '/cultureandcommerce' : currentPath;
-  const fallbackUrl = `https://phreshphactory.com${fallbackPath}`;
+  let pathFromProp = '';
+  if (!browserPath && url) {
+    try {
+      pathFromProp = new URL(url).pathname;
+    } catch {
+      pathFromProp = '';
+    }
+  }
 
-  const resolvedShareUrl = canonicalHref?.startsWith('http')
-    ? canonicalHref
-    : (url || fallbackUrl);
-
-  const shareUrl = resolvedShareUrl === 'https://phreshphactory.com/'
-    ? 'https://phreshphactory.com/cultureandcommerce'
-    : resolvedShareUrl;
+  const preferredPath = browserPath || pathFromProp || '/';
+  const normalizedPath = preferredPath === '/' ? '/cultureandcommerce' : preferredPath;
+  const shareUrl = `${browserOrigin}${normalizedPath}`;
 
   const shareMessage = `I think you'll find this interesting — Culture & Commerce celebrates modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know. Check it out: ${shareUrl}`;
   const encodedMessage = encodeURIComponent(shareMessage);
