@@ -56,7 +56,7 @@ const Footer = () => {
 
         toast({
           title: "You're in!",
-          description: "Welcome to The Product Digest. Check your inbox!",
+          description: "Welcome to Culture and Commerce. Check your inbox!",
         });
         setEmail('');
       }
