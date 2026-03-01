@@ -154,6 +154,7 @@ const NewsletterEditions = () => {
         description="Celebrating modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know."
         keywords="Afro-descendant brands, Black-owned fashion, culture and commerce, visionary designers, diaspora commerce, Phresh Phactory"
         canonicalUrl="https://phreshphactory.com/cultureandcommerce"
+        ogImage={editions[0]?.cover_image || undefined}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "CollectionPage",

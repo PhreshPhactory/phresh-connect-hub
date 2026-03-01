@@ -140,8 +140,11 @@ const Layout = () => {
 
   }, []);
 
-  const currentUrl = `https://phreshphactory.com${location.pathname}`;
-  const pageTitle = document.title || 'Phresh Phactory';
+  const sharePath = location.pathname === '/' ? '/cultureandcommerce' : location.pathname;
+  const currentUrl = `https://phreshphactory.com${sharePath}`;
+  const pageTitle = sharePath === '/cultureandcommerce'
+    ? 'Culture & Commerce | Phresh Phactory, Inc.'
+    : (document.title || 'Phresh Phactory');
 
   return (
     <div className="min-h-screen bg-background text-foreground">
