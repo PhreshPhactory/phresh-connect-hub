@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import NewsletterForm from '@/components/NewsletterForm';
 import OptimizedImage from '@/components/OptimizedImage';
+import SEOHead from '@/components/SEOHead';
 
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -105,7 +106,18 @@ const BlogPost = () => {
     );
   }
 
+  const articleUrl = `https://phreshphactory.com/growthnotes/${post.slug}`;
+
   return (
+    <>
+      <SEOHead
+        title={`${post.title} | Growth Notes`}
+        description={post.excerpt || `Read ${post.title} on Growth Notes by Phresh Phactory, Inc.`}
+        ogImage={post.feature_image || undefined}
+        canonicalUrl={articleUrl}
+        pageType="article"
+        articleAuthor="Phresh Phactory, Inc."
+      />
     <div className="min-h-screen bg-white">
       <article className="max-w-4xl mx-auto px-4 py-12">
         {/* Hero Image */}
@@ -176,6 +188,7 @@ const BlogPost = () => {
         />
       </div>
     </div>
+    </>
   );
 };
 

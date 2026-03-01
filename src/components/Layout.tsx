@@ -140,7 +140,7 @@ const Layout = () => {
 
   }, []);
 
-  const currentUrl = `https://phreshphactory.co${location.pathname}`;
+  const currentUrl = `https://phreshphactory.com${location.pathname}`;
   const pageTitle = document.title || 'Phresh Phactory';
 
   return (
