@@ -3,7 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Play, ShoppingBag } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
-import SocialShareButtons from '@/components/SocialShareButtons';
+
 import { Link } from 'react-router-dom';
 
 interface ProductSpotlight {
@@ -167,7 +167,7 @@ const Compro = () => {
                       <p className="text-xs text-muted-foreground line-clamp-2">
                         {item.excerpt || "Haz clic para descubrir"}
                       </p>
-                      <SocialShareButtons url={`https://phreshphactory.com/shop/${item.slug}`} title={item.title} className="mt-1" />
+                      
                       
                       {/* Shop Button */}
                       {shopLink && (
