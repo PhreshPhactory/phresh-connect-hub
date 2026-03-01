@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Copy, Check } from 'lucide-react';
+import { Mail, Copy } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface SocialShareButtonsProps {
@@ -9,9 +9,25 @@ interface SocialShareButtonsProps {
 }
 
 const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({ url, title, className = '' }) => {
-  const shareMessage = `I think you'll find this interesting — Culture & Commerce celebrates modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know. Check it out: ${url}`;
+  const canonicalHref = typeof document !== 'undefined'
+    ? document.querySelector('link[rel="canonical"]')?.getAttribute('href')
+    : null;
+
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+  const fallbackPath = currentPath === '/' ? '/cultureandcommerce' : currentPath;
+  const fallbackUrl = `https://phreshphactory.com${fallbackPath}`;
+
+  const resolvedShareUrl = canonicalHref?.startsWith('http')
+    ? canonicalHref
+    : (url || fallbackUrl);
+
+  const shareUrl = resolvedShareUrl === 'https://phreshphactory.com/'
+    ? 'https://phreshphactory.com/cultureandcommerce'
+    : resolvedShareUrl;
+
+  const shareMessage = `I think you'll find this interesting — Culture & Commerce celebrates modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know. Check it out: ${shareUrl}`;
   const encodedMessage = encodeURIComponent(shareMessage);
-  const encodedUrl = encodeURIComponent(url);
+  const encodedUrl = encodeURIComponent(shareUrl);
   const encodedEmailSubject = encodeURIComponent(title);
 
   const shareLinks = {
