@@ -127,7 +127,7 @@ const ExitIntentPopup = () => {
           <div className="mx-auto mb-3 w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center">
             <Gift className="w-7 h-7 text-primary" />
           </div>
-          <CardTitle className="text-2xl font-bold">The Product Digest</CardTitle>
+          <CardTitle className="text-2xl font-bold">Culture and Commerce</CardTitle>
           <CardDescription className="text-base">
             Get curated Afro-descendant brands, gifts & hidden gems delivered weekly. No spam, just products worth knowing about.
           </CardDescription>

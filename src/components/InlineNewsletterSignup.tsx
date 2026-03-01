@@ -42,7 +42,7 @@ const InlineNewsletterSignup = ({
       } else {
         toast({
           title: "You're in! 🎉",
-          description: "Welcome to The Product Digest.",
+          description: "Welcome to Culture and Commerce.",
         });
         setIsSuccess(true);
       }
@@ -95,7 +95,7 @@ const InlineNewsletterSignup = ({
       <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl p-6 md:p-8 border border-primary/10">
         <div className="max-w-xl mx-auto text-center">
           <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-            The Product Digest
+             Culture and Commerce
           </h3>
           <p className="text-muted-foreground mb-6">
             Curated Afro-descendant created brands, gift ideas & hidden gems, delivered weekly.
@@ -140,7 +140,7 @@ const InlineNewsletterSignup = ({
           <Mail className="w-5 h-5 text-primary" />
         </div>
         <div className="flex-1">
-          <h4 className="font-semibold text-foreground mb-1">Get The Product Digest</h4>
+          <h4 className="font-semibold text-foreground mb-1">Get Culture and Commerce</h4>
           <p className="text-sm text-muted-foreground mb-4">
             Weekly picks of Afro-descendant created brands you'll actually want to shop.
           </p>
