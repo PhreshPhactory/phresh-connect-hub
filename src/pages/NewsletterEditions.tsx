@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import club7Cover from '@/assets/club7-cover.png';
+
 
 interface Edition {
   id: string;
@@ -17,18 +17,6 @@ interface Edition {
   featured_creator: string | null;
 }
 
-// Fallback for the initial Club Seven card if not yet in DB
-const FALLBACK_EDITIONS: Edition[] = [
-  {
-    id: 'club-seven-menswear-fallback',
-    title: 'Club Seven Menswear',
-    subtitle: 'What happened when I hosted Club Seven Menswear on Phresh Phactory TV.',
-    slug: 'club-seven-menswear',
-    cover_image: club7Cover,
-    published_at: '2026-02-24T00:00:00Z',
-    featured_creator: 'Alex Gede ♥ Club Seven Menswear',
-  },
-];
 
 // Modern Afro-descendant creators and their brands
 const CREATORS = [
@@ -138,7 +126,7 @@ const Shelf: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const NewsletterEditions = () => {
-  const [editions, setEditions] = useState<Edition[]>(FALLBACK_EDITIONS);
+  const [editions, setEditions] = useState<Edition[]>([]);
 
   useEffect(() => {
     const fetchEditions = async () => {
@@ -149,15 +137,7 @@ const NewsletterEditions = () => {
         .order('published_at', { ascending: false });
 
       if (data && data.length > 0) {
-        // Merge cover images from fallbacks when DB entry has none
-        const merged = data.map((d: Edition) => {
-          if (!d.cover_image) {
-            const fallback = FALLBACK_EDITIONS.find(f => f.slug === d.slug);
-            if (fallback?.cover_image) return { ...d, cover_image: fallback.cover_image };
-          }
-          return d;
-        });
-        setEditions(merged);
+        setEditions(data);
       }
     };
     fetchEditions();
