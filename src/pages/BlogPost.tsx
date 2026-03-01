@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import NewsletterForm from '@/components/NewsletterForm';
 import OptimizedImage from '@/components/OptimizedImage';
-import SocialShareButtons from '@/components/SocialShareButtons';
+
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { sanitizeHTML } from '@/utils/security';
@@ -126,9 +126,6 @@ const BlogPost = () => {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
           <p className="text-xl text-muted-foreground">{post.excerpt}</p>
-          <div className="mt-4">
-            <SocialShareButtons url={`https://phreshphactory.com/growthnotes/${post.slug}`} title={post.title} />
-          </div>
         </header>
 
         {/* Article Content */}
@@ -153,10 +150,6 @@ const BlogPost = () => {
         </section>
 
         {/* Share & Back */}
-        <div className="flex flex-col items-center gap-4 mb-8">
-          <p className="text-sm text-muted-foreground uppercase tracking-widest">Share this article</p>
-          <SocialShareButtons url={`https://phreshphactory.com/growthnotes/${post.slug}`} title={post.title} />
-        </div>
         <div className="text-center">
           <Link 
             to="/growthnotes" 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEOHead from '@/components/SEOHead';
-import SocialShareButtons from '@/components/SocialShareButtons';
+
 import { supabase } from '@/integrations/supabase/client';
 import { sanitizeHTML } from '@/utils/security';
 import { ArrowLeft } from 'lucide-react';
@@ -117,9 +117,6 @@ const NewsletterEditionPage = () => {
               Featuring: {edition.featured_creator}
             </p>
           )}
-          <div className="mt-8 flex justify-center">
-            <SocialShareButtons url={articleUrl} title={edition.title} className="text-white" />
-          </div>
         </div>
 
         {/* Content */}
@@ -143,8 +140,6 @@ const NewsletterEditionPage = () => {
 
           {/* Share & Back */}
           <div className="mt-16 pt-8 border-t border-white/10 flex flex-col items-center gap-6">
-            <p className="text-white/60 text-sm uppercase tracking-widest">Share this article</p>
-            <SocialShareButtons url={articleUrl} title={edition.title} className="text-white" />
             <Link
               to="/cultureandcommerce"
               className="inline-flex items-center gap-2 text-[#d8b35c] hover:text-[#f1e1b0] font-medium transition-colors mt-4"
