@@ -9,7 +9,7 @@ interface SocialShareButtonsProps {
 }
 
 const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({ url, title, className = '' }) => {
-  const shareMessage = `You would find this very interesting. Culture & Commerce celebrates modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know. Check this one out: ${url}`;
+  const shareMessage = `I think you'll find this interesting — Culture & Commerce celebrates modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know. Check it out: ${url}`;
   const encodedMessage = encodeURIComponent(shareMessage);
   const encodedUrl = encodeURIComponent(url);
   const encodedEmailSubject = encodeURIComponent(title);
@@ -17,7 +17,7 @@ const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({ url, title, cla
   const shareLinks = {
     email: `mailto:?subject=${encodedEmailSubject}&body=${encodedMessage}`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedMessage}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
   };
 
   const handleCopyLink = async () => {
