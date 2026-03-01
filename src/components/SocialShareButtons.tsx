@@ -9,14 +9,16 @@ interface SocialShareButtonsProps {
 
 const SocialShareButtons: React.FC<SocialShareButtonsProps> = ({ url, title, className = '' }) => {
   const encodedUrl = encodeURIComponent(url);
-  const encodedTitle = encodeURIComponent(title);
+  const shareMessage = `You would find this very interesting. Culture & Commerce celebrates modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know. Check this one out: ${url}`;
+  const encodedMessage = encodeURIComponent(shareMessage);
+  const encodedEmailSubject = encodeURIComponent(title);
 
   const shareLinks = {
-    email: `mailto:?subject=${encodedTitle}&body=Check this out: ${encodedUrl}`,
+    email: `mailto:?subject=${encodedEmailSubject}&body=${encodedMessage}`,
     instagram: `https://www.instagram.com/phreshphactorytv`,
     tiktok: `https://www.tiktok.com/@phreshphactorytv`,
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedMessage}`,
   };
 
   return (
