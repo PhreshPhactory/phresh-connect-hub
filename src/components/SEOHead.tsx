@@ -26,8 +26,39 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   modifiedDate,
   pageType = 'website'
 }) => {
+  const defaultSiteUrl = 'https://phreshphactory.com';
+  const siteOrigin = typeof window !== 'undefined' ? window.location.origin : defaultSiteUrl;
+
+  const toAbsoluteUrl = (value: string) => {
+    if (!value) return value;
+    if (/^https?:\/\//i.test(value)) return value;
+    return `${siteOrigin}${value.startsWith('/') ? value : `/${value}`}`;
+  };
+
+  const toCrawlerFriendlySocialImage = (value: string) => {
+    const absoluteValue = toAbsoluteUrl(value);
+
+    try {
+      const parsed = new URL(absoluteValue);
+      const objectPrefix = '/storage/v1/object/public/';
+      const objectIndex = parsed.pathname.indexOf(objectPrefix);
+
+      if (objectIndex === -1) return absoluteValue;
+
+      const bucketAndPath = parsed.pathname.slice(objectIndex + objectPrefix.length);
+      if (!bucketAndPath) return absoluteValue;
+
+      return `${parsed.origin}/storage/v1/render/image/public/${bucketAndPath}?width=1200&height=630&resize=cover&quality=90`;
+    } catch {
+      return absoluteValue;
+    }
+  };
+
   const fullTitle = title.includes('Phresh Phactory') ? title : `${title} | Phresh Phactory`;
-  const fullCanonicalUrl = canonicalUrl || (typeof window !== 'undefined' ? `https://phreshphactory.com${window.location.pathname}` : 'https://phreshphactory.com');
+  const fullCanonicalUrl = canonicalUrl
+    ? toAbsoluteUrl(canonicalUrl)
+    : (typeof window !== 'undefined' ? `${window.location.origin}${window.location.pathname}` : defaultSiteUrl);
+  const resolvedOgImage = toCrawlerFriendlySocialImage(ogImage);
   
   const defaultStructuredData = {
     "@context": "https://schema.org",
@@ -190,7 +221,8 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:site_name" content="Phresh Phactory" />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={resolvedOgImage} />
+      <meta property="og:image:secure_url" content={resolvedOgImage} />
       <meta property="og:image:alt" content={`${title} - Phresh Phactory`} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
@@ -203,17 +235,17 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta name="twitter:creator" content="@phreshphactory" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={resolvedOgImage} />
       <meta name="twitter:image:alt" content={`${title} - Phresh Phactory`} />
       
       {/* Article-specific meta tags */}
       {pageType === 'article' && articleAuthor && (
         <>
-          <meta name="article:author" content={articleAuthor} />
-          {publishDate && <meta name="article:published_time" content={publishDate} />}
-          {modifiedDate && <meta name="article:modified_time" content={modifiedDate} />}
-          <meta name="article:section" content="Business" />
-          <meta name="article:tag" content={keywords} />
+          <meta property="article:author" content={articleAuthor} />
+          {publishDate && <meta property="article:published_time" content={publishDate} />}
+          {modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+          <meta property="article:section" content="Business" />
+          <meta property="article:tag" content={keywords} />
         </>
       )}
       
