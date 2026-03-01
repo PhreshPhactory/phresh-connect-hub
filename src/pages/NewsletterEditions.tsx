@@ -243,18 +243,18 @@ const NewsletterEditions = () => {
           >
             Celebrating modern Afro-descendant created brands while spotlighting the next wave of visionaries you need to know.
           </motion.p>
-          <div className="mt-6 flex justify-center">
-            <SocialShareButtons url="https://phreshphactory.com/cultureandcommerce" title="Culture & Commerce by Phresh Phactory" />
-          </div>
         </section>
 
         {/* Shelf */}
-        <section className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 pb-20">
+        <section className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 pb-6">
           <Shelf>
             {editions.map((edition) => (
               <EditionCard key={edition.id} edition={edition} />
             ))}
           </Shelf>
+          <div className="flex justify-center mt-2">
+            <SocialShareButtons url="https://phreshphactory.com/cultureandcommerce" title="Culture & Commerce by Phresh Phactory" />
+          </div>
         </section>
 
         {/* SEO-visible visionary list (hidden visually, readable by crawlers) */}
