@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
-import SocialShareButtons from '@/components/SocialShareButtons';
+
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -252,9 +252,6 @@ const NewsletterEditions = () => {
               <EditionCard key={edition.id} edition={edition} />
             ))}
           </Shelf>
-          <div className="flex justify-center mt-2">
-            <SocialShareButtons url="https://phreshphactory.com/cultureandcommerce" title="Culture & Commerce by Phresh Phactory" />
-          </div>
         </section>
 
         {/* SEO-visible visionary list (hidden visually, readable by crawlers) */}
