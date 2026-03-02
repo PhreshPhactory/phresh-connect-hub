@@ -82,7 +82,7 @@ const Blog = () => {
       <section className="bg-background py-15 md:py-15">
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Strategic Insights Hub</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Phresh Phactory : Growth Notes.</h1>
             <p className="text-xl mb-8 text-muted-foreground">
               Thought leadership on transformation, global talent excellence, and building high-performance systems.
             </p>
