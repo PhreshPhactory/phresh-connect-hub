@@ -23,20 +23,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
   return (
     <article className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-border hover-lift animate-fade-in">
       <Link to={`/growthnotes/${slug}`} className="block">
-        <div className="relative w-full h-[240px] overflow-hidden bg-muted/50">
+        <div className="relative w-full overflow-hidden bg-muted/50">
           <img
             src={image}
             alt={title}
-            className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+            className="w-full h-auto object-cover object-center transition-transform duration-300 hover:scale-105"
             loading="lazy"
-            style={{ 
-              width: '100%',
-              height: '100%',
-              minHeight: '240px',
-              maxHeight: '240px',
-              objectFit: 'cover',
-              objectPosition: 'center center'
-            }}
             onError={(e) => {
               const target = e.currentTarget;
               target.src = '/placeholder.svg';
