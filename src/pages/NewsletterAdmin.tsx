@@ -11,7 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Search, Loader2, ArrowLeft, ArrowRight, Send, Users, Mail, RefreshCw, Eye, Edit3, Check, TestTube, Filter, Plus, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Search, Loader2, ArrowLeft, ArrowRight, Send, Users, Mail, RefreshCw, Eye, Edit3, Check, TestTube, Filter, Plus, X, ChevronDown, ChevronUp, History, RotateCcw } from 'lucide-react';
+import { format } from 'date-fns';
 import SEOHead from '@/components/SEOHead';
 
 interface PressContact {
@@ -37,6 +38,16 @@ interface ResendTemplate {
   id: string;
   name: string;
   created_at: string;
+}
+
+interface BroadcastLog {
+  id: string;
+  subject: string;
+  template_id: string | null;
+  recipient_emails: string[];
+  recipient_count: number;
+  sent_at: string;
+  notes: string | null;
 }
 
 const STEPS = [
@@ -79,6 +90,8 @@ export default function NewsletterAdmin() {
   const [isSending, setIsSending] = useState(false);
   const [isSendingTest, setIsSendingTest] = useState(false);
   const [sendStatus, setSendStatus] = useState<'ready' | 'sending' | 'sent' | 'failed'>('ready');
+  const [broadcastLogs, setBroadcastLogs] = useState<BroadcastLog[]>([]);
+  const [showHistory, setShowHistory] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) navigate('/auth');
@@ -88,6 +101,7 @@ export default function NewsletterAdmin() {
     if (user) {
       fetchContacts();
       fetchTemplates();
+      fetchBroadcastLogs();
     }
   }, [user]);
 
@@ -138,6 +152,33 @@ export default function NewsletterAdmin() {
     } finally {
       setTemplatesLoading(false);
     }
+  };
+
+  const fetchBroadcastLogs = async () => {
+    try {
+      const { data, error } = await (supabase as any)
+        .from('broadcast_logs')
+        .select('*')
+        .order('sent_at', { ascending: false })
+        .limit(20);
+      if (error) throw error;
+      setBroadcastLogs(data || []);
+    } catch (error) {
+      console.error('Error fetching broadcast logs:', error);
+    }
+  };
+
+  const loadRecipientsFromLog = (log: BroadcastLog) => {
+    // Find contacts matching the logged emails
+    const emailSet = new Set(log.recipient_emails.map(e => e.toLowerCase()));
+    const matchingIds = new Set(contacts.filter(c => emailSet.has(c.email.toLowerCase())).map(c => c.id));
+    setSelectedIds(matchingIds);
+    setBroadcastSubject(log.subject);
+    setStep(0);
+    toast({
+      title: 'Recipients loaded',
+      description: `${matchingIds.size} of ${log.recipient_count} original contacts found and selected.`,
+    });
   };
 
   const fetchTemplateHtml = async (templateId: string) => {
@@ -250,6 +291,20 @@ export default function NewsletterAdmin() {
       if (error) throw error;
       setSendStatus('sent');
       toast({ title: '✅ Newsletter sent!', description: `Delivered to ${recipients.length} contacts.` });
+
+      // Log the broadcast for history
+      try {
+        await (supabase as any).from('broadcast_logs').insert({
+          subject: broadcastSubject,
+          template_id: selectedTemplateId || null,
+          recipient_emails: recipients,
+          recipient_count: recipients.length,
+          sent_by: user?.id,
+        });
+        fetchBroadcastLogs();
+      } catch (logErr) {
+        console.error('Failed to log broadcast:', logErr);
+      }
     } catch (err: any) {
       setSendStatus('failed');
       toast({ title: 'Send failed', description: err.message || 'Unknown error', variant: 'destructive' });
@@ -330,6 +385,45 @@ export default function NewsletterAdmin() {
         </div>
 
         <div className="max-w-6xl mx-auto p-6">
+          {/* Broadcast History */}
+          {step === 0 && broadcastLogs.length > 0 && (
+            <Card className="mb-6 border-muted">
+              <CardContent className="py-3 px-4">
+                <button
+                  onClick={() => setShowHistory(!showHistory)}
+                  className="flex items-center gap-2 w-full text-left"
+                >
+                  <History className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm font-semibold">Past Broadcasts ({broadcastLogs.length})</span>
+                  {showHistory ? <ChevronUp className="w-4 h-4 ml-auto" /> : <ChevronDown className="w-4 h-4 ml-auto" />}
+                </button>
+                {showHistory && (
+                  <div className="mt-3 space-y-2 max-h-[300px] overflow-y-auto">
+                    {broadcastLogs.map((log) => (
+                      <div key={log.id} className="flex items-center justify-between py-2 px-3 rounded-md bg-muted/50 text-sm">
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium truncate">{log.subject}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {format(new Date(log.sent_at), 'MMM d, yyyy h:mm a')} · {log.recipient_count} recipients
+                          </p>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => loadRecipientsFromLog(log)}
+                          className="ml-3 shrink-0"
+                        >
+                          <RotateCcw className="w-3 h-3 mr-1" />
+                          Resend to same list
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
           {/* STEP 1: Select Contacts */}
           {step === 0 && (
             <div className="space-y-4">
