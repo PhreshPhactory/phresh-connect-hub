@@ -235,6 +235,39 @@ export type Database = {
         }
         Relationships: []
       }
+      broadcast_logs: {
+        Row: {
+          id: string
+          notes: string | null
+          recipient_count: number
+          recipient_emails: string[]
+          sent_at: string
+          sent_by: string | null
+          subject: string
+          template_id: string | null
+        }
+        Insert: {
+          id?: string
+          notes?: string | null
+          recipient_count?: number
+          recipient_emails?: string[]
+          sent_at?: string
+          sent_by?: string | null
+          subject: string
+          template_id?: string | null
+        }
+        Update: {
+          id?: string
+          notes?: string | null
+          recipient_count?: number
+          recipient_emails?: string[]
+          sent_at?: string
+          sent_by?: string | null
+          subject?: string
+          template_id?: string | null
+        }
+        Relationships: []
+      }
       holiday_sprint_applications: {
         Row: {
           affiliate_platform: string | null
