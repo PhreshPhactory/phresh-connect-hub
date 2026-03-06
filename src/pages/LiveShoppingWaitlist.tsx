@@ -73,7 +73,7 @@ const LiveShoppingWaitlist = () => {
       <>
         <SEOHead
           title="Live Shopping Waitlist | Phresh Phactory"
-          description="Join the waitlist for our upcoming live shopping experiences featuring curated Black-owned brands."
+          description="Join the waitlist for our upcoming live shopping experiences featuring curated Afro-descendant diaspora brands."
         />
         <div className="min-h-screen bg-foreground flex items-center justify-center px-4">
           <motion.div
@@ -100,7 +100,7 @@ const LiveShoppingWaitlist = () => {
     <>
       <SEOHead
         title="Live Shopping Waitlist | Phresh Phactory"
-        description="Join the waitlist for our upcoming live shopping experiences featuring curated Black-owned brands."
+        description="Join the waitlist for our upcoming live shopping experiences featuring curated Afro-descendant diaspora brands."
       />
       <div className="min-h-screen bg-foreground">
         {/* Header */}
@@ -126,7 +126,7 @@ const LiveShoppingWaitlist = () => {
             transition={{ delay: 0.2 }}
             className="text-background/50 text-base md:text-lg max-w-md mx-auto font-light leading-relaxed"
           >
-            Curated experiences. Black-owned brands. Real-time discovery.
+            Curated experiences. Afro-descendant diaspora brands. Real-time discovery.
           </motion.p>
         </div>
 
@@ -169,7 +169,7 @@ const LiveShoppingWaitlist = () => {
                        Food & Beverage
                      </h3>
                      <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
-                       Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Black-owned food brands.
+                       Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Afro-descendant diaspora food brands.
                      </p>
                    </div>
                 </motion.button>
