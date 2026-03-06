@@ -228,10 +228,10 @@ const LiveShoppingWaitlist = () => {
                   </span>
                 </div>
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-background mb-3">
-                  Join the Waitlist
+                  Reserve Your Spot
                 </h2>
                 <p className="text-background/40 text-sm font-light">
-                  Be first to know when we go live.
+                  Tell us about your brand. We will follow up with scheduling details.
                 </p>
               </div>
 
