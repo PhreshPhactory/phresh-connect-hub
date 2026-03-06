@@ -331,7 +331,7 @@ const LiveShoppingWaitlist = () => {
                   disabled={submitting}
                   className="w-full h-12 bg-background text-foreground hover:bg-background/90 font-heading tracking-wider uppercase text-sm mt-4"
                 >
-                  {submitting ? "Joining..." : "Join Waitlist"}
+                  {submitting ? "Submitting..." : "Submit Application"}
                 </Button>
               </form>
             </motion.div>
