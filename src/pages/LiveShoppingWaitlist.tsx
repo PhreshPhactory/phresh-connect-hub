@@ -100,7 +100,7 @@ const LiveShoppingWaitlist = () => {
     <>
       <SEOHead
         title="Live Shopping Waitlist | Phresh Phactory"
-        description="Join the waitlist for our upcoming live shopping experiences featuring curated Afro-descendant diaspora brands."
+        description="Apply to showcase your products through our hosted live shopping events for Afro-descendant diaspora brands."
       />
       <div className="min-h-screen bg-foreground">
         {/* Header */}
