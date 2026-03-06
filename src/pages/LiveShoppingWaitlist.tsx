@@ -18,6 +18,9 @@ const LiveShoppingWaitlist = () => {
   const [joinBoth, setJoinBoth] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
+  const [phone, setPhone] = useState("");
+  const [affiliateProgram, setAffiliateProgram] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
