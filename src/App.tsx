@@ -146,6 +146,7 @@ const App = () => {
                       <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
                       <Route path="/DistributionAgreement" element={<DistributionAgreement />} />
                       <Route path="/unsubscribe" element={<Unsubscribe />} />
+                      <Route path="/live-shopping" element={<LiveShoppingWaitlist />} />
                       <Route path="/cultureandcommerce" element={<NewsletterEditions />} />
                       <Route path="/cultureandcommerce/:slug" element={<NewsletterEditionPage />} />
                       <Route path="/newsletter" element={<Navigate to="/cultureandcommerce" replace />} />
