@@ -319,8 +319,8 @@ const LiveShoppingWaitlist = () => {
                     <option value="Afrofiliate" className="bg-foreground text-background">Afrofiliate</option>
                     <option value="Other" className="bg-foreground text-background">Other</option>
                   </select>
+                </div>
 
-                <div className="flex items-center gap-3 pt-1">
                   <Checkbox
                     id="joinBoth"
                     checked={joinBoth}
