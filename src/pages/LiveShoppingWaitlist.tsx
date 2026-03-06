@@ -187,20 +187,17 @@ const LiveShoppingWaitlist = () => {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="flex items-center gap-3 mb-3">
-                      <ShoppingBag className="w-5 h-5 text-background/80" />
-                      <span className="font-heading text-sm tracking-widest uppercase text-background/60">
-                        Category
-                      </span>
-                    </div>
-                    <h2 className="font-heading text-2xl md:text-3xl font-bold text-background mb-2">
-                      General Catalog
-                    </h2>
-                    <p className="text-background/60 text-sm leading-relaxed max-w-xs">
-                      Beauty, wellness, home goods, accessories, and lifestyle products across every category.
-                    </p>
-                  </div>
+                   <div className="absolute bottom-0 left-0 right-0 p-8">
+                     <span className="font-heading text-[10px] tracking-[0.3em] uppercase text-background/40 block mb-3">
+                       Category
+                     </span>
+                     <h3 className="font-heading text-3xl md:text-4xl font-bold text-background mb-3">
+                       General Catalog
+                     </h3>
+                     <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
+                       Beauty, wellness, home goods, accessories, and lifestyle products across every category.
+                     </p>
+                   </div>
                 </motion.button>
               </div>
             </motion.div>
