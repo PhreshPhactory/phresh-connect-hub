@@ -135,8 +135,11 @@ const LiveShoppingWaitlist = () => {
               transition={{ delay: 0.3 }}
               className="max-w-5xl mx-auto px-4 pb-16"
             >
-              <p className="text-center text-background/50 font-heading text-sm tracking-widest uppercase mb-8">
-                What are you interested in?
+              <p className="text-center text-background/70 font-heading text-lg md:text-xl mb-2">
+                Choose your area of interest to sign up
+              </p>
+              <p className="text-center text-background/40 text-sm mb-8">
+                Click a category below to join the waitlist
               </p>
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Food & Beverage Card */}
