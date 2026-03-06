@@ -18,6 +18,9 @@ const LiveShoppingWaitlist = () => {
   const [joinBoth, setJoinBoth] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
+  const [phone, setPhone] = useState("");
+  const [affiliateProgram, setAffiliateProgram] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -38,7 +41,10 @@ const LiveShoppingWaitlist = () => {
       name: name.trim(),
       email: email.trim().toLowerCase(),
       categories,
-    });
+      website: website.trim() || null,
+      phone: phone.trim() || null,
+      affiliate_program: affiliateProgram || null,
+    } as any);
 
     setSubmitting(false);
 
@@ -261,7 +267,59 @@ const LiveShoppingWaitlist = () => {
                     className="bg-transparent border-background/20 text-background placeholder:text-background/30 focus-visible:ring-background/40 h-12"
                   />
                 </div>
-
+                <div>
+                  <label className="block text-background/60 font-heading text-xs tracking-wider uppercase mb-2">
+                    Business Website
+                  </label>
+                  <Input
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    placeholder="https://yourbrand.com"
+                    className="bg-transparent border-background/20 text-background placeholder:text-background/30 focus-visible:ring-background/40 h-12"
+                  />
+                </div>
+                <div>
+                  <label className="block text-background/60 font-heading text-xs tracking-wider uppercase mb-2">
+                    Telephone
+                  </label>
+                  <Input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+1 (555) 000-0000"
+                    className="bg-transparent border-background/20 text-background placeholder:text-background/30 focus-visible:ring-background/40 h-12"
+                  />
+                </div>
+                <div>
+                  <label className="block text-background/60 font-heading text-xs tracking-wider uppercase mb-2">
+                    Do you have an affiliate program?
+                  </label>
+                  <select
+                    value={affiliateProgram}
+                    onChange={(e) => setAffiliateProgram(e.target.value)}
+                    className="flex h-12 w-full rounded-md border border-background/20 bg-transparent px-3 py-2 text-base text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background/40 focus-visible:ring-offset-2 ring-offset-foreground"
+                  >
+                    <option value="" className="bg-foreground text-background">Select your platform...</option>
+                    <option value="none" className="bg-foreground text-background">No, not yet</option>
+                    <option value="Shopify Affiliate & Referral Programs" className="bg-foreground text-background">Shopify Affiliate & Referral Programs</option>
+                    <option value="Impact" className="bg-foreground text-background">Impact</option>
+                    <option value="CJ Affiliate" className="bg-foreground text-background">CJ Affiliate (Commission Junction)</option>
+                    <option value="ShareASale" className="bg-foreground text-background">ShareASale</option>
+                    <option value="Refersion" className="bg-foreground text-background">Refersion</option>
+                    <option value="UpPromote" className="bg-foreground text-background">UpPromote (Shopify)</option>
+                    <option value="GoAffPro" className="bg-foreground text-background">GoAffPro</option>
+                    <option value="Awin" className="bg-foreground text-background">Awin</option>
+                    <option value="Rakuten Advertising" className="bg-foreground text-background">Rakuten Advertising</option>
+                    <option value="Amazon Associates" className="bg-foreground text-background">Amazon Associates</option>
+                    <option value="Pepperjam" className="bg-foreground text-background">Pepperjam</option>
+                    <option value="Skimlinks" className="bg-foreground text-background">Skimlinks</option>
+                    <option value="LTK" className="bg-foreground text-background">LTK (LIKEtoKNOW.it)</option>
+                    <option value="ShopStyle Collective" className="bg-foreground text-background">ShopStyle Collective</option>
+                    <option value="CashBlack" className="bg-foreground text-background">CashBlack</option>
+                    <option value="Afrofiliate" className="bg-foreground text-background">Afrofiliate</option>
+                    <option value="Other" className="bg-foreground text-background">Other</option>
+                  </select>
+                </div>
                 <div className="flex items-center gap-3 pt-1">
                   <Checkbox
                     id="joinBoth"

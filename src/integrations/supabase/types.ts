@@ -345,25 +345,34 @@ export type Database = {
       }
       live_shopping_waitlist: {
         Row: {
+          affiliate_program: string | null
           categories: string[]
           created_at: string
           email: string
           id: string
           name: string
+          phone: string | null
+          website: string | null
         }
         Insert: {
+          affiliate_program?: string | null
           categories?: string[]
           created_at?: string
           email: string
           id?: string
           name: string
+          phone?: string | null
+          website?: string | null
         }
         Update: {
+          affiliate_program?: string | null
           categories?: string[]
           created_at?: string
           email?: string
           id?: string
           name?: string
+          phone?: string | null
+          website?: string | null
         }
         Relationships: []
       }
