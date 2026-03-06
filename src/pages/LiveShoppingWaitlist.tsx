@@ -195,7 +195,7 @@ const LiveShoppingWaitlist = () => {
                        General Catalog
                      </h3>
                      <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
-                       Beauty, wellness, home goods, accessories, and lifestyle products across every category.
+                       Present your beauty, wellness, home, accessories, or lifestyle products to buyers ready to purchase.
                      </p>
                    </div>
                 </motion.button>
