@@ -62,6 +62,7 @@ const SSFInvoiceAdmin = lazy(() => import("@/pages/SSFInvoiceAdmin"));
 const AffiliateNewsletter = lazy(() => import("@/pages/AffiliateNewsletter"));
 const DistributionAgreement = lazy(() => import("@/pages/DistributionAgreement"));
 const Unsubscribe = lazy(() => import("@/pages/Unsubscribe"));
+const LiveShoppingWaitlist = lazy(() => import("@/pages/LiveShoppingWaitlist"));
 const NewsletterEditions = lazy(() => import("@/pages/NewsletterEditions"));
 const NewsletterEditionPage = lazy(() => import("@/pages/NewsletterEditionPage"));
 const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin"));
@@ -145,6 +146,7 @@ const App = () => {
                       <Route path="/holiday-sprint-thank-you" element={<HolidaySprintThankYou />} />
                       <Route path="/DistributionAgreement" element={<DistributionAgreement />} />
                       <Route path="/unsubscribe" element={<Unsubscribe />} />
+                      <Route path="/live-shopping" element={<LiveShoppingWaitlist />} />
                       <Route path="/cultureandcommerce" element={<NewsletterEditions />} />
                       <Route path="/cultureandcommerce/:slug" element={<NewsletterEditionPage />} />
                       <Route path="/newsletter" element={<Navigate to="/cultureandcommerce" replace />} />
