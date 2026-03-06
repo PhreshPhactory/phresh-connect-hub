@@ -41,7 +41,10 @@ const LiveShoppingWaitlist = () => {
       name: name.trim(),
       email: email.trim().toLowerCase(),
       categories,
-    });
+      website: website.trim() || null,
+      phone: phone.trim() || null,
+      affiliate_program: affiliateProgram || null,
+    } as any);
 
     setSubmitting(false);
 
