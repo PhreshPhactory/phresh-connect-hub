@@ -126,7 +126,7 @@ const LiveShoppingWaitlist = () => {
             transition={{ delay: 0.2 }}
             className="text-background/50 text-base md:text-lg max-w-md mx-auto font-light leading-relaxed"
           >
-            Curated experiences. Black-owned brands. Real-time discovery.
+            Curated experiences. Afro-descendant diaspora brands. Real-time discovery.
           </motion.p>
         </div>
 
