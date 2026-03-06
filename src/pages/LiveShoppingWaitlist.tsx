@@ -50,7 +50,7 @@ const LiveShoppingWaitlist = () => {
 
     if (error) {
       if (error.code === "23505") {
-        toast({ title: "You're already on the list!", description: "We'll be in touch soon." });
+        toast({ title: "Application already received", description: "Our team will be in touch soon." });
         setSubmitted(true);
       } else {
         toast({ title: "Something went wrong", description: "Please try again.", variant: "destructive" });
@@ -59,7 +59,7 @@ const LiveShoppingWaitlist = () => {
     }
 
     setSubmitted(true);
-    toast({ title: "You're in!", description: "Welcome to the waitlist." });
+    toast({ title: "Application submitted", description: "Thank you for your interest." });
   };
 
   const categoryLabel = joinBoth
@@ -73,7 +73,7 @@ const LiveShoppingWaitlist = () => {
       <>
         <SEOHead
           title="Live Shopping Waitlist | Phresh Phactory"
-          description="Join the waitlist for our upcoming live shopping experiences featuring curated Afro-descendant diaspora brands."
+          description="Apply to showcase your products through our hosted live shopping events for Afro-descendant diaspora brands."
         />
         <div className="min-h-screen bg-foreground flex items-center justify-center px-4">
           <motion.div
@@ -85,10 +85,10 @@ const LiveShoppingWaitlist = () => {
               <Check className="w-8 h-8 text-foreground" />
             </div>
             <h1 className="font-heading text-3xl md:text-4xl font-bold text-background mb-4">
-              You're on the list.
+              Your spot is reserved.
             </h1>
             <p className="text-background/70 text-lg">
-              We'll notify you when live shopping goes live. Get ready for something special.
+              Our team will review your application and reach out with next steps. Thank you for your interest.
             </p>
           </motion.div>
         </div>
@@ -100,7 +100,7 @@ const LiveShoppingWaitlist = () => {
     <>
       <SEOHead
         title="Live Shopping Waitlist | Phresh Phactory"
-        description="Join the waitlist for our upcoming live shopping experiences featuring curated Afro-descendant diaspora brands."
+        description="Apply to showcase your products through our hosted live shopping events for Afro-descendant diaspora brands."
       />
       <div className="min-h-screen bg-foreground">
         {/* Header */}
@@ -110,7 +110,7 @@ const LiveShoppingWaitlist = () => {
             animate={{ opacity: 1, y: 0 }}
             className="font-heading text-[11px] tracking-[0.4em] uppercase text-background/40 mb-6"
           >
-            Coming Soon
+            Now Accepting Brand Applications
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
@@ -124,9 +124,9 @@ const LiveShoppingWaitlist = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-background/50 text-base md:text-lg max-w-md mx-auto font-light leading-relaxed"
+            className="text-background/50 text-base md:text-lg max-w-lg mx-auto font-light leading-relaxed"
           >
-            Curated experiences. Afro-descendant diaspora brands. Real-time discovery.
+            Showcase your products to engaged audiences through hosted, real-time shopping events. Built exclusively for Afro-descendant diaspora brands and creators.
           </motion.p>
         </div>
 
@@ -142,10 +142,10 @@ const LiveShoppingWaitlist = () => {
               className="max-w-5xl mx-auto px-4 pb-16"
             >
               <h2 className="text-center text-background/80 font-heading text-xl md:text-2xl font-medium mb-2">
-                Choose your category
+                Which category best describes your products?
               </h2>
               <p className="text-center text-background/35 text-xs tracking-wide uppercase mb-10">
-                Select one to join the waitlist
+                Select your category to reserve your spot
               </p>
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Food & Beverage Card */}
@@ -169,7 +169,7 @@ const LiveShoppingWaitlist = () => {
                        Food & Beverage
                      </h3>
                      <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
-                       Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Afro-descendant diaspora food brands.
+                       Feature your artisan snacks, craft beverages, gourmet sauces, or specialty ingredients in front of a curated audience.
                      </p>
                    </div>
                 </motion.button>
@@ -195,7 +195,7 @@ const LiveShoppingWaitlist = () => {
                        General Catalog
                      </h3>
                      <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
-                       Beauty, wellness, home goods, accessories, and lifestyle products across every category.
+                       Present your beauty, wellness, home, accessories, or lifestyle products to buyers ready to purchase.
                      </p>
                    </div>
                 </motion.button>
@@ -228,10 +228,10 @@ const LiveShoppingWaitlist = () => {
                   </span>
                 </div>
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-background mb-3">
-                  Join the Waitlist
+                  Reserve Your Spot
                 </h2>
                 <p className="text-background/40 text-sm font-light">
-                  Be first to know when we go live.
+                  Tell us about your brand. We will follow up with scheduling details.
                 </p>
               </div>
 
@@ -331,7 +331,7 @@ const LiveShoppingWaitlist = () => {
                   disabled={submitting}
                   className="w-full h-12 bg-background text-foreground hover:bg-background/90 font-heading tracking-wider uppercase text-sm mt-4"
                 >
-                  {submitting ? "Joining..." : "Join Waitlist"}
+                  {submitting ? "Submitting..." : "Submit Application"}
                 </Button>
               </form>
             </motion.div>
