@@ -62,6 +62,7 @@ const SSFInvoiceAdmin = lazy(() => import("@/pages/SSFInvoiceAdmin"));
 const AffiliateNewsletter = lazy(() => import("@/pages/AffiliateNewsletter"));
 const DistributionAgreement = lazy(() => import("@/pages/DistributionAgreement"));
 const Unsubscribe = lazy(() => import("@/pages/Unsubscribe"));
+const LiveShoppingWaitlist = lazy(() => import("@/pages/LiveShoppingWaitlist"));
 const NewsletterEditions = lazy(() => import("@/pages/NewsletterEditions"));
 const NewsletterEditionPage = lazy(() => import("@/pages/NewsletterEditionPage"));
 const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin"));
