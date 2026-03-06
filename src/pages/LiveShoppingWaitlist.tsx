@@ -104,11 +104,11 @@ const LiveShoppingWaitlist = () => {
       />
       <div className="min-h-screen bg-foreground">
         {/* Header */}
-        <div className="text-center pt-16 pb-8 px-4">
+        <div className="text-center pt-20 pb-10 px-4">
           <motion.p
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-heading text-sm tracking-[0.3em] uppercase text-background/50 mb-4"
+            className="font-heading text-[11px] tracking-[0.4em] uppercase text-background/40 mb-6"
           >
             Coming Soon
           </motion.p>
@@ -116,7 +116,7 @@ const LiveShoppingWaitlist = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="font-heading text-4xl md:text-6xl font-bold text-background mb-4"
+            className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-background mb-5 leading-[0.9]"
           >
             Live Shopping
           </motion.h1>
@@ -124,7 +124,7 @@ const LiveShoppingWaitlist = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-background/60 text-lg max-w-lg mx-auto"
+            className="text-background/50 text-base md:text-lg max-w-md mx-auto font-light leading-relaxed"
           >
             Curated experiences. Black-owned brands. Real-time discovery.
           </motion.p>
@@ -141,11 +141,11 @@ const LiveShoppingWaitlist = () => {
               transition={{ delay: 0.3 }}
               className="max-w-5xl mx-auto px-4 pb-16"
             >
-              <p className="text-center text-background/70 font-heading text-lg md:text-xl mb-2">
-                Choose your area of interest to sign up
-              </p>
-              <p className="text-center text-background/40 text-sm mb-8">
-                Click a category below to join the waitlist
+              <h2 className="text-center text-background/80 font-heading text-xl md:text-2xl font-medium mb-2">
+                Choose your category
+              </h2>
+              <p className="text-center text-background/35 text-xs tracking-wide uppercase mb-10">
+                Select one to join the waitlist
               </p>
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Food & Beverage Card */}
@@ -161,20 +161,17 @@ const LiveShoppingWaitlist = () => {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Utensils className="w-5 h-5 text-background/80" />
-                      <span className="font-heading text-sm tracking-widest uppercase text-background/60">
-                        Category
-                      </span>
-                    </div>
-                    <h2 className="font-heading text-2xl md:text-3xl font-bold text-background mb-2">
-                      Food & Beverage
-                    </h2>
-                    <p className="text-background/60 text-sm leading-relaxed max-w-xs">
-                      Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Black-owned food brands.
-                    </p>
-                  </div>
+                   <div className="absolute bottom-0 left-0 right-0 p-8">
+                     <span className="font-heading text-[10px] tracking-[0.3em] uppercase text-background/40 block mb-3">
+                       Category
+                     </span>
+                     <h3 className="font-heading text-3xl md:text-4xl font-bold text-background mb-3">
+                       Food & Beverage
+                     </h3>
+                     <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
+                       Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Black-owned food brands.
+                     </p>
+                   </div>
                 </motion.button>
 
                 {/* General Catalog Card */}
@@ -190,20 +187,17 @@ const LiveShoppingWaitlist = () => {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="flex items-center gap-3 mb-3">
-                      <ShoppingBag className="w-5 h-5 text-background/80" />
-                      <span className="font-heading text-sm tracking-widest uppercase text-background/60">
-                        Category
-                      </span>
-                    </div>
-                    <h2 className="font-heading text-2xl md:text-3xl font-bold text-background mb-2">
-                      General Catalog
-                    </h2>
-                    <p className="text-background/60 text-sm leading-relaxed max-w-xs">
-                      Beauty, wellness, home goods, accessories, and lifestyle products across every category.
-                    </p>
-                  </div>
+                   <div className="absolute bottom-0 left-0 right-0 p-8">
+                     <span className="font-heading text-[10px] tracking-[0.3em] uppercase text-background/40 block mb-3">
+                       Category
+                     </span>
+                     <h3 className="font-heading text-3xl md:text-4xl font-bold text-background mb-3">
+                       General Catalog
+                     </h3>
+                     <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
+                       Beauty, wellness, home goods, accessories, and lifestyle products across every category.
+                     </p>
+                   </div>
                 </motion.button>
               </div>
             </motion.div>
@@ -227,16 +221,16 @@ const LiveShoppingWaitlist = () => {
                 Back
               </button>
 
-              <div className="mb-8">
-                <div className="inline-block px-4 py-1.5 rounded-full border border-background/20 mb-4">
-                  <span className="font-heading text-xs tracking-widest uppercase text-background/70">
+              <div className="mb-10">
+                <div className="inline-block px-4 py-1.5 rounded-full border border-background/15 mb-5">
+                  <span className="font-heading text-[10px] tracking-[0.3em] uppercase text-background/60">
                     {categoryLabel}
                   </span>
                 </div>
-                <h2 className="font-heading text-2xl md:text-3xl font-bold text-background mb-2">
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-background mb-3">
                   Join the Waitlist
                 </h2>
-                <p className="text-background/50">
+                <p className="text-background/40 text-sm font-light">
                   Be first to know when we go live.
                 </p>
               </div>
