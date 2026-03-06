@@ -161,20 +161,17 @@ const LiveShoppingWaitlist = () => {
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Utensils className="w-5 h-5 text-background/80" />
-                      <span className="font-heading text-sm tracking-widest uppercase text-background/60">
-                        Category
-                      </span>
-                    </div>
-                    <h2 className="font-heading text-2xl md:text-3xl font-bold text-background mb-2">
-                      Food & Beverage
-                    </h2>
-                    <p className="text-background/60 text-sm leading-relaxed max-w-xs">
-                      Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Black-owned food brands.
-                    </p>
-                  </div>
+                   <div className="absolute bottom-0 left-0 right-0 p-8">
+                     <span className="font-heading text-[10px] tracking-[0.3em] uppercase text-background/40 block mb-3">
+                       Category
+                     </span>
+                     <h3 className="font-heading text-3xl md:text-4xl font-bold text-background mb-3">
+                       Food & Beverage
+                     </h3>
+                     <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
+                       Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Black-owned food brands.
+                     </p>
+                   </div>
                 </motion.button>
 
                 {/* General Catalog Card */}
