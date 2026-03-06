@@ -169,7 +169,7 @@ const LiveShoppingWaitlist = () => {
                        Food & Beverage
                      </h3>
                      <p className="text-background/50 text-sm leading-relaxed max-w-xs font-light">
-                       Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Black-owned food brands.
+                       Artisan snacks, craft drinks, gourmet sauces, and specialty ingredients from Afro-descendant diaspora food brands.
                      </p>
                    </div>
                 </motion.button>
