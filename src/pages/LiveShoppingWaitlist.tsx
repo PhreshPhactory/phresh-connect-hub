@@ -104,11 +104,11 @@ const LiveShoppingWaitlist = () => {
       />
       <div className="min-h-screen bg-foreground">
         {/* Header */}
-        <div className="text-center pt-16 pb-8 px-4">
+        <div className="text-center pt-20 pb-10 px-4">
           <motion.p
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-heading text-sm tracking-[0.3em] uppercase text-background/50 mb-4"
+            className="font-heading text-[11px] tracking-[0.4em] uppercase text-background/40 mb-6"
           >
             Coming Soon
           </motion.p>
@@ -116,7 +116,7 @@ const LiveShoppingWaitlist = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="font-heading text-4xl md:text-6xl font-bold text-background mb-4"
+            className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-background mb-5 leading-[0.9]"
           >
             Live Shopping
           </motion.h1>
@@ -124,7 +124,7 @@ const LiveShoppingWaitlist = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-background/60 text-lg max-w-lg mx-auto"
+            className="text-background/50 text-base md:text-lg max-w-md mx-auto font-light leading-relaxed"
           >
             Curated experiences. Black-owned brands. Real-time discovery.
           </motion.p>
