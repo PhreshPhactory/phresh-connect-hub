@@ -73,7 +73,7 @@ const LiveShoppingWaitlist = () => {
       <>
         <SEOHead
           title="Live Shopping Waitlist | Phresh Phactory"
-          description="Join the waitlist for our upcoming live shopping experiences featuring curated Afro-descendant diaspora brands."
+          description="Apply to showcase your products through our hosted live shopping events for Afro-descendant diaspora brands."
         />
         <div className="min-h-screen bg-foreground flex items-center justify-center px-4">
           <motion.div
@@ -85,10 +85,10 @@ const LiveShoppingWaitlist = () => {
               <Check className="w-8 h-8 text-foreground" />
             </div>
             <h1 className="font-heading text-3xl md:text-4xl font-bold text-background mb-4">
-              You're on the list.
+              Your spot is reserved.
             </h1>
             <p className="text-background/70 text-lg">
-              We'll notify you when live shopping goes live. Get ready for something special.
+              Our team will review your application and reach out with next steps. Thank you for your interest.
             </p>
           </motion.div>
         </div>
