@@ -141,7 +141,6 @@ const LiveShoppingWaitlist = () => {
               <p className="text-center text-background/40 text-sm mb-8">
                 Click a category below to join the waitlist
               </p>
-              </p>
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Food & Beverage Card */}
                 <motion.button
