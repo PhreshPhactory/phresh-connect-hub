@@ -343,6 +343,30 @@ export type Database = {
         }
         Relationships: []
       }
+      live_shopping_waitlist: {
+        Row: {
+          categories: string[]
+          created_at: string
+          email: string
+          id: string
+          name: string
+        }
+        Insert: {
+          categories?: string[]
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+        }
+        Update: {
+          categories?: string[]
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       newsletter_editions: {
         Row: {
           content: string
