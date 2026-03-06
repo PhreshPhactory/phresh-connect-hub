@@ -50,7 +50,7 @@ const LiveShoppingWaitlist = () => {
 
     if (error) {
       if (error.code === "23505") {
-        toast({ title: "You're already on the list!", description: "We'll be in touch soon." });
+        toast({ title: "Application already received", description: "Our team will be in touch soon." });
         setSubmitted(true);
       } else {
         toast({ title: "Something went wrong", description: "Please try again.", variant: "destructive" });
@@ -59,7 +59,7 @@ const LiveShoppingWaitlist = () => {
     }
 
     setSubmitted(true);
-    toast({ title: "You're in!", description: "Welcome to the waitlist." });
+    toast({ title: "Application submitted", description: "Thank you for your interest." });
   };
 
   const categoryLabel = joinBoth
