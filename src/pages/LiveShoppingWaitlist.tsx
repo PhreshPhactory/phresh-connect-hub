@@ -221,16 +221,16 @@ const LiveShoppingWaitlist = () => {
                 Back
               </button>
 
-              <div className="mb-8">
-                <div className="inline-block px-4 py-1.5 rounded-full border border-background/20 mb-4">
-                  <span className="font-heading text-xs tracking-widest uppercase text-background/70">
+              <div className="mb-10">
+                <div className="inline-block px-4 py-1.5 rounded-full border border-background/15 mb-5">
+                  <span className="font-heading text-[10px] tracking-[0.3em] uppercase text-background/60">
                     {categoryLabel}
                   </span>
                 </div>
-                <h2 className="font-heading text-2xl md:text-3xl font-bold text-background mb-2">
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-background mb-3">
                   Join the Waitlist
                 </h2>
-                <p className="text-background/50">
+                <p className="text-background/40 text-sm font-light">
                   Be first to know when we go live.
                 </p>
               </div>
