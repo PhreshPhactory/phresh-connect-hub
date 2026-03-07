@@ -107,11 +107,11 @@ const App = () => {
                 <Suspense fallback={<PageSkeleton />}>
                   <Routes>
                     <Route element={<Layout />}>
-                    <Route path="/" element={<ProductSpotlights />} />
+                    <Route path="/" element={<BusinessHome />} />
                       <Route path="/about" element={<About />} />
-                      <Route path="/startups" element={<BusinessHome />} />
-                      <Route path="/business" element={<Navigate to="/startups" replace />} />
-                      <Route path="/shop" element={<Navigate to="/" replace />} />
+                      <Route path="/startups" element={<Navigate to="/" replace />} />
+                      <Route path="/business" element={<Navigate to="/" replace />} />
+                      <Route path="/shop" element={<ProductSpotlights />} />
                       <Route path="/buyblack" element={<Navigate to="/shop" replace />} />
                       <Route path="/shop/:slug" element={<ProductSpotlight />} />
                       <Route path="/compro" element={<Compro />} />
