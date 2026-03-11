@@ -112,8 +112,7 @@ const LinkInBio = () => {
                 </div>
               </div>
 
-              <h1 className="text-xl font-bold tracking-tight mb-1">Phresh Phactory</h1>
-              <p className="text-xs uppercase tracking-[0.25em] text-white/40 mb-4">Culture × Commerce × Community</p>
+              <p className="text-sm font-semibold tracking-wide text-white/80">Phresh Phactory, Inc.</p>
               
             </motion.div>
 
