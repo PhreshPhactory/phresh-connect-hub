@@ -131,28 +131,41 @@ const LinkInBio = () => {
               </Link>
             </motion.div>
 
-            {/* Social Proof Stats */}
-            <motion.div
-              custom={3}
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-3 gap-3 mb-10"
-            >
-              {[
-                { icon: Tv, label: "Live Shows", value: "Weekly" },
-                { icon: ShoppingBag, label: "Brands Featured", value: "50+" },
-                { icon: Star, label: "Products Sold", value: "1000+" },
-              ].map(({ icon: Icon, label, value }, i) => (
-                <div
-                  key={label}
-                  className="bg-white/5 border border-white/10 rounded-xl p-3 text-center backdrop-blur-sm"
-                >
-                  <Icon className="w-4 h-4 mx-auto mb-1 text-yellow-400/80" />
-                  <p className="text-lg font-black text-white">{value}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-white/40">{label}</p>
+            {/* Key Destinations */}
+            <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="space-y-3 mb-6">
+              <Link
+                to="/cultureandcommerce"
+                onClick={() => trackClick("Culture & Commerce", "/cultureandcommerce")}
+                className="block"
+              >
+                <div className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:scale-[1.01] group">
+                  <div className="bg-gradient-to-br from-yellow-500 to-amber-600 rounded-xl p-3 flex-shrink-0">
+                    <Star className="w-6 h-6 text-black" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-white text-sm">Culture & Commerce</p>
+                    <p className="text-white/50 text-xs">The editorial series spotlighting visionaries</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" />
                 </div>
-              ))}
+              </Link>
+
+              <Link
+                to="/growthnotes"
+                onClick={() => trackClick("Growth Notes", "/growthnotes")}
+                className="block"
+              >
+                <div className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:scale-[1.01] group">
+                  <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl p-3 flex-shrink-0">
+                    <ShoppingBag className="w-6 h-6 text-black" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-white text-sm">Growth Notes</p>
+                    <p className="text-white/50 text-xs">Commerce insights for brand founders</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" />
+                </div>
+              </Link>
             </motion.div>
 
             {/* Watch & Shop */}
