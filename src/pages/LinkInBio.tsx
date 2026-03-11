@@ -104,10 +104,10 @@ const LinkInBio = () => {
               className="text-center mb-10"
             >
               <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-3">
-                We Sell
+                Your Product.
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  Your Product
+                  Our Platform. More Sales.
                 </span>
               </h1>
               <p className="text-white/60 text-sm max-w-xs mx-auto leading-relaxed">
