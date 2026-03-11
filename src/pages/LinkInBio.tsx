@@ -188,46 +188,6 @@ const LinkInBio = () => {
               </Link>
             </motion.div>
 
-            {/* Featured Brands (compact) */}
-            {!loading && brandLinks.length > 0 && (
-              <motion.div custom={5} variants={fadeUp} initial="hidden" animate="visible" className="mb-6">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-3 text-center">Shop the Brands</p>
-                <div className="space-y-2">
-                  {brandLinks.map((link) => (
-                    <a
-                      key={link.id}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackClick(link.name, link.url)}
-                      className="flex items-center justify-between p-3.5 bg-white/5 border border-white/8 rounded-xl hover:bg-white/10 transition-all duration-200 group"
-                    >
-                      <span className="font-semibold text-sm text-white/90">{link.name}</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-white/30 group-hover:text-white/60 transition-colors" />
-                    </a>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-
-            {/* Quick Links */}
-            <motion.div custom={6} variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
-              <div className="flex flex-wrap justify-center gap-2">
-                {[
-                  { name: "About", url: "/about" },
-                  { name: "Services", url: "/services" },
-                ].map((link) => (
-                  <Link
-                    key={link.name}
-                    to={link.url}
-                    onClick={() => trackClick(link.name, link.url)}
-                    className="px-4 py-2 text-xs text-white/50 hover:text-white/80 border border-white/10 hover:border-white/20 rounded-full transition-all duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
 
             {/* Social Icons */}
             <motion.div custom={7} variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
