@@ -217,6 +217,20 @@ const BrandPartnership = () => {
               Apply to Get Featured
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
+            
+            {/* Video */}
+            <div className="mt-12 max-w-3xl mx-auto">
+              <div className="relative w-full rounded-xl overflow-hidden shadow-xl" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  src="https://drive.google.com/file/d/17k5iJaQQrY6HICyanXJKuK7ATDhCnWvc/preview"
+                  title="Phresh Phactory Brand Feature"
+                  className="absolute inset-0 w-full h-full"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
