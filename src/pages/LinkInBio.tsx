@@ -214,9 +214,8 @@ const LinkInBio = () => {
             <motion.div custom={6} variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
               <div className="flex flex-wrap justify-center gap-2">
                 {[
-                  { name: "Culture & Commerce", url: "/cultureandcommerce" },
-                  { name: "Growth Notes", url: "/growthnotes" },
                   { name: "About", url: "/about" },
+                  { name: "Services", url: "/services" },
                 ].map((link) => (
                   <Link
                     key={link.name}
