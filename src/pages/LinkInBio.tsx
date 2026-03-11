@@ -104,14 +104,14 @@ const LinkInBio = () => {
               className="text-center mb-10"
             >
               <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-3">
-                We Put Your Product
+                We Sell
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  In Front of Buyers
+                  Your Product
                 </span>
               </h1>
               <p className="text-white/60 text-sm max-w-xs mx-auto leading-relaxed">
-                Live shopping. Content. Affiliate network.
+                Content. Affiliate network. Live commerce.
                 <br />
                 Built for Afro-descendant created brands.
               </p>
@@ -124,35 +124,48 @@ const LinkInBio = () => {
                 onClick={() => trackClick("Feature Your Brand - CTA", "/brands")}
                 className="block mb-4"
               >
-                <Button className="w-full py-7 text-lg font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black rounded-2xl shadow-[0_0_40px_rgba(234,179,8,0.3)] hover:shadow-[0_0_60px_rgba(234,179,8,0.4)] transition-all duration-300 hover:scale-[1.02]">
-                  <span>Get Your Brand Featured</span>
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                 <Button className="w-full py-7 text-lg font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black rounded-2xl shadow-[0_0_40px_rgba(234,179,8,0.3)] hover:shadow-[0_0_60px_rgba(234,179,8,0.4)] transition-all duration-300 hover:scale-[1.02]">
+                   <span>Get Your Brand Featured</span>
+                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
             </motion.div>
 
-            {/* Social Proof Stats */}
-            <motion.div
-              custom={3}
-              variants={fadeUp}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-3 gap-3 mb-10"
-            >
-              {[
-                { icon: Tv, label: "Live Shows", value: "Weekly" },
-                { icon: ShoppingBag, label: "Brands Featured", value: "50+" },
-                { icon: Star, label: "Products Sold", value: "1000+" },
-              ].map(({ icon: Icon, label, value }, i) => (
-                <div
-                  key={label}
-                  className="bg-white/5 border border-white/10 rounded-xl p-3 text-center backdrop-blur-sm"
-                >
-                  <Icon className="w-4 h-4 mx-auto mb-1 text-yellow-400/80" />
-                  <p className="text-lg font-black text-white">{value}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-white/40">{label}</p>
+            {/* Key Destinations */}
+            <motion.div custom={3} variants={fadeUp} initial="hidden" animate="visible" className="space-y-3 mb-6">
+              <Link
+                to="/cultureandcommerce"
+                onClick={() => trackClick("Culture & Commerce", "/cultureandcommerce")}
+                className="block"
+              >
+                <div className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:scale-[1.01] group">
+                  <div className="bg-gradient-to-br from-yellow-500 to-amber-600 rounded-xl p-3 flex-shrink-0">
+                    <Star className="w-6 h-6 text-black" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-white text-sm">Culture & Commerce</p>
+                    <p className="text-white/50 text-xs">The editorial series spotlighting visionaries</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" />
                 </div>
-              ))}
+              </Link>
+
+              <Link
+                to="/growthnotes"
+                onClick={() => trackClick("Growth Notes", "/growthnotes")}
+                className="block"
+              >
+                <div className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 hover:scale-[1.01] group">
+                  <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl p-3 flex-shrink-0">
+                    <ShoppingBag className="w-6 h-6 text-black" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-bold text-white text-sm">Growth Notes</p>
+                    <p className="text-white/50 text-xs">Commerce insights for brand founders</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" />
+                </div>
+              </Link>
             </motion.div>
 
             {/* Watch & Shop */}
@@ -201,9 +214,8 @@ const LinkInBio = () => {
             <motion.div custom={6} variants={fadeUp} initial="hidden" animate="visible" className="mb-8">
               <div className="flex flex-wrap justify-center gap-2">
                 {[
-                  { name: "Culture & Commerce", url: "/cultureandcommerce" },
-                  { name: "Growth Notes", url: "/growthnotes" },
                   { name: "About", url: "/about" },
+                  { name: "Services", url: "/services" },
                 ].map((link) => (
                   <Link
                     key={link.name}
