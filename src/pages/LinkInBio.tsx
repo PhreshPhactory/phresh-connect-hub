@@ -115,14 +115,6 @@ const LinkInBio = () => {
               <h1 className="text-xl font-bold tracking-tight mb-1">Phresh Phactory</h1>
               <p className="text-xs uppercase tracking-[0.25em] text-white/40 mb-4">Culture × Commerce × Community</p>
               
-              <p className="text-sm text-white/60 max-w-[320px] mx-auto leading-relaxed">
-                Scaling culture into commerce.
-                <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-400 font-semibold">
-                  Strategic leadership, content systems, and sales channels
-                </span>
-                {" "}for Afro-descendant created brands.
-              </p>
             </motion.div>
 
             {/* Links */}
