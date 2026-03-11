@@ -219,8 +219,8 @@ const BrandPartnership = () => {
             </Button>
             
             {/* Video */}
-            <div className="mt-12 max-w-3xl mx-auto">
-              <div className="relative w-full rounded-xl overflow-hidden shadow-xl" style={{ paddingBottom: '56.25%' }}>
+            <div className="mt-12 max-w-sm mx-auto">
+              <div className="relative w-full rounded-xl overflow-hidden shadow-xl" style={{ paddingBottom: '177.78%' }}>
                 <iframe
                   src="https://drive.google.com/file/d/17k5iJaQQrY6HICyanXJKuK7ATDhCnWvc/preview"
                   title="Phresh Phactory Brand Feature"
