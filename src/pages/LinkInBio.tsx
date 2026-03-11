@@ -4,7 +4,7 @@ import { Play, Youtube, Instagram, Grid3x3, ArrowRight, ShoppingBag, Star, Brief
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import kieraPhoto from "@/assets/kiera-linkinbio.jpeg";
+import companyLogo from "@/assets/phresh-phactory-icon.png";
 
 const LinkInBio = () => {
   const trackClick = async (linkName: string, linkUrl: string) => {
@@ -99,27 +99,21 @@ const LinkInBio = () => {
               transition={{ duration: 0.6 }}
               className="text-center mb-8"
             >
-              {/* Photo with gold ring */}
-              <div className="relative w-28 h-28 mx-auto mb-5">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 p-[3px]">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-[#0a0a0a] p-[2px]">
+              {/* Company Logo */}
+              <div className="relative w-36 h-36 mx-auto mb-5">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-yellow-400 via-amber-500 to-yellow-600 p-[3px]">
+                  <div className="w-full h-full rounded-2xl overflow-hidden bg-[#0a0a0a] p-3 flex items-center justify-center">
                     <img
-                      src={kieraPhoto}
-                      alt="Kiera H., Founder of Phresh Phactory"
-                      className="w-full h-full object-cover rounded-full"
+                      src={companyLogo}
+                      alt="Phresh Phactory"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                 </div>
-                {/* Verified badge */}
-                <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center shadow-lg">
-                  <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </div>
               </div>
 
-              <h1 className="text-xl font-bold tracking-tight mb-1">Kiera H.</h1>
-              <p className="text-xs uppercase tracking-[0.25em] text-white/40 mb-4">Founder, Phresh Phactory Inc.</p>
+              <h1 className="text-xl font-bold tracking-tight mb-1">Phresh Phactory</h1>
+              <p className="text-xs uppercase tracking-[0.25em] text-white/40 mb-4">Culture × Commerce × Community</p>
               
               <p className="text-sm text-white/60 max-w-[320px] mx-auto leading-relaxed">
                 Scaling culture into commerce.
