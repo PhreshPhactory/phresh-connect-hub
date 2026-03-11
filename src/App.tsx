@@ -13,6 +13,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import LandingPageLayout from "@/components/LandingPageLayout";
 import { Suspense, lazy, type FC, type ReactNode } from "react";
+import GeoBlocker from "@/components/GeoBlocker";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useScrollAnimations } from '@/hooks/useScrollAnimations';
 
@@ -101,6 +102,7 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <BrowserRouter>
+              <GeoBlocker>
               <ScrollAnimationsProvider>
                 <Toaster />
                 <Sonner />
@@ -163,6 +165,7 @@ const App = () => {
                   </Routes>
                 </Suspense>
               </ScrollAnimationsProvider>
+              </GeoBlocker>
             </BrowserRouter>
           </TooltipProvider>
         </QueryClientProvider>
