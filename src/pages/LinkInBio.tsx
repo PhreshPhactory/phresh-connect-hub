@@ -124,9 +124,9 @@ const LinkInBio = () => {
                 onClick={() => trackClick("Feature Your Brand - CTA", "/brands")}
                 className="block mb-4"
               >
-                <Button className="w-full py-7 text-lg font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black rounded-2xl shadow-[0_0_40px_rgba(234,179,8,0.3)] hover:shadow-[0_0_60px_rgba(234,179,8,0.4)] transition-all duration-300 hover:scale-[1.02]">
-                  <span>Get Your Brand Featured</span>
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                 <Button className="w-full py-7 text-lg font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-black rounded-2xl shadow-[0_0_40px_rgba(234,179,8,0.3)] hover:shadow-[0_0_60px_rgba(234,179,8,0.4)] transition-all duration-300 hover:scale-[1.02]">
+                   <span>Get Your Brand Featured</span>
+                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
             </motion.div>
