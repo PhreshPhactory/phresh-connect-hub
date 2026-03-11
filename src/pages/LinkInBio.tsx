@@ -4,7 +4,7 @@ import { Play, Youtube, Instagram, Grid3x3, ArrowRight, ShoppingBag, Star, Brief
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { motion } from "framer-motion";
-import kieraPhoto from "@/assets/kiera-linkinbio.jpeg";
+import companyLogo from "@/assets/phresh-phactory-icon.png";
 
 const LinkInBio = () => {
   const trackClick = async (linkName: string, linkUrl: string) => {
