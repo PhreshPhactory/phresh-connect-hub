@@ -165,6 +165,7 @@ const App = () => {
                   </Routes>
                 </Suspense>
               </ScrollAnimationsProvider>
+              </GeoBlocker>
             </BrowserRouter>
           </TooltipProvider>
         </QueryClientProvider>
