@@ -104,14 +104,14 @@ const LinkInBio = () => {
               className="text-center mb-10"
             >
               <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-3">
-                We Put Your Product
+                We Sell
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-500">
-                  In Front of Buyers
+                  Your Product
                 </span>
               </h1>
               <p className="text-white/60 text-sm max-w-xs mx-auto leading-relaxed">
-                Live shopping. Content. Affiliate network.
+                Content. Affiliate network. Live commerce.
                 <br />
                 Built for Afro-descendant created brands.
               </p>
