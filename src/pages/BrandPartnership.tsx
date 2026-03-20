@@ -222,10 +222,11 @@ const BrandPartnership = () => {
             <div className="mt-12 max-w-sm mx-auto">
               <div className="relative w-full rounded-xl overflow-hidden shadow-xl" style={{ paddingBottom: '177.78%' }}>
                 <iframe
-                  src="https://drive.google.com/file/d/17k5iJaQQrY6HICyanXJKuK7ATDhCnWvc/preview"
+                  src="https://drive.google.com/file/d/17k5iJaQQrY6HICyanXJKuK7ATDhCnWvc/preview?usp=sharing"
                   title="Phresh Phactory Brand Feature"
                   className="absolute inset-0 w-full h-full"
                   allow="autoplay; encrypted-media"
+                  referrerPolicy="no-referrer"
                   allowFullScreen
                   loading="lazy"
                 />
