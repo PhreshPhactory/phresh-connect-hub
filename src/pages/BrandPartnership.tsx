@@ -220,16 +220,30 @@ const BrandPartnership = () => {
             
             {/* Video */}
             <div className="mt-12 max-w-sm mx-auto">
-              <div className="relative w-full rounded-xl overflow-hidden shadow-xl" style={{ paddingBottom: '177.78%' }}>
-                <iframe
-                  src="https://drive.google.com/file/d/17k5iJaQQrY6HICyanXJKuK7ATDhCnWvc/preview?usp=sharing"
-                  title="Phresh Phactory Brand Feature"
-                  className="absolute inset-0 w-full h-full"
-                  allow="autoplay; encrypted-media"
-                  referrerPolicy="no-referrer"
-                  allowFullScreen
-                  loading="lazy"
-                />
+              <div className="rounded-xl border border-border bg-card p-6 shadow-xl">
+                <div className="relative overflow-hidden rounded-lg bg-muted" style={{ paddingBottom: '177.78%' }}>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      <Video className="h-8 w-8" />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-lg font-semibold text-foreground">Watch the brand feature video</p>
+                      <p className="text-sm text-muted-foreground">
+                        Open the video directly in Google Drive.
+                      </p>
+                    </div>
+                    <Button asChild>
+                      <a
+                        href="https://drive.google.com/file/d/17k5iJaQQrY6HICyanXJKuK7ATDhCnWvc/view?usp=drive_link"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Watch Video
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
