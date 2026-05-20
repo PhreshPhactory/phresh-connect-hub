@@ -303,6 +303,210 @@ export default function DrGreen() {
     }
   };
 
+  const downloadReceipt = () => {
+    const doc = new jsPDF({ unit: "pt", format: "letter" });
+    const pageW = doc.internal.pageSize.getWidth();
+    const pageH = doc.internal.pageSize.getHeight();
+    const margin = 54;
+    const maxW = pageW - margin * 2;
+    let y = margin;
+
+    const ensureSpace = (needed: number) => {
+      if (y + needed > pageH - margin) {
+        doc.addPage();
+        y = margin;
+      }
+    };
+
+    // Header band
+    doc.setFillColor(0, 0, 0);
+    doc.rect(0, 0, pageW, 90, "F");
+    doc.setTextColor(212, 175, 55);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("PHRESH PHACTORY, INC.", margin, 40);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(230, 200, 120);
+    doc.text("Engagement Selection Receipt", margin, 58);
+    doc.text("Ora Lee Smith Cancer Research Foundation", margin, 74);
+    y = 120;
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("Selection Receipt", margin, y);
+    y += 8;
+    doc.setDrawColor(212, 175, 55);
+    doc.setLineWidth(1);
+    doc.line(margin, y, pageW - margin, y);
+    y += 20;
+
+    // Approver info
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("Submitted by", margin, y);
+    y += 14;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    const info = [
+      ["Name", approverName || "—"],
+      ["Date", approverDate || new Date().toISOString().slice(0, 10)],
+      ["Telephone", approverPhone || "—"],
+      ["Email", approverEmail || "—"],
+      ["Billing email", email || "—"],
+      ["Billing mode", billingMode === "subscription" ? "Recurring monthly" : "One-time (this month only)"],
+    ];
+    info.forEach(([k, v]) => {
+      doc.setTextColor(110, 110, 110);
+      doc.text(`${k}:`, margin, y);
+      doc.setTextColor(0, 0, 0);
+      doc.text(String(v), margin + 90, y);
+      y += 14;
+    });
+    y += 8;
+
+    // Line items helper
+    const drawSectionHeading = (label: string) => {
+      ensureSpace(28);
+      doc.setFillColor(245, 240, 225);
+      doc.rect(margin, y - 12, maxW, 20, "F");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.setTextColor(80, 60, 0);
+      doc.text(label.toUpperCase(), margin + 6, y + 2);
+      y += 18;
+      doc.setTextColor(0, 0, 0);
+    };
+
+    const drawLine = (title: string, sub: string, amount: string) => {
+      const titleLines = doc.splitTextToSize(title, maxW - 110);
+      const subLines = sub ? doc.splitTextToSize(sub, maxW - 110) : [];
+      const blockH = 14 * titleLines.length + (subLines.length ? 12 * subLines.length + 2 : 0) + 8;
+      ensureSpace(blockH);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.text(titleLines, margin, y);
+      doc.text(amount, pageW - margin, y, { align: "right" });
+      y += 14 * titleLines.length;
+      if (subLines.length) {
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(90, 90, 90);
+        doc.text(subLines, margin, y);
+        y += 12 * subLines.length;
+        doc.setTextColor(0, 0, 0);
+      }
+      y += 6;
+      doc.setDrawColor(230, 230, 230);
+      doc.line(margin, y, pageW - margin, y);
+      y += 8;
+    };
+
+    // Base
+    drawSectionHeading("Base Strategic Advisory & Talent Floor (included)");
+    drawLine(
+      "Base Monthly Retainer",
+      "Kiera H. advisory, scriptwriting, on-camera talent, digital architecture, volunteer training systems, monthly performance review.",
+      `${formatUSD(BASE_RETAINER_CENTS)}/mo`,
+    );
+    const priorityList = BASE_PRIORITIES.filter((p) => basePriorities.has(p.id));
+    if (priorityList.length) {
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(9);
+      doc.setTextColor(80, 80, 80);
+      ensureSpace(16);
+      doc.text("This month's priorities (no additional charge):", margin, y);
+      y += 12;
+      priorityList.forEach((p) => {
+        const lines = doc.splitTextToSize(`• ${p.title}`, maxW);
+        ensureSpace(12 * lines.length);
+        doc.text(lines, margin, y);
+        y += 12 * lines.length;
+      });
+      doc.setTextColor(0, 0, 0);
+      y += 6;
+    }
+
+    // Premium
+    const premium = PREMIUM_UPGRADES.filter((o) => selected.has(o.id));
+    if (premium.length) {
+      drawSectionHeading("Premium Agency-Managed Add-Ons (Phresh Phactory fully leads)");
+      premium.forEach((o) => {
+        drawLine(`${o.task}: ${o.title}`, `${o.category} — ${o.description}`, `+${formatUSD(o.monthlyAmount)}/mo`);
+      });
+    }
+
+    // MoR
+    if (morSetup || morOps) {
+      drawSectionHeading("Addendum A — Merchant of Record");
+      if (morSetup) drawLine("Upfront Setup Fee (one-time)", "Storefront build, tax/legal infrastructure, payment gateways.", `${formatUSD(MOR_SETUP_CENTS)}`);
+      if (morOps) drawLine("Monthly Operations", "$1,000/week — customer support, web maintenance, platform subscriptions.", `${formatUSD(MOR_MONTHLY_CENTS)}/mo`);
+    }
+
+    // Totals
+    ensureSpace(90);
+    y += 6;
+    doc.setDrawColor(0, 0, 0);
+    doc.setLineWidth(1);
+    doc.line(margin, y, pageW - margin, y);
+    y += 18;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("Monthly Total", margin, y);
+    doc.text(`${formatUSD(monthlyTotal)}/mo`, pageW - margin, y, { align: "right" });
+    y += 16;
+    if (morSetup) {
+      doc.text("One-Time Setup (this checkout)", margin, y);
+      doc.text(`${formatUSD(MOR_SETUP_CENTS)}`, pageW - margin, y, { align: "right" });
+      y += 16;
+    }
+    doc.setFontSize(13);
+    doc.setTextColor(140, 100, 0);
+    doc.text("Due This Checkout", margin, y);
+    doc.text(formatUSD(grandTotalThisCheckout), pageW - margin, y, { align: "right" });
+    doc.setTextColor(0, 0, 0);
+    y += 24;
+
+    // Signature
+    ensureSpace(60);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(110, 110, 110);
+    doc.text("Authorized by (e-signature):", margin, y);
+    y += 18;
+    doc.setFont("times", "italic");
+    doc.setFontSize(18);
+    doc.setTextColor(0, 0, 0);
+    doc.text(approverSignature || "—", margin, y);
+    y += 8;
+    doc.setDrawColor(150, 150, 150);
+    doc.line(margin, y, margin + 260, y);
+    y += 12;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(110, 110, 110);
+    doc.text(
+      `${approverName || "—"} • ${approverDate || new Date().toISOString().slice(0, 10)}`,
+      margin,
+      y,
+    );
+
+    // Footer
+    doc.setFontSize(8);
+    doc.setTextColor(140, 140, 140);
+    doc.text(
+      "This receipt reflects selections only. It is not a paid invoice. Questions: Kiera@PhreshPhactory.co",
+      margin,
+      pageH - 30,
+    );
+    doc.text(`Generated ${new Date().toLocaleString()}`, pageW - margin, pageH - 30, { align: "right" });
+
+    const safeName = (approverName || "OraLee").replace(/[^a-z0-9]+/gi, "_");
+    doc.save(`PhreshPhactory_Receipt_${safeName}_${new Date().toISOString().slice(0, 10)}.pdf`);
+    toast.success("Receipt downloaded.");
+  };
+
   // Group by category
   const grouped = useMemo(() => {
     const map = new Map<string, TaskOption[]>();
