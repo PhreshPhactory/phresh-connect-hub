@@ -226,8 +226,16 @@ export default function DrGreen() {
   const grandTotalThisCheckout = billingMode === "subscription" ? monthlyTotal + oneTimeTotal : monthlyTotal + oneTimeTotal;
 
   const handleCheckout = async () => {
+    if (!approverName.trim() || !approverSignature.trim()) {
+      toast.error("Please complete the approver name and e-signature.");
+      return;
+    }
+    if (!approverEmail || !approverEmail.includes("@")) {
+      toast.error("Please enter the approver's email.");
+      return;
+    }
     if (!email || !email.includes("@")) {
-      toast.error("Please enter Dr. Green's email.");
+      toast.error("Please enter the billing email.");
       return;
     }
     if (selected.size === 0 && !morSetup && !morOps) {
