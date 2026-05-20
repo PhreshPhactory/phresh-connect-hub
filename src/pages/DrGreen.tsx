@@ -134,6 +134,11 @@ export default function DrGreen() {
   const [morOps, setMorOps] = useState(false);
   const [billingMode, setBillingMode] = useState<"one-time" | "subscription">("subscription");
   const [email, setEmail] = useState("");
+  const [approverName, setApproverName] = useState("");
+  const [approverDate, setApproverDate] = useState("");
+  const [approverPhone, setApproverPhone] = useState("");
+  const [approverEmail, setApproverEmail] = useState("");
+  const [approverSignature, setApproverSignature] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Load saved
