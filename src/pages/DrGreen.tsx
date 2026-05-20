@@ -134,6 +134,11 @@ export default function DrGreen() {
   const [morOps, setMorOps] = useState(false);
   const [billingMode, setBillingMode] = useState<"one-time" | "subscription">("subscription");
   const [email, setEmail] = useState("");
+  const [approverName, setApproverName] = useState("");
+  const [approverDate, setApproverDate] = useState("");
+  const [approverPhone, setApproverPhone] = useState("");
+  const [approverEmail, setApproverEmail] = useState("");
+  const [approverSignature, setApproverSignature] = useState("");
   const [loading, setLoading] = useState(false);
 
   // Load saved
@@ -148,6 +153,11 @@ export default function DrGreen() {
         setMorOps(!!s.morOps);
         setBillingMode(s.billingMode || "subscription");
         setEmail(s.email || "");
+        setApproverName(s.approverName || "");
+        setApproverDate(s.approverDate || "");
+        setApproverPhone(s.approverPhone || "");
+        setApproverEmail(s.approverEmail || "");
+        setApproverSignature(s.approverSignature || "");
       }
     } catch {}
   }, []);
@@ -163,9 +173,14 @@ export default function DrGreen() {
         morOps,
         billingMode,
         email,
+        approverName,
+        approverDate,
+        approverPhone,
+        approverEmail,
+        approverSignature,
       })
     );
-  }, [selected, basePriorities, morSetup, morOps, billingMode, email]);
+  }, [selected, basePriorities, morSetup, morOps, billingMode, email, approverName, approverDate, approverPhone, approverEmail, approverSignature]);
 
   const toggleBasePriority = (id: string) => {
     setBasePriorities((prev) => {
@@ -211,8 +226,16 @@ export default function DrGreen() {
   const grandTotalThisCheckout = billingMode === "subscription" ? monthlyTotal + oneTimeTotal : monthlyTotal + oneTimeTotal;
 
   const handleCheckout = async () => {
+    if (!approverName.trim() || !approverSignature.trim()) {
+      toast.error("Please complete the approver name and e-signature.");
+      return;
+    }
+    if (!approverEmail || !approverEmail.includes("@")) {
+      toast.error("Please enter the approver's email.");
+      return;
+    }
     if (!email || !email.includes("@")) {
-      toast.error("Please enter Dr. Green's email.");
+      toast.error("Please enter the billing email.");
       return;
     }
     if (selected.size === 0 && !morSetup && !morOps) {
@@ -307,12 +330,17 @@ export default function DrGreen() {
 
           <div className="mt-6 p-6 rounded-xl bg-white/[0.03] border border-[hsl(43,74%,52%)]/30">
             <p className="text-base leading-relaxed text-white">
-              Dear Dr. Green,
+              Dear Dr. Hadiyah-Nicole Green,
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
               Thank you for taking this next step with us. This page holds everything we discussed —
               the full scope of what Phresh Phactory can build alongside the Ora Lee Smith Cancer Research Foundation,
               and a simple way for you to decide what matters most right now.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-white/70">
+              I fully expect this will be reviewed by your teammate Traci and others on your team. Please share it freely —
+              they are welcome to read, react, and interact with the selections below alongside you. The page saves
+              automatically, so the conversation can move at your pace.
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
               Think of this as your working dashboard, not a final contract. Scroll slowly. Review the agreement below.
@@ -586,6 +614,52 @@ export default function DrGreen() {
               </RadioGroup>
             </div>
 
+            <Separator />
+
+            <div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
+                Approver Details
+              </div>
+              <p className="text-xs text-muted-foreground mb-3">
+                Whoever is completing this request — Dr. Green, Traci, or another team member — please confirm your details below before authorizing.
+              </p>
+              <div className="grid md:grid-cols-2 gap-3">
+                <div>
+                  <Label htmlFor="approverName" className="text-sm">Full name</Label>
+                  <Input id="approverName" value={approverName} onChange={(e) => setApproverName(e.target.value)} placeholder="Jane Doe" className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="approverDate" className="text-sm">Date</Label>
+                  <Input id="approverDate" type="date" value={approverDate} onChange={(e) => setApproverDate(e.target.value)} className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="approverPhone" className="text-sm">Telephone</Label>
+                  <Input id="approverPhone" type="tel" value={approverPhone} onChange={(e) => setApproverPhone(e.target.value)} placeholder="(555) 555-5555" className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="approverEmail" className="text-sm">Email</Label>
+                  <Input id="approverEmail" type="email" value={approverEmail} onChange={(e) => setApproverEmail(e.target.value)} placeholder="you@oralee.org" className="mt-1" />
+                </div>
+                <div className="md:col-span-2">
+                  <Label htmlFor="approverSignature" className="text-sm">E-Signature (type your full name to sign)</Label>
+                  <Input
+                    id="approverSignature"
+                    value={approverSignature}
+                    onChange={(e) => setApproverSignature(e.target.value)}
+                    placeholder="Type your full name"
+                    className="mt-1 font-serif italic text-lg"
+                    style={{ fontFamily: '"Brush Script MT", "Lucida Handwriting", cursive' }}
+                  />
+                  {approverSignature && (
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Approved by <span className="font-medium text-foreground">{approverSignature}</span>
+                      {approverDate ? ` on ${approverDate}` : ""}.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-[1fr_auto] gap-3 items-end">
               <div>
                 <Label htmlFor="email" className="text-sm">Billing email</Label>
@@ -594,7 +668,7 @@ export default function DrGreen() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="dr.green@oralee.org"
+                  placeholder="billing@oralee.org"
                   className="mt-1"
                 />
               </div>
