@@ -606,6 +606,52 @@ export default function DrGreen() {
               </RadioGroup>
             </div>
 
+            <Separator />
+
+            <div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground mb-1">
+                Approver Details
+              </div>
+              <p className="text-xs text-muted-foreground mb-3">
+                Whoever is completing this request — Dr. Green, Traci, or another team member — please confirm your details below before authorizing.
+              </p>
+              <div className="grid md:grid-cols-2 gap-3">
+                <div>
+                  <Label htmlFor="approverName" className="text-sm">Full name</Label>
+                  <Input id="approverName" value={approverName} onChange={(e) => setApproverName(e.target.value)} placeholder="Jane Doe" className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="approverDate" className="text-sm">Date</Label>
+                  <Input id="approverDate" type="date" value={approverDate} onChange={(e) => setApproverDate(e.target.value)} className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="approverPhone" className="text-sm">Telephone</Label>
+                  <Input id="approverPhone" type="tel" value={approverPhone} onChange={(e) => setApproverPhone(e.target.value)} placeholder="(555) 555-5555" className="mt-1" />
+                </div>
+                <div>
+                  <Label htmlFor="approverEmail" className="text-sm">Email</Label>
+                  <Input id="approverEmail" type="email" value={approverEmail} onChange={(e) => setApproverEmail(e.target.value)} placeholder="you@oralee.org" className="mt-1" />
+                </div>
+                <div className="md:col-span-2">
+                  <Label htmlFor="approverSignature" className="text-sm">E-Signature (type your full name to sign)</Label>
+                  <Input
+                    id="approverSignature"
+                    value={approverSignature}
+                    onChange={(e) => setApproverSignature(e.target.value)}
+                    placeholder="Type your full name"
+                    className="mt-1 font-serif italic text-lg"
+                    style={{ fontFamily: '"Brush Script MT", "Lucida Handwriting", cursive' }}
+                  />
+                  {approverSignature && (
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Approved by <span className="font-medium text-foreground">{approverSignature}</span>
+                      {approverDate ? ` on ${approverDate}` : ""}.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-[1fr_auto] gap-3 items-end">
               <div>
                 <Label htmlFor="email" className="text-sm">Billing email</Label>
@@ -614,7 +660,7 @@ export default function DrGreen() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="dr.green@oralee.org"
+                  placeholder="billing@oralee.org"
                   className="mt-1"
                 />
               </div>
