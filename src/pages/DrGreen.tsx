@@ -279,9 +279,29 @@ export default function DrGreen() {
           <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-tight">
             Dr. Green Monthly Engagement Matrix
           </h1>
-          <p className="mt-4 text-muted-foreground max-w-3xl">
-            Select the tracks you want Phresh Phactory to execute this month. Your selections are saved in this browser, so each month you can return, re-prioritize the most urgent tasks, and re-authorize payment, or switch to recurring monthly billing.
-          </p>
+
+          <div className="mt-6 p-6 rounded-xl bg-muted/40 border border-border">
+            <p className="text-base leading-relaxed text-foreground">
+              Dear Dr. Green,
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              Welcome to your private engagement hub. This page was built so you can move at your own pace —
+              choosing the work that matters most to the Ora Lee Smith Cancer Research Foundation each month,
+              without confusion or pressure. Think of it as your monthly priority dashboard.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              Every month, you can return here, select the tracks that are most urgent, and authorize payment
+              — either one month at a time, or on a recurring basis so nothing falls through the cracks.
+              If something can wait until next quarter, simply leave it unchecked. Your selections are saved
+              automatically, so you never have to start from scratch.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              If you have questions at any point, reach out directly to{" "}
+              <a href="mailto:Kiera@PhreshPhactory.co" className="underline underline-offset-4 text-foreground font-medium">
+                Kiera@PhreshPhactory.co
+              </a>.
+            </p>
+          </div>
         </div>
 
         {/* Base */}
