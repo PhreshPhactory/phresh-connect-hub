@@ -114,6 +114,15 @@ const MOR_MONTHLY_CENTS = MOR_WEEKLY_CENTS * 4; // $4,000/mo flat for simplicity
 
 const STORAGE_KEY = "drgreen-selections-v1";
 
+const BASE_PRIORITIES: { id: string; title: string; description: string }[] = [
+  { id: "base-strategic-advisory", title: "Strategic Advisory", description: "Monthly planning sessions with Kiera H., campaign architecture, system blueprints, and priority roadmapping for the Foundation." },
+  { id: "base-content-script", title: "Content & Script Development", description: "Scriptwriting, broadcast outlines, talking points, and narrative strategy for social channels, live events, and institutional outreach." },
+  { id: "base-on-camera", title: "On-Camera Talent", description: "Kiera H. as co-host, moderator, or featured talent for live streams, fundraisers, and media appearances on behalf of the Foundation." },
+  { id: "base-digital-architecture", title: "Digital Architecture Guidance", description: "Subscription funnel design, audience segmentation strategy, and digital product setup recommendations." },
+  { id: "base-volunteer-training", title: "Volunteer Training Systems", description: "Recruitment frameworks, onboarding flows, role assignments, and training modules for your volunteer workforce." },
+  { id: "base-performance-review", title: "Monthly Performance Review", description: "Sprint retrospectives, metrics review, and re-prioritization for the month ahead." },
+];
+
 const formatUSD = (cents: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(cents / 100);
 
