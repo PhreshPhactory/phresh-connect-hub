@@ -302,7 +302,7 @@ export default function DrGreen() {
         <div className="mb-10">
           <Badge variant="outline" className="mb-3 border-[hsl(43,74%,52%)] text-[hsl(43,74%,62%)]">Private • Ora Lee Smith Cancer Research Foundation</Badge>
           <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-white">
-            Dr. Green Monthly Engagement Matrix
+            Welcome, Dr. Green
           </h1>
 
           <div className="mt-6 p-6 rounded-xl bg-white/[0.03] border border-[hsl(43,74%,52%)]/30">
@@ -310,15 +310,15 @@ export default function DrGreen() {
               Dear Dr. Green,
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
-              Welcome to your private engagement hub. This page was built so you can move at your own pace —
-              choosing the work that matters most to the Ora Lee Smith Cancer Research Foundation each month,
-              without confusion or pressure. Think of it as your monthly priority dashboard.
+              Thank you for taking this next step with us. This page holds everything we discussed —
+              the full scope of what Phresh Phactory can build alongside the Ora Lee Smith Cancer Research Foundation,
+              and a simple way for you to decide what matters most right now.
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
-              Every month, you can return here, select the tracks that are most urgent, and authorize payment
-              — either one month at a time, or on a recurring basis so nothing falls through the cracks.
-              If something can wait until next quarter, simply leave it unchecked. Your selections are saved
-              automatically, so you never have to start from scratch.
+              Think of this as your working dashboard, not a final contract. Scroll slowly. Review the agreement below.
+              When you are ready, check the boxes that reflect where you would like us to focus first.
+              There is no pressure to select everything at once. Many partners start with the foundation layer
+              and add premium services as momentum builds.
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
               If you have questions at any point, reach out directly to{" "}
@@ -328,8 +328,30 @@ export default function DrGreen() {
             </p>
           </div>
 
+          {/* How to use this page */}
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-lg border border-[hsl(43,74%,52%)]/20 bg-white/[0.02] p-4">
+              <div className="text-xs uppercase tracking-widest text-[hsl(43,74%,62%)] mb-2">01. Review</div>
+              <p className="text-sm text-white/70">
+                The full partnership agreement lives at the top of this page. Read it inline or download it for your records.
+              </p>
+            </div>
+            <div className="rounded-lg border border-[hsl(43,74%,52%)]/20 bg-white/[0.02] p-4">
+              <div className="text-xs uppercase tracking-widest text-[hsl(43,74%,62%)] mb-2">02. Select</div>
+              <p className="text-sm text-white/70">
+                Check your monthly priorities in the Base section — these are included at no extra charge. Add any premium services you would like Phresh Phactory to fully manage.
+              </p>
+            </div>
+            <div className="rounded-lg border border-[hsl(43,74%,52%)]/20 bg-white/[0.02] p-4">
+              <div className="text-xs uppercase tracking-widest text-[hsl(43,74%,62%)] mb-2">03. Authorize</div>
+              <p className="text-sm text-white/70">
+                Choose one-time or recurring billing, enter the Foundation's email, and click to authorize. Your selections are saved automatically.
+              </p>
+            </div>
+          </div>
+
           {/* Full Scope of Work PDF */}
-          <div className="mt-8 rounded-xl border border-[hsl(43,74%,52%)]/40 bg-black overflow-hidden">
+          <div className="mt-10 rounded-xl border border-[hsl(43,74%,52%)]/40 bg-black overflow-hidden">
             <div className="flex flex-wrap items-center justify-between gap-3 p-4 border-b border-[hsl(43,74%,52%)]/30">
               <div>
                 <div className="text-xs uppercase tracking-widest text-[hsl(43,74%,62%)]">Strategic Partnership Agreement</div>
