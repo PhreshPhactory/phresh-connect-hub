@@ -883,9 +883,19 @@ export default function DrGreen() {
                   : `Authorize ${formatUSD(grandTotalThisCheckout)}${billingMode === "subscription" ? " + recurring" : ""}`}
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground">
-              Selections are saved to this browser. You can revisit this page any month, adjust the most urgent tracks, and re-authorize.
-            </p>
+            <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center justify-between pt-1">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={downloadReceipt}
+                className="border-[hsl(43,74%,52%)] text-[hsl(43,74%,62%)] hover:bg-[hsl(43,74%,49%)]/10"
+              >
+                Download Receipt (PDF)
+              </Button>
+              <p className="text-xs text-muted-foreground sm:text-right">
+                Selections are saved to this browser. Download a receipt anytime to share with your team before authorizing.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
