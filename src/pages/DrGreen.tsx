@@ -322,12 +322,17 @@ export default function DrGreen() {
 
           <div className="mt-6 p-6 rounded-xl bg-white/[0.03] border border-[hsl(43,74%,52%)]/30">
             <p className="text-base leading-relaxed text-white">
-              Dear Dr. Green,
+              Dear Dr. Hadiyah-Nicole Green,
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
               Thank you for taking this next step with us. This page holds everything we discussed —
               the full scope of what Phresh Phactory can build alongside the Ora Lee Smith Cancer Research Foundation,
               and a simple way for you to decide what matters most right now.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-white/70">
+              I fully expect this will be reviewed by your teammate Traci and others on your team. Please share it freely —
+              they are welcome to read, react, and interact with the selections below alongside you. The page saves
+              automatically, so the conversation can move at your pace.
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
               Think of this as your working dashboard, not a final contract. Scroll slowly. Review the agreement below.
