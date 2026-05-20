@@ -221,10 +221,14 @@ export default function DrGreen() {
 
     setLoading(true);
     try {
+      const priorityTitles = BASE_PRIORITIES.filter((p) => basePriorities.has(p.id)).map((p) => p.title);
+      const baseDescription = priorityTitles.length > 0
+        ? `This month's priorities: ${priorityTitles.join(", ")}`
+        : "Kiera H. advisory, system blueprints, scriptwriting, on-camera co-hosting, training";
       const monthly_items: any[] = [
         {
           name: "Base Strategic Advisory & Talent Floor",
-          description: "Kiera H. advisory, system blueprints, scriptwriting, on-camera co-hosting, training",
+          description: baseDescription,
           amount: BASE_RETAINER_CENTS,
         },
         ...PREMIUM_UPGRADES.filter((o) => selected.has(o.id)).map((o) => ({
