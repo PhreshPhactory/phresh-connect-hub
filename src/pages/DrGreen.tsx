@@ -373,9 +373,22 @@ export default function DrGreen() {
         </Card>
 
         {/* Premium upgrades grouped */}
+        <div className="mb-6 p-5 rounded-xl border border-border bg-muted/30">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
+            Fully Managed by Phresh Phactory, Inc.
+          </div>
+          <p className="text-sm text-muted-foreground">
+            The add-ons below are the same operational tasks listed in your Base Strategic Advisory & Talent Floor, but executed end-to-end by the Phresh Phactory, Inc. internal team. The Base retainer covers training your Ora Lee Smith Cancer Research Foundation volunteer staff to perform these tasks in-house over time. Selecting an add-on here transfers full ownership of that task to Phresh Phactory, Inc. for the month, so it gets done immediately without waiting on volunteer capacity.
+          </p>
+        </div>
         {grouped.map(([cat, opts]) => (
           <div key={cat} className="mb-8">
-            <h2 className="text-sm uppercase tracking-widest text-muted-foreground mb-3">{cat}</h2>
+            <h2 className="text-sm uppercase tracking-widest text-muted-foreground mb-1">
+              {cat} <span className="normal-case tracking-normal text-foreground/70">— Fully Led by Phresh Phactory, Inc.</span>
+            </h2>
+            <p className="text-xs text-muted-foreground mb-3">
+              Phresh Phactory, Inc. takes full responsibility for execution. No volunteer dependency.
+            </p>
             <div className="space-y-3">
               {opts.map((o) => {
                 const isOn = selected.has(o.id);
