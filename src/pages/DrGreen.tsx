@@ -279,20 +279,60 @@ export default function DrGreen() {
           <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-tight">
             Dr. Green Monthly Engagement Matrix
           </h1>
-          <p className="mt-4 text-muted-foreground max-w-3xl">
-            Select the tracks you want Phresh Phactory to execute this month. Your selections are saved in this browser, so each month you can return, re-prioritize the most urgent tasks, and re-authorize payment, or switch to recurring monthly billing.
-          </p>
+
+          <div className="mt-6 p-6 rounded-xl bg-muted/40 border border-border">
+            <p className="text-base leading-relaxed text-foreground">
+              Dear Dr. Green,
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              Welcome to your private engagement hub. This page was built so you can move at your own pace —
+              choosing the work that matters most to the Ora Lee Smith Cancer Research Foundation each month,
+              without confusion or pressure. Think of it as your monthly priority dashboard.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              Every month, you can return here, select the tracks that are most urgent, and authorize payment
+              — either one month at a time, or on a recurring basis so nothing falls through the cracks.
+              If something can wait until next quarter, simply leave it unchecked. Your selections are saved
+              automatically, so you never have to start from scratch.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              If you have questions at any point, reach out directly to{" "}
+              <a href="mailto:Kiera@PhreshPhactory.co" className="underline underline-offset-4 text-foreground font-medium">
+                Kiera@PhreshPhactory.co
+              </a>.
+            </p>
+          </div>
         </div>
 
         {/* Base */}
         <Card className="mb-6 border-primary/40">
           <CardHeader>
             <div className="flex items-start justify-between gap-4">
-              <div>
+              <div className="flex-1">
                 <CardTitle>Base Strategic Advisory & Talent Floor</CardTitle>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Always included. Covers Kiera H.'s advisory hours, system blueprints, scriptwriting, on-camera co-hosting, subscription funnel architecture, and volunteer training.
+                <p className="text-sm text-muted-foreground mt-2">
+                  Always included. This is your foundational layer each month — the core partnership that keeps strategy, content direction, and talent execution aligned across every initiative.
                 </p>
+                <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
+                  <li>
+                    <span className="font-medium text-foreground">Strategic Advisory —</span> Monthly planning sessions with Kiera H., campaign architecture, system blueprints, and priority roadmapping for the Foundation.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">Content & Script Development —</span> Scriptwriting, broadcast outlines, talking points, and narrative strategy for social channels, live events, and institutional outreach.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">On-Camera Talent —</span> Kiera H. as co-host, moderator, or featured talent for live streams, fundraisers, and media appearances on behalf of the Foundation.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">Digital Architecture Guidance —</span> Subscription funnel design, audience segmentation strategy, and digital product setup recommendations.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">Volunteer Training Systems —</span> Recruitment frameworks, onboarding flows, role assignments, and training modules for your volunteer workforce.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">Monthly Performance Review —</span> Sprint retrospectives, metrics review, and re-prioritization for the month ahead.
+                  </li>
+                </ul>
               </div>
               <div className="text-right shrink-0">
                 <div className="text-2xl font-semibold">{formatUSD(BASE_RETAINER_CENTS)}</div>
