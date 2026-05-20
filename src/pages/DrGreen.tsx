@@ -129,6 +129,7 @@ const formatUSD = (cents: number) =>
 export default function DrGreen() {
   const [searchParams] = useSearchParams();
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [basePriorities, setBasePriorities] = useState<Set<string>>(new Set());
   const [morSetup, setMorSetup] = useState(false);
   const [morOps, setMorOps] = useState(false);
   const [billingMode, setBillingMode] = useState<"one-time" | "subscription">("subscription");
@@ -142,6 +143,7 @@ export default function DrGreen() {
       if (raw) {
         const s = JSON.parse(raw);
         setSelected(new Set(s.selected || []));
+        setBasePriorities(new Set(s.basePriorities || []));
         setMorSetup(!!s.morSetup);
         setMorOps(!!s.morOps);
         setBillingMode(s.billingMode || "subscription");
@@ -156,13 +158,22 @@ export default function DrGreen() {
       STORAGE_KEY,
       JSON.stringify({
         selected: Array.from(selected),
+        basePriorities: Array.from(basePriorities),
         morSetup,
         morOps,
         billingMode,
         email,
       })
     );
-  }, [selected, morSetup, morOps, billingMode, email]);
+  }, [selected, basePriorities, morSetup, morOps, billingMode, email]);
+
+  const toggleBasePriority = (id: string) => {
+    setBasePriorities((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
 
   // Payment status banner
   useEffect(() => {
