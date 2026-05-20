@@ -156,13 +156,14 @@ const App = () => {
                       <Route path="/newsletter-read/:slug" element={<NewsletterEditionPage />} />
                       <Route path="/newsletter/:slug" element={<NavigateWithSlug />} />
                       <Route path="/admin/newsletter" element={<NewsletterEditionAdmin />} />
-                      <Route path="/drgreen" element={<DrGreen />} />
+                      
                       <Route path="*" element={<NotFound />} />
                     </Route>
                     
                     {/* Landing pages without main navigation */}
                     <Route element={<LandingPageLayout />}>
                       <Route path="/socially-selling-food" element={<SociallySellingFood />} />
+                      <Route path="/drgreen" element={<DrGreen />} />
                     </Route>
                   </Routes>
                 </Suspense>
