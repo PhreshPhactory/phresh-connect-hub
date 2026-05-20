@@ -29,3 +29,6 @@ verify_jwt = false
 
 [functions.list-resend-templates]
 verify_jwt = false
+
+[functions.create-drgreen-checkout]
+verify_jwt = false
