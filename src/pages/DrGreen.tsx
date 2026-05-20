@@ -756,7 +756,7 @@ export default function DrGreen() {
         </div>
 
         {/* Summary */}
-        <Card className="sticky bottom-4 border-2 border-primary shadow-2xl">
+        <Card className="border-2 border-primary shadow-2xl mb-12">
           <CardHeader>
             <CardTitle>Authorization & Payment</CardTitle>
           </CardHeader>
