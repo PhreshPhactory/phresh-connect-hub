@@ -114,12 +114,22 @@ const MOR_MONTHLY_CENTS = MOR_WEEKLY_CENTS * 4; // $4,000/mo flat for simplicity
 
 const STORAGE_KEY = "drgreen-selections-v1";
 
+const BASE_PRIORITIES: { id: string; title: string; description: string }[] = [
+  { id: "base-strategic-advisory", title: "Strategic Advisory", description: "Monthly planning sessions with Kiera H., campaign architecture, system blueprints, and priority roadmapping for the Foundation." },
+  { id: "base-content-script", title: "Content & Script Development", description: "Scriptwriting, broadcast outlines, talking points, and narrative strategy for social channels, live events, and institutional outreach." },
+  { id: "base-on-camera", title: "On-Camera Talent", description: "Kiera H. as co-host, moderator, or featured talent for live streams, fundraisers, and media appearances on behalf of the Foundation." },
+  { id: "base-digital-architecture", title: "Digital Architecture Guidance", description: "Subscription funnel design, audience segmentation strategy, and digital product setup recommendations." },
+  { id: "base-volunteer-training", title: "Volunteer Training Systems", description: "Recruitment frameworks, onboarding flows, role assignments, and training modules for your volunteer workforce." },
+  { id: "base-performance-review", title: "Monthly Performance Review", description: "Sprint retrospectives, metrics review, and re-prioritization for the month ahead." },
+];
+
 const formatUSD = (cents: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(cents / 100);
 
 export default function DrGreen() {
   const [searchParams] = useSearchParams();
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [basePriorities, setBasePriorities] = useState<Set<string>>(new Set());
   const [morSetup, setMorSetup] = useState(false);
   const [morOps, setMorOps] = useState(false);
   const [billingMode, setBillingMode] = useState<"one-time" | "subscription">("subscription");
@@ -133,6 +143,7 @@ export default function DrGreen() {
       if (raw) {
         const s = JSON.parse(raw);
         setSelected(new Set(s.selected || []));
+        setBasePriorities(new Set(s.basePriorities || []));
         setMorSetup(!!s.morSetup);
         setMorOps(!!s.morOps);
         setBillingMode(s.billingMode || "subscription");
@@ -147,13 +158,22 @@ export default function DrGreen() {
       STORAGE_KEY,
       JSON.stringify({
         selected: Array.from(selected),
+        basePriorities: Array.from(basePriorities),
         morSetup,
         morOps,
         billingMode,
         email,
       })
     );
-  }, [selected, morSetup, morOps, billingMode, email]);
+  }, [selected, basePriorities, morSetup, morOps, billingMode, email]);
+
+  const toggleBasePriority = (id: string) => {
+    setBasePriorities((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
 
   // Payment status banner
   useEffect(() => {
@@ -201,10 +221,14 @@ export default function DrGreen() {
 
     setLoading(true);
     try {
+      const priorityTitles = BASE_PRIORITIES.filter((p) => basePriorities.has(p.id)).map((p) => p.title);
+      const baseDescription = priorityTitles.length > 0
+        ? `This month's priorities: ${priorityTitles.join(", ")}`
+        : "Kiera H. advisory, system blueprints, scriptwriting, on-camera co-hosting, training";
       const monthly_items: any[] = [
         {
           name: "Base Strategic Advisory & Talent Floor",
-          description: "Kiera H. advisory, system blueprints, scriptwriting, on-camera co-hosting, training",
+          description: baseDescription,
           amount: BASE_RETAINER_CENTS,
         },
         ...PREMIUM_UPGRADES.filter((o) => selected.has(o.id)).map((o) => ({
@@ -311,35 +335,41 @@ export default function DrGreen() {
               <div className="flex-1">
                 <CardTitle>Base Strategic Advisory & Talent Floor</CardTitle>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Always included. This is your foundational layer each month — the core partnership that keeps strategy, content direction, and talent execution aligned across every initiative.
+                  Always included at the flat monthly rate. Check the items below to flag this month's priorities — no additional charge. These selections tell Kiera and the team where to focus their included hours.
                 </p>
-                <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
-                  <li>
-                    <span className="font-medium text-foreground">Strategic Advisory —</span> Monthly planning sessions with Kiera H., campaign architecture, system blueprints, and priority roadmapping for the Foundation.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Content & Script Development —</span> Scriptwriting, broadcast outlines, talking points, and narrative strategy for social channels, live events, and institutional outreach.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">On-Camera Talent —</span> Kiera H. as co-host, moderator, or featured talent for live streams, fundraisers, and media appearances on behalf of the Foundation.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Digital Architecture Guidance —</span> Subscription funnel design, audience segmentation strategy, and digital product setup recommendations.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Volunteer Training Systems —</span> Recruitment frameworks, onboarding flows, role assignments, and training modules for your volunteer workforce.
-                  </li>
-                  <li>
-                    <span className="font-medium text-foreground">Monthly Performance Review —</span> Sprint retrospectives, metrics review, and re-prioritization for the month ahead.
-                  </li>
-                </ul>
               </div>
               <div className="text-right shrink-0">
                 <div className="text-2xl font-semibold">{formatUSD(BASE_RETAINER_CENTS)}</div>
-                <div className="text-xs text-muted-foreground">per month</div>
+                <div className="text-xs text-muted-foreground">per month • all included</div>
               </div>
             </div>
           </CardHeader>
+          <CardContent className="pt-0">
+            <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
+              This Month's Priorities (included)
+            </div>
+            <div className="space-y-2">
+              {BASE_PRIORITIES.map((p) => {
+                const isOn = basePriorities.has(p.id);
+                return (
+                  <div
+                    key={p.id}
+                    onClick={() => toggleBasePriority(p.id)}
+                    className={`cursor-pointer rounded-lg border p-3 transition flex items-start gap-3 ${
+                      isOn ? "border-primary bg-primary/5" : "border-border hover:border-foreground/30"
+                    }`}
+                  >
+                    <Checkbox checked={isOn} onCheckedChange={() => toggleBasePriority(p.id)} className="mt-0.5" />
+                    <div className="flex-1">
+                      <div className="font-medium text-sm">{p.title}</div>
+                      <p className="text-xs text-muted-foreground mt-1">{p.description}</p>
+                    </div>
+                    <Badge variant="secondary" className="text-[10px] shrink-0">Included</Badge>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
         </Card>
 
         {/* Premium upgrades grouped */}
