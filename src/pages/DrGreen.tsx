@@ -289,8 +289,9 @@ export default function DrGreen() {
     return Array.from(map.entries());
   }, []);
 
+  const PDF_URL = "/Ora_Lee_X_Phresh_Phactory_Scope_of_Work.pdf";
   return (
-    <div className="min-h-screen bg-background">
+    <div className="dark min-h-screen bg-black text-white" style={{ ['--primary' as any]: '43 74% 49%', ['--ring' as any]: '43 74% 49%' }}>
       <Helmet>
         <title>Dr. Green Engagement Matrix | Phresh Phactory</title>
         <meta name="robots" content="noindex,nofollow" />
@@ -299,32 +300,52 @@ export default function DrGreen() {
 
       <div className="container-custom max-w-5xl py-12 md:py-16">
         <div className="mb-10">
-          <Badge variant="outline" className="mb-3">Private • Ora Lee Smith Cancer Research Foundation</Badge>
-          <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-tight">
+          <Badge variant="outline" className="mb-3 border-[hsl(43,74%,52%)] text-[hsl(43,74%,62%)]">Private • Ora Lee Smith Cancer Research Foundation</Badge>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-tight text-white">
             Dr. Green Monthly Engagement Matrix
           </h1>
 
-          <div className="mt-6 p-6 rounded-xl bg-muted/40 border border-border">
-            <p className="text-base leading-relaxed text-foreground">
+          <div className="mt-6 p-6 rounded-xl bg-white/[0.03] border border-[hsl(43,74%,52%)]/30">
+            <p className="text-base leading-relaxed text-white">
               Dear Dr. Green,
             </p>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 text-base leading-relaxed text-white/70">
               Welcome to your private engagement hub. This page was built so you can move at your own pace —
               choosing the work that matters most to the Ora Lee Smith Cancer Research Foundation each month,
               without confusion or pressure. Think of it as your monthly priority dashboard.
             </p>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 text-base leading-relaxed text-white/70">
               Every month, you can return here, select the tracks that are most urgent, and authorize payment
               — either one month at a time, or on a recurring basis so nothing falls through the cracks.
               If something can wait until next quarter, simply leave it unchecked. Your selections are saved
               automatically, so you never have to start from scratch.
             </p>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 text-base leading-relaxed text-white/70">
               If you have questions at any point, reach out directly to{" "}
-              <a href="mailto:Kiera@PhreshPhactory.co" className="underline underline-offset-4 text-foreground font-medium">
+              <a href="mailto:Kiera@PhreshPhactory.co" className="underline underline-offset-4 text-[hsl(43,74%,62%)] font-medium">
                 Kiera@PhreshPhactory.co
               </a>.
             </p>
+          </div>
+
+          {/* Full Scope of Work PDF */}
+          <div className="mt-8 rounded-xl border border-[hsl(43,74%,52%)]/40 bg-black overflow-hidden">
+            <div className="flex flex-wrap items-center justify-between gap-3 p-4 border-b border-[hsl(43,74%,52%)]/30">
+              <div>
+                <div className="text-xs uppercase tracking-widest text-[hsl(43,74%,62%)]">Strategic Partnership Agreement</div>
+                <div className="font-medium text-white">Master Scope of Work — Full Document</div>
+                <p className="text-xs text-white/60 mt-1">Please review in full before authorizing this month's selections below.</p>
+              </div>
+              <a href={PDF_URL} download className="inline-flex items-center rounded-md bg-[hsl(43,74%,49%)] hover:bg-[hsl(43,74%,55%)] text-black font-medium px-4 py-2 text-sm transition">
+                Download PDF
+              </a>
+            </div>
+            <object data={PDF_URL} type="application/pdf" className="w-full h-[80vh] bg-black">
+              <div className="p-6 text-sm text-white/70">
+                Your browser cannot display the PDF inline.{" "}
+                <a href={PDF_URL} className="underline text-[hsl(43,74%,62%)]" target="_blank" rel="noopener noreferrer">Open in a new tab</a>.
+              </div>
+            </object>
           </div>
         </div>
 
