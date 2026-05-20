@@ -153,6 +153,11 @@ export default function DrGreen() {
         setMorOps(!!s.morOps);
         setBillingMode(s.billingMode || "subscription");
         setEmail(s.email || "");
+        setApproverName(s.approverName || "");
+        setApproverDate(s.approverDate || "");
+        setApproverPhone(s.approverPhone || "");
+        setApproverEmail(s.approverEmail || "");
+        setApproverSignature(s.approverSignature || "");
       }
     } catch {}
   }, []);
