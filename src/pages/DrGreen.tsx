@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useSearchParams } from "react-router-dom";
 import jsPDF from "jspdf";
+import phreshHeader from "@/assets/phresh-phactory-header.jpeg";
 
 type TaskOption = {
   id: string;
@@ -525,6 +526,12 @@ export default function DrGreen() {
         <meta name="robots" content="noindex,nofollow" />
         <meta name="description" content="Private engagement matrix for Dr. Hadiyah-Nicole Green — Ora Lee Smith Cancer Research Foundation." />
       </Helmet>
+
+      <img
+        src={phreshHeader}
+        alt="Phresh Phactory, Inc. — The Intellectuals Agency"
+        className="w-full object-cover"
+      />
 
       <div className="container-custom max-w-5xl py-12 md:py-16">
         <div className="mb-10">
