@@ -1,0 +1,489 @@
+import { useEffect, useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useSearchParams } from "react-router-dom";
+
+type TaskOption = {
+  id: string;
+  category: string;
+  task: string;
+  title: string;
+  description: string;
+  // recurring monthly upgrade premium (cents)
+  monthlyAmount: number;
+};
+
+const BASE_RETAINER_CENTS = 350000; // $3,500/mo
+
+const PREMIUM_UPGRADES: TaskOption[] = [
+  {
+    id: "task-1-2",
+    category: "Digital Infrastructure & Volunteer Sync",
+    task: "Task 1.2",
+    title: "Cross-Platform Fundraiser Duplication & Omnichannel Sync — Premium Agency-Managed",
+    description:
+      "Phresh Phactory's systems team manually executes the full omnichannel non-profit fundraiser setup across Instagram, Facebook, LinkedIn and PayPal Giving Fund (bypasses volunteer training).",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-3",
+    category: "Digital Infrastructure & Volunteer Sync",
+    task: "Task 1.3",
+    title: "Omnichannel Product Tagging — Premium Agency-Managed",
+    description:
+      "Internal team takes over manual product tagging, content-calendar tracking, and cross-platform tag mapping.",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-5",
+    category: "Content Production & Broadcast",
+    task: "Task 1.5",
+    title: "Live Streaming Infrastructure — Premium Agency-Managed",
+    description:
+      "Phresh Phactory functions as active broadcast operations manager: technical parameters and link pinning handled dynamically from our dashboard.",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-6",
+    category: "Content Production & Broadcast",
+    task: "Task 1.6",
+    title: "AI-Assisted Content Syndication — Premium Agency-Managed",
+    description:
+      "Internal media team handles all video syndication editing, AI mapping, rendering, and cross-platform distribution.",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-7",
+    category: "Content Production & Broadcast",
+    task: "Task 1.7",
+    title: "Strategic Media Relations & PR — Premium Agency-Managed",
+    description:
+      "PR publicists handle manual pitching, journalist follow-ups, and earned media calendar coordination.",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-8",
+    category: "Digital Subscriptions & Monetization",
+    task: "Task 1.8",
+    title: "\"Citizen Scientist\" Subscription Architecture — Premium Agency-Managed",
+    description:
+      "Corporate team owns user technical troubleshooting, perk dashboard updates, and community administration.",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-9",
+    category: "Digital Subscriptions & Monetization",
+    task: "Task 1.9",
+    title: "Digital Youth Curriculum — Premium Agency-Managed",
+    description:
+      "Manual management of curriculum enrollment portals, school district clearances, and license distribution.",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-11",
+    category: "Institutional Partnerships & High-Ticket Representation",
+    task: "Task 1.11",
+    title: "Institutional Corporate Sponsorship — Premium Agency-Managed",
+    description:
+      "Active fielding, delivery, and negotiation of corporate sponsorship tiers with our corporate networks.",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-13",
+    category: "Institutional Partnerships & High-Ticket Representation",
+    task: "Task 1.13",
+    title: "TED Talk Acquisition — Premium Managed PR Pitching",
+    description:
+      "Internal publicists coordinate manual phone-line pitches and ongoing application panel reviews with editorial gates.",
+    monthlyAmount: 25000,
+  },
+];
+
+const MOR_SETUP_CENTS = 1000000; // $10,000 one-time
+const MOR_WEEKLY_CENTS = 100000; // $1,000/week → bill monthly at ~$4,000
+const MOR_MONTHLY_CENTS = MOR_WEEKLY_CENTS * 4; // $4,000/mo flat for simplicity
+
+const STORAGE_KEY = "drgreen-selections-v1";
+
+const formatUSD = (cents: number) =>
+  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(cents / 100);
+
+export default function DrGreen() {
+  const [searchParams] = useSearchParams();
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [morSetup, setMorSetup] = useState(false);
+  const [morOps, setMorOps] = useState(false);
+  const [billingMode, setBillingMode] = useState<"one-time" | "subscription">("subscription");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // Load saved
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const s = JSON.parse(raw);
+        setSelected(new Set(s.selected || []));
+        setMorSetup(!!s.morSetup);
+        setMorOps(!!s.morOps);
+        setBillingMode(s.billingMode || "subscription");
+        setEmail(s.email || "");
+      }
+    } catch {}
+  }, []);
+
+  // Persist
+  useEffect(() => {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        selected: Array.from(selected),
+        morSetup,
+        morOps,
+        billingMode,
+        email,
+      })
+    );
+  }, [selected, morSetup, morOps, billingMode, email]);
+
+  // Payment status banner
+  useEffect(() => {
+    const status = searchParams.get("payment");
+    if (status === "success") {
+      toast.success("Payment received. Thank you, Dr. Green.");
+      // Mark MoR setup as paid so it does not repeat next month
+      if (morSetup) {
+        setMorSetup(false);
+        toast.info("One-time setup fee marked complete and removed from your matrix.");
+      }
+    } else if (status === "cancelled") {
+      toast("Checkout cancelled. Your selections were saved.");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  const toggle = (id: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+
+  const monthlyTotal = useMemo(() => {
+    let sum = BASE_RETAINER_CENTS;
+    for (const opt of PREMIUM_UPGRADES) if (selected.has(opt.id)) sum += opt.monthlyAmount;
+    if (morOps) sum += MOR_MONTHLY_CENTS;
+    return sum;
+  }, [selected, morOps]);
+
+  const oneTimeTotal = useMemo(() => (morSetup ? MOR_SETUP_CENTS : 0), [morSetup]);
+
+  const grandTotalThisCheckout = billingMode === "subscription" ? monthlyTotal + oneTimeTotal : monthlyTotal + oneTimeTotal;
+
+  const handleCheckout = async () => {
+    if (!email || !email.includes("@")) {
+      toast.error("Please enter Dr. Green's email.");
+      return;
+    }
+    if (selected.size === 0 && !morSetup && !morOps) {
+      // base retainer is still charged
+    }
+
+    setLoading(true);
+    try {
+      const monthly_items: any[] = [
+        {
+          name: "Base Strategic Advisory & Talent Floor",
+          description: "Kiera H. advisory, system blueprints, scriptwriting, on-camera co-hosting, training",
+          amount: BASE_RETAINER_CENTS,
+        },
+        ...PREMIUM_UPGRADES.filter((o) => selected.has(o.id)).map((o) => ({
+          name: `${o.task}: ${o.title}`,
+          description: o.description,
+          amount: o.monthlyAmount,
+        })),
+      ];
+
+      if (morOps) {
+        monthly_items.push({
+          name: "MoR Monthly Operations (Addendum A)",
+          description: "$1,000/week — customer support, web maintenance, platform subscriptions (billed monthly)",
+          amount: MOR_MONTHLY_CENTS,
+        });
+      }
+
+      const one_time_items: any[] = [];
+      if (morSetup) {
+        one_time_items.push({
+          name: "MoR Upfront Setup Fee (Addendum A)",
+          description: "One-time storefront build, tax/legal infrastructure, payment gateways",
+          amount: MOR_SETUP_CENTS,
+        });
+      }
+
+      const { data, error } = await supabase.functions.invoke("create-drgreen-checkout", {
+        body: {
+          mode: billingMode === "subscription" ? "subscription" : "payment",
+          customer_email: email,
+          monthly_items,
+          one_time_items,
+          origin: window.location.origin,
+        },
+      });
+
+      if (error) throw error;
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL returned");
+      }
+    } catch (e: any) {
+      console.error(e);
+      toast.error(e.message || "Could not start checkout");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Group by category
+  const grouped = useMemo(() => {
+    const map = new Map<string, TaskOption[]>();
+    for (const o of PREMIUM_UPGRADES) {
+      if (!map.has(o.category)) map.set(o.category, []);
+      map.get(o.category)!.push(o);
+    }
+    return Array.from(map.entries());
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>Dr. Green Engagement Matrix | Phresh Phactory</title>
+        <meta name="robots" content="noindex,nofollow" />
+        <meta name="description" content="Private engagement matrix for Dr. Hadiyah-Nicole Green — Ora Lee Smith Cancer Research Foundation." />
+      </Helmet>
+
+      <div className="container-custom max-w-5xl py-12 md:py-16">
+        <div className="mb-10">
+          <Badge variant="outline" className="mb-3">Private • Ora Lee Smith Cancer Research Foundation</Badge>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-tight">
+            Dr. Green Monthly Engagement Matrix
+          </h1>
+          <p className="mt-4 text-muted-foreground max-w-3xl">
+            Select the tracks you want Phresh Phactory to execute this month. Your selections are saved in this browser, so each month you can return, re-prioritize the most urgent tasks, and re-authorize payment, or switch to recurring monthly billing.
+          </p>
+        </div>
+
+        {/* Base */}
+        <Card className="mb-6 border-primary/40">
+          <CardHeader>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <CardTitle>Base Strategic Advisory & Talent Floor</CardTitle>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Always included. Covers Kiera H.'s advisory hours, system blueprints, scriptwriting, on-camera co-hosting, subscription funnel architecture, and volunteer training.
+                </p>
+              </div>
+              <div className="text-right shrink-0">
+                <div className="text-2xl font-semibold">{formatUSD(BASE_RETAINER_CENTS)}</div>
+                <div className="text-xs text-muted-foreground">per month</div>
+              </div>
+            </div>
+          </CardHeader>
+        </Card>
+
+        {/* Premium upgrades grouped */}
+        {grouped.map(([cat, opts]) => (
+          <div key={cat} className="mb-8">
+            <h2 className="text-sm uppercase tracking-widest text-muted-foreground mb-3">{cat}</h2>
+            <div className="space-y-3">
+              {opts.map((o) => {
+                const isOn = selected.has(o.id);
+                return (
+                  <Card
+                    key={o.id}
+                    className={`cursor-pointer transition ${isOn ? "border-primary ring-1 ring-primary/30" : "hover:border-foreground/30"}`}
+                    onClick={() => toggle(o.id)}
+                  >
+                    <CardContent className="p-5">
+                      <div className="flex items-start gap-4">
+                        <Checkbox checked={isOn} onCheckedChange={() => toggle(o.id)} className="mt-1" />
+                        <div className="flex-1">
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <div className="text-xs text-muted-foreground">{o.task}</div>
+                              <div className="font-medium">{o.title}</div>
+                            </div>
+                            <div className="text-right shrink-0">
+                              <div className="text-lg font-semibold">+{formatUSD(o.monthlyAmount)}</div>
+                              <div className="text-xs text-muted-foreground">per month</div>
+                            </div>
+                          </div>
+                          <p className="text-sm text-muted-foreground mt-2">{o.description}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+
+        {/* MoR Addendum */}
+        <div className="mb-8">
+          <h2 className="text-sm uppercase tracking-widest text-muted-foreground mb-3">
+            Addendum A — Merchant of Record (Independent Track)
+          </h2>
+          <p className="text-sm text-muted-foreground mb-3">
+            Separate from the monthly retainer. Authorize independently.
+          </p>
+          <div className="space-y-3">
+            <Card className={`cursor-pointer transition ${morSetup ? "border-primary ring-1 ring-primary/30" : ""}`} onClick={() => setMorSetup(!morSetup)}>
+              <CardContent className="p-5 flex items-start gap-4">
+                <Checkbox checked={morSetup} onCheckedChange={() => setMorSetup(!morSetup)} className="mt-1" />
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="text-xs text-muted-foreground">Pricing Component 1</div>
+                      <div className="font-medium">Upfront Setup Fee — One-Time</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="text-lg font-semibold">{formatUSD(MOR_SETUP_CENTS)}</div>
+                      <div className="text-xs text-muted-foreground">one-time</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Storefront build, global tax matrix software, legal consumer contract templates, secure payment gateways, customer support blueprints.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className={`cursor-pointer transition ${morOps ? "border-primary ring-1 ring-primary/30" : ""}`} onClick={() => setMorOps(!morOps)}>
+              <CardContent className="p-5 flex items-start gap-4">
+                <Checkbox checked={morOps} onCheckedChange={() => setMorOps(!morOps)} className="mt-1" />
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="text-xs text-muted-foreground">Pricing Component 2</div>
+                      <div className="font-medium">Monthly Operational Cost ($1,000 / week, billed monthly)</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="text-lg font-semibold">{formatUSD(MOR_MONTHLY_CENTS)}</div>
+                      <div className="text-xs text-muted-foreground">per month</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Customer support, web maintenance, code optimization, e-commerce engine, tax tracking, helpdesk ticketing, AI live-chat agents.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+            <p className="text-xs text-muted-foreground">
+              Pricing Component 3 (Transaction Fee 8%–20%) is assessed per sales volume directly inside the MoR dashboard and not charged at checkout here.
+            </p>
+          </div>
+        </div>
+
+        {/* Summary */}
+        <Card className="sticky bottom-4 border-2 border-primary shadow-2xl">
+          <CardHeader>
+            <CardTitle>Authorization & Payment</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-5">
+            <div className="space-y-1.5">
+              <div className="flex justify-between text-sm">
+                <span>Base retainer</span>
+                <span>{formatUSD(BASE_RETAINER_CENTS)}/mo</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span>Premium upgrades ({selected.size})</span>
+                <span>{formatUSD(selected.size * 25000)}/mo</span>
+              </div>
+              {morOps && (
+                <div className="flex justify-between text-sm">
+                  <span>MoR monthly operations</span>
+                  <span>{formatUSD(MOR_MONTHLY_CENTS)}/mo</span>
+                </div>
+              )}
+              <Separator className="my-2" />
+              <div className="flex justify-between font-semibold">
+                <span>Monthly total</span>
+                <span>{formatUSD(monthlyTotal)}/mo</span>
+              </div>
+              {morSetup && (
+                <div className="flex justify-between text-sm pt-2">
+                  <span>One-time setup (this checkout only)</span>
+                  <span>{formatUSD(MOR_SETUP_CENTS)}</span>
+                </div>
+              )}
+            </div>
+
+            <div>
+              <Label className="text-sm font-medium">Billing</Label>
+              <RadioGroup
+                value={billingMode}
+                onValueChange={(v) => setBillingMode(v as any)}
+                className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-2"
+              >
+                <Label
+                  htmlFor="bm-one"
+                  className={`flex items-start gap-3 p-3 rounded-md border cursor-pointer ${billingMode === "one-time" ? "border-primary" : ""}`}
+                >
+                  <RadioGroupItem value="one-time" id="bm-one" className="mt-0.5" />
+                  <div>
+                    <div className="font-medium">Pay this month only</div>
+                    <div className="text-xs text-muted-foreground">One-time charge. Return next month to re-prioritize.</div>
+                  </div>
+                </Label>
+                <Label
+                  htmlFor="bm-sub"
+                  className={`flex items-start gap-3 p-3 rounded-md border cursor-pointer ${billingMode === "subscription" ? "border-primary" : ""}`}
+                >
+                  <RadioGroupItem value="subscription" id="bm-sub" className="mt-0.5" />
+                  <div>
+                    <div className="font-medium">Recurring monthly</div>
+                    <div className="text-xs text-muted-foreground">Auto-bill every month at the monthly total above. Cancel or change anytime.</div>
+                  </div>
+                </Label>
+              </RadioGroup>
+            </div>
+
+            <div className="grid md:grid-cols-[1fr_auto] gap-3 items-end">
+              <div>
+                <Label htmlFor="email" className="text-sm">Billing email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="dr.green@oralee.org"
+                  className="mt-1"
+                />
+              </div>
+              <Button size="lg" onClick={handleCheckout} disabled={loading} className="md:w-auto w-full">
+                {loading
+                  ? "Redirecting…"
+                  : `Authorize ${formatUSD(grandTotalThisCheckout)}${billingMode === "subscription" ? " + recurring" : ""}`}
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Selections are saved to this browser. You can revisit this page any month, adjust the most urgent tracks, and re-authorize.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
