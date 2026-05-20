@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useSearchParams } from "react-router-dom";
+import jsPDF from "jspdf";
 
 type TaskOption = {
   id: string;
