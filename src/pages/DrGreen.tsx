@@ -173,9 +173,14 @@ export default function DrGreen() {
         morOps,
         billingMode,
         email,
+        approverName,
+        approverDate,
+        approverPhone,
+        approverEmail,
+        approverSignature,
       })
     );
-  }, [selected, basePriorities, morSetup, morOps, billingMode, email]);
+  }, [selected, basePriorities, morSetup, morOps, billingMode, email, approverName, approverDate, approverPhone, approverEmail, approverSignature]);
 
   const toggleBasePriority = (id: string) => {
     setBasePriorities((prev) => {
