@@ -571,6 +571,9 @@ export default function DrGreen() {
               <span className="text-[hsl(43,74%,62%)] font-medium"> Updates</span>.
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
+              This is not an exhaustive list. The intent is to give an idea of the tasks that will be taken on to satisfy the needs of the organization and Dr. Green, with the goal of raising both their profile and income, earned and otherwise.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-white/70">
               For anything at all, reach me directly:{" "}
               <a href="mailto:Kiera@PhreshPhactory.co" className="underline underline-offset-4 text-[hsl(43,74%,62%)] font-medium">
                 Kiera@PhreshPhactory.co
