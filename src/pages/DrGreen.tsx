@@ -619,7 +619,7 @@ export default function DrGreen() {
               <div className="text-xs uppercase tracking-widest text-[hsl(43,74%,62%)] mb-1">Master Scope — Recent Additions (Updates)</div>
               <ul className="text-xs text-white/75 space-y-1 list-disc pl-5">
                 <li>Board of Director Biography/CV for Dr. Green + 3 sample pitches (drafted and ready to send).</li>
-                <li>Roadmap to $10M — includes a grant track and a partnership strategy with other entities. Strategy only; included to be pitched on the Foundation's behalf, no action required.</li>
+                <li>Roadmap to $10M — includes a grant track and a partnership strategy with other entities. Strategy only; included to be pitched to the Foundation for review, no action required.</li>
               </ul>
             </div>
             <object data={PDF_URL} type="application/pdf" className="w-full h-[80vh] bg-black">
