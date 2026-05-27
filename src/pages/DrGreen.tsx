@@ -134,7 +134,9 @@ const MOR_MONTHLY_CENTS = MOR_WEEKLY_CENTS * 4; // $4,000/mo flat for simplicity
 
 const STORAGE_KEY = "drgreen-selections-v1";
 
-const BASE_PRIORITIES: { id: string; title: string; description: string }[] = [
+const BASE_PRIORITIES: { id: string; title: string; description: string; isUpdate?: boolean }[] = [
+  { id: "base-task-1-1", title: "Task 1.1 — TikTok Fundraising Campaigns (Update)", description: "Added after preliminary meeting with Tracy: build and launch fundraising campaigns natively on TikTok, including campaign setup, creative direction, and live-stream donation integration.", isUpdate: true },
+  { id: "base-task-1-2-fundraisers", title: "Task 1.2 — Cross-Platform Fundraisers (Update)", description: "Added after preliminary meeting with Tracy: extend fundraisers to Facebook, Instagram, PayPal Giving Fund, and other priority platforms with unified tracking and creative.", isUpdate: true },
   { id: "base-strategic-advisory", title: "Strategic Advisory", description: "Monthly planning sessions with Kiera H., campaign architecture, system blueprints, and priority roadmapping for the Foundation." },
   { id: "base-content-script", title: "Content & Script Development", description: "Scriptwriting, broadcast outlines, talking points, and narrative strategy for social channels, live events, and institutional outreach." },
   { id: "base-on-camera", title: "On-Camera Talent", description: "Kiera H. as co-host, moderator, or featured talent for live streams, fundraisers, and media appearances on behalf of the Foundation." },
@@ -563,23 +565,11 @@ export default function DrGreen() {
               Dear Dr. Hadiyah-Nicole Green,
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
-              Thank you for taking this next step with us. This page holds everything we discussed —
-              the full scope of what Phresh Phactory can build alongside the Ora Lee Smith Cancer Research Foundation,
-              and a simple way for you to decide what matters most right now.
+              Welcome. Following our preliminary meeting with Tracy, any new items reflected below are marked as
+              <span className="text-[hsl(43,74%,62%)] font-medium"> Updates</span>.
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
-              I fully expect this will be reviewed by your teammate Tracy and others on your team. Please share it freely —
-              they are welcome to read, react, and interact with the selections below alongside you. The page saves
-              automatically, so the conversation can move at your pace.
-            </p>
-            <p className="mt-3 text-base leading-relaxed text-white/70">
-              Think of this as your working dashboard, not a final contract. Scroll slowly. Review the agreement below.
-              When you are ready, check the boxes that reflect where you would like us to focus first.
-              There is no pressure to select everything at once. Many partners start with the foundation layer
-              and add premium services as momentum builds.
-            </p>
-            <p className="mt-3 text-base leading-relaxed text-white/70">
-              If you have questions at any point, reach out directly to{" "}
+              For anything at all, reach me directly:{" "}
               <a href="mailto:Kiera@PhreshPhactory.co" className="underline underline-offset-4 text-[hsl(43,74%,62%)] font-medium">
                 Kiera@PhreshPhactory.co
               </a>.
@@ -665,6 +655,9 @@ export default function DrGreen() {
                       <div className="font-medium text-sm">{p.title}</div>
                       <p className="text-xs text-muted-foreground mt-1">{p.description}</p>
                     </div>
+                    {p.isUpdate && (
+                      <Badge className="text-[10px] shrink-0 bg-[hsl(43,74%,49%)] text-black hover:bg-[hsl(43,74%,55%)]">Update</Badge>
+                    )}
                     <Badge variant="secondary" className="text-[10px] shrink-0">Included</Badge>
                   </div>
                 );
