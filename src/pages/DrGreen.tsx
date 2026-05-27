@@ -108,6 +108,24 @@ const PREMIUM_UPGRADES: TaskOption[] = [
       "Internal publicists coordinate manual phone-line pitches and ongoing application panel reviews with editorial gates.",
     monthlyAmount: 25000,
   },
+  {
+    id: "task-1-14",
+    category: "Institutional Partnerships & High-Ticket Representation",
+    task: "Task 1.14",
+    title: "Board of Director Placement — Premium Agency-Managed",
+    description:
+      "Active research, outreach, and placement strategy to secure Board of Director positions for Dr. Green with aligned organizations and institutions.",
+    monthlyAmount: 25000,
+  },
+  {
+    id: "task-1-15",
+    category: "Institutional Partnerships & High-Ticket Representation",
+    task: "Task 1.15",
+    title: "Strategic Fundraising Planning — Premium Agency-Managed",
+    description:
+      "Comprehensive fundraising roadmap development: donor pipeline architecture, grant calendar management, and capital campaign sequencing.",
+    monthlyAmount: 25000,
+  },
 ];
 
 const MOR_SETUP_CENTS = 1000000; // $10,000 one-time
@@ -550,7 +568,7 @@ export default function DrGreen() {
               and a simple way for you to decide what matters most right now.
             </p>
             <p className="mt-3 text-base leading-relaxed text-white/70">
-              I fully expect this will be reviewed by your teammate Traci and others on your team. Please share it freely —
+              I fully expect this will be reviewed by your teammate Tracy and others on your team. Please share it freely —
               they are welcome to read, react, and interact with the selections below alongside you. The page saves
               automatically, so the conversation can move at your pace.
             </p>
@@ -833,7 +851,7 @@ export default function DrGreen() {
                 Approver Details
               </div>
               <p className="text-xs text-muted-foreground mb-3">
-                Whoever is completing this request — Dr. Green, Traci, or another team member — please confirm your details below before authorizing.
+                Whoever is completing this request — Dr. Green, Tracy, or another team member — please confirm your details below before authorizing.
               </p>
               <div className="grid md:grid-cols-2 gap-3">
                 <div>
