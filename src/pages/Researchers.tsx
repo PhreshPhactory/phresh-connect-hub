@@ -66,7 +66,7 @@ const Researchers = () => {
         <title>For PhDs and Researchers | Phresh Phactory</title>
         <meta
           name="description"
-          content="Commercialization and distribution partnership for PhDs, researchers, and specialists ready to turn expertise into products, audience, and revenue."
+          content="Commercialization and distribution partnership for PhDs working as professionals, executives, and founders ready to turn expertise into products, audience, and revenue."
         />
         <link rel="canonical" href="https://phreshphactory.com/researchers" />
       </Helmet>
