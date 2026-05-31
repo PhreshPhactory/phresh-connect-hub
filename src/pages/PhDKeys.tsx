@@ -167,14 +167,42 @@ const PhDKeys = () => {
 
       {/* Recent Episodes */}
       <section className="py-20 md:py-28">
-        <div className="container-custom max-w-3xl text-center">
+        <div className="container-custom max-w-2xl text-center">
           <p className="uppercase tracking-[0.25em] text-xs text-primary font-semibold mb-3">Coming Soon</p>
           <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 mb-6">Episodes Drop Soon</h2>
           <p className="text-lg leading-relaxed text-slate-700 mb-8">
-            New episodes of PhD Keys are in production. Follow along on your favorite platform to be notified the
-            moment the first episode goes live.
+            New episodes of PhD Keys are in production. Sign up below to be notified the moment the first episode goes live.
+          </p>
+          <form
+            onSubmit={handleSignup}
+            className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto text-left"
+          >
+            <Input
+              type="text"
+              placeholder="Your name (optional)"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="h-12"
+              maxLength={100}
+            />
+            <Input
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="h-12"
+              maxLength={255}
+            />
+            <Button type="submit" size="lg" disabled={submitting} className="h-12 shrink-0">
+              {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Notify Me"}
+            </Button>
+          </form>
+          <p className="text-xs text-slate-500 mt-4">
+            We respect your inbox. Unsubscribe anytime.
           </p>
         </div>
+
       </section>
 
 
