@@ -92,7 +92,10 @@ const Researchers = () => {
         'Priority "Hot Seat" in live Q&A sessions',
         "Exclusive Quarterly 1:1 Strategy Call",
         "Done-with-you execution: hire our team to build pieces of your launch for you",
+        "Commercial results interview eligibility after 6 months of continuous membership",
+        "PhDKeys featured podcast episode eligibility after 12 months of continuous membership",
       ],
+
       cta: "Join Executive",
       featured: true,
     },
