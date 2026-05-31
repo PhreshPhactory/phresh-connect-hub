@@ -2,31 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import phdKeysLogo from "@/assets/phdkeys-logo.png";
 import kieraHost from "@/assets/kiera-host.jpeg";
 
-const episodes = [
-  {
-    title: "Episode 1: The Behavioral Economics of Negotiation",
-    description:
-      "We decode the psychology behind high-stakes salary conversations. Learn the exact cognitive levers that move outcomes in your favor.",
-    image: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Episode 2: Longevity Science for Everyday Founders",
-    description:
-      "A leading researcher breaks down the protocols that compound across decades. Practical routines you can install this week.",
-    image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Episode 3: Cognitive Science for Raising Resilient Kids",
-    description:
-      "How learning hurdles actually form, and the parent-led interventions backed by peer-reviewed studies. No fluff, just frameworks.",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
-  },
-];
 
 const PhDKeys = () => {
   return (
