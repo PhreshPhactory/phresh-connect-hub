@@ -70,12 +70,12 @@ const Researchers = () => {
       audience: "For PhD Students & Postdocs",
       monthly: 49,
       annual: 490,
-      description: "The foundational commercial operating system for early-career researchers.",
+      description: "The commercial foundation to successfully transition from academia into industry.",
       features: [
-        'Access to the growing "client build" video library',
-        "Private community access for networking",
-        "Monthly live group Q&A sessions",
-        "Matchmaking: curated intros to brands, collaborators, and mentors inside the ecosystem",
+        { bold: '"Over-the-Shoulder" Video Library:', rest: "Watch us build real client systems so you can replicate them step-by-step." },
+        { bold: "Private PhD Community:", rest: "Stop building in isolation and network with peers on the same commercial path." },
+        { bold: "Monthly Live Q&A:", rest: "Get unblocked quickly with live group strategy and troubleshooting sessions." },
+        { bold: "Curated Matchmaking:", rest: "Get direct, curated intros to brands, mentors, and collaborators inside our ecosystem." },
       ],
       cta: "Join Emerging",
       featured: false,
@@ -85,21 +85,21 @@ const Researchers = () => {
       audience: "For Industry Scientists & Professionals",
       monthly: 199,
       annual: 1990,
-      description: "For established experts who value speed, implementation, and direct strategy.",
+      description: "For established experts who prioritize speed, scalable systems, and direct strategy.",
       features: [
-        "Everything in Emerging, plus:",
-        "Full library of templates, frameworks, and SOPs",
-        'Priority "Hot Seat" in live Q&A sessions',
-        "Exclusive Quarterly 1:1 Strategy Call",
-        "Done-with-you execution: hire our team to build pieces of your launch for you",
-        "Commercial results interview eligibility after 6 months of continuous membership",
-        "PhDKeys featured podcast episode eligibility after 12 months of continuous membership",
+        { bold: "Everything in Emerging, plus:", rest: "" },
+        { bold: "The Asset Vault:", rest: "Plug-and-play templates, frameworks, and SOPs to save you hundreds of hours of trial and error." },
+        { bold: 'Priority "Hot Seat" Access:', rest: "Jump the line to get your specific business bottlenecks solved live." },
+        { bold: "Quarterly 1:1 Strategy Call:", rest: "Private, high-level consulting to map out your exact 90-day growth plan." },
+        { bold: "Done-With-You Access:", rest: "Exclusive ability to hire our agency team to execute complex launch builds for you." },
+        { bold: "6-Month Results Interview:", rest: "Get featured across our platforms to showcase your commercial traction and authority." },
+        { bold: "12-Month PhDKeys Feature:", rest: "Earn a dedicated episode on the PhDKeys podcast to build your audience and SEO." },
       ],
-
       cta: "Join Executive",
       featured: true,
     },
   ];
+
 
   return (
     <div className="min-h-screen bg-white text-black">
