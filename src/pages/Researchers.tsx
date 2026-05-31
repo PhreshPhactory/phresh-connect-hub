@@ -11,6 +11,7 @@ import {
   Building2,
   Users,
   GraduationCap,
+  ShoppingBag,
 } from "lucide-react";
 
 const GOLD = "#c9a84c";
