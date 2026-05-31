@@ -62,13 +62,14 @@ const PhDKeys = () => {
           backgroundImage:
             "radial-gradient(circle at 20% 20%, hsl(var(--primary)) 0, transparent 40%), radial-gradient(circle at 80% 60%, #c9a84c 0, transparent 40%)",
         }} />
-        <div className="container-custom relative py-24 md:py-32 text-center max-w-4xl mx-auto">
-          <p className="uppercase tracking-[0.3em] text-xs text-amber-300 mb-6">A Phresh Phactory Production</p>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-4">PhD Keys</h1>
-          <h2 className="text-xl md:text-2xl text-slate-300 font-light mb-6">
-            Unlocking the World's Sharpest Minds
-          </h2>
-          <p className="text-base md:text-lg text-slate-400 max-w-2xl mx-auto mb-10">
+        <div className="container-custom relative py-20 md:py-28 text-center max-w-5xl mx-auto">
+          <img
+            src={phdKeysBanner}
+            alt="PhD Keys — Unlocking the World's Sharpest Minds. A Phresh Phactory, Inc. Production"
+            className="w-full max-w-4xl mx-auto mb-8 drop-shadow-2xl"
+          />
+          <h1 className="sr-only">PhD Keys — Unlocking the World's Sharpest Minds</h1>
+          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-10">
             Everyone doesn't need a doctorate to master life, but we all need the right keys.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
