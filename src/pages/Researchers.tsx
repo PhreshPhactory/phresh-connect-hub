@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
+import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import {
   ArrowRight,
   Beaker,
