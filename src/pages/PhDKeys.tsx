@@ -223,7 +223,7 @@ const PhDKeys = () => {
                 leadership for the build.
               </p>
               <Button asChild size="lg" className="bg-[#c9a84c] text-black hover:bg-[#b8973d]">
-                <Link to="/drgreen">See How We Work Together <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                <Link to="/researchers">See How We Work Together <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
             <div className="md:col-span-2">
