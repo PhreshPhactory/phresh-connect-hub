@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "@/hooks/use-toast";
 import phdKeysLogo from "@/assets/phdkeys-logo.png";
 import kieraHost from "@/assets/kiera-host.jpeg";
+
 
 
 const PhDKeys = () => {
