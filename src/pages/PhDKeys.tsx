@@ -151,31 +151,16 @@ const PhDKeys = () => {
 
       {/* Recent Episodes */}
       <section className="py-20 md:py-28">
-        <div className="container-custom">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-5xl font-semibold text-slate-900">Unlock the Latest Episodes</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {episodes.map((ep) => (
-              <Card key={ep.title} className="overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow">
-                <div className="aspect-video overflow-hidden bg-slate-100">
-                  <img src={ep.image} alt={ep.title} className="w-full h-full object-cover" />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg text-slate-900 mb-3 leading-snug">{ep.title}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-5">{ep.description}</p>
-                  <a href="#" className="inline-flex items-center text-primary font-semibold text-sm hover:underline">
-                    Listen Now <ArrowRight className="ml-1 h-4 w-4" />
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline">View All Episodes</Button>
-          </div>
+        <div className="container-custom max-w-3xl text-center">
+          <p className="uppercase tracking-[0.25em] text-xs text-primary font-semibold mb-3">Coming Soon</p>
+          <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 mb-6">Episodes Drop Soon</h2>
+          <p className="text-lg leading-relaxed text-slate-700 mb-8">
+            New episodes of PhD Keys are in production. Follow along on your favorite platform to be notified the
+            moment the first episode goes live.
+          </p>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-12">
