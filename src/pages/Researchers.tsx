@@ -64,7 +64,7 @@ const Researchers = () => {
   return (
     <div className="min-h-screen bg-white text-black">
       <Helmet>
-        <title>For PhDs and Researchers | Phresh Phactory</title>
+        <title>For PhDs and Researchers | Phresh Phactory, Inc.</title>
         <meta
           name="description"
           content="Commercialization and distribution partnership for PhDs working as professionals, executives, and founders ready to turn expertise into products, audience, and revenue."
