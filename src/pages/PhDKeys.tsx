@@ -73,33 +73,33 @@ const PhDKeys = () => {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      <section className="relative overflow-hidden bg-black text-white">
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 20%, hsl(var(--primary)) 0, transparent 40%), radial-gradient(circle at 80% 60%, #c9a84c 0, transparent 40%)",
+            "radial-gradient(circle at 20% 20%, #c9a84c 0, transparent 45%), radial-gradient(circle at 80% 60%, #c9a84c 0, transparent 40%)",
         }} />
         <div className="container-custom relative py-20 md:py-28 text-center max-w-5xl mx-auto">
           <img
             src={phdKeysLogo}
-            alt="PhD Keys — Unlocking the World's Sharpest Minds. A Phresh Phactory, Inc. Production"
+            alt="PhD Keys, Unlocking the World's Sharpest Minds. A Phresh Phactory, Inc. Production"
             className="w-full max-w-md md:max-w-lg mx-auto mb-10 rounded-2xl shadow-2xl"
           />
-          <h1 className="sr-only">PhD Keys — Unlocking the World's Sharpest Minds</h1>
-          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-10">
+          <h1 className="sr-only">PhD Keys, Unlocking the World's Sharpest Minds</h1>
+          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-10">
             Everyone doesn't need a doctorate to master life, but we all need the right keys.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
+            <Button asChild size="lg" className="bg-[#c9a84c] text-black hover:bg-[#b8973d]">
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <Headphones className="mr-2 h-5 w-5" /> Listen on Apple Podcasts
               </a>
             </Button>
-            <Button asChild size="lg" className="bg-[#1DB954] text-white hover:bg-[#1aa84a]">
+            <Button asChild size="lg" className="bg-white text-black hover:bg-white/90">
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <Music2 className="mr-2 h-5 w-5" /> Listen on Spotify
               </a>
             </Button>
-            <Button asChild size="lg" className="bg-[#FF0000] text-white hover:bg-[#e60000]">
+            <Button asChild size="lg" variant="outline" className="border-white/40 text-white bg-transparent hover:bg-white hover:text-black">
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <Youtube className="mr-2 h-5 w-5" /> Watch on YouTube
               </a>
@@ -109,10 +109,10 @@ const PhDKeys = () => {
       </section>
 
       {/* About the Show */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28 bg-white">
         <div className="container-custom max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-slate-900">About the Show</h2>
-          <div className="space-y-6 text-lg leading-relaxed text-slate-700">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-black">About the Show</h2>
+          <div className="space-y-6 text-lg leading-relaxed text-neutral-800">
             <p>
               Welcome to PhD Keys, the multimedia podcast that unlocks the minds of experts and translates their complex
               research into actionable, real-world frameworks for every day.
@@ -130,7 +130,7 @@ const PhDKeys = () => {
               take complex research and turn it into practical tools for our businesses, our careers, our households,
               and our future.
             </p>
-            <p className="text-xl font-medium text-slate-900 border-l-4 border-primary pl-5">
+            <p className="text-xl font-medium text-black border-l-4 border-[#c9a84c] pl-5">
               Get the ROI of 10,000 hours of research in a single episode.
             </p>
           </div>
@@ -138,27 +138,27 @@ const PhDKeys = () => {
       </section>
 
       {/* Meet the Host */}
-      <section className="bg-slate-50 py-20 md:py-28">
+      <section className="bg-neutral-50 py-20 md:py-28">
         <div className="container-custom grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-slate-200 shadow-xl">
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl">
               <img
                 src={kieraHost}
                 alt="Kiera H., host of PhD Keys podcast"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 hidden md:block w-40 h-40 rounded-2xl border-4 border-primary -z-10" />
+            <div className="absolute -bottom-4 -right-4 hidden md:block w-40 h-40 rounded-2xl border-4 border-[#c9a84c] -z-10" />
           </div>
           <div>
-            <p className="uppercase tracking-[0.25em] text-xs text-primary font-semibold mb-3">The Host</p>
-            <h2 className="text-3xl md:text-5xl font-semibold mb-6 text-slate-900">Meet Kiera H.</h2>
-            <p className="text-lg leading-relaxed text-slate-700">
+            <p className="uppercase tracking-[0.25em] text-xs text-[#c9a84c] font-semibold mb-3">The Host</p>
+            <h2 className="text-3xl md:text-5xl font-semibold mb-6 text-black">Meet Kiera H.</h2>
+            <p className="text-lg leading-relaxed text-neutral-800">
               Hosted by Kiera H., a multi-patent inventor and executive strategist to Founders, professionals, and
               entrepreneurs, PhD Keys bypasses heavy industry jargon to ask the fundamental questions everyone is
               thinking, but no one else is asking.
             </p>
-            <Button asChild variant="outline" className="mt-8">
+            <Button asChild variant="outline" className="mt-8 border-black text-black hover:bg-black hover:text-white">
               <Link to="/KieraH">Learn more about Kiera <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
@@ -166,11 +166,11 @@ const PhDKeys = () => {
       </section>
 
       {/* Recent Episodes */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28 bg-white">
         <div className="container-custom max-w-2xl text-center">
-          <p className="uppercase tracking-[0.25em] text-xs text-primary font-semibold mb-3">Coming Soon</p>
-          <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 mb-6">Episodes Drop Soon</h2>
-          <p className="text-lg leading-relaxed text-slate-700 mb-8">
+          <p className="uppercase tracking-[0.25em] text-xs text-[#c9a84c] font-semibold mb-3">Coming Soon</p>
+          <h2 className="text-3xl md:text-5xl font-semibold text-black mb-6">Episodes Drop Soon</h2>
+          <p className="text-lg leading-relaxed text-neutral-800 mb-8">
             New episodes of PhD Keys are in production. Sign up below to be notified the moment the first episode goes live.
           </p>
           <form
@@ -194,11 +194,11 @@ const PhDKeys = () => {
               className="h-12"
               maxLength={255}
             />
-            <Button type="submit" size="lg" disabled={submitting} className="h-12 shrink-0">
+            <Button type="submit" size="lg" disabled={submitting} className="h-12 shrink-0 bg-black text-white hover:bg-neutral-800">
               {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Notify Me"}
             </Button>
           </form>
-          <p className="text-xs text-slate-500 mt-4">
+          <p className="text-xs text-neutral-500 mt-4">
             We respect your inbox. Unsubscribe anytime.
           </p>
         </div>
@@ -206,34 +206,34 @@ const PhDKeys = () => {
       </section>
 
       {/* Work With Us */}
-      <section className="bg-slate-900 text-white py-20 md:py-28">
+      <section className="bg-black text-white py-20 md:py-28">
         <div className="container-custom max-w-4xl">
           <div className="grid md:grid-cols-5 gap-10 items-center">
             <div className="md:col-span-3">
-              <p className="uppercase tracking-[0.25em] text-xs text-primary font-semibold mb-3">Work With Us</p>
-              <h2 className="text-3xl md:text-4xl font-semibold mb-5">Are you the expert, not just the audience?</h2>
-              <p className="text-lg leading-relaxed text-slate-300 mb-4">
+              <p className="uppercase tracking-[0.25em] text-xs text-[#c9a84c] font-semibold mb-3">Work With Us</p>
+              <h2 className="text-3xl md:text-4xl font-semibold mb-5 text-white">Are you the expert, not just the audience?</h2>
+              <p className="text-lg leading-relaxed text-white/85 mb-4">
                 PhD Keys exists because brilliant research rarely reaches the people it should serve. If you are a PhD,
                 researcher, or specialist sitting on work the world needs, Phresh Phactory is the commercialization and
                 distribution partner that turns your expertise into products, audience, and revenue.
               </p>
-              <p className="text-base leading-relaxed text-slate-400 mb-8">
+              <p className="text-base leading-relaxed text-white/70 mb-8">
                 Productized offers and pricing. Cross-platform digital infrastructure. Short-form content engines.
                 Strategic PR and speaker positioning. Corporate, institutional, and K through 12 partnerships. Fractional
                 leadership for the build.
               </p>
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button asChild size="lg" className="bg-[#c9a84c] text-black hover:bg-[#b8973d]">
                 <Link to="/drgreen">See How We Work Together <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
             <div className="md:col-span-2">
-              <div className="rounded-2xl border border-slate-700 bg-slate-800/60 p-6 space-y-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">Built For</p>
-                <ul className="space-y-3 text-sm text-slate-200">
-                  <li className="flex gap-3"><span className="text-primary">+</span> Academics ready to monetize beyond the institution</li>
-                  <li className="flex gap-3"><span className="text-primary">+</span> Researcher-founders scaling a category of one</li>
-                  <li className="flex gap-3"><span className="text-primary">+</span> Specialists pursuing speaking, media, and corporate revenue</li>
-                  <li className="flex gap-3"><span className="text-primary">+</span> Experts placing curriculum into schools and enterprises</li>
+              <div className="rounded-2xl border border-[#c9a84c]/40 bg-white/5 p-6 space-y-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a84c] font-semibold">Built For</p>
+                <ul className="space-y-3 text-sm text-white/90">
+                  <li className="flex gap-3"><span className="text-[#c9a84c]">+</span> Academics ready to monetize beyond the institution</li>
+                  <li className="flex gap-3"><span className="text-[#c9a84c]">+</span> Researcher-founders scaling a category of one</li>
+                  <li className="flex gap-3"><span className="text-[#c9a84c]">+</span> Specialists pursuing speaking, media, and corporate revenue</li>
+                  <li className="flex gap-3"><span className="text-[#c9a84c]">+</span> Experts placing curriculum into schools and enterprises</li>
                 </ul>
               </div>
             </div>
