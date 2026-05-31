@@ -92,7 +92,10 @@ const Researchers = () => {
           <p className="uppercase tracking-[0.25em] text-xs font-semibold mb-4" style={{ color: GOLD }}>
             For PhDs and Researchers
           </p>
-          <h1 className="text-4xl md:text-6xl font-semibold leading-tight mb-6">
+          <h1
+            className="text-4xl md:text-6xl font-semibold leading-tight mb-6"
+            style={{ textShadow: "0 0 24px rgba(255,255,255,0.35), 0 2px 12px rgba(0,0,0,0.6)" }}
+          >
             Your research deserves more than a citation.
           </h1>
           <p className="text-lg md:text-xl text-white/85 max-w-2xl mb-10">
