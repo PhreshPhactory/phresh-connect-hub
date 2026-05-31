@@ -151,7 +151,7 @@ const Researchers = () => {
               What We Build Together
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold text-black">
-              The seven things every researcher-founder eventually needs.
+              The eight things every PhD-led business eventually needs.
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
