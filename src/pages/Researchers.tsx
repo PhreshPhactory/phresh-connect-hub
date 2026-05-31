@@ -19,8 +19,13 @@ const GOLD = "#c9a84c";
 const needs = [
   {
     icon: Beaker,
-    title: "Translate research into revenue",
-    body: "Productize your expertise into offers, pricing, and monetization architecture that compounds.",
+    title: "Translate expertise into revenue",
+    body: "Productize your knowledge into offers, pricing, and monetization architecture that compounds.",
+  },
+  {
+    icon: ShoppingBag,
+    title: "E-commerce and product sales",
+    body: "Direct-to-consumer storefronts, digital product delivery, checkout, fulfillment, and subscription billing built for scale.",
   },
   {
     icon: Layers,
