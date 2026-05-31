@@ -127,8 +127,8 @@ const PhDKeys = () => {
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-slate-200 shadow-xl">
               <img
-                src="/lovable-uploads/40b50a20-2f72-4fb8-b1d0-9e78f6d71dfa.png"
-                alt="Kiera H., host of PhD Keys"
+                src={phdKeysCover}
+                alt="PhD Keys podcast cover art"
                 className="w-full h-full object-cover"
               />
             </div>
