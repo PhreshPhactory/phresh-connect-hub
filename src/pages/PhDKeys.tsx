@@ -206,34 +206,34 @@ const PhDKeys = () => {
       </section>
 
       {/* Work With Us */}
-      <section className="bg-slate-900 text-white py-20 md:py-28">
+      <section className="bg-black text-white py-20 md:py-28">
         <div className="container-custom max-w-4xl">
           <div className="grid md:grid-cols-5 gap-10 items-center">
             <div className="md:col-span-3">
-              <p className="uppercase tracking-[0.25em] text-xs text-primary font-semibold mb-3">Work With Us</p>
-              <h2 className="text-3xl md:text-4xl font-semibold mb-5">Are you the expert, not just the audience?</h2>
-              <p className="text-lg leading-relaxed text-slate-300 mb-4">
+              <p className="uppercase tracking-[0.25em] text-xs text-[#c9a84c] font-semibold mb-3">Work With Us</p>
+              <h2 className="text-3xl md:text-4xl font-semibold mb-5 text-white">Are you the expert, not just the audience?</h2>
+              <p className="text-lg leading-relaxed text-white/85 mb-4">
                 PhD Keys exists because brilliant research rarely reaches the people it should serve. If you are a PhD,
                 researcher, or specialist sitting on work the world needs, Phresh Phactory is the commercialization and
                 distribution partner that turns your expertise into products, audience, and revenue.
               </p>
-              <p className="text-base leading-relaxed text-slate-400 mb-8">
+              <p className="text-base leading-relaxed text-white/70 mb-8">
                 Productized offers and pricing. Cross-platform digital infrastructure. Short-form content engines.
                 Strategic PR and speaker positioning. Corporate, institutional, and K through 12 partnerships. Fractional
                 leadership for the build.
               </p>
-              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Button asChild size="lg" className="bg-[#c9a84c] text-black hover:bg-[#b8973d]">
                 <Link to="/drgreen">See How We Work Together <ArrowRight className="ml-2 h-4 w-4" /></Link>
               </Button>
             </div>
             <div className="md:col-span-2">
-              <div className="rounded-2xl border border-slate-700 bg-slate-800/60 p-6 space-y-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-primary font-semibold">Built For</p>
-                <ul className="space-y-3 text-sm text-slate-200">
-                  <li className="flex gap-3"><span className="text-primary">+</span> Academics ready to monetize beyond the institution</li>
-                  <li className="flex gap-3"><span className="text-primary">+</span> Researcher-founders scaling a category of one</li>
-                  <li className="flex gap-3"><span className="text-primary">+</span> Specialists pursuing speaking, media, and corporate revenue</li>
-                  <li className="flex gap-3"><span className="text-primary">+</span> Experts placing curriculum into schools and enterprises</li>
+              <div className="rounded-2xl border border-[#c9a84c]/40 bg-white/5 p-6 space-y-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#c9a84c] font-semibold">Built For</p>
+                <ul className="space-y-3 text-sm text-white/90">
+                  <li className="flex gap-3"><span className="text-[#c9a84c]">+</span> Academics ready to monetize beyond the institution</li>
+                  <li className="flex gap-3"><span className="text-[#c9a84c]">+</span> Researcher-founders scaling a category of one</li>
+                  <li className="flex gap-3"><span className="text-[#c9a84c]">+</span> Specialists pursuing speaking, media, and corporate revenue</li>
+                  <li className="flex gap-3"><span className="text-[#c9a84c]">+</span> Experts placing curriculum into schools and enterprises</li>
                 </ul>
               </div>
             </div>
