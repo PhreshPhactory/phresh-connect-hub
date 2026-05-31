@@ -153,7 +153,7 @@ const KieraProfile = () => {
                       <h3 className="text-lg font-semibold">Innovation History</h3>
                     </div>
                     <p className="text-sm md:text-base text-muted-foreground">
-                      Developed and sold multiple <strong>patented innovations to ExxonMobil</strong>, gaining experience in research, analysis, and commercialization
+                      Developed and assigned multiple <strong>patented innovations</strong>, gaining experience in research, analysis, and commercialization
                     </p>
                   </CardContent>
                 </Card>
