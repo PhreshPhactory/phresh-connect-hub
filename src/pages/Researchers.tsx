@@ -124,16 +124,17 @@ const Researchers = () => {
       <section className="py-20 md:py-28 bg-white">
         <div className="container-custom max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-black">
-            The gap between brilliant research and a thriving business.
+            The gap between deep expertise and a thriving business.
           </h2>
           <div className="space-y-5 text-lg leading-relaxed text-neutral-800">
             <p>
-              The expertise is already there. What is missing is the operating system around it: the offer
-              architecture, the distribution channels, the audience pipeline, and the team to execute against all of it.
+              The credentials and the knowledge are already there. What is missing is the operating system around it:
+              the offer architecture, the e-commerce engine, the distribution channels, the audience pipeline, and the
+              team to execute against all of it.
             </p>
             <p>
-              We work with researcher-founders, academics, and specialists who are tired of advice and ready for a
-              partner that builds, ships, and sells alongside them.
+              We work with PhDs operating as professionals, executives, founders, and practice owners who are tired of
+              advice and ready for a partner that builds, ships, and sells alongside them.
             </p>
             <p className="text-xl font-medium text-black border-l-4 pl-5" style={{ borderColor: GOLD }}>
               We do not coach you into action. We build with you, in your name.
