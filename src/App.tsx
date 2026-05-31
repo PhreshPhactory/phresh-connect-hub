@@ -68,6 +68,7 @@ const NewsletterEditions = lazy(() => import("@/pages/NewsletterEditions"));
 const NewsletterEditionPage = lazy(() => import("@/pages/NewsletterEditionPage"));
 const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin"));
 const DrGreen = lazy(() => import("@/pages/DrGreen"));
+const PhDKeys = lazy(() => import("@/pages/PhDKeys"));
 
 // Simplified loading fallback component
 const PageSkeleton = () => (
@@ -164,6 +165,8 @@ const App = () => {
                     <Route element={<LandingPageLayout />}>
                       <Route path="/socially-selling-food" element={<SociallySellingFood />} />
                       <Route path="/drgreen" element={<DrGreen />} />
+                      <Route path="/PhDKeys" element={<PhDKeys />} />
+                      <Route path="/phdkeys" element={<PhDKeys />} />
                     </Route>
                   </Routes>
                 </Suspense>
