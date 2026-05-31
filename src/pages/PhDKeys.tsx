@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import phdKeysCover from "@/assets/phdkeys-cover.png";
 import phdKeysBanner from "@/assets/phdkeys-banner.png";
+import kieraHost from "@/assets/kiera-host.jpeg";
 
 const episodes = [
   {
@@ -127,8 +128,8 @@ const PhDKeys = () => {
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-slate-200 shadow-xl">
               <img
-                src={phdKeysCover}
-                alt="PhD Keys podcast cover art"
+                src={kieraHost}
+                alt="Kiera H., host of PhD Keys podcast"
                 className="w-full h-full object-cover"
               />
             </div>
