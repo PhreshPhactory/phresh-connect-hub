@@ -73,33 +73,33 @@ const PhDKeys = () => {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      <section className="relative overflow-hidden bg-black text-white">
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 20%, hsl(var(--primary)) 0, transparent 40%), radial-gradient(circle at 80% 60%, #c9a84c 0, transparent 40%)",
+            "radial-gradient(circle at 20% 20%, #c9a84c 0, transparent 45%), radial-gradient(circle at 80% 60%, #c9a84c 0, transparent 40%)",
         }} />
         <div className="container-custom relative py-20 md:py-28 text-center max-w-5xl mx-auto">
           <img
             src={phdKeysLogo}
-            alt="PhD Keys — Unlocking the World's Sharpest Minds. A Phresh Phactory, Inc. Production"
+            alt="PhD Keys, Unlocking the World's Sharpest Minds. A Phresh Phactory, Inc. Production"
             className="w-full max-w-md md:max-w-lg mx-auto mb-10 rounded-2xl shadow-2xl"
           />
-          <h1 className="sr-only">PhD Keys — Unlocking the World's Sharpest Minds</h1>
-          <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-10">
+          <h1 className="sr-only">PhD Keys, Unlocking the World's Sharpest Minds</h1>
+          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-10">
             Everyone doesn't need a doctorate to master life, but we all need the right keys.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button asChild size="lg" className="bg-white text-slate-900 hover:bg-slate-100">
+            <Button asChild size="lg" className="bg-[#c9a84c] text-black hover:bg-[#b8973d]">
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <Headphones className="mr-2 h-5 w-5" /> Listen on Apple Podcasts
               </a>
             </Button>
-            <Button asChild size="lg" className="bg-[#1DB954] text-white hover:bg-[#1aa84a]">
+            <Button asChild size="lg" className="bg-white text-black hover:bg-white/90">
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <Music2 className="mr-2 h-5 w-5" /> Listen on Spotify
               </a>
             </Button>
-            <Button asChild size="lg" className="bg-[#FF0000] text-white hover:bg-[#e60000]">
+            <Button asChild size="lg" variant="outline" className="border-white/40 text-white bg-transparent hover:bg-white hover:text-black">
               <a href="#" target="_blank" rel="noopener noreferrer">
                 <Youtube className="mr-2 h-5 w-5" /> Watch on YouTube
               </a>
