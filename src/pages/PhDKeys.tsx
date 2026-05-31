@@ -4,8 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-import phdKeysCover from "@/assets/phdkeys-cover.png";
-import phdKeysBanner from "@/assets/phdkeys-banner.png";
+import phdKeysLogo from "@/assets/phdkeys-logo.png";
 import kieraHost from "@/assets/kiera-host.jpeg";
 
 const episodes = [
@@ -65,9 +64,9 @@ const PhDKeys = () => {
         }} />
         <div className="container-custom relative py-20 md:py-28 text-center max-w-5xl mx-auto">
           <img
-            src={phdKeysBanner}
+            src={phdKeysLogo}
             alt="PhD Keys — Unlocking the World's Sharpest Minds. A Phresh Phactory, Inc. Production"
-            className="w-full max-w-4xl mx-auto mb-8 drop-shadow-2xl"
+            className="w-full max-w-md md:max-w-lg mx-auto mb-10 rounded-2xl shadow-2xl"
           />
           <h1 className="sr-only">PhD Keys — Unlocking the World's Sharpest Minds</h1>
           <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-10">
