@@ -322,12 +322,13 @@ const Researchers = () => {
                 </div>
                 <ul className="space-y-3 mb-10 flex-1">
                   {tier.features.map((f) => (
-                    <li key={f} className="flex gap-3 text-white/90">
+                    <li key={f.bold} className="flex gap-3 text-white/90">
                       <Check className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: GOLD }} />
-                      <span>{f}</span>
+                      <span><strong className="font-semibold text-white">{f.bold}</strong>{f.rest ? ` ${f.rest}` : ""}</span>
                     </li>
                   ))}
                 </ul>
+
                 <Button
                   asChild
                   size="lg"
