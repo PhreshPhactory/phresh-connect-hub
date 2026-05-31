@@ -75,8 +75,9 @@ const Researchers = () => {
       {/* Nav */}
       <header className="sticky top-0 z-40 border-b border-neutral-200 bg-white/90 backdrop-blur">
         <nav className="container-custom flex items-center justify-between h-16">
-          <Link to="/" className="font-semibold tracking-tight text-lg">
-            Phresh Phactory
+          <Link to="/" className="flex items-center gap-3 font-semibold tracking-tight text-lg">
+            <img src={phreshLogo} alt="Phresh Phactory, Inc." className="h-9 w-9 rounded-md" />
+            <span>Phresh Phactory, Inc.</span>
           </Link>
           <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
             <li><Link to="/" className="text-neutral-600 hover:text-black transition">Home</Link></li>
