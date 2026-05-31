@@ -234,6 +234,108 @@ const Researchers = () => {
         </div>
       </section>
 
+      {/* Membership / Pricing */}
+      <section className="bg-black text-white py-20 md:py-28 border-t border-white/10">
+        <div className="container-custom max-w-6xl">
+          <div className="max-w-3xl mx-auto text-center mb-10">
+            <p className="uppercase tracking-[0.25em] text-xs font-semibold mb-4" style={{ color: GOLD }}>
+              Membership
+            </p>
+            <h2 className="text-3xl md:text-5xl font-semibold leading-tight mb-5">
+              Scale your impact and income: The private community and growth playbook for PhD-led enterprises.
+            </h2>
+            <p className="text-lg text-white/80">
+              Join the membership. Choose the tier that fits your current career stage. All plans include a
+              14-Day Action-Based Money-Back Guarantee.
+            </p>
+          </div>
+
+          {/* Billing toggle */}
+          <div className="flex items-center justify-center gap-4 mb-12">
+            <span className={`text-sm font-medium ${!annual ? "text-white" : "text-white/50"}`}>Monthly</span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={annual}
+              onClick={() => setAnnual((v) => !v)}
+              className="relative w-14 h-7 rounded-full border border-white/20 transition"
+              style={{ backgroundColor: annual ? GOLD : "rgba(255,255,255,0.1)" }}
+            >
+              <span
+                className="absolute top-0.5 left-0.5 h-6 w-6 rounded-full bg-white transition-transform"
+                style={{ transform: annual ? "translateX(28px)" : "translateX(0)" }}
+              />
+            </button>
+            <span className={`text-sm font-medium ${annual ? "text-white" : "text-white/50"}`}>
+              Annual <span style={{ color: GOLD }}>(Save 16%)</span>
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch max-w-5xl mx-auto">
+            {tiers.map((tier) => (
+              <div
+                key={tier.name}
+                className={`relative rounded-2xl p-8 md:p-10 flex flex-col ${
+                  tier.featured
+                    ? "bg-neutral-950 md:scale-[1.03]"
+                    : "bg-white/5 border border-white/10"
+                }`}
+                style={
+                  tier.featured
+                    ? { border: `2px solid ${GOLD}`, boxShadow: `0 0 60px -20px ${GOLD}` }
+                    : undefined
+                }
+              >
+                {tier.featured && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span
+                      className="text-black text-xs font-semibold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full"
+                      style={{ backgroundColor: GOLD }}
+                    >
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+                <p className="text-xs uppercase tracking-[0.2em] font-semibold mb-3" style={{ color: GOLD }}>
+                  {tier.audience}
+                </p>
+                <h3 className="text-3xl font-semibold mb-3">{tier.name}</h3>
+                <p className="text-white/75 mb-6 leading-relaxed">{tier.description}</p>
+                <div className="mb-8">
+                  <span className="text-5xl font-bold">
+                    ${annual ? tier.annual.toLocaleString() : tier.monthly}
+                  </span>
+                  <span className="ml-2 text-white/60">/ {annual ? "year" : "month"}</span>
+                </div>
+                <ul className="space-y-3 mb-10 flex-1">
+                  {tier.features.map((f) => (
+                    <li key={f} className="flex gap-3 text-white/90">
+                      <Check className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: GOLD }} />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  asChild
+                  size="lg"
+                  className={
+                    tier.featured
+                      ? "text-black hover:opacity-90 w-full"
+                      : "w-full border border-white/30 bg-transparent text-white hover:bg-white hover:text-black"
+                  }
+                  style={tier.featured ? { backgroundColor: GOLD } : undefined}
+                  variant={tier.featured ? "default" : "outline"}
+                >
+                  <Link to="/contact">{tier.cta}</Link>
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
       {/* CTA */}
       <section className="bg-black text-white py-20 md:py-24">
         <div className="container-custom max-w-3xl text-center">
