@@ -247,12 +247,12 @@ const Researchers = () => {
               Membership
             </p>
             <h2 className="text-3xl md:text-5xl font-semibold leading-tight mb-5">
-              Scale your impact and income: The private community and growth playbook for PhD-led enterprises.
+              Turn Your Expertise Into Enterprise: The Growth Playbook for PhD-Led Businesses.
             </h2>
             <p className="text-lg text-white/80">
-              Join the membership. Choose the tier that fits your current career stage. All plans include a
-              14-Day Action-Based Money-Back Guarantee.
+              Choose the tier that fits your current career stage. Start building with zero risk using our 14-Day Action-Based Guarantee.
             </p>
+
           </div>
 
           {/* Billing toggle */}
