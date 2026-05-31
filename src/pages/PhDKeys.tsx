@@ -12,6 +12,39 @@ import kieraHost from "@/assets/kiera-host.jpeg";
 
 
 const PhDKeys = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from("newsletter_subscribers").insert({
+        email: email.trim().toLowerCase(),
+        name: name.trim() || null,
+        source: "phdkeys",
+      });
+      if (error) throw error;
+      toast({
+        title: "You're on the list",
+        description: "We'll email you the moment new episodes drop.",
+      });
+      setName("");
+      setEmail("");
+    } catch (err: any) {
+      toast({
+        title: "Something went wrong",
+        description: err.message || "Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
