@@ -301,7 +301,15 @@ const Researchers = () => {
                 <p className="text-xs uppercase tracking-[0.2em] font-semibold mb-3" style={{ color: GOLD }}>
                   {tier.audience}
                 </p>
-                <h3 className="text-3xl font-semibold mb-3">{tier.name}</h3>
+                <h3
+                  className="text-4xl md:text-5xl font-semibold mb-3"
+                  style={{
+                    textShadow:
+                      "0 0 40px rgba(255,255,255,0.95), 0 0 24px rgba(255,255,255,0.85), 0 0 12px rgba(255,255,255,0.7)",
+                  }}
+                >
+                  {tier.name}
+                </h3>
                 <p className="text-white/75 mb-6 leading-relaxed">{tier.description}</p>
                 <div className="mb-8">
                   <span className="text-5xl font-bold">
