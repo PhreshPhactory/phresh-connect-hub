@@ -109,10 +109,10 @@ const PhDKeys = () => {
       </section>
 
       {/* About the Show */}
-      <section className="py-20 md:py-28">
+      <section className="py-20 md:py-28 bg-white">
         <div className="container-custom max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-slate-900">About the Show</h2>
-          <div className="space-y-6 text-lg leading-relaxed text-slate-700">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-black">About the Show</h2>
+          <div className="space-y-6 text-lg leading-relaxed text-neutral-800">
             <p>
               Welcome to PhD Keys, the multimedia podcast that unlocks the minds of experts and translates their complex
               research into actionable, real-world frameworks for every day.
@@ -130,7 +130,7 @@ const PhDKeys = () => {
               take complex research and turn it into practical tools for our businesses, our careers, our households,
               and our future.
             </p>
-            <p className="text-xl font-medium text-slate-900 border-l-4 border-primary pl-5">
+            <p className="text-xl font-medium text-black border-l-4 border-[#c9a84c] pl-5">
               Get the ROI of 10,000 hours of research in a single episode.
             </p>
           </div>
@@ -138,27 +138,27 @@ const PhDKeys = () => {
       </section>
 
       {/* Meet the Host */}
-      <section className="bg-slate-50 py-20 md:py-28">
+      <section className="bg-neutral-50 py-20 md:py-28">
         <div className="container-custom grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-slate-200 shadow-xl">
+            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl">
               <img
                 src={kieraHost}
                 alt="Kiera H., host of PhD Keys podcast"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 hidden md:block w-40 h-40 rounded-2xl border-4 border-primary -z-10" />
+            <div className="absolute -bottom-4 -right-4 hidden md:block w-40 h-40 rounded-2xl border-4 border-[#c9a84c] -z-10" />
           </div>
           <div>
-            <p className="uppercase tracking-[0.25em] text-xs text-primary font-semibold mb-3">The Host</p>
-            <h2 className="text-3xl md:text-5xl font-semibold mb-6 text-slate-900">Meet Kiera H.</h2>
-            <p className="text-lg leading-relaxed text-slate-700">
+            <p className="uppercase tracking-[0.25em] text-xs text-[#c9a84c] font-semibold mb-3">The Host</p>
+            <h2 className="text-3xl md:text-5xl font-semibold mb-6 text-black">Meet Kiera H.</h2>
+            <p className="text-lg leading-relaxed text-neutral-800">
               Hosted by Kiera H., a multi-patent inventor and executive strategist to Founders, professionals, and
               entrepreneurs, PhD Keys bypasses heavy industry jargon to ask the fundamental questions everyone is
               thinking, but no one else is asking.
             </p>
-            <Button asChild variant="outline" className="mt-8">
+            <Button asChild variant="outline" className="mt-8 border-black text-black hover:bg-black hover:text-white">
               <Link to="/KieraH">Learn more about Kiera <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
           </div>
