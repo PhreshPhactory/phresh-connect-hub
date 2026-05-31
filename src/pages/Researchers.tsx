@@ -100,13 +100,14 @@ const Researchers = () => {
           </p>
           <h1
             className="text-4xl md:text-6xl font-semibold leading-tight mb-6"
-            style={{ textShadow: "0 0 24px rgba(255,255,255,0.35), 0 2px 12px rgba(0,0,0,0.6)" }}
+            style={{ textShadow: "0 0 40px rgba(255,255,255,0.9), 0 0 18px rgba(255,255,255,0.7), 0 2px 14px rgba(0,0,0,0.85)" }}
           >
-            Your research deserves more than a citation.
+            Your expertise deserves more than a citation.
           </h1>
-          <p className="text-lg md:text-xl text-white/85 max-w-2xl mb-10">
-            Phresh Phactory is the commercialization and distribution partner for PhDs, researchers, and specialists
-            ready to turn decades of expertise into products, audience, and revenue.
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10">
+            Most PhDs do not stay in the lab. They lead companies, advise boards, build practices, and run organizations.
+            Phresh Phactory is the commercialization and distribution partner that turns that real-world expertise into
+            products, audience, and revenue.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild size="lg" className="text-black hover:opacity-90" style={{ backgroundColor: GOLD }}>
