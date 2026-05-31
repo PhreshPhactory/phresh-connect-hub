@@ -62,6 +62,40 @@ const needs = [
 ];
 
 const Researchers = () => {
+  const [annual, setAnnual] = useState(false);
+
+  const tiers = [
+    {
+      name: "Emerging",
+      audience: "For PhD Students & Postdocs",
+      monthly: 49,
+      annual: 490,
+      description: "The foundational commercial operating system for early-career researchers.",
+      features: [
+        'Access to the growing "client build" video library',
+        "Private community access for networking",
+        "Monthly live group Q&A sessions",
+      ],
+      cta: "Join Emerging",
+      featured: false,
+    },
+    {
+      name: "Executive",
+      audience: "For Industry Scientists & Professionals",
+      monthly: 199,
+      annual: 1990,
+      description: "For established experts who value speed, implementation, and direct strategy.",
+      features: [
+        "Everything in Emerging, plus:",
+        "Full library of templates, frameworks, and SOPs",
+        'Priority "Hot Seat" in live Q&A sessions',
+        "Exclusive Quarterly 1:1 Strategy Call",
+      ],
+      cta: "Join Executive",
+      featured: true,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-white text-black">
       <Helmet>
