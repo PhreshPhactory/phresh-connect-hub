@@ -165,6 +165,8 @@ const App = () => {
                     <Route element={<LandingPageLayout />}>
                       <Route path="/socially-selling-food" element={<SociallySellingFood />} />
                       <Route path="/drgreen" element={<DrGreen />} />
+                      <Route path="/PhDKeys" element={<PhDKeys />} />
+                      <Route path="/phdkeys" element={<PhDKeys />} />
                     </Route>
                   </Routes>
                 </Suspense>
