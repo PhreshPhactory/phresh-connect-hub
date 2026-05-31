@@ -2,31 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import phdKeysLogo from "@/assets/phdkeys-logo.png";
 import kieraHost from "@/assets/kiera-host.jpeg";
 
-const episodes = [
-  {
-    title: "Episode 1: The Behavioral Economics of Negotiation",
-    description:
-      "We decode the psychology behind high-stakes salary conversations. Learn the exact cognitive levers that move outcomes in your favor.",
-    image: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Episode 2: Longevity Science for Everyday Founders",
-    description:
-      "A leading researcher breaks down the protocols that compound across decades. Practical routines you can install this week.",
-    image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Episode 3: Cognitive Science for Raising Resilient Kids",
-    description:
-      "How learning hurdles actually form, and the parent-led interventions backed by peer-reviewed studies. No fluff, just frameworks.",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
-  },
-];
 
 const PhDKeys = () => {
   return (
@@ -151,31 +130,16 @@ const PhDKeys = () => {
 
       {/* Recent Episodes */}
       <section className="py-20 md:py-28">
-        <div className="container-custom">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-5xl font-semibold text-slate-900">Unlock the Latest Episodes</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {episodes.map((ep) => (
-              <Card key={ep.title} className="overflow-hidden border border-slate-200 hover:shadow-xl transition-shadow">
-                <div className="aspect-video overflow-hidden bg-slate-100">
-                  <img src={ep.image} alt={ep.title} className="w-full h-full object-cover" />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg text-slate-900 mb-3 leading-snug">{ep.title}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-5">{ep.description}</p>
-                  <a href="#" className="inline-flex items-center text-primary font-semibold text-sm hover:underline">
-                    Listen Now <ArrowRight className="ml-1 h-4 w-4" />
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline">View All Episodes</Button>
-          </div>
+        <div className="container-custom max-w-3xl text-center">
+          <p className="uppercase tracking-[0.25em] text-xs text-primary font-semibold mb-3">Coming Soon</p>
+          <h2 className="text-3xl md:text-5xl font-semibold text-slate-900 mb-6">Episodes Drop Soon</h2>
+          <p className="text-lg leading-relaxed text-slate-700 mb-8">
+            New episodes of PhD Keys are in production. Follow along on your favorite platform to be notified the
+            moment the first episode goes live.
+          </p>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-12">
