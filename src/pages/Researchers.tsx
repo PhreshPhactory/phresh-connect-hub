@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,7 @@ import {
   Users,
   GraduationCap,
   ShoppingBag,
+  Check,
 } from "lucide-react";
 
 const GOLD = "#c9a84c";
