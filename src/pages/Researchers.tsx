@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
+import phreshLogo from "@/assets/phresh-phactory-logo.png";
 import {
   ArrowRight,
   Beaker,
@@ -63,7 +64,7 @@ const Researchers = () => {
   return (
     <div className="min-h-screen bg-white text-black">
       <Helmet>
-        <title>For PhDs and Researchers | Phresh Phactory</title>
+        <title>For PhDs and Researchers | Phresh Phactory, Inc.</title>
         <meta
           name="description"
           content="Commercialization and distribution partnership for PhDs working as professionals, executives, and founders ready to turn expertise into products, audience, and revenue."
@@ -74,8 +75,9 @@ const Researchers = () => {
       {/* Nav */}
       <header className="sticky top-0 z-40 border-b border-neutral-200 bg-white/90 backdrop-blur">
         <nav className="container-custom flex items-center justify-between h-16">
-          <Link to="/" className="font-semibold tracking-tight text-lg">
-            Phresh Phactory
+          <Link to="/" className="flex items-center gap-3 font-semibold tracking-tight text-lg">
+            <img src={phreshLogo} alt="Phresh Phactory, Inc." className="h-9 w-9 rounded-md" />
+            <span>Phresh Phactory, Inc.</span>
           </Link>
           <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
             <li><Link to="/" className="text-neutral-600 hover:text-black transition">Home</Link></li>
@@ -106,7 +108,7 @@ const Researchers = () => {
           </h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10">
             Most PhDs do not stay in the lab. They lead companies, advise boards, build practices, and run organizations.
-            Phresh Phactory is the commercialization and distribution partner that turns that real-world expertise into
+            Phresh Phactory, Inc. is the commercialization and distribution partner that turns that real-world expertise into
             products, audience, and revenue.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
