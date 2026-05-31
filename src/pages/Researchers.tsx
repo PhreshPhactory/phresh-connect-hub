@@ -108,7 +108,7 @@ const Researchers = () => {
           </h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10">
             Most PhDs do not stay in the lab. They lead companies, advise boards, build practices, and run organizations.
-            Phresh Phactory is the commercialization and distribution partner that turns that real-world expertise into
+            Phresh Phactory, Inc. is the commercialization and distribution partner that turns that real-world expertise into
             products, audience, and revenue.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
