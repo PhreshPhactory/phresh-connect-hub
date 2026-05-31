@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import phdKeysCover from "@/assets/phdkeys-cover.png";
+import phdKeysBanner from "@/assets/phdkeys-banner.png";
 
 const episodes = [
   {
