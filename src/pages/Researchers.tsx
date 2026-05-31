@@ -11,6 +11,7 @@ import {
   Building2,
   Users,
   GraduationCap,
+  ShoppingBag,
 } from "lucide-react";
 
 const GOLD = "#c9a84c";
@@ -18,8 +19,13 @@ const GOLD = "#c9a84c";
 const needs = [
   {
     icon: Beaker,
-    title: "Translate research into revenue",
-    body: "Productize your expertise into offers, pricing, and monetization architecture that compounds.",
+    title: "Translate expertise into revenue",
+    body: "Productize your knowledge into offers, pricing, and monetization architecture that compounds.",
+  },
+  {
+    icon: ShoppingBag,
+    title: "E-commerce and product sales",
+    body: "Direct-to-consumer storefronts, digital product delivery, checkout, fulfillment, and subscription billing built for scale.",
   },
   {
     icon: Layers,
@@ -60,7 +66,7 @@ const Researchers = () => {
         <title>For PhDs and Researchers | Phresh Phactory</title>
         <meta
           name="description"
-          content="Commercialization and distribution partnership for PhDs, researchers, and specialists ready to turn expertise into products, audience, and revenue."
+          content="Commercialization and distribution partnership for PhDs working as professionals, executives, and founders ready to turn expertise into products, audience, and revenue."
         />
         <link rel="canonical" href="https://phreshphactory.com/researchers" />
       </Helmet>
@@ -94,13 +100,14 @@ const Researchers = () => {
           </p>
           <h1
             className="text-4xl md:text-6xl font-semibold leading-tight mb-6"
-            style={{ textShadow: "0 0 24px rgba(255,255,255,0.35), 0 2px 12px rgba(0,0,0,0.6)" }}
+            style={{ textShadow: "0 0 40px rgba(255,255,255,0.9), 0 0 18px rgba(255,255,255,0.7), 0 2px 14px rgba(0,0,0,0.85)" }}
           >
-            Your research deserves more than a citation.
+            Your expertise deserves more than a citation.
           </h1>
-          <p className="text-lg md:text-xl text-white/85 max-w-2xl mb-10">
-            Phresh Phactory is the commercialization and distribution partner for PhDs, researchers, and specialists
-            ready to turn decades of expertise into products, audience, and revenue.
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-10">
+            Most PhDs do not stay in the lab. They lead companies, advise boards, build practices, and run organizations.
+            Phresh Phactory is the commercialization and distribution partner that turns that real-world expertise into
+            products, audience, and revenue.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button asChild size="lg" className="text-black hover:opacity-90" style={{ backgroundColor: GOLD }}>
@@ -117,16 +124,17 @@ const Researchers = () => {
       <section className="py-20 md:py-28 bg-white">
         <div className="container-custom max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-semibold mb-8 text-black">
-            The gap between brilliant research and a thriving business.
+            The gap between deep expertise and a thriving business.
           </h2>
           <div className="space-y-5 text-lg leading-relaxed text-neutral-800">
             <p>
-              The expertise is already there. What is missing is the operating system around it: the offer
-              architecture, the distribution channels, the audience pipeline, and the team to execute against all of it.
+              The credentials and the knowledge are already there. What is missing is the operating system around it:
+              the offer architecture, the e-commerce engine, the distribution channels, the audience pipeline, and the
+              team to execute against all of it.
             </p>
             <p>
-              We work with researcher-founders, academics, and specialists who are tired of advice and ready for a
-              partner that builds, ships, and sells alongside them.
+              We work with PhDs operating as professionals, executives, founders, and practice owners who are tired of
+              advice and ready for a partner that builds, ships, and sells alongside them.
             </p>
             <p className="text-xl font-medium text-black border-l-4 pl-5" style={{ borderColor: GOLD }}>
               We do not coach you into action. We build with you, in your name.
@@ -143,7 +151,7 @@ const Researchers = () => {
               What We Build Together
             </p>
             <h2 className="text-3xl md:text-4xl font-semibold text-black">
-              The seven things every researcher-founder eventually needs.
+              The eight things every PhD-led business eventually needs.
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
