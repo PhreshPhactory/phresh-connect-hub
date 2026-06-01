@@ -141,7 +141,7 @@ const PhDKeys = () => {
       <section className="bg-neutral-50 py-20 md:py-28">
         <div className="container-custom grid md:grid-cols-2 gap-12 items-center">
           <div className="relative">
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl">
+            <div className="aspect-[7/4] rounded-2xl overflow-hidden bg-neutral-200 shadow-xl">
               <img
                 src={kieraHost}
                 alt="Kiera H., host of PhD Keys podcast"
