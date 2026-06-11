@@ -67,7 +67,7 @@ const LiveShoppingWaitlist = lazy(() => import("@/pages/LiveShoppingWaitlist"));
 const NewsletterEditions = lazy(() => import("@/pages/NewsletterEditions"));
 const NewsletterEditionPage = lazy(() => import("@/pages/NewsletterEditionPage"));
 const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin"));
-const DrGreen = lazy(() => import("@/pages/DrGreen"));
+
 const PhDKeys = lazy(() => import("@/pages/PhDKeys"));
 const Researchers = lazy(() => import("@/pages/Researchers"));
 
@@ -165,7 +165,7 @@ const App = () => {
                     {/* Landing pages without main navigation */}
                     <Route element={<LandingPageLayout />}>
                       <Route path="/socially-selling-food" element={<SociallySellingFood />} />
-                      <Route path="/drgreen" element={<DrGreen />} />
+                      
                       <Route path="/PhDKeys" element={<PhDKeys />} />
                       <Route path="/phdkeys" element={<PhDKeys />} />
                       <Route path="/researchers" element={<Researchers />} />
