@@ -68,6 +68,8 @@ const NewsletterEditions = lazy(() => import("@/pages/NewsletterEditions"));
 const NewsletterEditionPage = lazy(() => import("@/pages/NewsletterEditionPage"));
 const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin"));
 
+const DrGreen = lazy(() => import("@/pages/DrGreen"));
+
 const PhDKeys = lazy(() => import("@/pages/PhDKeys"));
 const Researchers = lazy(() => import("@/pages/Researchers"));
 
