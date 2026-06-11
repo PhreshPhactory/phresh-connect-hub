@@ -68,6 +68,8 @@ const NewsletterEditions = lazy(() => import("@/pages/NewsletterEditions"));
 const NewsletterEditionPage = lazy(() => import("@/pages/NewsletterEditionPage"));
 const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin"));
 
+const DrGreen = lazy(() => import("@/pages/DrGreen"));
+
 const PhDKeys = lazy(() => import("@/pages/PhDKeys"));
 const Researchers = lazy(() => import("@/pages/Researchers"));
 
@@ -158,6 +160,7 @@ const App = () => {
                       <Route path="/newsletter-read/:slug" element={<NewsletterEditionPage />} />
                       <Route path="/newsletter/:slug" element={<NavigateWithSlug />} />
                       <Route path="/admin/newsletter" element={<NewsletterEditionAdmin />} />
+                      <Route path="/drgreen" element={<NotFound />} />
                       
                       <Route path="*" element={<NotFound />} />
                     </Route>
