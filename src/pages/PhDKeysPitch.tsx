@@ -337,7 +337,7 @@ const PhDKeysPitch = () => {
           </div>
         </Section>
 
-        {/* Founder Monetization Stack — DrGreen-style services productized for every PhD */}
+        {/* Founder Monetization Stack — services productized for every PhD */}
         <Section label="Founder Monetization Stack">
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
             Funding the Lab Through the Founder
@@ -346,7 +346,7 @@ const PhDKeysPitch = () => {
             Every PhD we co-found is also a personal brand asset. We package and
             monetize that authority into recurring revenue streams that fund
             research runway long before exit — the same productization model
-            proven on the DrGreen engagement, now templated across the portfolio.
+            proven under the plan, now templated across the portfolio.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
             <Card
