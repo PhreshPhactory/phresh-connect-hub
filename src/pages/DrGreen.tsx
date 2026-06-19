@@ -272,42 +272,19 @@ export default function DrGreen() {
       const baseDescription = priorityTitles.length > 0
         ? `This month's priorities: ${priorityTitles.join(", ")}`
         : "Kiera H. advisory, system blueprints, scriptwriting, on-camera co-hosting, training";
-      const monthly_items: any[] = [
-        {
-          name: "Base Strategic Advisory & Talent Floor",
-          description: baseDescription,
-          amount: BASE_RETAINER_CENTS,
-        },
-        ...PREMIUM_UPGRADES.filter((o) => selected.has(o.id)).map((o) => ({
-          name: `${o.task}: ${o.title}`,
-          description: o.description,
-          amount: o.monthlyAmount,
-        })),
-      ];
 
-      if (morOps) {
-        monthly_items.push({
-          name: "MoR Monthly Operations (Addendum A)",
-          description: "$1,000/week — customer support, web maintenance, platform subscriptions (billed monthly)",
-          amount: MOR_MONTHLY_CENTS,
-        });
-      }
-
-      const one_time_items: any[] = [];
-      if (morSetup) {
-        one_time_items.push({
-          name: "MoR Upfront Setup Fee (Addendum A)",
-          description: "One-time storefront build, tax/legal infrastructure, payment gateways",
-          amount: MOR_SETUP_CENTS,
-        });
-      }
+      const premium_upgrade_ids = PREMIUM_UPGRADES
+        .filter((o) => selected.has(o.id))
+        .map((o) => o.id);
 
       const { data, error } = await supabase.functions.invoke("create-drgreen-checkout", {
         body: {
           mode: billingMode === "subscription" ? "subscription" : "payment",
           customer_email: email,
-          monthly_items,
-          one_time_items,
+          premium_upgrade_ids,
+          include_mor_setup: morSetup,
+          include_mor_ops: morOps,
+          base_description: baseDescription,
           origin: window.location.origin,
         },
       });
