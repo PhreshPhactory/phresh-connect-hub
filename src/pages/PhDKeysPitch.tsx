@@ -256,13 +256,13 @@ const PhDKeysPitch = () => {
                 step: "02 / Translate",
                 title: "Technical Parse",
                 body: "AI engines instantly translate dense biomedical and engineering jargon into investor decks and plain-English content.",
-                tag: "90% Cost Reduction",
+                tag: "Rapid Translation",
               },
               {
                 step: "03 / Co-Found",
                 title: "Ops Integration",
                 body: "Our operational machine deploys LLC formations, cap tables, legal guidelines, and direct corporate templates.",
-                tag: "Zero Cash Cost",
+                tag: "Sweat-Equity Funded",
               },
               {
                 step: "04 / Scale",
