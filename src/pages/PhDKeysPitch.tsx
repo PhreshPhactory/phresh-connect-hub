@@ -1,4 +1,5 @@
 import SEOHead from "@/components/SEOHead";
+import phdKeysLogo from "@/assets/phd-keys-logo.jpeg.asset.json";
 
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   <div className="inline-block border border-amber-400/40 text-amber-400 tracking-[0.3em] text-[10px] md:text-xs uppercase px-3 py-1 mb-6">
