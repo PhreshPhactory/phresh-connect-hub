@@ -109,6 +109,7 @@ const Researchers = () => {
           name="description"
           content="Commercialization and distribution partnership for PhDs working as professionals, executives, and founders ready to turn expertise into products, audience, and revenue."
         />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://phreshphactory.com/researchers" />
       </Helmet>
 

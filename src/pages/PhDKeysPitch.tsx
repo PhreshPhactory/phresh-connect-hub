@@ -57,6 +57,9 @@ const PhDKeysPitch = () => {
         description="The Deep-Tech IP Arbitrage Machine. A confidential venture investor pitch from Phresh Phactory, Inc."
         canonicalUrl="https://phreshphactory.com/phdkeyspitch"
       />
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
 
       <style>{`
         .font-cinzel { font-family: 'Cinzel', serif; }
