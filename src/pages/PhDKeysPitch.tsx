@@ -174,18 +174,18 @@ const PhDKeysPitch = () => {
               </div>
               <div>
                 <div className="font-cinzel text-5xl md:text-6xl text-amber-300">
-                  15x+
+                  ~7
                 </div>
                 <div className="text-amber-400/80 tracking-[0.2em] uppercase text-xs mt-2">
-                  Revenue Multiplier
+                  Unit Sales to Breakeven
                 </div>
               </div>
               <div>
                 <div className="font-cinzel text-5xl md:text-6xl text-amber-300">
-                  100%
+                  3
                 </div>
                 <div className="text-amber-400/80 tracking-[0.2em] uppercase text-xs mt-2">
-                  Organic Distribution
+                  Stacked Revenue Streams
                 </div>
               </div>
             </div>
