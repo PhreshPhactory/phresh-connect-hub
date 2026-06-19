@@ -218,8 +218,8 @@ const PhDKeysPitch = () => {
                 <li className="flex gap-3">
                   <span className="text-amber-400">✓</span>
                   Friction slashed. By executing LLC setup, cap table modeling,
-                  VC readiness, and FDA regulatory pathways, we accelerate
-                  translation timelines by up to 300%.
+                  VC readiness, and FDA regulatory pathways, we materially
+                  compress translation timelines from years to quarters.
                 </li>
               </ul>
             </div>
