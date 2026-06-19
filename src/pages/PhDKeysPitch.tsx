@@ -174,18 +174,18 @@ const PhDKeysPitch = () => {
               </div>
               <div>
                 <div className="font-cinzel text-5xl md:text-6xl text-amber-300">
-                  15x+
+                  ~7
                 </div>
                 <div className="text-amber-400/80 tracking-[0.2em] uppercase text-xs mt-2">
-                  Revenue Multiplier
+                  Unit Sales to Breakeven
                 </div>
               </div>
               <div>
                 <div className="font-cinzel text-5xl md:text-6xl text-amber-300">
-                  100%
+                  3
                 </div>
                 <div className="text-amber-400/80 tracking-[0.2em] uppercase text-xs mt-2">
-                  Organic Distribution
+                  Stacked Revenue Streams
                 </div>
               </div>
             </div>
@@ -218,8 +218,8 @@ const PhDKeysPitch = () => {
                 <li className="flex gap-3">
                   <span className="text-amber-400">✓</span>
                   Friction slashed. By executing LLC setup, cap table modeling,
-                  VC readiness, and FDA regulatory pathways, we accelerate
-                  translation timelines by up to 300%.
+                  VC readiness, and FDA regulatory pathways, we materially
+                  compress translation timelines from years to quarters.
                 </li>
               </ul>
             </div>
@@ -256,13 +256,13 @@ const PhDKeysPitch = () => {
                 step: "02 / Translate",
                 title: "Technical Parse",
                 body: "AI engines instantly translate dense biomedical and engineering jargon into investor decks and plain-English content.",
-                tag: "90% Cost Reduction",
+                tag: "Rapid Translation",
               },
               {
                 step: "03 / Co-Found",
                 title: "Ops Integration",
                 body: "Our operational machine deploys LLC formations, cap tables, legal guidelines, and direct corporate templates.",
-                tag: "Zero Cash Cost",
+                tag: "Sweat-Equity Funded",
               },
               {
                 step: "04 / Scale",
@@ -328,7 +328,7 @@ const PhDKeysPitch = () => {
                 Current Sourcing Pipe
               </div>
               <div className="font-cinzel text-7xl text-amber-300 mb-4">40</div>
-              <div className="text-neutral-200 mb-4">Functional Prototypes Mapped</div>
+              <div className="text-neutral-200 mb-4">Operational Case Studies Mapped</div>
               <p className="text-neutral-400 text-sm font-light">
                 Validated data pipelines currently mapped and formatted to
                 bypass institutional gatekeepers and rescue stagnant patents.
@@ -337,7 +337,61 @@ const PhDKeysPitch = () => {
           </div>
         </Section>
 
-        {/* Unit economics */}
+        {/* Founder Monetization Stack — DrGreen-style services productized for every PhD */}
+        <Section label="Founder Monetization Stack">
+          <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
+            Funding the Lab Through the Founder
+          </h2>
+          <p className="text-neutral-300 font-light max-w-4xl mb-12 leading-relaxed">
+            Every PhD we co-found is also a personal brand asset. We package and
+            monetize that authority into recurring revenue streams that fund
+            research runway long before exit — the same productization model
+            proven on the DrGreen engagement, now templated across the portfolio.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card
+              title="Board & Advisory Placements"
+              body="We pitch each scientist into paid corporate, nonprofit, and startup board seats aligned to their domain — converting credentials into governance income."
+              tag="$25K–$75K per Seat / Year"
+            />
+            <Card
+              title="Direct-Access Subscriptions"
+              body="Productized monthly memberships where the public, operators, and other researchers interact directly with the scientist via Q&A, office hours, and gated briefings."
+              tag="Recurring MRR"
+            />
+            <Card
+              title="Speaking & Keynotes"
+              body="Booked stages at industry conferences, university circuits, and corporate offsites. We handle inbound, contracts, and pricing leverage."
+              tag="$5K–$50K per Engagement"
+            />
+            <Card
+              title="Podcast & Interview Circuit"
+              body="Coordinated guest tours on top-tier science, business, and culture podcasts — compounding distribution into the e-book and subscription funnel."
+              tag="Owned Media Flywheel"
+            />
+            <Card
+              title="Sponsored Research Briefs"
+              body="Branded explainers and white papers where vetted sponsors fund the scientist to publish credible, plain-English distillations of their field."
+              tag="Brand-Funded Authority"
+            />
+            <Card
+              title="Licensing & Expert Witness"
+              body="Inbound legal, due-diligence, and consulting engagements routed through Phresh Phactory, Inc., billed at expert-tier rates with revenue share."
+              tag="Premium Hourly Yield"
+            />
+          </div>
+          <div className="mt-12 border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-10">
+            <p className="text-neutral-200 text-lg font-light max-w-4xl">
+              <strong className="text-amber-300">Net effect:</strong> every
+              founder in the portfolio generates self-funded operating cash from
+              day one. Equity upside is preserved, dilution is delayed, and the
+              lab keeps running while the NewCo matures toward institutional
+              capital.
+            </p>
+          </div>
+        </Section>
+
+
         <Section label="Venture-Scale Unit Economics">
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-12">
             The Deep-Tech Portfolio Flywheel
@@ -366,7 +420,7 @@ const PhDKeysPitch = () => {
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-12">
             Path to Scale: 16-Week Blueprint
           </h2>
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
             {[
               {
                 week: "W 1–4",
@@ -374,9 +428,19 @@ const PhDKeysPitch = () => {
                 body: "Establish regulatory filters and finalize LLM database sourcing rules with Watson Institute advisory.",
               },
               {
+                week: "W 5–7",
+                title: "Index & Vet",
+                body: "Run first sourcing sweeps, score lapsing patents by commercial viability, and shortlist target inventors.",
+              },
+              {
                 week: "W 8–12",
                 title: "Deploy Sourcing",
-                body: "Deploy the $1,000 community development stipend to unlock high-capacity GPU processing for patent indexing.",
+                body: "Allocate pilot compute budget to unlock high-capacity GPU processing for patent indexing at production scale.",
+              },
+              {
+                week: "W 13–15",
+                title: "Founder Onboarding",
+                body: "Stand up NewCo entities, cap tables, and monetization stack (boards, subscriptions, speaking) for first cohort.",
               },
               {
                 week: "W 16+",
