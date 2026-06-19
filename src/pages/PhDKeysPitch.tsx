@@ -337,7 +337,7 @@ const PhDKeysPitch = () => {
           </div>
         </Section>
 
-        {/* Founder Monetization Stack — DrGreen-style services productized for every PhD */}
+        {/* Founder Monetization Stack — services productized for every PhD */}
         <Section label="Founder Monetization Stack">
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
             Funding the Lab Through the Founder
