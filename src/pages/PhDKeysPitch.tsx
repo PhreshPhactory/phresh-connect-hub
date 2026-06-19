@@ -366,7 +366,7 @@ const PhDKeysPitch = () => {
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-12">
             Path to Scale: 16-Week Blueprint
           </h2>
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
             {[
               {
                 week: "W 1–4",
@@ -374,9 +374,19 @@ const PhDKeysPitch = () => {
                 body: "Establish regulatory filters and finalize LLM database sourcing rules with Watson Institute advisory.",
               },
               {
+                week: "W 5–7",
+                title: "Index & Vet",
+                body: "Run first sourcing sweeps, score lapsing patents by commercial viability, and shortlist target inventors.",
+              },
+              {
                 week: "W 8–12",
                 title: "Deploy Sourcing",
-                body: "Deploy the $1,000 community development stipend to unlock high-capacity GPU processing for patent indexing.",
+                body: "Allocate pilot compute budget to unlock high-capacity GPU processing for patent indexing at production scale.",
+              },
+              {
+                week: "W 13–15",
+                title: "Founder Onboarding",
+                body: "Stand up NewCo entities, cap tables, and monetization stack (boards, subscriptions, speaking) for first cohort.",
               },
               {
                 week: "W 16+",
