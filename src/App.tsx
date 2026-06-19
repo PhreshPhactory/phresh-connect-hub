@@ -71,6 +71,7 @@ const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin
 const DrGreen = lazy(() => import("@/pages/DrGreen"));
 
 const PhDKeys = lazy(() => import("@/pages/PhDKeys"));
+const PhDKeysPitch = lazy(() => import("@/pages/PhDKeysPitch"));
 const Researchers = lazy(() => import("@/pages/Researchers"));
 
 // Simplified loading fallback component
@@ -171,6 +172,8 @@ const App = () => {
                       
                       <Route path="/PhDKeys" element={<PhDKeys />} />
                       <Route path="/phdkeys" element={<PhDKeys />} />
+                      <Route path="/PhdKeysPitch" element={<PhDKeysPitch />} />
+                      <Route path="/phdkeyspitch" element={<PhDKeysPitch />} />
                       <Route path="/researchers" element={<Researchers />} />
                     </Route>
                   </Routes>
