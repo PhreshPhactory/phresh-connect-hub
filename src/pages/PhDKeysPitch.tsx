@@ -100,6 +100,21 @@ const PhDKeysPitch = () => {
               Veteran · Multi-Patented Scientist · 20-Year Scaling Operator
             </div>
           </div>
+
+          <div className="mt-10">
+            <a
+              href="/phd-keys-venture-pitch.pdf"
+              download
+              className="inline-flex items-center gap-3 border border-amber-400/60 bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 tracking-[0.25em] text-xs uppercase px-6 py-4 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" aria-hidden="true">
+                <path d="M12 3v12" />
+                <path d="m7 10 5 5 5-5" />
+                <path d="M5 21h14" />
+              </svg>
+              Download Pitch PDF
+            </a>
+          </div>
         </Section>
 
         {/* Problem */}
