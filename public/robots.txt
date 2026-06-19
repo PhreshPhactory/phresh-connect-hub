@@ -89,6 +89,8 @@ Disallow: /auth/
 Disallow: /api/
 Disallow: /*.json$
 Disallow: /lovable-uploads/
+Disallow: /drgreen
+Disallow: /phdkeyspitch
 Crawl-delay: 2
 
 # Sitemap location

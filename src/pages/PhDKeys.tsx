@@ -53,6 +53,7 @@ const PhDKeys = () => {
           name="description"
           content="PhD Keys, the multimedia podcast hosted by Kiera H. that translates expert research into actionable, real-world frameworks."
         />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://phreshphactory.com/PhDKeys" />
       </Helmet>
 

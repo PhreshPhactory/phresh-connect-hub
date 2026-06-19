@@ -1,4 +1,5 @@
 import SEOHead from "@/components/SEOHead";
+import { Helmet } from "react-helmet-async";
 import phdKeysLogo from "@/assets/phd-keys-logo-v2.png.asset.json";
 
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
@@ -57,6 +58,9 @@ const PhDKeysPitch = () => {
         description="The Deep-Tech IP Arbitrage Machine. A confidential venture investor pitch from Phresh Phactory, Inc."
         canonicalUrl="https://phreshphactory.com/phdkeyspitch"
       />
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
 
       <style>{`
         .font-cinzel { font-family: 'Cinzel', serif; }
