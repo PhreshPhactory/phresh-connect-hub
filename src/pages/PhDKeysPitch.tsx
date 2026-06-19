@@ -328,7 +328,7 @@ const PhDKeysPitch = () => {
                 Current Sourcing Pipe
               </div>
               <div className="font-cinzel text-7xl text-amber-300 mb-4">40</div>
-              <div className="text-neutral-200 mb-4">Functional Prototypes Mapped</div>
+              <div className="text-neutral-200 mb-4">Operational Case Studies Mapped</div>
               <p className="text-neutral-400 text-sm font-light">
                 Validated data pipelines currently mapped and formatted to
                 bypass institutional gatekeepers and rescue stagnant patents.
