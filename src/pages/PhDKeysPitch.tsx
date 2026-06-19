@@ -404,12 +404,12 @@ const PhDKeysPitch = () => {
             />
             <Card
               title="B2B Sourcing Fees"
-              body="Deep-tech venture capital funds pay us flat finder fees of $10,000 per pre-vetted hard-science asset successfully sourced for them."
-              tag="$10K Flat Retainer Speed"
+              body="Deep-tech venture capital funds pay us flat finder fees of $10,000 per pre-vetted hard-science asset successfully sourced for them. We retain 20–40% co-founder equity in every NewCo we place, so we earn the fee upfront and the equity upside on exit."
+              tag="$10K Fee + Equity Stack"
             />
             <Card
               title="Equity Arbitrage Stakes"
-              body="Assuming complete corporate execution burden for selected researchers in exchange for 20% to 40% co-founder equity positions."
+              body="Assuming complete corporate execution burden for selected researchers in exchange for 20% to 40% co-founder equity positions. This stacks concurrently with B2B sourcing fees on the same deals."
               tag="Portfolio Equity Value"
             />
           </div>
