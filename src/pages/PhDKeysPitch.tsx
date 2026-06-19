@@ -111,12 +111,12 @@ const PhDKeysPitch = () => {
             />
             <Card
               title="The Execution Gap"
-              body="Brilliant inventors are trained to run laboratories, not clear FDA trials, draft venture term sheets, set up corporate governance, or build commercial scaling architectures."
+              body="Brilliant inventors are trained to run laboratories, not navigate regulatory trials, draft venture term sheets, set up corporate governance, or build commercial scaling architectures."
               tag="Human Capacity Constraint"
             />
             <Card
               title="The Stagnant Vault"
-              body="Billions of dollars in public-funded, clinically-validated research lie completely stagnant inside unindexed federal databases because traditional tech-transfer offices are bottlenecked."
+              body="Billions of dollars in public-funded, peer-validated research lie completely stagnant inside unindexed federal databases because traditional tech-transfer offices are bottlenecked."
               tag="Unrealized IP Arbitrage"
             />
           </div>
@@ -133,11 +133,10 @@ const PhDKeysPitch = () => {
                 The Institutional Gatekeepers
               </h3>
               <p className="text-neutral-300 leading-relaxed font-light">
-                To read a single BMJ paper on medical device pathways, such as
-                "The FDA approval process: inherently flawed or valuable
-                pathway?", costs the average citizen $64. Public-funded science
-                is hidden behind cash barriers while the public gets scammed by
-                fake internet health gurus.
+                To read a single paywalled paper on advanced materials, AI
+                architectures, or clean-energy pathways costs the average
+                citizen $64. Public-funded science is hidden behind cash
+                barriers while the public gets scammed by fake internet gurus.
               </p>
             </div>
             <div>
@@ -218,7 +217,7 @@ const PhDKeysPitch = () => {
                 <li className="flex gap-3">
                   <span className="text-amber-400">✓</span>
                   Friction slashed. By executing LLC setup, cap table modeling,
-                  VC readiness, and FDA regulatory pathways, we materially
+                  VC readiness, and regulatory compliance pathways, we materially
                   compress translation timelines from years to quarters.
                 </li>
               </ul>
@@ -255,7 +254,7 @@ const PhDKeysPitch = () => {
               {
                 step: "02 / Translate",
                 title: "Technical Parse",
-                body: "AI engines instantly translate dense biomedical and engineering jargon into investor decks and plain-English content.",
+                body: "AI engines instantly translate dense scientific and engineering jargon into investor decks and plain-English content.",
                 tag: "Rapid Translation",
               },
               {
@@ -267,7 +266,7 @@ const PhDKeysPitch = () => {
               {
                 step: "04 / Scale",
                 title: "Venture Launch",
-                body: "Deploy clear FDA clinical-trial maps, prepare institutional VC pitches, and drive viral market distribution.",
+                body: "Deploy clear regulatory and go-to-market maps, prepare institutional VC pitches, and drive viral market distribution.",
                 tag: "Commercial Runway",
               },
             ].map((s) => (
@@ -304,7 +303,7 @@ const PhDKeysPitch = () => {
               </h3>
               <p>
                 <strong className="text-amber-300">Situation:</strong> Decades of
-                life-saving medical discoveries remain locked in unindexed
+                high-value scientific discoveries remain locked in unindexed
                 registries because academic inventors lack business capacity.
               </p>
               <p>
