@@ -337,7 +337,61 @@ const PhDKeysPitch = () => {
           </div>
         </Section>
 
-        {/* Unit economics */}
+        {/* Founder Monetization Stack — DrGreen-style services productized for every PhD */}
+        <Section label="Founder Monetization Stack">
+          <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
+            Funding the Lab Through the Founder
+          </h2>
+          <p className="text-neutral-300 font-light max-w-4xl mb-12 leading-relaxed">
+            Every PhD we co-found is also a personal brand asset. We package and
+            monetize that authority into recurring revenue streams that fund
+            research runway long before exit — the same productization model
+            proven on the DrGreen engagement, now templated across the portfolio.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card
+              title="Board & Advisory Placements"
+              body="We pitch each scientist into paid corporate, nonprofit, and startup board seats aligned to their domain — converting credentials into governance income."
+              tag="$25K–$75K per Seat / Year"
+            />
+            <Card
+              title="Direct-Access Subscriptions"
+              body="Productized monthly memberships where the public, operators, and other researchers interact directly with the scientist via Q&A, office hours, and gated briefings."
+              tag="Recurring MRR"
+            />
+            <Card
+              title="Speaking & Keynotes"
+              body="Booked stages at industry conferences, university circuits, and corporate offsites. We handle inbound, contracts, and pricing leverage."
+              tag="$5K–$50K per Engagement"
+            />
+            <Card
+              title="Podcast & Interview Circuit"
+              body="Coordinated guest tours on top-tier science, business, and culture podcasts — compounding distribution into the e-book and subscription funnel."
+              tag="Owned Media Flywheel"
+            />
+            <Card
+              title="Sponsored Research Briefs"
+              body="Branded explainers and white papers where vetted sponsors fund the scientist to publish credible, plain-English distillations of their field."
+              tag="Brand-Funded Authority"
+            />
+            <Card
+              title="Licensing & Expert Witness"
+              body="Inbound legal, due-diligence, and consulting engagements routed through Phresh Phactory, Inc., billed at expert-tier rates with revenue share."
+              tag="Premium Hourly Yield"
+            />
+          </div>
+          <div className="mt-12 border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-10">
+            <p className="text-neutral-200 text-lg font-light max-w-4xl">
+              <strong className="text-amber-300">Net effect:</strong> every
+              founder in the portfolio generates self-funded operating cash from
+              day one. Equity upside is preserved, dilution is delayed, and the
+              lab keeps running while the NewCo matures toward institutional
+              capital.
+            </p>
+          </div>
+        </Section>
+
+
         <Section label="Venture-Scale Unit Economics">
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-12">
             The Deep-Tech Portfolio Flywheel
