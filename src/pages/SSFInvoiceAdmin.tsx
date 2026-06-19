@@ -18,6 +18,39 @@ const SSFInvoiceAdmin = () => {
   const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    const checkAccess = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        navigate("/auth");
+        return;
+      }
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id)
+        .in("role", ["admin", "editor"]);
+      if (!roles || roles.length === 0) {
+        toast.error("Access denied. Admin/editor role required.");
+        navigate("/");
+        return;
+      }
+      setAuthorized(true);
+      setAuthChecked(true);
+    };
+    checkAccess();
+  }, [navigate]);
+
+  if (!authChecked || !authorized) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">Checking access…</p>
+      </div>
+    );
+  }
+
+
+
   const generatePaymentLink = async () => {
     if (!email) {
       toast.error("Please enter an email address");
