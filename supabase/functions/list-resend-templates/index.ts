@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { requireStaffRole } from "../_shared/auth.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -10,11 +11,14 @@ serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Only admins/editors may list or fetch internal email templates
+  const auth = await requireStaffRole(req, corsHeaders);
+  if (!auth.ok) return auth.response;
+
   try {
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
     if (!RESEND_API_KEY) throw new Error('RESEND_API_KEY is not configured');
 
-    // Check for templateId in body (POST) or query param (GET)
     let templateId: string | null = null;
 
     if (req.method === 'POST') {
@@ -26,7 +30,6 @@ serve(async (req) => {
     }
 
     if (templateId) {
-      // Get a single template's full details (includes HTML)
       const res = await fetch(`https://api.resend.com/templates/${templateId}`, {
         headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
       });
@@ -37,7 +40,6 @@ serve(async (req) => {
       });
     }
 
-    // List all templates
     const res = await fetch('https://api.resend.com/templates?limit=100', {
       headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     });

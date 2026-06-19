@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 import Stripe from "https://esm.sh/stripe@18.5.0";
+import { checkRateLimit, STRICT_RATE_LIMIT } from "../_shared/rate-limit.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
@@ -16,13 +17,34 @@ interface ConfirmationEmailRequest {
   sessionId: string;
 }
 
+const getClientIP = (req: Request) =>
+  req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+  req.headers.get("cf-connecting-ip") ||
+  "unknown";
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Rate limit by IP to prevent session-ID probing / unsolicited email bursts
+  const ip = getClientIP(req);
+  if (!checkRateLimit(ip, "send-holiday-sprint-confirmation", STRICT_RATE_LIMIT)) {
+    return new Response(JSON.stringify({ error: "Too many requests" }), {
+      status: 429,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
   try {
     const { sessionId }: ConfirmationEmailRequest = await req.json();
+
+    if (!sessionId || typeof sessionId !== "string" || !sessionId.startsWith("cs_") || sessionId.length > 200) {
+      return new Response(JSON.stringify({ error: "Invalid sessionId" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     console.log("Retrieving session details for:", sessionId);
 
