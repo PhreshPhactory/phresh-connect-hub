@@ -103,7 +103,7 @@ const PhDKeysPitch = () => {
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-12">
             The $100B Graveyard of Stalled Science
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card
               title="The Maintenance Trap"
               body="Universities and independent scientists routinely let high-value patents expire at 3.5, 7.5, or 11.5 years simply because they lack the $2,000–$7,400 required for USPTO maintenance fees."
@@ -118,6 +118,11 @@ const PhDKeysPitch = () => {
               title="The Stagnant Vault"
               body="Billions of dollars in public-funded, peer-validated research lie completely stagnant inside unindexed federal databases because traditional tech-transfer offices are bottlenecked."
               tag="Unrealized IP Arbitrage"
+            />
+            <Card
+              title="The Shutdown Pipeline"
+              body="Government laboratory closures and federal research program suspensions have left entire portfolios of taxpayer-funded science abandoned mid-stream. These are not expired patents. They are active, peer-reviewed discoveries with no institutional home, no maintenance budget, and no commercial pathway. They sit frozen in federal archives, ready for rescue."
+              tag="Abandoned Public Science"
             />
           </div>
         </Section>
