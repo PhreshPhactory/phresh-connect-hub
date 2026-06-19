@@ -1,4 +1,5 @@
 import SEOHead from "@/components/SEOHead";
+import phdKeysLogo from "@/assets/phd-keys-logo.jpeg.asset.json";
 
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
   <div className="inline-block border border-amber-400/40 text-amber-400 tracking-[0.3em] text-[10px] md:text-xs uppercase px-3 py-1 mb-6">
@@ -69,6 +70,11 @@ const PhDKeysPitch = () => {
       <main className="min-h-screen bg-[#0a0a0a] text-white font-mont">
         {/* Cover */}
         <Section label="Confidential // Investment Proposal">
+          <img
+            src={phdKeysLogo.url}
+            alt="PhD Keys - Unlocking the World's Sharpest Minds"
+            className="w-full max-w-2xl mx-auto mb-8"
+          />
           <p className="text-amber-400 tracking-[0.4em] text-xs md:text-sm mb-4 uppercase">
             Venture Pitch Competition
           </p>
