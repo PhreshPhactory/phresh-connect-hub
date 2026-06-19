@@ -9,6 +9,7 @@ import {
   DEFAULT_RATE_LIMIT,
 } from "../_shared/rate-limit.ts";
 import { isValidEmail, sanitizeText } from "../_shared/validation.ts";
+import { requireStaffRole } from "../_shared/auth.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -32,6 +33,11 @@ serve(async (req) => {
     logStep("Rate limit exceeded", { ip: clientIP });
     return rateLimitResponse(corsHeaders);
   }
+
+  // Admin/editor only
+  const auth = await requireStaffRole(req, corsHeaders);
+  if (!auth.ok) return auth.response;
+
 
   try {
     logStep("Function started");

@@ -6,20 +6,59 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface LineItemInput {
-  name: string;
-  description?: string;
-  amount: number; // cents
-  quantity?: number;
-}
+// SERVER-SIDE PRICE CATALOG.
+// Client may only reference items by ID — amounts are never trusted from the
+// request body, preventing arbitrary-price checkout sessions.
+type CatalogItem = { name: string; description?: string; amount: number };
+
+const BASE_RETAINER: CatalogItem = {
+  name: "Base Strategic Advisory & Talent Floor",
+  description: "Monthly base retainer",
+  amount: 350000,
+};
+
+const PREMIUM_UPGRADE_IDS = new Set([
+  "task-1-2", "task-1-3", "task-1-5", "task-1-6", "task-1-7",
+  "task-1-8", "task-1-9", "task-1-11", "task-1-13", "task-1-14", "task-1-15",
+]);
+const PREMIUM_UPGRADE_AMOUNT = 25000; // $250/mo each, fixed
+const PREMIUM_UPGRADE_NAMES: Record<string, string> = {
+  "task-1-2": "Task 1.2: Cross-Platform Fundraiser Duplication — Premium Agency-Managed",
+  "task-1-3": "Task 1.3: Omnichannel Product Tagging — Premium Agency-Managed",
+  "task-1-5": "Task 1.5: Live Streaming Infrastructure — Premium Agency-Managed",
+  "task-1-6": "Task 1.6: AI-Assisted Content Syndication — Premium Agency-Managed",
+  "task-1-7": "Task 1.7: Strategic Media Relations & PR — Premium Agency-Managed",
+  "task-1-8": "Task 1.8: Citizen Scientist Subscription Architecture — Premium Agency-Managed",
+  "task-1-9": "Task 1.9: Digital Youth Curriculum — Premium Agency-Managed",
+  "task-1-11": "Task 1.11: Institutional Corporate Sponsorship — Premium Agency-Managed",
+  "task-1-13": "Task 1.13: TED Talk Acquisition — Premium Managed PR Pitching",
+  "task-1-14": "Task 1.14: Board of Director Placement — Premium Agency-Managed",
+  "task-1-15": "Task 1.15: Strategic Fundraising Planning — Premium Agency-Managed",
+};
+
+const MOR_SETUP: CatalogItem = {
+  name: "MoR Upfront Setup Fee (Addendum A)",
+  description: "One-time storefront build, tax/legal infrastructure, payment gateways",
+  amount: 1000000,
+};
+const MOR_OPS: CatalogItem = {
+  name: "MoR Monthly Operations (Addendum A)",
+  description: "$1,000/week — customer support, web maintenance, platform subscriptions",
+  amount: 400000,
+};
 
 interface Payload {
   mode: "payment" | "subscription";
   customer_email?: string;
-  one_time_items?: LineItemInput[]; // setup fees, one-time selections
-  monthly_items?: LineItemInput[];  // monthly recurring (used when mode=subscription) or charged once when mode=payment
+  // IDs only — no amounts accepted from client
+  premium_upgrade_ids?: string[];
+  include_mor_setup?: boolean;
+  include_mor_ops?: boolean;
+  base_description?: string; // priorities text, descriptive only
   origin?: string;
 }
+
+const isEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s) && s.length <= 255;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
@@ -29,18 +68,54 @@ serve(async (req) => {
     if (!stripeKey) throw new Error("STRIPE_SECRET_KEY not configured");
 
     const body: Payload = await req.json();
-    const { mode, customer_email, one_time_items = [], monthly_items = [] } = body;
+    const {
+      mode,
+      customer_email,
+      premium_upgrade_ids = [],
+      include_mor_setup = false,
+      include_mor_ops = false,
+      base_description,
+    } = body;
     const origin = body.origin || req.headers.get("origin") || "https://phreshphactory.com";
 
     if (!["payment", "subscription"].includes(mode)) {
       throw new Error("Invalid mode");
     }
-    if (one_time_items.length === 0 && monthly_items.length === 0) {
+    if (customer_email && !isEmail(customer_email)) {
+      throw new Error("Invalid email");
+    }
+    if (!Array.isArray(premium_upgrade_ids) || premium_upgrade_ids.length > 50) {
+      throw new Error("Invalid upgrade list");
+    }
+
+    // Build trusted line items from server catalog
+    const baseItem: CatalogItem = {
+      ...BASE_RETAINER,
+      description: typeof base_description === "string" && base_description.length
+        ? base_description.slice(0, 500)
+        : BASE_RETAINER.description,
+    };
+
+    const upgradeItems: CatalogItem[] = [];
+    for (const id of premium_upgrade_ids) {
+      if (!PREMIUM_UPGRADE_IDS.has(id)) continue; // silently ignore unknown IDs
+      upgradeItems.push({
+        name: PREMIUM_UPGRADE_NAMES[id],
+        amount: PREMIUM_UPGRADE_AMOUNT,
+      });
+    }
+
+    const monthly_items: CatalogItem[] = [baseItem, ...upgradeItems];
+    if (include_mor_ops) monthly_items.push(MOR_OPS);
+
+    const one_time_items: CatalogItem[] = [];
+    if (include_mor_setup) one_time_items.push(MOR_SETUP);
+
+    if (monthly_items.length === 0 && one_time_items.length === 0) {
       throw new Error("No items selected");
     }
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
-
     const line_items: any[] = [];
 
     if (mode === "subscription") {
@@ -52,11 +127,10 @@ serve(async (req) => {
             unit_amount: it.amount,
             recurring: { interval: "month" },
           },
-          quantity: it.quantity ?? 1,
+          quantity: 1,
         });
       }
     } else {
-      // one-time payment: include both one-time and monthly items as one-time charges (this month only)
       for (const it of [...one_time_items, ...monthly_items]) {
         line_items.push({
           price_data: {
@@ -64,7 +138,7 @@ serve(async (req) => {
             product_data: { name: it.name, description: it.description?.slice(0, 500) },
             unit_amount: it.amount,
           },
-          quantity: it.quantity ?? 1,
+          quantity: 1,
         });
       }
     }
@@ -77,38 +151,20 @@ serve(async (req) => {
     };
     if (customer_email) sessionParams.customer_email = customer_email;
 
-    // If subscription + one_time_items, add them via invoice_items not directly supported in checkout subscription.
-    // Workaround: add to subscription as additional add_invoice_items.
     if (mode === "subscription" && one_time_items.length > 0) {
-      sessionParams.subscription_data = {
-        ...(sessionParams.subscription_data || {}),
-      };
-      // Use add_invoice_items at checkout session level
-      sessionParams.invoice_creation = undefined;
-      // Stripe Checkout supports adding one-time invoice items via subscription_data.add_invoice_items in some versions; safer approach:
-      // Create dedicated invoice items by adding them as one-off line items requires payment mode. So instead push them as price_data on the first invoice via subscription_data.invoice_settings is not possible.
-      // Cleanest path: include one-time charges as "subscription_data: { invoice_settings: ... }" not supported; instead append them as part of line_items with recurring on the first invoice — not possible mixed.
-      // We'll attach one-time items as separate subscription_data.add_invoice_items.
-      (sessionParams.subscription_data as any).add_invoice_items = one_time_items.map(it => ({
-        quantity: it.quantity ?? 1,
-        price_data: {
-          currency: "usd",
-          product: undefined,
-          unit_amount: it.amount,
-        },
-      }));
-      // Stripe requires a product reference for add_invoice_items price_data; create on the fly
       const created = await Promise.all(one_time_items.map(it =>
         stripe.products.create({ name: it.name, description: it.description?.slice(0, 500) })
       ));
-      (sessionParams.subscription_data as any).add_invoice_items = one_time_items.map((it, i) => ({
-        quantity: it.quantity ?? 1,
-        price_data: {
-          currency: "usd",
-          product: created[i].id,
-          unit_amount: it.amount,
-        },
-      }));
+      sessionParams.subscription_data = {
+        add_invoice_items: one_time_items.map((it, i) => ({
+          quantity: 1,
+          price_data: {
+            currency: "usd",
+            product: created[i].id,
+            unit_amount: it.amount,
+          },
+        })),
+      };
     }
 
     const session = await stripe.checkout.sessions.create(sessionParams);
@@ -121,7 +177,7 @@ serve(async (req) => {
     console.error("[create-drgreen-checkout]", e);
     return new Response(JSON.stringify({ error: (e as Error).message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
-      status: 500,
+      status: 400,
     });
   }
 });

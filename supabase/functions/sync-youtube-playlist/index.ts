@@ -1,5 +1,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
 import { checkRateLimit, getClientIP, createCorsHeaders, rateLimitResponse, STRICT_RATE_LIMIT } from '../_shared/rate-limit.ts';
+import { requireStaffRole } from '../_shared/auth.ts';
 
 const YOUTUBE_API_KEY = Deno.env.get('YOUTUBE_API_KEY');
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
@@ -93,6 +94,10 @@ Deno.serve(async (req) => {
     console.log(`Rate limit exceeded for IP: ${clientIP}`);
     return rateLimitResponse(corsHeaders);
   }
+
+  // Only admins/editors may trigger a sync (this function uses the service role)
+  const auth = await requireStaffRole(req, corsHeaders);
+  if (!auth.ok) return auth.response;
 
   try {
     console.log('Starting YouTube playlist sync for all languages...');
