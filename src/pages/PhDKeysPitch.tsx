@@ -478,8 +478,165 @@ const PhDKeysPitch = () => {
           </div>
         </Section>
 
+        {/* Competitive Moat */}
+        <Section label="Why We Win">
+          <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
+            The Competitive Landscape
+          </h2>
+          <p className="text-neutral-300 font-light max-w-4xl mb-12 leading-relaxed">
+            Patent brokers, tech transfer offices, IP law firms, and patent
+            trolls each touch one slice of this market. None of them combine
+            LLM-driven sourcing, micro-publishing cash, founder monetization,
+            and VC-paid sourcing fees into a single operational machine. PhD
+            Keys is the integration layer.
+          </p>
+          <div className="overflow-x-auto border border-amber-400/20">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-amber-950/30 text-amber-300 font-cinzel">
+                <tr>
+                  <th className="p-4 border-b border-amber-400/20">Player</th>
+                  <th className="p-4 border-b border-amber-400/20">Sources IP</th>
+                  <th className="p-4 border-b border-amber-400/20">Generates Cash Pre-Exit</th>
+                  <th className="p-4 border-b border-amber-400/20">Co-Founds NewCos</th>
+                  <th className="p-4 border-b border-amber-400/20">Monetizes the Scientist</th>
+                </tr>
+              </thead>
+              <tbody className="text-neutral-300 font-light">
+                {[
+                  ["University TTOs", "Yes (internal only)", "No", "Rarely", "No"],
+                  ["Patent Brokers", "Yes", "Brokerage fee only", "No", "No"],
+                  ["IP Law Firms", "No (defensive)", "Hourly billings", "No", "No"],
+                  ["Patent Trolls", "Yes", "Litigation only", "No", "No"],
+                  ["PhD Keys", "Yes (LLM-automated)", "Micro-publishing + B2B fees", "Yes (20–40%)", "Yes (full stack)"],
+                ].map((row, i) => (
+                  <tr key={i} className={i === 4 ? "bg-amber-950/20 text-amber-200" : ""}>
+                    {row.map((cell, j) => (
+                      <td key={j} className="p-4 border-b border-amber-400/10">{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Section>
+
+        {/* Media Empire */}
+        <Section label="The Phresh Phactory Media Network">
+          <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
+            A Show for Every PhD
+          </h2>
+          <p className="text-neutral-300 font-light max-w-4xl mb-12 leading-relaxed">
+            Each scientist we co-found becomes the anchor of an owned media
+            property — a podcast, video series, or limited-run documentary
+            published under the Phresh Phactory, Inc. umbrella. Shows
+            cross-promote, guest on each other, and compound distribution
+            across the entire portfolio. The lab becomes the studio.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <Card
+              title="Owned Distribution"
+              body="Every NewCo ships with a branded show: long-form interviews, lab walk-throughs, and field dispatches. Audience is captured to our list, not a platform's algorithm."
+              tag="Network Effect"
+            />
+            <Card
+              title="Cross-PhD Collaborations"
+              body="Materials scientists guesting on clean-energy shows, AI architects interviewing biotech founders. Crossover episodes compound reach and surface multidisciplinary deals."
+              tag="Portfolio Flywheel"
+            />
+            <Card
+              title="Funnel Into Commerce"
+              body="Every episode routes back to the $4.99–$9.99 micro-publishing catalog, paid subscriptions, board placements, and investor inbound for the underlying NewCo."
+              tag="Media → Revenue Loop"
+            />
+          </div>
+          <div className="border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-12">
+            <div className="text-amber-400/80 tracking-[0.25em] uppercase text-xs mb-3">
+              The Long Game
+            </div>
+            <p className="text-neutral-200 text-lg font-light max-w-4xl">
+              A 25-PhD portfolio becomes a 25-show media empire. Phresh
+              Phactory, Inc. owns the rails, syndication rights, and ad
+              inventory — a defensible content moat no patent broker or TTO
+              can replicate.
+            </p>
+          </div>
+        </Section>
+
+        {/* Traction & Risk */}
+        <Section label="Traction & Risk Mitigation">
+          <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-12">
+            De-Risked by Design
+          </h2>
+          <div className="grid md:grid-cols-2 gap-10 mb-12">
+            <div>
+              <h3 className="font-cinzel text-2xl text-amber-300 mb-6">Current Traction</h3>
+              <ul className="space-y-4 text-neutral-300 font-light">
+                <li className="flex gap-3"><span className="text-amber-400">✓</span>40 operational case studies mapped and scored for commercial viability.</li>
+                <li className="flex gap-3"><span className="text-amber-400">✓</span>Proprietary LLM sourcing pipeline built and running against federal databases.</li>
+                <li className="flex gap-3"><span className="text-amber-400">✓</span>Founder monetization stack already productized under Phresh Phactory, Inc.</li>
+                <li className="flex gap-3"><span className="text-amber-400">✓</span>Veteran-led operator with multi-patent technical credibility and 20-year scaling history.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-cinzel text-2xl text-amber-300 mb-6">Risk Mitigation</h3>
+              <ul className="space-y-4 text-neutral-300 font-light">
+                <li className="flex gap-3"><span className="text-amber-400">✓</span><span><strong className="text-amber-300">IP & Copyright:</strong> LLM ingestion limited to lawfully licensed sources and public federal databases; outputs are original distillations, not reproductions.</span></li>
+                <li className="flex gap-3"><span className="text-amber-400">✓</span><span><strong className="text-amber-300">Inventor Consent:</strong> Every NewCo executed under signed co-founder agreement before any commercial action.</span></li>
+                <li className="flex gap-3"><span className="text-amber-400">✓</span><span><strong className="text-amber-300">Portfolio Diversification:</strong> 25+ NewCos hedge deep-tech 7–10 year hold cycles; B2B fees and micro-publishing fund operations in the interim.</span></li>
+                <li className="flex gap-3"><span className="text-amber-400">✓</span><span><strong className="text-amber-300">Legal Backbone:</strong> Corporate, IP, and regulatory counsel integrated into the workflow before founder onboarding.</span></li>
+              </ul>
+            </div>
+          </div>
+        </Section>
+
+        {/* The Ask */}
+        <Section label="The Ask">
+          <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-12">
+            Capital, Instrument, and Milestones
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="border border-amber-400/30 bg-black/40 p-8">
+              <div className="text-amber-400/80 tracking-[0.25em] uppercase text-xs mb-3">Raise</div>
+              <div className="font-cinzel text-5xl md:text-6xl text-amber-300 mb-3">$1.5M</div>
+              <p className="text-neutral-300 font-light text-sm">Seed round on SAFE at $8M post-money cap.</p>
+            </div>
+            <div className="border border-amber-400/30 bg-black/40 p-8">
+              <div className="text-amber-400/80 tracking-[0.25em] uppercase text-xs mb-3">Instrument</div>
+              <div className="font-cinzel text-3xl md:text-4xl text-amber-300 mb-3">SAFE + Revenue Share</div>
+              <p className="text-neutral-300 font-light text-sm">Optional 5% revenue share on micro-publishing until cap reached.</p>
+            </div>
+            <div className="border border-amber-400/30 bg-black/40 p-8">
+              <div className="text-amber-400/80 tracking-[0.25em] uppercase text-xs mb-3">Runway</div>
+              <div className="font-cinzel text-5xl md:text-6xl text-amber-300 mb-3">18 mo</div>
+              <p className="text-neutral-300 font-light text-sm">To 10 NewCos, 3 VC contracts, and first media network launches.</p>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-10">
+            <div>
+              <h3 className="font-cinzel text-2xl text-amber-300 mb-6">Use of Funds</h3>
+              <ul className="space-y-3 text-neutral-300 font-light">
+                <li className="flex justify-between border-b border-amber-400/10 pb-2"><span>LLM compute & engineering</span><span className="text-amber-300">35%</span></li>
+                <li className="flex justify-between border-b border-amber-400/10 pb-2"><span>Legal, IP & NewCo formation</span><span className="text-amber-300">25%</span></li>
+                <li className="flex justify-between border-b border-amber-400/10 pb-2"><span>Media network production</span><span className="text-amber-300">20%</span></li>
+                <li className="flex justify-between border-b border-amber-400/10 pb-2"><span>Operator hires (BD, ops)</span><span className="text-amber-300">15%</span></li>
+                <li className="flex justify-between"><span>Reserve</span><span className="text-amber-300">5%</span></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-cinzel text-2xl text-amber-300 mb-6">12-Month Milestones</h3>
+              <ul className="space-y-4 text-neutral-300 font-light">
+                <li className="flex gap-3"><span className="text-amber-400">→</span>10 NewCos co-founded with signed equity agreements (20–40%).</li>
+                <li className="flex gap-3"><span className="text-amber-400">→</span>3 paid B2B sourcing contracts with deep-tech VC funds ($30K+).</li>
+                <li className="flex gap-3"><span className="text-amber-400">→</span>$250K micro-publishing run-rate across the catalog.</li>
+                <li className="flex gap-3"><span className="text-amber-400">→</span>5 Phresh Phactory, Inc. shows in production with first crossover episode.</li>
+              </ul>
+            </div>
+          </div>
+        </Section>
+
         {/* Close */}
         <Section label="Questions & Discussion // Pitch Close">
+
           <p className="text-amber-400 tracking-[0.4em] text-xs uppercase mb-4">
             The Close
           </p>
