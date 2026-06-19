@@ -1,4 +1,5 @@
 import SEOHead from "@/components/SEOHead";
+import { Helmet } from "react-helmet-async";
 import phdKeysLogo from "@/assets/phd-keys-logo-v2.png.asset.json";
 
 const SectionLabel = ({ children }: { children: React.ReactNode }) => (
