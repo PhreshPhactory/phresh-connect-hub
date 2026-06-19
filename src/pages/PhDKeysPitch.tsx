@@ -159,16 +159,25 @@ const PhDKeysPitch = () => {
             </h3>
             <p className="text-neutral-300 mb-8 max-w-3xl font-light">
               Our proprietary media engine (PhD Keys, a Phresh Phactory, Inc.
-              Production) generates immediate cash liquidity through AdSense
-              and premium brand partnerships.
+              Production) unlocks paywalled research, distills it through LLM
+              translation, and generates immediate cash liquidity through
+              micro-publications, AdSense, and premium brand partnerships.
             </p>
-            <div className="grid sm:grid-cols-2 gap-8">
+            <div className="grid sm:grid-cols-3 gap-8">
               <div>
                 <div className="font-cinzel text-5xl md:text-6xl text-amber-300">
-                  $0
+                  $64
                 </div>
                 <div className="text-amber-400/80 tracking-[0.2em] uppercase text-xs mt-2">
-                  Customer Acquisition Cost
+                  Cost Per Source Paper
+                </div>
+              </div>
+              <div>
+                <div className="font-cinzel text-5xl md:text-6xl text-amber-300">
+                  15x+
+                </div>
+                <div className="text-amber-400/80 tracking-[0.2em] uppercase text-xs mt-2">
+                  Revenue Multiplier
                 </div>
               </div>
               <div>
@@ -176,7 +185,7 @@ const PhDKeysPitch = () => {
                   100%
                 </div>
                 <div className="text-amber-400/80 tracking-[0.2em] uppercase text-xs mt-2">
-                  Organic Sourcing Funnel
+                  Organic Distribution
                 </div>
               </div>
             </div>
