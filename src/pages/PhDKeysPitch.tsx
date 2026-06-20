@@ -131,7 +131,7 @@ const PhDKeysPitch = () => {
         </Section>
 
         {/* The Metaphor — explaining the name */}
-        <Section label="Why We're Called Phresh Phactory, Inc.">
+        <Section label="What our name means">
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
             Phresh Phactory, Inc.
           </h2>
