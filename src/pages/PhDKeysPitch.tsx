@@ -334,7 +334,7 @@ const PhDKeysPitch = () => {
               {
                 step: "02 / Translate",
                 title: "Technical Parse",
-                body: "AI engines instantly translate dense scientific and engineering jargon into investor decks and plain-English content.",
+                body: "AI engines instantly translate dense scientific jargon into plain-English content and investor decks.",
                 tag: "Rapid Translation",
               },
               {
