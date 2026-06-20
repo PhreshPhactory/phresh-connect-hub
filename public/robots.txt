@@ -91,6 +91,7 @@ Disallow: /*.json$
 Disallow: /lovable-uploads/
 Disallow: /drgreen
 Disallow: /phdkeyspitch
+Disallow: /phdpitch
 Crawl-delay: 2
 
 # Sitemap location
