@@ -762,8 +762,20 @@ const PhDKeysPitch = () => {
           </div>
         </Section>
 
-        <footer className="py-10 px-6 text-center text-amber-400/60 tracking-[0.3em] text-[10px] uppercase">
-          Phresh Phactory, Inc. · Confidential
+        <footer className="py-12 px-6 text-center border-t border-amber-400/20">
+          <div className="max-w-3xl mx-auto space-y-3">
+            <a
+              href="mailto:kiera@phreshphactory.co"
+              className="block text-amber-300 hover:text-amber-200 tracking-[0.25em] text-xs uppercase transition-colors"
+            >
+              kiera@phreshphactory.co
+            </a>
+            <p className="text-amber-400/60 tracking-[0.25em] text-[10px] uppercase leading-relaxed">
+              © 2026 Phresh Phactory, Inc. All Rights Reserved.
+              <br />
+              Confidential Investment Proposal Material.
+            </p>
+          </div>
         </footer>
       </main>
     </>
