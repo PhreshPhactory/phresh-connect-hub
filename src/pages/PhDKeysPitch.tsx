@@ -133,7 +133,7 @@ const PhDKeysPitch = () => {
         {/* The Metaphor — explaining the name */}
         <Section label="Why We're Called Phresh Phactory, Inc.">
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
-            Phresh. Phactory.
+            Phresh. Phactory, Inc.
           </h2>
           <p className="text-neutral-300 font-light max-w-4xl mb-12 leading-relaxed">
             Our name is the operating model. Two halves, one machine —
