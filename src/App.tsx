@@ -174,6 +174,8 @@ const App = () => {
                       <Route path="/phdkeys" element={<PhDKeys />} />
                       <Route path="/PhdKeysPitch" element={<PhDKeysPitch />} />
                       <Route path="/phdkeyspitch" element={<PhDKeysPitch />} />
+                      <Route path="/PhDPitch" element={<PhDKeysPitch />} />
+                      <Route path="/phdpitch" element={<PhDKeysPitch />} />
                       <Route path="/researchers" element={<Researchers />} />
                     </Route>
                   </Routes>

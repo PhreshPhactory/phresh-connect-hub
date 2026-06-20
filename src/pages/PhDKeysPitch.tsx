@@ -80,32 +80,45 @@ const PhDKeysPitch = () => {
             className="w-full max-w-2xl mx-auto mb-8"
           />
           <p className="text-amber-400 tracking-[0.4em] text-xs md:text-sm mb-4 uppercase">
-            Venture Pitch Competition
+            Phresh Phactory, Inc. // Venture Proposal
           </p>
-          <h1 className="font-cinzel text-6xl md:text-8xl lg:text-9xl text-amber-300 leading-none mb-6">
-            PhD Keys
+          <h1 className="font-cinzel text-5xl md:text-7xl lg:text-8xl text-amber-300 leading-[1.05] mb-8">
+            Unlocking the World's Sharpest Minds.
           </h1>
-          <p className="text-neutral-400 italic mb-10">
-            A Phresh Phactory, Inc. Production
-          </p>
           <p className="text-xl md:text-2xl text-neutral-200 font-light max-w-4xl leading-relaxed mb-12">
-            The Deep-Tech IP Arbitrage Machine: Building a decentralized holding
-            company for the world's most valuable stagnant science.
+            Phresh Phactory, Inc. builds decentralized holding companies for
+            the world's most valuable stagnant science. We take brilliant
+            academic and government research out of institutional silos,
+            breathe fresh commercial life into it, and manufacture scalable
+            market empires.
           </p>
-          <div className="border-l-2 border-amber-400 pl-6">
+          <div className="border-l-2 border-amber-400 pl-6 mb-10">
             <div className="text-amber-400 tracking-[0.25em] text-xs uppercase mb-2">
-              Presented by: Kiera H.
+              Presented by Shaquiiria Shantell Howell
             </div>
             <div className="text-neutral-300">
-              Veteran · Multi-Patented Scientist · 20-Year Scaling Operator
+              Professionally known as Kiera H. — Veteran Multi-Patented
+              Scientist &amp; 20-Year Scaling Operator.
             </div>
           </div>
 
-          <div className="mt-10">
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="mailto:kiera@phreshphactory.co?subject=PhD%20Partner%20Application"
+              className="inline-flex items-center gap-3 bg-amber-400 text-black hover:bg-amber-300 tracking-[0.25em] text-xs uppercase px-6 py-4 transition-colors font-semibold"
+            >
+              Apply as a PhD Partner
+            </a>
+            <a
+              href="mailto:kiera@phreshphactory.co?subject=Investment%20Proposal%20Request"
+              className="inline-flex items-center gap-3 border border-amber-400/60 bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 tracking-[0.25em] text-xs uppercase px-6 py-4 transition-colors"
+            >
+              View Investment Proposal
+            </a>
             <a
               href="/phd-keys-venture-pitch.pdf"
               download
-              className="inline-flex items-center gap-3 border border-amber-400/60 bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 tracking-[0.25em] text-xs uppercase px-6 py-4 transition-colors"
+              className="inline-flex items-center gap-3 border border-amber-400/30 hover:border-amber-400/60 text-amber-300/90 tracking-[0.25em] text-xs uppercase px-6 py-4 transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" aria-hidden="true">
                 <path d="M12 3v12" />
@@ -114,6 +127,49 @@ const PhDKeysPitch = () => {
               </svg>
               Download Pitch PDF
             </a>
+          </div>
+        </Section>
+
+        {/* The Metaphor — explaining the name */}
+        <Section label="Why We're Called Phresh Phactory, Inc.">
+          <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
+            The Phactory. The Phresh.
+          </h2>
+          <p className="text-neutral-300 font-light max-w-4xl mb-12 leading-relaxed">
+            Our name is the operating model. Two halves, one machine —
+            engineered to convert stagnant scientific authority into
+            scalable, market-ready companies.
+          </p>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-10">
+              <div className="text-amber-400/80 tracking-[0.3em] text-[10px] uppercase mb-4">
+                Half One
+              </div>
+              <h3 className="font-cinzel text-3xl md:text-4xl text-amber-300 mb-5">
+                The Phactory
+              </h3>
+              <p className="text-neutral-200 font-light leading-relaxed">
+                Our operational machine. We provide the blueprint,
+                infrastructure, LLC formation, cap table modeling, and core
+                staffing required to build scalable companies — the assembly
+                line behind every NewCo we co-found.
+              </p>
+            </div>
+            <div className="border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-10">
+              <div className="text-amber-400/80 tracking-[0.3em] text-[10px] uppercase mb-4">
+                Half Two
+              </div>
+              <h3 className="font-cinzel text-3xl md:text-4xl text-amber-300 mb-5">
+                The Phresh
+              </h3>
+              <p className="text-neutral-200 font-light leading-relaxed">
+                Spelled with a <strong className="text-amber-300">Ph</strong>{" "}
+                as a direct nod to our PhD partners. We breathe fresh
+                commercial life into dusty, paywalled data — translating
+                dense research into clear go-to-market strategies, branding,
+                and high-velocity media.
+              </p>
+            </div>
           </div>
         </Section>
 
@@ -278,7 +334,7 @@ const PhDKeysPitch = () => {
               {
                 step: "02 / Translate",
                 title: "Technical Parse",
-                body: "AI engines instantly translate dense scientific and engineering jargon into investor decks and plain-English content.",
+                body: "AI engines instantly translate dense scientific jargon into plain-English content and investor decks.",
                 tag: "Rapid Translation",
               },
               {
@@ -388,19 +444,14 @@ const PhDKeysPitch = () => {
               tag="$5K–$50K per Engagement"
             />
             <Card
-              title="Podcast & Interview Circuit"
-              body="Coordinated guest tours on top-tier science, business, and culture podcasts — compounding distribution into the e-book and subscription funnel."
-              tag="Owned Media Flywheel"
+              title="Owned Media Flywheel"
+              body="Coordinated podcast hosting, guest tours, and interview circuits across top-tier science, business, and culture shows — compounding distribution into the e-book and subscription funnel."
+              tag="Podcasts & Interview Circuits"
             />
             <Card
-              title="Sponsored Research Briefs"
-              body="Branded explainers and white papers where vetted sponsors fund the scientist to publish credible, plain-English distillations of their field."
-              tag="Brand-Funded Authority"
-            />
-            <Card
-              title="Licensing & Expert Witness"
-              body="Inbound legal, due-diligence, and consulting engagements routed through Phresh Phactory, Inc., billed at expert-tier rates with revenue share."
-              tag="Premium Hourly Yield"
+              title="Sponsored Research Briefs & Licensing"
+              body="Branded explainers, white papers, and licensing deals where vetted sponsors and partners fund the scientist to publish credible, plain-English distillations of their field."
+              tag="Sponsorship & Licensing Revenue"
             />
           </div>
           <div className="mt-12 border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-10">
@@ -711,8 +762,20 @@ const PhDKeysPitch = () => {
           </div>
         </Section>
 
-        <footer className="py-10 px-6 text-center text-amber-400/60 tracking-[0.3em] text-[10px] uppercase">
-          Phresh Phactory, Inc. · Confidential
+        <footer className="py-12 px-6 text-center border-t border-amber-400/20">
+          <div className="max-w-3xl mx-auto space-y-3">
+            <a
+              href="mailto:kiera@phreshphactory.co"
+              className="block text-amber-300 hover:text-amber-200 tracking-[0.25em] text-xs uppercase transition-colors"
+            >
+              kiera@phreshphactory.co
+            </a>
+            <p className="text-amber-400/60 tracking-[0.25em] text-[10px] uppercase leading-relaxed">
+              © 2026 Phresh Phactory, Inc. All Rights Reserved.
+              <br />
+              Confidential Investment Proposal Material.
+            </p>
+          </div>
         </footer>
       </main>
     </>
