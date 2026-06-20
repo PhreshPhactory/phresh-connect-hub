@@ -133,7 +133,7 @@ const PhDKeysPitch = () => {
         {/* The Metaphor — explaining the name */}
         <Section label="Why We're Called Phresh Phactory, Inc.">
           <h2 className="font-cinzel text-4xl md:text-6xl text-amber-300 mb-6">
-            The Phactory. The Phresh.
+            Phresh. Phactory.
           </h2>
           <p className="text-neutral-300 font-light max-w-4xl mb-12 leading-relaxed">
             Our name is the operating model. Two halves, one machine —
@@ -146,21 +146,7 @@ const PhDKeysPitch = () => {
                 Half One
               </div>
               <h3 className="font-cinzel text-3xl md:text-4xl text-amber-300 mb-5">
-                The Phactory
-              </h3>
-              <p className="text-neutral-200 font-light leading-relaxed">
-                Our operational machine. We provide the blueprint,
-                infrastructure, LLC formation, cap table modeling, and core
-                staffing required to build scalable companies — the assembly
-                line behind every NewCo we co-found.
-              </p>
-            </div>
-            <div className="border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-10">
-              <div className="text-amber-400/80 tracking-[0.3em] text-[10px] uppercase mb-4">
-                Half Two
-              </div>
-              <h3 className="font-cinzel text-3xl md:text-4xl text-amber-300 mb-5">
-                The Phresh
+                Phresh
               </h3>
               <p className="text-neutral-200 font-light leading-relaxed">
                 Spelled with a <strong className="text-amber-300">Ph</strong>{" "}
@@ -168,6 +154,20 @@ const PhDKeysPitch = () => {
                 commercial life into dusty, paywalled data — translating
                 dense research into clear go-to-market strategies, branding,
                 and high-velocity media.
+              </p>
+            </div>
+            <div className="border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-10">
+              <div className="text-amber-400/80 tracking-[0.3em] text-[10px] uppercase mb-4">
+                Half Two
+              </div>
+              <h3 className="font-cinzel text-3xl md:text-4xl text-amber-300 mb-5">
+                Phactory
+              </h3>
+              <p className="text-neutral-200 font-light leading-relaxed">
+                Our operational machine. We provide the blueprint,
+                infrastructure, LLC formation, cap table modeling, and core
+                staffing required to build scalable companies — the assembly
+                line behind every NewCo we co-found.
               </p>
             </div>
           </div>
