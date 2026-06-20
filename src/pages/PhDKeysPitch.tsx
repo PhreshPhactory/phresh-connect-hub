@@ -444,19 +444,14 @@ const PhDKeysPitch = () => {
               tag="$5K–$50K per Engagement"
             />
             <Card
-              title="Podcast & Interview Circuit"
-              body="Coordinated guest tours on top-tier science, business, and culture podcasts — compounding distribution into the e-book and subscription funnel."
-              tag="Owned Media Flywheel"
+              title="Owned Media Flywheel"
+              body="Coordinated podcast hosting, guest tours, and interview circuits across top-tier science, business, and culture shows — compounding distribution into the e-book and subscription funnel."
+              tag="Podcasts & Interview Circuits"
             />
             <Card
-              title="Sponsored Research Briefs"
-              body="Branded explainers and white papers where vetted sponsors fund the scientist to publish credible, plain-English distillations of their field."
-              tag="Brand-Funded Authority"
-            />
-            <Card
-              title="Licensing & Expert Witness"
-              body="Inbound legal, due-diligence, and consulting engagements routed through Phresh Phactory, Inc., billed at expert-tier rates with revenue share."
-              tag="Premium Hourly Yield"
+              title="Sponsored Research Briefs & Licensing"
+              body="Branded explainers, white papers, and licensing deals where vetted sponsors and partners fund the scientist to publish credible, plain-English distillations of their field."
+              tag="Sponsorship & Licensing Revenue"
             />
           </div>
           <div className="mt-12 border border-amber-400/30 bg-gradient-to-br from-amber-950/30 to-transparent p-8 md:p-10">
