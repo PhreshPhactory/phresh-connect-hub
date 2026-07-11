@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import phdKeysLogo from "@/assets/phdkeys-logo.png";
+import phdKeysLogo from "@/assets/phd-keys-logo-2026.png.asset.json";
 import kieraHost from "@/assets/kiera-host.jpeg";
 
 
