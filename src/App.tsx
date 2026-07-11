@@ -170,7 +170,8 @@ const App = () => {
                     <Route element={<LandingPageLayout />}>
                       <Route path="/socially-selling-food" element={<SociallySellingFood />} />
                       
-                      <Route path="/PhDKeys" element={<PhDKeys />} />
+                      <Route path="/phdkeys" element={<PhDKeysLanding />} />
+                      <Route path="/PhDKeys" element={<Navigate to="/phdkeys" replace />} />
                       <Route path="/phdpodcast" element={<PhDKeys />} />
                       <Route path="/PhDKeysPitch" element={<PhDKeysPitch />} />
                       <Route path="/phdkeyspitch" element={<PhDKeysPitch />} />
