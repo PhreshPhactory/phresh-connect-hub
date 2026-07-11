@@ -522,7 +522,7 @@ const PhDKeysLanding = () => {
             </div>
             <div className="space-y-2">
               <Label htmlFor="description" className="text-foreground font-medium">
-                Why was this science shelved by the institution?
+                Tell us about the science or your partnership interest:
               </Label>
               <Textarea
                 id="description"
@@ -531,7 +531,7 @@ const PhDKeysLanding = () => {
                 onChange={handleChange}
                 required
                 rows={5}
-                placeholder="Describe the technology, the circumstances of its abandonment, and its market potential."
+                placeholder="Share the technology, the story of how it was shelved, or the kind of partnership you're exploring."
                 className="bg-background border-border focus:border-navy focus:ring-navy resize-none"
               />
             </div>
