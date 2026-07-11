@@ -175,22 +175,22 @@ const PhDKeysLanding = () => {
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-2xl">
                 Millions of dollars of world-changing research are abandoned by institutions every year. Phresh Phactory, Inc. partners with brilliant minds to rescue their patents, fund their commercialization, and build the business operations to bring their life's work to the world.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
                   onClick={() => scrollToSection("apply")}
-                  className="bg-teal text-white hover:bg-teal/90 font-heading font-semibold tracking-wide px-8 h-14"
+                  className="bg-teal text-white hover:bg-teal/90 font-heading font-semibold tracking-wide px-6 h-12 text-sm md:text-base"
                 >
-                  Submit Your IP for Review{" "}
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  Submit Your IP{" "}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   onClick={() => scrollToSection("apply")}
-                  className="border-navy text-navy hover:bg-navy hover:text-white font-heading font-semibold tracking-wide px-8 h-14"
+                  className="border-navy text-navy hover:bg-navy hover:text-white font-heading font-semibold tracking-wide px-6 h-12 text-sm md:text-base"
                 >
-                  Become a Corporate Sponsor
+                  Become a Sponsor
                 </Button>
               </div>
             </div>
@@ -201,14 +201,6 @@ const PhDKeysLanding = () => {
                   alt="PhD Keys by Phresh Phactory, Inc. logo"
                   className="w-full h-full object-contain"
                 />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border border-border max-w-xs hidden lg:block">
-                <p className="font-heading text-navy font-bold text-lg mb-1">
-                  $100B+
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  in corporate patents abandoned annually, waiting for the right operational partner.
-                </p>
               </div>
             </div>
           </div>
