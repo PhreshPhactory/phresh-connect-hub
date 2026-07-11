@@ -38,7 +38,7 @@ const PhDKeysLanding = () => {
     }
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("phd_keys_applications").insert({
+      const { error } = await (supabase as any).from("phd_keys_applications").insert({
         full_name: form.fullName.trim(),
         email: form.email.trim().toLowerCase(),
         original_assignee: form.originalAssignee.trim(),
