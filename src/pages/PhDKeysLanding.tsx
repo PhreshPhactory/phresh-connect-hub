@@ -195,11 +195,11 @@ const PhDKeysLanding = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-2xl border border-border">
+              <div className="aspect-square rounded-lg overflow-hidden shadow-2xl border border-border bg-white flex items-center justify-center p-8">
                 <img
-                  src={kieraHost}
-                  alt="Kiera H., founder of Phresh Phactory, Inc., leading the PhD Keys initiative"
-                  className="w-full h-full object-cover"
+                  src={phdKeysLogo.url}
+                  alt="PhD Keys by Phresh Phactory, Inc. logo"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border border-border max-w-xs hidden lg:block">
