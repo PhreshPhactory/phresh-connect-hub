@@ -15,6 +15,7 @@ import { ArrowRight, Loader2, FileText, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import kieraHost from "@/assets/kiera-host.jpeg";
+import phdKeysLogo from "@/assets/phd-keys-logo-2026.png.asset.json";
 
 const inquiryOptions = [
   { value: "researcher", label: "Researcher / Inventor" },
