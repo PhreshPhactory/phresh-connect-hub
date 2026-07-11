@@ -319,7 +319,7 @@ const PhDKeysLanding = () => {
                 Scale the Operations
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                We handle the manufacturing, regulatory compliance, and business development to bring it to market.
+                With 20 years of experience, our team handles the manufacturing, regulatory compliance, and business development.
               </p>
             </div>
             <div className="relative bg-white p-8 md:p-10 rounded-lg border border-border text-center">
