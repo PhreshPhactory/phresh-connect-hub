@@ -289,13 +289,13 @@ const PhDKeysLanding = () => {
         <div className="container-custom max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
-              The NewCo Alliance
+              The Playbook
             </p>
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-6">
-              The Playbook
+              How We Champion You
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              A clear path from abandoned patent to market-leading company.
+              A clear, collaborative path from abandoned patent to market-leading company.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 relative">
