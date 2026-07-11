@@ -146,7 +146,7 @@ const PhDKeysLanding = () => {
           </nav>
           <a
             href="#apply"
-            className="inline-flex items-center justify-center h-11 px-6 text-sm font-semibold rounded-md bg-navy text-white hover:bg-navy-700 transition"
+            className="hidden sm:inline-flex items-center justify-center h-10 px-4 text-xs md:text-sm font-semibold rounded-md bg-navy text-white hover:bg-navy-700 transition"
           >
             Start the Conversation
           </a>
