@@ -122,7 +122,7 @@ const Researchers = () => {
           </Link>
           <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
             <li><Link to="/" className="text-neutral-600 hover:text-black transition">Home</Link></li>
-            <li><Link to="/phdkeys" className="text-neutral-600 hover:text-black transition">Podcast</Link></li>
+            <li><Link to="/phdpodcast" className="text-neutral-600 hover:text-black transition">Podcast</Link></li>
             <li><Link to="/KieraH" className="text-neutral-600 hover:text-black transition">About</Link></li>
             <li><Link to="/contact" className="text-neutral-600 hover:text-black transition">Contact</Link></li>
           </ul>
@@ -157,7 +157,7 @@ const Researchers = () => {
               <Link to="/contact">Book an Intro Call <ArrowRight className="ml-2 h-4 w-4" /></Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white hover:text-black">
-              <Link to="/phdkeys">Listen to PhD Keys</Link>
+              <Link to="/phdpodcast">Listen to PhD Keys</Link>
             </Button>
           </div>
         </div>
