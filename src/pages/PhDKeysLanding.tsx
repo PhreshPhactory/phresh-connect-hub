@@ -398,20 +398,20 @@ const PhDKeysLanding = () => {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
               <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
-                The PR Engine
+                The Docuseries
               </p>
               <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-6">
-                Bringing Your Story to the World
+                PhD Keys: Bringing Your Story to the World
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                We don't just build companies; we build movements. "PhD Keys" is an upcoming premium unscripted docuseries currently in development that pulls back the curtain on the $100B corporate patent graveyard. Partnering with us means your breakthrough gains a global PR engine.
+                We don't just build companies; we build movements. "PhD Keys" is an upcoming premium docuseries that pulls back the curtain on shelved science. Partnering with us means your breakthrough—and your personal journey—gains an unparalleled global PR engine, attracting sponsors, customers, and industry acclaim.
               </p>
               <Button
                 size="lg"
                 onClick={() => scrollToSection("apply")}
                 className="bg-navy text-white hover:bg-navy-700 font-heading font-semibold tracking-wide px-8 h-14"
               >
-                Request the Docuseries Pitch Deck{" "}
+                Learn About Sponsorship Opportunities{" "}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
