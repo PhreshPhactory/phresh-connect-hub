@@ -359,13 +359,13 @@ const PhDKeysLanding = () => {
             </div>
             <div className="order-1 md:order-2">
               <p className="uppercase tracking-[0.3em] text-xs text-strategic-gold font-bold mb-4">
-                About Us
+                The Leadership
               </p>
               <h2 className="font-heading text-3xl md:text-5xl font-bold mb-8">
-                The Commander & The Global Board
+                About Us
               </h2>
               <p className="text-lg text-white/80 leading-relaxed mb-6">
-                Led by Kiera H.—a Black Army veteran, multi-patented industrial researcher, and seasoned business operator. With zero corporate doublespeak and 20 years of experience scaling startups across retail, tech, and creative industries, Phresh Phactory, Inc. brings its execution engine to the scientific community. She is backed by a Global Board of elite technical minds deploying deep operational expertise.
+                Led by Kiera H.—a Black Army veteran, multi-patented industrial researcher, and seasoned business operator. After spending 20 years building the operational backbone for startups across retail, tech, and creative industries, Phresh Phactory, Inc. is bringing its execution engine to the scientific community. We know the reality of the lab, and we know exactly how to scale a business.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
