@@ -54,7 +54,7 @@ const PhDKeys = () => {
           content="PhD Keys, the multimedia podcast hosted by Kiera H. that translates expert research into actionable, real-world frameworks."
         />
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://phreshphactory.com/PhDKeys" />
+        <link rel="canonical" href="https://phreshphactory.com/phdpodcast" />
       </Helmet>
 
       {/* Navigation */}
@@ -67,7 +67,7 @@ const PhDKeys = () => {
             <li><Link to="/" className="text-muted-foreground hover:text-foreground transition">Home</Link></li>
             <li><Link to="/KieraH" className="text-muted-foreground hover:text-foreground transition">About</Link></li>
             <li><Link to="/holiday" className="text-muted-foreground hover:text-foreground transition">Services</Link></li>
-            <li><Link to="/PhDKeys" className="text-foreground font-semibold border-b-2 border-primary pb-1">Podcast</Link></li>
+            <li><Link to="/phdpodcast" className="text-foreground font-semibold border-b-2 border-primary pb-1">Podcast</Link></li>
             <li><Link to="/contact" className="text-muted-foreground hover:text-foreground transition">Contact</Link></li>
           </ul>
         </nav>
