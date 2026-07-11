@@ -41,6 +41,8 @@
     --teal-foreground: 0 0% 100%; /* Bright White */
     --rust: 15 78% 45%; /* Rust Accent */
     --rust-foreground: 0 0% 100%; /* Bright White */
+    --navy: 220 60% 22%; /* Deep Navy Blue */
+    --navy-foreground: 0 0% 100%; /* Bright White */
   }
 
   .dark {
