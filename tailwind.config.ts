@@ -119,6 +119,18 @@ export default {
 					600: 'hsl(15 78% 35%)',
 					700: 'hsl(15 78% 25%)',
 				},
+				navy: {
+					DEFAULT: 'hsl(var(--navy))',
+					foreground: 'hsl(var(--navy-foreground))',
+					50: 'hsl(220 60% 96%)',
+					100: 'hsl(220 60% 90%)',
+					200: 'hsl(220 60% 80%)',
+					300: 'hsl(220 60% 65%)',
+					400: 'hsl(220 60% 45%)',
+					500: 'hsl(var(--navy))', // Deep Navy Blue
+					600: 'hsl(220 60% 17%)',
+					700: 'hsl(220 60% 12%)',
+				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
