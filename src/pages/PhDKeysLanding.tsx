@@ -94,7 +94,6 @@ const PhDKeysLanding = () => {
           </a>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
             <a href="#opportunity" className="text-muted-foreground hover:text-foreground transition">Opportunity</a>
-            <a href="#playbook" className="text-muted-foreground hover:text-foreground transition">Playbook</a>
             <a href="#leadership" className="text-muted-foreground hover:text-foreground transition">About</a>
             <a href="#initiation" className="text-muted-foreground hover:text-foreground transition">Apply</a>
           </nav>
@@ -149,7 +148,7 @@ const PhDKeysLanding = () => {
       </section>
 
       {/* THE BLINDSPOT */}
-      <section className="relative py-24 md:py-32 bg-background border-t border-border">
+      <section id="opportunity" className="relative py-24 md:py-32 bg-background border-t border-border">
         <div className="container-custom max-w-6xl mx-auto">
           <p className="uppercase tracking-[0.3em] text-xs text-strategic-gold font-semibold mb-4 text-center">
             The Blindspot
@@ -209,7 +208,7 @@ const PhDKeysLanding = () => {
       </section>
 
       {/* THE COMMANDER & THE GLOBAL BOARD */}
-      <section className="relative py-24 md:py-32 bg-background border-t border-border">
+      <section id="leadership" className="relative py-24 md:py-32 bg-background border-t border-border">
         <div className="container-custom max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="relative order-2 md:order-1">
