@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ArrowRight, Loader2, Play, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Loader2, FileText, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import kieraHost from "@/assets/kiera-host.jpeg";
