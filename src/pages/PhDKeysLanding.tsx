@@ -385,44 +385,30 @@ const PhDKeysLanding = () => {
         </div>
       </section>
 
-      {/* PR ENGINE / DOCUSERIES */}
-      <section id="docuseries" className="relative py-24 md:py-32 bg-secondary-100 overflow-hidden">
-        <div className="container-custom relative z-10 max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
-              <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
-                The Docuseries
-              </p>
-              <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-6">
-                PhD Keys: Bringing Your Story to the World
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                We don't just build companies; we build movements. "PhD Keys" is an upcoming premium docuseries that pulls back the curtain on shelved science. Partnering with us means your breakthrough—and your personal journey—gains an unparalleled global PR engine, attracting sponsors, customers, and industry acclaim.
-              </p>
-              <Button
-                size="lg"
-                onClick={() => scrollToSection("apply")}
-                className="bg-navy text-white hover:bg-navy-700 font-heading font-semibold tracking-wide px-8 h-14"
-              >
-                Learn About Sponsorship Opportunities{" "}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-            <div className="relative bg-white p-10 md:p-12 rounded-lg border border-border shadow-2xl">
-              <div className="aspect-[4/5] rounded-md bg-gradient-to-br from-navy-50 to-secondary-100 border-2 border-dashed border-navy/20 flex flex-col items-center justify-center p-8 text-center">
-                <div className="w-20 h-24 bg-white rounded-sm shadow-lg border border-border flex flex-col items-center justify-center mb-6">
-                  <FileText className="h-10 w-10 text-navy mb-2" />
-                  <div className="w-12 h-1 bg-strategic-gold rounded-full" />
-                </div>
-                <p className="font-heading text-lg font-semibold text-navy mb-2">
-                  PhD Keys: The Docuseries
-                </p>
-                <p className="text-xs uppercase tracking-widest text-teal font-bold">
-                  Pitch Deck
-                </p>
-              </div>
-            </div>
-          </div>
+      {/* THE PODCAST */}
+      <section id="podcast" className="relative py-24 md:py-32 bg-secondary-100 overflow-hidden">
+        <div className="container-custom relative z-10 max-w-4xl mx-auto text-center">
+          <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
+            The Podcast
+          </p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-6">
+            PhD Keys: Unlocking the World's Sharpest Minds
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
+            Our companion podcast sits down with researchers, inventors, and specialists to translate their expertise into practical frameworks the world can use. Hosted by Kiera H.
+          </p>
+          <a
+            href="/phdkeyspodcast"
+            className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-md bg-navy text-white hover:bg-navy-700 font-heading font-semibold tracking-wide transition"
+          >
+            Explore the Podcast <ArrowRight className="h-4 w-4" />
+          </a>
+          <p className="text-sm text-muted-foreground mt-6">
+            Details at{" "}
+            <a href="/phdkeyspodcast" className="text-teal font-semibold underline underline-offset-4 hover:text-navy transition">
+              /phdkeyspodcast
+            </a>
+          </p>
         </div>
       </section>
 
