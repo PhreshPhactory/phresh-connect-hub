@@ -77,7 +77,7 @@ const PhDKeysLanding = () => {
   return (
     <div className="dark min-h-screen bg-background text-foreground overflow-x-hidden">
       <Helmet>
-        <title>PhD Keys | Reclaiming the $100B Corporate Patent Graveyard</title>
+        <title>PhD Keys by Phresh Phactory, Inc. | Reclaiming the $100B Corporate Patent Graveyard</title>
         <meta
           name="description"
           content="PhD Keys by Phresh Phactory, Inc. locates abandoned corporate patents, secures the rights, and partners with elite inventors to bring shelved IP to market."
@@ -292,10 +292,10 @@ const PhDKeysLanding = () => {
               The Initiation
             </p>
             <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
-              The Alliance Application
+              The PhD Keys Alliance Application
             </h2>
             <p className="text-muted-foreground">
-              Submit your shelved IP for AI-powered viability analysis.
+              Submit your shelved IP to PhD Keys by Phresh Phactory, Inc. for AI-powered viability analysis.
             </p>
           </div>
 
