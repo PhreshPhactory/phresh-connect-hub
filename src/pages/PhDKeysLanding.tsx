@@ -14,7 +14,7 @@ import {
 import { ArrowRight, Loader2, FileText, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import kieraHost from "@/assets/kiera-host.jpeg";
+import kieraHost from "@/assets/kiera-portrait-2026.jpeg.asset.json";
 import phdKeysLogo from "@/assets/phd-keys-logo-2026.png.asset.json";
 
 const inquiryOptions = [
@@ -146,7 +146,7 @@ const PhDKeysLanding = () => {
           </nav>
           <a
             href="#apply"
-            className="inline-flex items-center justify-center h-11 px-6 text-sm font-semibold rounded-md bg-navy text-white hover:bg-navy-700 transition"
+            className="hidden sm:inline-flex items-center justify-center h-10 px-4 text-xs md:text-sm font-semibold rounded-md bg-navy text-white hover:bg-navy-700 transition"
           >
             Start the Conversation
           </a>
@@ -175,22 +175,22 @@ const PhDKeysLanding = () => {
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-2xl">
                 Millions of dollars of world-changing research are abandoned by institutions every year. Phresh Phactory, Inc. partners with brilliant minds to rescue their patents, fund their commercialization, and build the business operations to bring their life's work to the world.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   size="lg"
                   onClick={() => scrollToSection("apply")}
-                  className="bg-teal text-white hover:bg-teal/90 font-heading font-semibold tracking-wide px-8 h-14"
+                  className="bg-teal text-white hover:bg-teal/90 font-heading font-semibold tracking-wide px-6 h-12 text-sm md:text-base"
                 >
-                  Submit Your IP for Review{" "}
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  Submit Your IP{" "}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   onClick={() => scrollToSection("apply")}
-                  className="border-navy text-navy hover:bg-navy hover:text-white font-heading font-semibold tracking-wide px-8 h-14"
+                  className="border-navy text-navy hover:bg-navy hover:text-white font-heading font-semibold tracking-wide px-6 h-12 text-sm md:text-base"
                 >
-                  Become a Corporate Sponsor
+                  Become a Sponsor
                 </Button>
               </div>
             </div>
@@ -201,14 +201,6 @@ const PhDKeysLanding = () => {
                   alt="PhD Keys by Phresh Phactory, Inc. logo"
                   className="w-full h-full object-contain"
                 />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border border-border max-w-xs hidden lg:block">
-                <p className="font-heading text-navy font-bold text-lg mb-1">
-                  $100B+
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  in corporate patents abandoned annually, waiting for the right operational partner.
-                </p>
               </div>
             </div>
           </div>
@@ -352,7 +344,7 @@ const PhDKeysLanding = () => {
             <div className="order-2 md:order-1">
               <div className="aspect-[4/5] rounded-lg overflow-hidden border border-white/20 shadow-2xl">
                 <img
-                  src={kieraHost}
+                  src={kieraHost.url}
                   alt="Kiera H., Black Army veteran, multi-patented industrial researcher, and founder of Phresh Phactory, Inc."
                   className="w-full h-full object-cover"
                 />
@@ -393,44 +385,30 @@ const PhDKeysLanding = () => {
         </div>
       </section>
 
-      {/* PR ENGINE / DOCUSERIES */}
-      <section id="docuseries" className="relative py-24 md:py-32 bg-secondary-100 overflow-hidden">
-        <div className="container-custom relative z-10 max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
-              <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
-                The Docuseries
-              </p>
-              <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-6">
-                PhD Keys: Bringing Your Story to the World
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                We don't just build companies; we build movements. "PhD Keys" is an upcoming premium docuseries that pulls back the curtain on shelved science. Partnering with us means your breakthrough—and your personal journey—gains an unparalleled global PR engine, attracting sponsors, customers, and industry acclaim.
-              </p>
-              <Button
-                size="lg"
-                onClick={() => scrollToSection("apply")}
-                className="bg-navy text-white hover:bg-navy-700 font-heading font-semibold tracking-wide px-8 h-14"
-              >
-                Learn About Sponsorship Opportunities{" "}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-            <div className="relative bg-white p-10 md:p-12 rounded-lg border border-border shadow-2xl">
-              <div className="aspect-[4/5] rounded-md bg-gradient-to-br from-navy-50 to-secondary-100 border-2 border-dashed border-navy/20 flex flex-col items-center justify-center p-8 text-center">
-                <div className="w-20 h-24 bg-white rounded-sm shadow-lg border border-border flex flex-col items-center justify-center mb-6">
-                  <FileText className="h-10 w-10 text-navy mb-2" />
-                  <div className="w-12 h-1 bg-strategic-gold rounded-full" />
-                </div>
-                <p className="font-heading text-lg font-semibold text-navy mb-2">
-                  PhD Keys: The Docuseries
-                </p>
-                <p className="text-xs uppercase tracking-widest text-teal font-bold">
-                  Pitch Deck
-                </p>
-              </div>
-            </div>
-          </div>
+      {/* THE PODCAST */}
+      <section id="podcast" className="relative py-24 md:py-32 bg-secondary-100 overflow-hidden">
+        <div className="container-custom relative z-10 max-w-4xl mx-auto text-center">
+          <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
+            The Podcast
+          </p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-6">
+            PhD Keys: Unlocking the World's Sharpest Minds
+          </h2>
+          <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-2xl mx-auto">
+            Our companion podcast sits down with researchers, inventors, and specialists to translate their expertise into practical frameworks the world can use. Hosted by Kiera H.
+          </p>
+          <a
+            href="/phdkeyspodcast"
+            className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-md bg-navy text-white hover:bg-navy-700 font-heading font-semibold tracking-wide transition"
+          >
+            Explore the Podcast <ArrowRight className="h-4 w-4" />
+          </a>
+          <p className="text-sm text-muted-foreground mt-6">
+            Details at{" "}
+            <a href="/phdkeyspodcast" className="text-teal font-semibold underline underline-offset-4 hover:text-navy transition">
+              /phdkeyspodcast
+            </a>
+          </p>
         </div>
       </section>
 
