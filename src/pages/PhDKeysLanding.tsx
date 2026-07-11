@@ -438,13 +438,13 @@ const PhDKeysLanding = () => {
         <div className="container-custom max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
-              The Alliance Application
+              The Invitation
             </p>
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-4">
               Let's Build Together
             </h2>
             <p className="text-muted-foreground text-lg">
-              Ready to reclaim your work or sponsor the future of deep tech?
+              Whether you are a researcher ready to reclaim your work, or a sponsor looking to fund the future of deep tech, we want to hear from you.
             </p>
           </div>
 
