@@ -15,6 +15,7 @@ import { ArrowRight, Loader2, FileText, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import kieraHost from "@/assets/kiera-host.jpeg";
+import phdKeysLogo from "@/assets/phd-keys-logo-2026.png.asset.json";
 
 const inquiryOptions = [
   { value: "researcher", label: "Researcher / Inventor" },
@@ -194,11 +195,11 @@ const PhDKeysLanding = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-2xl border border-border">
+              <div className="aspect-square rounded-lg overflow-hidden shadow-2xl border border-border bg-white flex items-center justify-center p-8">
                 <img
-                  src={kieraHost}
-                  alt="Kiera H., founder of Phresh Phactory, Inc., leading the PhD Keys initiative"
-                  className="w-full h-full object-cover"
+                  src={phdKeysLogo.url}
+                  alt="PhD Keys by Phresh Phactory, Inc. logo"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-xl border border-border max-w-xs hidden lg:block">
