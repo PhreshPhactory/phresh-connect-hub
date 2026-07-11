@@ -172,13 +172,13 @@ const PhDKeysLanding = () => {
                 <span className="text-strategic-gold">Build Your Empire.</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-2xl">
-                Millions of dollars of world-changing research are abandoned by institutions every year. If your employer has sidelined your breakthrough, we provide the capital and operations to help you take it back.
+                Millions of dollars of world-changing research are abandoned by institutions every year. Phresh Phactory, Inc. partners with brilliant minds to rescue their patents, fund their commercialization, and build the business operations to bring their life's work to the world.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
                   onClick={() => scrollToSection("apply")}
-                  className="bg-navy text-white hover:bg-navy-700 font-heading font-semibold tracking-wide px-8 h-14"
+                  className="bg-teal text-white hover:bg-teal/90 font-heading font-semibold tracking-wide px-8 h-14"
                 >
                   Submit Your IP for Review{" "}
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -186,10 +186,10 @@ const PhDKeysLanding = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => scrollToSection("docuseries")}
+                  onClick={() => scrollToSection("apply")}
                   className="border-navy text-navy hover:bg-navy hover:text-white font-heading font-semibold tracking-wide px-8 h-14"
                 >
-                  Request the Pitch Deck
+                  Become a Corporate Sponsor
                 </Button>
               </div>
             </div>
