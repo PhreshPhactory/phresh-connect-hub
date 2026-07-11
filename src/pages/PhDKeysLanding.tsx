@@ -330,7 +330,7 @@ const PhDKeysLanding = () => {
                 Build the Brand
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                We actively work to make you a recognized industry superstar, securing paid board seats, speaking engagements, and consulting roles.
+                While the technology develops, we actively work to make you a recognized industry superstar, securing paid board seats, speaking engagements, and consulting roles.
               </p>
             </div>
           </div>
