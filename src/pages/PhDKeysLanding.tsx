@@ -397,19 +397,17 @@ const PhDKeysLanding = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
-            <div className="relative aspect-video rounded-lg overflow-hidden border border-border shadow-2xl bg-navy group cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-navy/50" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white flex items-center justify-center group-hover:bg-white group-hover:text-navy transition-colors">
-                  <Play className="h-8 w-8 md:h-10 md:w-10 text-white group-hover:text-navy fill-current ml-1" />
+            <div className="relative bg-white p-10 md:p-12 rounded-lg border border-border shadow-2xl">
+              <div className="aspect-[4/5] rounded-md bg-gradient-to-br from-navy-50 to-secondary-100 border-2 border-dashed border-navy/20 flex flex-col items-center justify-center p-8 text-center">
+                <div className="w-20 h-24 bg-white rounded-sm shadow-lg border border-border flex flex-col items-center justify-center mb-6">
+                  <FileText className="h-10 w-10 text-navy mb-2" />
+                  <div className="w-12 h-1 bg-strategic-gold rounded-full" />
                 </div>
-              </div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-xs uppercase tracking-widest text-strategic-gold font-bold mb-2">
-                  In Development
-                </p>
-                <p className="text-white font-heading text-lg md:text-xl font-semibold">
+                <p className="font-heading text-lg font-semibold text-navy mb-2">
                   PhD Keys: The Docuseries
+                </p>
+                <p className="text-xs uppercase tracking-widest text-teal font-bold">
+                  Pitch Deck
                 </p>
               </div>
             </div>
