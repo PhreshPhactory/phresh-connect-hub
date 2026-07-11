@@ -71,6 +71,7 @@ const NewsletterEditionAdmin = lazy(() => import("@/pages/NewsletterEditionAdmin
 const DrGreen = lazy(() => import("@/pages/DrGreen"));
 
 const PhDKeys = lazy(() => import("@/pages/PhDKeys"));
+const PhDKeysLanding = lazy(() => import("@/pages/PhDKeysLanding"));
 const PhDKeysPitch = lazy(() => import("@/pages/PhDKeysPitch"));
 const Researchers = lazy(() => import("@/pages/Researchers"));
 
@@ -170,7 +171,8 @@ const App = () => {
                     <Route element={<LandingPageLayout />}>
                       <Route path="/socially-selling-food" element={<SociallySellingFood />} />
                       
-                      <Route path="/PhDKeys" element={<PhDKeys />} />
+                      <Route path="/phdkeys" element={<PhDKeysLanding />} />
+                      <Route path="/PhDKeys" element={<Navigate to="/phdkeys" replace />} />
                       <Route path="/phdpodcast" element={<PhDKeys />} />
                       <Route path="/PhDKeysPitch" element={<PhDKeysPitch />} />
                       <Route path="/phdkeyspitch" element={<PhDKeysPitch />} />
