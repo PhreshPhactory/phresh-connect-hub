@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Headphones, Youtube, Music2, ArrowRight, Facebook, Instagram, Linkedin, Twitter, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import phdKeysLogo from "@/assets/phdkeys-logo.png";
+import phdKeysLogo from "@/assets/phd-keys-logo-2026.png.asset.json";
 import kieraHost from "@/assets/kiera-host.jpeg";
 
 
@@ -81,7 +81,7 @@ const PhDKeys = () => {
         }} />
         <div className="container-custom relative py-20 md:py-28 text-center max-w-5xl mx-auto">
           <img
-            src={phdKeysLogo}
+            src={phdKeysLogo.url}
             alt="PhD Keys, Unlocking the World's Sharpest Minds. A Phresh Phactory, Inc. Production"
             className="w-full max-w-md md:max-w-lg mx-auto mb-10 rounded-2xl shadow-2xl"
           />
