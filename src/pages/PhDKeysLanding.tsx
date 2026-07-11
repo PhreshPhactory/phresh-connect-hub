@@ -214,18 +214,18 @@ const PhDKeysLanding = () => {
         </div>
       </section>
 
-      {/* THE INNOVATION SCOREBOARD */}
+      {/* THE OPPORTUNITY */}
       <section id="scoreboard" className="relative py-24 md:py-32 bg-secondary-100">
         <div className="container-custom max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
-              The Innovation Scoreboard
+              The Opportunity
             </p>
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-6">
-              The Problem
+              The Billion-Dollar Graveyard
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              The most transformative discoveries often fail not because of science, but because of systems.
+              The most transformative discoveries often fail not because of the science, but because of the system around it.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -234,10 +234,10 @@ const PhDKeysLanding = () => {
                 01
               </div>
               <h3 className="font-heading text-2xl font-semibold text-navy mb-4">
-                The Corporate Machine
+                The Bottleneck
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Breakthroughs are sidelined simply because they don't fit a near-term quarterly budget. It’s a flaw in the system, not the science.
+                Incredible innovations are often sidelined by universities and corporations simply because they don't fit a near-term budget. It's not a flaw in the science; it's a flaw in the system.
               </p>
             </div>
             <div className="bg-white p-8 md:p-10 rounded-lg border border-border shadow-sm hover:shadow-lg transition-shadow">
@@ -248,7 +248,7 @@ const PhDKeysLanding = () => {
                 The Reversion
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                We help researchers leverage reversion rights to legally reclaim abandoned patents from their university or corporate employer.
+                We help researchers leverage reversion rights to legally reclaim their abandoned patents, rescuing their life's work from the archives.
               </p>
             </div>
             <div className="bg-white p-8 md:p-10 rounded-lg border border-border shadow-sm hover:shadow-lg transition-shadow">
@@ -256,15 +256,33 @@ const PhDKeysLanding = () => {
                 03
               </div>
               <h3 className="font-heading text-2xl font-semibold text-navy mb-4">
-                The Validation
+                The Alliance
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Clayton and Feldman's 2021 data proves that for breakthroughs to survive, business operators and academic researchers must collaborate directly to bypass traditional systems.
+                We provide the capital, business operations, and go-to-market strategy. You provide the genius. Together, we form a NewCo where you share in the true upside of your invention.
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* THE VALIDATION */}
+      <section className="relative py-24 md:py-32 bg-background">
+        <div className="container-custom max-w-4xl mx-auto text-center">
+          <p className="uppercase tracking-[0.3em] text-xs text-teal font-bold mb-4">
+            The Validation
+          </p>
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-navy mb-10">
+            The Science of Success
+          </h2>
+          <blockquote className="relative bg-white border-l-4 border-strategic-gold p-8 md:p-12 rounded-lg shadow-sm text-left">
+            <p className="text-lg md:text-xl text-navy/90 leading-relaxed font-medium italic">
+              "The blueprint for success is proven. In their 2021 landmark paper, <span className="not-italic font-semibold">Academic Teams and Commercialization in the Life Sciences</span>, researchers Clayton and Feldman demonstrated that for scientific breakthroughs to survive, business operators and academic researchers must collaborate to bypass traditional systems."
+            </p>
+          </blockquote>
+        </div>
+      </section>
+
 
       {/* THE NEWCO ALLIANCE */}
       <section id="alliance" className="relative py-24 md:py-32 bg-background">
