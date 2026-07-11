@@ -347,7 +347,7 @@ const PhDKeysLanding = () => {
                 The Commander & The Global Board
               </h2>
               <p className="text-lg text-white/80 leading-relaxed mb-6">
-                Led by Kiera H.—a Black Army veteran, multi-patented industrial researcher, and seasoned business operator. With zero corporate doublespeak and 20 years of experience scaling startups across retail, tech, and creative industries, Phresh Phactory brings its execution engine to the scientific community. She is backed by a Global Board of elite technical minds deploying deep operational expertise.
+                Led by Kiera H.—a Black Army veteran, multi-patented industrial researcher, and seasoned business operator. With zero corporate doublespeak and 20 years of experience scaling startups across retail, tech, and creative industries, Phresh Phactory, Inc. brings its execution engine to the scientific community. She is backed by a Global Board of elite technical minds deploying deep operational expertise.
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">

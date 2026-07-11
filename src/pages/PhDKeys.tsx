@@ -48,7 +48,7 @@ const PhDKeys = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Helmet>
-        <title>PhD Keys Podcast | Phresh Phactory</title>
+        <title>PhD Keys Podcast | Phresh Phactory, Inc.</title>
         <meta
           name="description"
           content="PhD Keys, the multimedia podcast hosted by Kiera H. that translates expert research into actionable, real-world frameworks."
@@ -215,7 +215,7 @@ const PhDKeys = () => {
               <h2 className="text-3xl md:text-4xl font-semibold mb-5 text-white">Are you the expert, not just the audience?</h2>
               <p className="text-lg leading-relaxed text-white/85 mb-4">
                 PhD Keys exists because brilliant research rarely reaches the people it should serve. If you are a PhD,
-                researcher, or specialist sitting on work the world needs, Phresh Phactory is the commercialization and
+                researcher, or specialist sitting on work the world needs, Phresh Phactory, Inc. is the commercialization and
                 distribution partner that turns your expertise into products, audience, and revenue.
               </p>
               <p className="text-base leading-relaxed text-white/70 mb-8">
