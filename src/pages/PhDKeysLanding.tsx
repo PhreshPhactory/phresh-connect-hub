@@ -77,7 +77,7 @@ const PhDKeysLanding = () => {
   return (
     <div className="dark min-h-screen bg-background text-foreground overflow-x-hidden">
       <Helmet>
-        <title>PhD Keys | Reclaiming the $100B Corporate Patent Graveyard</title>
+        <title>PhD Keys by Phresh Phactory, Inc. | Reclaiming the $100B Corporate Patent Graveyard</title>
         <meta
           name="description"
           content="PhD Keys by Phresh Phactory, Inc. locates abandoned corporate patents, secures the rights, and partners with elite inventors to bring shelved IP to market."
@@ -86,8 +86,28 @@ const PhDKeysLanding = () => {
         <link rel="canonical" href="https://phreshphactory.com/phdkeys" />
       </Helmet>
 
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+        <div className="container-custom flex items-center justify-between h-16">
+          <a href="/phdkeys" className="font-heading text-xl md:text-2xl font-bold text-foreground tracking-tight">
+            PhD Keys
+          </a>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#opportunity" className="text-muted-foreground hover:text-foreground transition">Opportunity</a>
+            <a href="#leadership" className="text-muted-foreground hover:text-foreground transition">About</a>
+            <a href="#initiation" className="text-muted-foreground hover:text-foreground transition">Apply</a>
+          </nav>
+          <a
+            href="#initiation"
+            className="inline-flex items-center justify-center h-10 px-5 text-sm font-semibold rounded-md bg-strategic-gold text-black hover:bg-tertiary-600 transition"
+          >
+            Start the Conversation
+          </a>
+        </div>
+      </header>
+
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         <div
           className="absolute inset-0 opacity-30"
           style={{
@@ -98,14 +118,14 @@ const PhDKeysLanding = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
         <div className="container-custom relative z-10 py-24 md:py-32 text-center max-w-5xl mx-auto">
           <p className="uppercase tracking-[0.35em] text-xs md:text-sm text-strategic-gold font-semibold mb-6">
-            Phresh Phactory, Inc. Presents
+            PhD Keys by Phresh Phactory, Inc.
           </p>
           <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-8">
             Reclaiming the{" "}
             <span className="text-strategic-gold">$100B Corporate Patent Graveyard</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-            We use AI to locate valuable abandoned patents, inject capital to secure the rights, and confront elite inventors with a brutal choice: join our minority-led alliance to launch your life's work, or watch us bring it to market alone.
+            PhD Keys by Phresh Phactory, Inc. uses AI to locate valuable abandoned patents, injects capital to secure the rights, and partners with elite inventors to launch their life's work. We don't just rescue shelved science; we build the companies, brands, and movements that bring it to the world.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -128,7 +148,7 @@ const PhDKeysLanding = () => {
       </section>
 
       {/* THE BLINDSPOT */}
-      <section className="relative py-24 md:py-32 bg-background border-t border-border">
+      <section id="opportunity" className="relative py-24 md:py-32 bg-background border-t border-border">
         <div className="container-custom max-w-6xl mx-auto">
           <p className="uppercase tracking-[0.3em] text-xs text-strategic-gold font-semibold mb-4 text-center">
             The Blindspot
@@ -188,7 +208,7 @@ const PhDKeysLanding = () => {
       </section>
 
       {/* THE COMMANDER & THE GLOBAL BOARD */}
-      <section className="relative py-24 md:py-32 bg-background border-t border-border">
+      <section id="leadership" className="relative py-24 md:py-32 bg-background border-t border-border">
         <div className="container-custom max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="relative order-2 md:order-1">
@@ -203,16 +223,16 @@ const PhDKeysLanding = () => {
             </div>
             <div className="order-1 md:order-2">
               <p className="uppercase tracking-[0.3em] text-xs text-strategic-gold font-semibold mb-4">
-                The Commander &amp; The Global Board
+                About Us
               </p>
               <h2 className="font-heading text-3xl md:text-5xl font-bold mb-8">
                 Led by Kiera H.
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                An unpolished, no-nonsense Black woman, Army veteran, and multi-patented applied-science inventor. She brings 20 years of raw operational execution and workforce logistics straight into elite scientific circles, backed by a Global Board of the world's finest technical minds from India, China, Africa, Europe, and the US.
+                PhD Keys is powered by Phresh Phactory, Inc., an operational engine with 20 years of experience scaling startups across retail, tech, and creative industries. Led by Kiera H.—a Black Army veteran, multi-patented industrial researcher, and seasoned business operator—we bring deep respect for the scientific community and the execution discipline required to turn breakthrough research into thriving companies.
               </p>
               <p className="text-base text-muted-foreground/80 leading-relaxed">
-                We don't do corporate doublespeak. We overhaul engineering, pass regulatory testing, and out-maneuver traditional monopolies.
+                We know the reality of the lab, and we know exactly how to scale a business. From regulatory navigation to manufacturing partnerships, PhD Keys handles the operations so researchers can focus on what they do best: inventing the future.
               </p>
             </div>
           </div>
@@ -272,10 +292,10 @@ const PhDKeysLanding = () => {
               The Initiation
             </p>
             <h2 className="font-heading text-3xl md:text-5xl font-bold mb-4">
-              The Alliance Application
+              The PhD Keys Alliance Application
             </h2>
             <p className="text-muted-foreground">
-              Submit your shelved IP for AI-powered viability analysis.
+              Submit your shelved IP to PhD Keys by Phresh Phactory, Inc. for AI-powered viability analysis.
             </p>
           </div>
 
@@ -374,11 +394,17 @@ const PhDKeysLanding = () => {
       {/* FOOTER */}
       <footer className="bg-black border-t border-border py-16">
         <div className="container-custom text-center">
-          <p className="font-heading text-2xl md:text-3xl font-bold text-strategic-gold mb-6">
+          <p className="font-heading text-2xl md:text-3xl font-bold text-strategic-gold mb-2">
+            PhD Keys
+          </p>
+          <p className="text-sm text-muted-foreground mb-6">
+            A Phresh Phactory, Inc. Initiative
+          </p>
+          <p className="font-heading text-xl md:text-2xl font-bold text-strategic-gold/80 mb-6">
             Let the smartest people win.
           </p>
           <p className="text-sm text-muted-foreground mb-6">
-            &copy; {new Date().getFullYear()} Phresh Phactory, Inc.
+            &copy; {new Date().getFullYear()} PhD Keys by Phresh Phactory, Inc.
           </p>
           <div className="flex justify-center gap-6 text-xs text-muted-foreground">
             <a href="/privacy" className="hover:text-strategic-gold transition">
