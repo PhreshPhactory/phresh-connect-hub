@@ -352,7 +352,7 @@ const PhDKeysLanding = () => {
             <div className="order-2 md:order-1">
               <div className="aspect-[4/5] rounded-lg overflow-hidden border border-white/20 shadow-2xl">
                 <img
-                  src={kieraHost}
+                  src={kieraHost.url}
                   alt="Kiera H., Black Army veteran, multi-patented industrial researcher, and founder of Phresh Phactory, Inc."
                   className="w-full h-full object-cover"
                 />
