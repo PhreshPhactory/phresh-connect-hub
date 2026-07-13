@@ -342,11 +342,11 @@ const PhDKeysLanding = () => {
         <div className="container-custom relative z-10 max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="order-2 md:order-1">
-              <div className="aspect-[4/5] rounded-lg overflow-hidden border border-white/20 shadow-2xl">
+              <div className="aspect-[4/5] rounded-lg overflow-hidden border border-white/20 shadow-2xl bg-transparent">
                 <img
                   src={kieraHost.url}
                   alt="Kiera H., Black Army veteran, multi-patented industrial researcher, and founder of Phresh Phactory, Inc."
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
