@@ -14,7 +14,7 @@ import {
 import { ArrowRight, Loader2, FileText, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import kieraHost from "@/assets/kiera-h-phd-keys-2026.png.asset.json";
+import kieraHost from "@/assets/kiera-transparent-2026.png.asset.json";
 import phdKeysLogo from "@/assets/phd-keys-logo-2026.png.asset.json";
 
 const inquiryOptions = [
