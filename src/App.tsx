@@ -31,6 +31,7 @@ const BlogPost = lazy(() => import("@/pages/BlogPost"));
 const Admin = lazy(() => import("@/pages/Admin"));
 const Auth = lazy(() => import("@/pages/Auth"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
+const Terms = lazy(() => import("@/pages/Terms"));
 const FractionalLeadership = lazy(() => import("@/pages/services/FractionalLeadership"));
 const GlobalTalent = lazy(() => import("@/pages/services/GlobalTalent"));
 const LegacyTransformation = lazy(() => import("@/pages/services/LegacyTransformation"));
@@ -141,6 +142,7 @@ const App = () => {
                       <Route path="/admin/ssf-invoices" element={<SSFInvoiceAdmin />} />
                       <Route path="/auth" element={<Auth />} />
                       <Route path="/privacy" element={<Privacy />} />
+                      <Route path="/terms" element={<Terms />} />
                       <Route path="/links" element={<LinkInBio />} />
                       <Route path="/tv" element={<TV />} />
                       <Route path="/affiliate-sales-blueprint" element={<AffiliateSalesBlueprint />} />
