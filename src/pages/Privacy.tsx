@@ -11,10 +11,21 @@ const Privacy = () => {
             <p className="text-xl text-muted-foreground mb-8">Last updated: {new Date().toLocaleDateString()}</p>
             
             <section className="mb-8">
+              <p className="mb-6 text-lg font-semibold">
+                This agreement also governs our subsidiary platforms and DBAs, including Rich Braids (richbraids.com).
+              </p>
               <p className="mb-6 text-lg">
                 Phresh Phactory, Inc. is committed to protecting the privacy of our users. We understand the importance of privacy and take it seriously. This privacy policy applies to our website, phreshphactory.com, and explains how we collect, use, and disclose personal information.
               </p>
             </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4">SMS Messaging and Consent</h2>
+              <p className="mb-4">
+                When you check the SMS consent box on our contact form, you agree to receive SMS notifications, appointment updates, and marketing messages from Phresh Phactory, Inc. and our subsidiary platform, Rich Braids. Message and data rates may apply. Message frequency varies. Reply STOP to cancel or HELP for help. Mobile information and consent are never sold, rented, or shared with third parties or affiliates for marketing purposes.
+              </p>
+            </section>
+
 
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">Information We Collect</h2>
