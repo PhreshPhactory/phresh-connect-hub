@@ -19,8 +19,12 @@ const formSchema = z.object({
   brand: z.string().optional().or(z.literal('')),
   inquiryType: z.string().min(1, { message: 'Please select an inquiry type.' }),
   message: messageSchema,
+  smsConsent: z.literal(true, {
+    errorMap: () => ({ message: 'You must agree to receive SMS messages to submit this form.' }),
+  }),
   honeypot: z.string().optional()
 });
+
 
 type FormValues = z.infer<typeof formSchema>;
 
