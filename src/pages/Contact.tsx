@@ -338,7 +338,44 @@ const Contact = () => {
                       </div>
                     )}
                   />
-                  
+
+                  <FormField
+                    control={form.control}
+                    name="smsConsent"
+                    render={({ field }) => (
+                      <FormItem className="space-y-3 rounded-md border border-border p-4">
+                        <div className="flex items-start gap-3">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                              className="mt-1"
+                              aria-describedby="sms-consent-text"
+                            />
+                          </FormControl>
+                          <FormLabel
+                            id="sms-consent-text"
+                            className="text-sm font-normal leading-relaxed text-muted-foreground"
+                          >
+                            By checking this box, you agree to receive SMS notifications, appointment updates, and marketing messages from Phresh Phactory, Inc. and our subsidiary platform, Rich Braids. Message and data rates may apply. Message frequency varies. Reply STOP to cancel or HELP for help.
+                          </FormLabel>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          By submitting this form, you agree to our{' '}
+                          <Link to="/terms" className="underline underline-offset-4 hover:text-foreground">
+                            Terms &amp; Conditions
+                          </Link>{' '}
+                          and{' '}
+                          <Link to="/privacy" className="underline underline-offset-4 hover:text-foreground">
+                            Privacy Policy
+                          </Link>.
+                        </p>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+
                   <Button type="submit" size="lg" disabled={isSubmitting}>
                     {isSubmitting ? 'Submitting...' : 'Send Message'}
                   </Button>
