@@ -42,9 +42,11 @@ const Contact = () => {
       brand: '',
       inquiryType: '',
       message: '',
+      smsConsent: false as unknown as true,
       honeypot: '',
     },
   });
+
 
   const onSubmit = async (data: FormValues) => {
     console.log('=== FORM SUBMISSION START ===');
