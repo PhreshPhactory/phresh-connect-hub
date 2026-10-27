@@ -57,7 +57,7 @@ serve(async (req) => {
     const safeName = sanitizeText(name || "", 100);
     const safeBusinessName = sanitizeText(businessName || "", 100);
 
-    logStep("Creating Stripe checkout session", { email: safeEmail });
+    logStep("Creating Stripe checkout session");
 
     // Create Stripe checkout session
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
@@ -165,7 +165,7 @@ serve(async (req) => {
       html: emailHtml,
     });
 
-    logStep("Invoice email sent", { emailId: emailResponse.id, to: safeEmail });
+    logStep("Invoice email sent", { emailId: emailResponse.id });
 
     return new Response(
       JSON.stringify({ 

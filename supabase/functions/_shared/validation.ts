@@ -73,3 +73,17 @@ export function validateRequiredFields(
   
   return { valid: missing.length === 0, missing };
 }
+
+const ALLOWED_ORIGINS = [
+  "https://phreshphactory.com",
+  "https://www.phreshphactory.com",
+  "https://phresh-connect-hub.lovable.app",
+  "https://id-preview--9a01b4e9-dfa6-44d7-befb-a427ea75d7f4.lovable.app",
+  "https://9a01b4e9-dfa6-44d7-befb-a427ea75d7f4.lovableproject.com",
+];
+
+/** Returns the request origin only if it is on the allowlist; otherwise the canonical site. */
+export function safeOrigin(candidate: string | null | undefined): string {
+  const c = (candidate || "").replace(/\/+$/, "");
+  return ALLOWED_ORIGINS.includes(c) ? c : "https://phreshphactory.com";
+}

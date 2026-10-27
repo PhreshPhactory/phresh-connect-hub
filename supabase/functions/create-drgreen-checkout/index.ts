@@ -1,3 +1,4 @@
+import { safeOrigin } from "../_shared/validation.ts";
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@18.5.0";
 
@@ -76,7 +77,7 @@ serve(async (req) => {
       include_mor_ops = false,
       base_description,
     } = body;
-    const origin = body.origin || req.headers.get("origin") || "https://phreshphactory.com";
+    const origin = safeOrigin(req.headers.get("origin"));
 
     if (!["payment", "subscription"].includes(mode)) {
       throw new Error("Invalid mode");
