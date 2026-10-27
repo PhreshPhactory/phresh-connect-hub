@@ -47,7 +47,7 @@ const handler = async (req: Request): Promise<Response> => {
     const safeName = sanitizeText(name, 100);
     const safeSource = sanitizeText(source, 100);
 
-    console.log(`Sending welcome email to ${safeEmail} from source: ${safeSource}`);
+    console.log(`Sending welcome email from source: ${safeSource}`);
 
     const emailResponse = await resend.emails.send({
       from: "Phresh Phactory <info@phreshphactory.co>",

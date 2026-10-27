@@ -10,7 +10,7 @@ import {
 import {
   isValidEmail,
   sanitizeText,
-  validateRequiredFields,, safeOrigin } from "../_shared/validation.ts";
+  validateRequiredFields, safeOrigin } from "../_shared/validation.ts";
 
 serve(async (req) => {
   const corsHeaders = createCorsHeaders(req);
@@ -58,14 +58,10 @@ serve(async (req) => {
       apiVersion: "2025-08-27.basil",
     });
 
-    // Check for existing customer
-    const customerId: string | undefined = undefined;
-
     const origin = safeOrigin(req.headers.get("origin"));
 
     const session = await stripe.checkout.sessions.create({
-      customer: customerId,
-      customer_email: customerId ? undefined : safeEmail,
+      customer_email: safeEmail,
       line_items: [
         {
           price: "price_1T1RKyQP580MvrLEmUIxfcal",

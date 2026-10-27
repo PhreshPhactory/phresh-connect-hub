@@ -64,7 +64,7 @@ serve(async (req) => {
     const safeEmail = sanitizeText(customerEmail, 255);
     const safeName = sanitizeText(customerName, 100);
 
-    logStep("Payment request validated", { paymentType, safeEmail });
+    logStep("Payment request validated", { paymentType });
 
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) throw new Error("STRIPE_SECRET_KEY is not set");

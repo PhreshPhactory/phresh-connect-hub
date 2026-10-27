@@ -7,7 +7,7 @@ import {
   rateLimitResponse,
   DEFAULT_RATE_LIMIT,
 } from "../_shared/rate-limit.ts";
-import { isValidEmail, sanitizeText } from "../_shared/validation.ts";
+import { isValidEmail, sanitizeText, escapeHtml } from "../_shared/validation.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -46,7 +46,7 @@ serve(async (req) => {
     logStep("Function started");
 
     const data: EnrollmentData = await req.json();
-    logStep("Received enrollment data", { email: data.email, sessions: data.selectedSessions });
+    logStep("Received enrollment data", { sessions: data.selectedSessions });
 
     // Validate email
     if (!isValidEmail(data.email)) {
@@ -66,11 +66,11 @@ serve(async (req) => {
     };
 
     const selectedSessionsList = data.selectedSessions
-      .map(id => sessionLabels[id] || id)
+      .map(id => sessionLabels[id] || escapeHtml(String(id).slice(0, 50)))
       .join('<br>• ');
 
     const totalFormatted = data.totalAmount > 0 
-      ? `$${(data.totalAmount / 100).toFixed(2)}` 
+      ? `$${(Number(data.totalAmount) / 100).toFixed(2)}` 
       : 'Free (AI 101 only)';
 
     const emailHtml = `
@@ -79,31 +79,31 @@ serve(async (req) => {
       <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
         <tr>
           <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Name</td>
-          <td style="padding: 8px; border-bottom: 1px solid #eee;">${sanitizeText(data.name || 'Not provided', 100)}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(sanitizeText(data.name || 'Not provided', 100))}</td>
         </tr>
         <tr>
           <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Email</td>
-          <td style="padding: 8px; border-bottom: 1px solid #eee;">${sanitizeText(data.email, 255)}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(sanitizeText(data.email, 255))}</td>
         </tr>
         <tr>
           <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Business Name</td>
-          <td style="padding: 8px; border-bottom: 1px solid #eee;">${sanitizeText(data.businessName || 'Not provided', 100)}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(sanitizeText(data.businessName || 'Not provided', 100))}</td>
         </tr>
         <tr>
           <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Location</td>
-          <td style="padding: 8px; border-bottom: 1px solid #eee;">${sanitizeText(data.businessCityState, 100)}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(sanitizeText(data.businessCityState, 100))}</td>
         </tr>
         <tr>
           <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Website</td>
-          <td style="padding: 8px; border-bottom: 1px solid #eee;">${sanitizeText(data.businessWebsite, 255)}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(sanitizeText(data.businessWebsite, 255))}</td>
         </tr>
         <tr>
           <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Google Email</td>
-          <td style="padding: 8px; border-bottom: 1px solid #eee;">${sanitizeText(data.googleEmail, 255)}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(sanitizeText(data.googleEmail, 255))}</td>
         </tr>
         <tr>
           <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Confidence Level</td>
-          <td style="padding: 8px; border-bottom: 1px solid #eee;">${data.confidenceLevel}/10</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;">${Number(data.confidenceLevel) || 0}/10</td>
         </tr>
         <tr>
           <td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">Total Amount</td>

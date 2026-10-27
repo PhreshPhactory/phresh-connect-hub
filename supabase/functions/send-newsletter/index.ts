@@ -70,7 +70,25 @@ serve(async (req) => {
       });
     }
 
-    const recipients = Array.isArray(to) ? to : [to];
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const rawRecipients = Array.isArray(to) ? to : [to];
+    const MAX_RECIPIENTS = 5000;
+    if (rawRecipients.length > MAX_RECIPIENTS) {
+      return new Response(JSON.stringify({ error: `Too many recipients (max ${MAX_RECIPIENTS})` }), {
+        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+    const recipients = [...new Set(rawRecipients
+      .filter((r: unknown) => typeof r === 'string')
+      .map((r: string) => r.trim().toLowerCase())
+      .filter((r: string) => r.length <= 255 && EMAIL_RE.test(r)))] as string[];
+    if (recipients.length === 0 || typeof subject !== 'string' || subject.length > 200
+      || (html && (typeof html !== 'string' || html.length > 500000))
+      || (template_id && !/^[A-Za-z0-9_-]{1,100}$/.test(String(template_id)))) {
+      return new Response(JSON.stringify({ error: 'Invalid recipients, subject, html, or template_id' }), {
+        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
 
     // Resolve HTML content (from template or direct)
     let resolvedHtml = html;

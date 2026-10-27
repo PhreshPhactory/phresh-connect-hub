@@ -83,7 +83,7 @@ serve(async (req) => {
     const safeEmail = sanitizeText(customerEmail, 255);
     const safeName = sanitizeText(customerName, 100);
 
-    logStep("Request validated", { priceIds, safeEmail });
+    logStep("Request validated", { priceIds });
 
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) {

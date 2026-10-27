@@ -12,7 +12,7 @@ import {
   isValidEmail,
   isValidUrl,
   sanitizeText,
-  validateRequiredFields,, safeOrigin } from "../_shared/validation.ts";
+  validateRequiredFields, safeOrigin } from "../_shared/validation.ts";
 
 const logStep = (step: string, details?: unknown) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
@@ -85,7 +85,7 @@ serve(async (req) => {
       }
     }
 
-    logStep("Request validated", { safeBrandName, safeBrandEmail, safeProductName });
+    logStep("Request validated", { safeBrandName, safeProductName });
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";

@@ -56,7 +56,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const email = session.customer_details.email;
-    console.log("Sending Holiday Sprint confirmation email to:", email);
+    console.log("Sending Holiday Sprint confirmation email");
 
     const emailResponse = await resend.emails.send({
       from: "Phresh Phactory, Inc. <info@phreshphactory.co>",
