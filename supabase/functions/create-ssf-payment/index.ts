@@ -7,7 +7,7 @@ import {
   rateLimitResponse,
   DEFAULT_RATE_LIMIT,
 } from "../_shared/rate-limit.ts";
-import { isValidEmail, sanitizeText, validateRequiredFields } from "../_shared/validation.ts";
+import { isValidEmail, sanitizeText, validateRequiredFields, safeOrigin } from "../_shared/validation.ts";
 
 const logStep = (step: string, details?: unknown) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
@@ -94,15 +94,8 @@ serve(async (req) => {
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
 
     // Check if customer exists
-    const customers = await stripe.customers.list({ email: safeEmail, limit: 1 });
-    let customerId: string | undefined;
-
-    if (customers.data.length > 0) {
-      customerId = customers.data[0].id;
-      logStep("Found existing customer", { customerId });
-    } else {
-      // Create new customer
-      const customer = await stripe.customers.create({
+    let customerId: string;
+    const customer = await stripe.customers.create({
         email: safeEmail,
         name: safeName,
         metadata: {
@@ -111,7 +104,6 @@ serve(async (req) => {
       });
       customerId = customer.id;
       logStep("Created new customer", { customerId });
-    }
 
     // Build line items
     const lineItems = priceIds.map((priceId: string) => ({
@@ -120,7 +112,7 @@ serve(async (req) => {
     }));
     logStep("Line items built", { lineItems });
 
-    const origin = req.headers.get("origin") || "https://phresh-connect-hub.lovable.app";
+    const origin = safeOrigin(req.headers.get("origin"));
 
     // Create checkout session
     const session = await stripe.checkout.sessions.create({

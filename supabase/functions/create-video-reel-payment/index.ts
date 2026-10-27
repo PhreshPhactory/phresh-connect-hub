@@ -12,8 +12,7 @@ import {
   isValidEmail,
   isValidUrl,
   sanitizeText,
-  validateRequiredFields,
-} from "../_shared/validation.ts";
+  validateRequiredFields,, safeOrigin } from "../_shared/validation.ts";
 
 const logStep = (step: string, details?: unknown) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
@@ -122,23 +121,16 @@ serve(async (req) => {
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
 
     // Check if customer exists
-    const customers = await stripe.customers.list({ email: safeBrandEmail, limit: 1 });
-    let customerId;
-    
-    if (customers.data.length > 0) {
-      customerId = customers.data[0].id;
-      logStep("Existing customer found", { customerId });
-    } else {
-      const customer = await stripe.customers.create({
+    let customerId: string;
+    const customer = await stripe.customers.create({
         email: safeBrandEmail,
         name: safeBrandName,
       });
       customerId = customer.id;
       logStep("New customer created", { customerId });
-    }
 
     // Create checkout session with the $100 price
-    const origin = req.headers.get("origin") || "https://phresh-connect-hub.lovable.app";
+    const origin = safeOrigin(req.headers.get("origin"));
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
       line_items: [

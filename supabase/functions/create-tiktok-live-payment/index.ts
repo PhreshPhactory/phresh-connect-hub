@@ -10,8 +10,7 @@ import {
 import {
   isValidEmail,
   sanitizeText,
-  validateRequiredFields,
-} from "../_shared/validation.ts";
+  validateRequiredFields,, safeOrigin } from "../_shared/validation.ts";
 
 serve(async (req) => {
   const corsHeaders = createCorsHeaders(req);
@@ -60,13 +59,9 @@ serve(async (req) => {
     });
 
     // Check for existing customer
-    const customers = await stripe.customers.list({ email: safeEmail, limit: 1 });
-    let customerId: string | undefined;
-    if (customers.data.length > 0) {
-      customerId = customers.data[0].id;
-    }
+    const customerId: string | undefined = undefined;
 
-    const origin = req.headers.get("origin") || "https://phresh-connect-hub.lovable.app";
+    const origin = safeOrigin(req.headers.get("origin"));
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,

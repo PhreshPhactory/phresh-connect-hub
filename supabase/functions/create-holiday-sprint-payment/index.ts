@@ -7,7 +7,7 @@ import {
   rateLimitResponse,
   DEFAULT_RATE_LIMIT,
 } from "../_shared/rate-limit.ts";
-import { isValidEmail, sanitizeText, validateRequiredFields } from "../_shared/validation.ts";
+import { isValidEmail, sanitizeText, validateRequiredFields, safeOrigin } from "../_shared/validation.ts";
 
 const logStep = (step: string, details?: unknown) => {
   const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
@@ -72,20 +72,13 @@ serve(async (req) => {
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
 
     // Check if customer already exists
-    const customers = await stripe.customers.list({ email: safeEmail, limit: 1 });
-    let customerId;
-    
-    if (customers.data.length > 0) {
-      customerId = customers.data[0].id;
-      logStep("Existing customer found", { customerId });
-    } else {
-      const customer = await stripe.customers.create({
+    let customerId: string;
+    const customer = await stripe.customers.create({
         email: safeEmail,
         name: safeName,
       });
       customerId = customer.id;
       logStep("New customer created", { customerId });
-    }
 
     // Determine price ID based on payment type
     const priceId = paymentType === "full" 
@@ -96,7 +89,7 @@ serve(async (req) => {
     
     logStep("Creating checkout session", { priceId, mode });
 
-    const origin = req.headers.get("origin") || "https://phresh-connect-hub.lovable.app";
+    const origin = safeOrigin(req.headers.get("origin"));
 
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
